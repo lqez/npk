@@ -1,0 +1,1433 @@
+/*
+
+	npack - General-Purpose File Packing Library
+	Copyright (c) 2009 Park Hyun woo(ez@amiryo.com)
+
+	npack command-line tool
+	
+	See README for copyright and license information.
+
+*/
+
+#include <iostream>
+#include <time.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <list>
+#include <string>
+#include <stdio.h>
+#include <algorithm>
+#include <npack.h>
+#include <npack_dev.h>
+
+#include "helper_commify.hpp"
+#include "helper_timetostring.hpp"
+#include "helper_bstrcmp.h"
+
+#ifdef NPACK_PLATFORM_WINDOWS
+	#include "helper_dirent.h"
+	#define PATH_SEPARATOR '\\'
+	#define IS_WINDOWS true
+	#pragma warning( disable : 4996 )
+#else
+	#include <dirent.h>
+	#define PATH_SEPARATOR '/'
+	#define strnicmp strncasecmp
+	#define IS_WINDOWS false
+#endif
+
+using namespace std;
+
+/* -------------------------------------------------------------------------------------- */
+/* TODO: Refactoring - remove duplicated codes in traversal functions and sync functions. */
+/* -------------------------------------------------------------------------------------- */
+
+typedef list<NPACK_ENTITY> ENTITYLIST;
+typedef list<NPACK_ENTITY>::iterator ELI;
+typedef list<string> STRLIST;
+typedef list<string>::iterator SLI;
+
+#define toolversion "1.4"
+#define baseversion "v23"
+#define V(x,y) (strcmp(v[x],y) == 0)
+
+const char		_HR_[] = "-------------------------------------------------------------------------------\n";
+const int		readable_size_count = 3;
+const int		readable_size[readable_size_count] = { 1024*1024*1024, 1024*1024, 1024 };
+const char*		readable_unit[readable_size_count] = { "GB", "MB", "KB" };
+unsigned int	sync_result[4] = { 0, 0, 0, 0 };	// pass, delete, update, add
+
+int					n = 0;	// current argc number
+int					c;		// argc
+char				**v;	// argv
+
+// options
+char* output = NULL;
+bool verbose = false;
+bool modified = false;
+bool forceoverwrite = false;
+bool norecursive = false;
+bool human_readable = false;
+bool syncadd = false;
+bool syncdelete = false;
+bool forceupdate = false;
+bool justcreate = false;
+
+NPACK_FLAG currentflag;
+STRLIST withlist;
+STRLIST ignorelist;
+
+NPACK_TEAKEY k[4] = { 0, 0, 0, 0 };
+NPACK_PACKAGE package = NULL;
+NPACK_ENTITY entity = NULL;
+
+typedef	void( *LOCAL_TFP )( NPACK_CSTR fullpath, NPACK_CSTR filename );
+typedef	void( *PACKAGE_TFP )( NPACK_ENTITY entity );
+
+// non-command function
+void title();
+void version();
+void info();
+void basic_help();
+void bad_syntax();
+void help();
+void error_n_exit();
+
+// command function
+void add();
+void create();
+void del();
+void diff();
+void expt();
+void flag();
+void listinfo();
+void sync_package();
+void sync_and_add( bool sd, bool force, const char* basepath, const char* path );
+void sync_only_in_package( bool sd, bool force, const char* path );
+
+// option function
+bool has_wildcard_pattern( const char* str );
+bool find_option( const char* option, int* pos = NULL );
+void get_key();
+void get_verbose();
+void get_output();
+void get_gluetime();
+void get_forceoverwrite();
+void get_norecursive();
+void get_withlist();
+void get_ignorelist();
+void get_human_readable();
+void get_just_create();
+void get_sync_options();
+
+// traversal function
+bool valid_name( NPACK_CSTR name, NPACK_CSTR pattern = NULL );
+int traverse_local( const char* basepath, const char* path, LOCAL_TFP fp, NPACK_CSTR pattern = NULL );
+int traverse_package( PACKAGE_TFP fp, NPACK_CSTR pattern = NULL );
+
+int main( int _c, char* _v[] )
+{
+#ifdef NPACK_PLATFORM_WINDOWS
+	_tzset();
+#else
+	tzset();
+#endif
+
+	c = _c;
+	v = _v;
+
+	if( c < 2 )
+	{
+		basic_help();
+		exit(1);
+	}
+	else
+	{
+		if(V(1,"-help"))
+			help();
+		else if(V(1,"-version"))
+			version();
+		else
+		{
+			if( c < 3 )
+				bad_syntax();
+
+			output = v[1];
+			get_verbose();
+			get_key();
+			get_output();
+			get_gluetime();
+			get_forceoverwrite();
+			get_norecursive();
+			get_withlist();
+			get_ignorelist();
+			get_human_readable();
+			get_just_create();
+			get_sync_options();
+
+			n = 2;
+
+			if( V(2,"-create") )
+			{
+				create();
+			}
+			else
+			{
+				if( ( package = npack_package_open( v[1], k ) ) == NULL )
+				{
+					if( justcreate )
+					{
+						create();
+						--n;
+					}
+					else
+						error_n_exit();
+				}
+			}
+
+			while( n < c )
+			{
+				if(V(n,"-add")||V(n,"-insert"))
+					add();
+				else if(V(n,"-create"))
+				{
+					cout << "-create command must be in the first place of commands.\n";
+					error_n_exit();
+				}
+				else if(V(n,"-delete")||V(n,"-remove"))
+					del();
+				else if(V(n,"-diff"))
+					diff();
+				else if(V(n,"-export"))
+					expt();
+				else if(V(n,"-flag"))
+					flag();
+				else if(V(n,"-list")||V(n,"-info"))
+					listinfo();
+				else if(V(n,"-sync")||V(n,"-update"))
+					sync_package();
+				else
+					++n;
+			}
+
+			if( modified )
+			{
+				if( verbose )
+					cout << "saving package... ";
+
+				/* For convenient using */
+				if( v[1] == output )
+					forceoverwrite = true;
+				
+				if( npack_package_save( package, output, forceoverwrite ) != NPACK_SUCCESS )
+					error_n_exit();
+
+				if( verbose )
+					cout << "finished.\n";
+			}
+			if( npack_package_close( package ) != NPACK_SUCCESS )
+				error_n_exit();
+		}
+	}
+	return 0;
+}
+
+void basic_help()
+{
+	cout << "Type 'npack -help' for usage.\n";
+}
+
+void bad_syntax()
+{
+	cout << "Bad syntax error. Please type 'npack -help' for usage.\n";
+	exit(-1);
+}
+
+void title()
+{
+	cout << "npack command-line client, version " << toolversion << ".\n";
+}
+
+void version()
+{
+	cout << "npack command-line client, version " << toolversion << ".\n"
+		<< "Based on libnpack version " << baseversion << ".\n\n"
+		<< "Copyright (C) 2009 Park Hyun woo(ez@amiryo.com)\n";
+}
+
+void info()
+{
+	cout << "Checkout the latest version of npack from:\n"
+		"    http://npack.googlecode.com/svn/trunk npack-read-only\n";
+}
+
+void help()
+{
+	if( c <= 2 )
+	{
+		title();
+		cout << "usage: npack <package> <command> [args]\n"
+			<< "Type 'npack -help <command>' for help on a specific command.\n"
+			<< "Type 'npack -version' to see the program version.\n"
+			<< "\n"
+			<< "Available commands:\n"
+			<< "    -add\n"
+			<< "    -create\n"
+			<< "    -delete\n"
+			<< "    -diff\n"
+			<< "    -export\n"
+			<< "    -flag\n"
+			<< "    -list\n"
+			<< "    -sync\n"
+			<< "\n"
+			<< "You can also use one or more command at once.\n";
+		info();
+	}
+	else
+	{
+		if(V(2,"add") || V(2,"-add") || V(2,"insert") || V(2,"-insert") )
+		{
+			cout << "add/insert: add files into the package as entities.\n"
+				<< "usage: npack <package> -add [FILE1[@ENTITY] FILE2...]\n"
+				<< "       you can use wildcard pattern on filename.\n"
+				<< "\n"
+				<< "example:\n"
+				<< "    npack foo.npk -add *.jpg\n"
+				<< "    npack foo.npk -add bar.jpg@null.jpg --v\n"
+				<< "    npack foo.npk -add bar.jpg qoo.jpg --k 1:2:3:4\n"
+				<< "\n"
+				<< "options:\n"
+				<< "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
+				<< "    --v [--verbose]      : print working information.\n"
+				<< "    --g [--gluetime] ARG : use ARG as gluetime. ARG is time_t value.\n"
+				<< "    --o [--output] ARG   : save package as new file named ARG.\n"
+				<< "    --f [--force]        : force overwrite old package file.\n"
+				<< "    --jc [--justcreate]  : create new package automatically if not exist.\n";
+		}
+		else if(V(2,"create") || V(2,"-create") )
+		{
+			cout << "create: create a new npack package.\n"
+				<< "usage: npack <package> -create\n"
+				<< "\n"
+				<< "example:\n"
+				<< "    npack foo.npk -create\n"
+				<< "\n"
+				<< "options:\n"
+				<< "    --v [--verbose] : print working information.\n"
+				<< "    --f [--force]   : force overwrite old package file.\n";
+		}
+		else if(V(2,"delete") || V(2,"-delete") || V(2,"remove") || V(2,"-remove") )
+		{
+			cout << "delete/remove: delete entities from the package.\n"
+				<< "usage: npack <package> -delete [ENTITY1 ENTITY2...]\n"
+				<< "       you can use wildcard pattern on ENTITY name.\n"
+				<< "\n"
+				<< "example:\n"
+				<< "    npack foo.npk -delete *.jpg\n"
+				<< "    npack foo.npk -delete bar.jpg qoo.jpg --k 1:2:3:4\n"
+				<< "\n"
+				<< "options:\n"
+				<< "    --k [--teakey] ARG : use ARG as TEAKEY. default key is 0:0:0:0.\n"
+				<< "    --v [--verbose]    : print working information.\n"
+				<< "    --o [--output] ARG : save package as new file named ARG.\n"
+				<< "    --f [--force]      : force overwrite old package file.\n";
+		}
+		else if(V(2,"diff") || V(2,"-diff") )
+		{
+			cout << "diff: show differences between the package and local path.\n"
+				<< "usage: npack <package> -diff [PATH]\n"
+				<< "\n"
+				<< "example:\n"
+				<< "    npack foo.npk -diff d:\\product\\release\n"
+				<< "    npack foo.npk -diff d:\\foo --k 1:2:3:4\n"
+				<< "\n"
+				<< "options:\n"
+				<< "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
+				<< "    --v [--verbose]      : print working information.\n";
+		}
+		else if(V(2,"export") || V(2,"-export") )
+		{
+			cout << "export: export entities into local files from the package.\n"
+				<< "usage: npack <package> -export [ENTITY1[@FILE] ENTITY2...]\n"
+				<< "       you can use wildcard pattern on ENTITY name.\n"
+				<< "\n"
+				<< "example:\n"
+				<< "    npack foo.npk -export *.jpg\n"
+				<< "    npack foo.npk -export johndoe@bar.jpg --v\n"
+				<< "    npack foo.npk -export bar.jpg qoo.jpg --k 1:2:3:4\n"
+				<< "\n"
+				<< "options:\n"
+				<< "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
+				<< "    --v [--verbose]      : print working information.\n"
+				<< "    --f [--force]        : force overwrite old file.\n";
+		}
+		else if(V(2,"flag") || V(2,"-flag") )
+		{
+			cout << "flag: set flag(property) of entity in the package.\n"
+				<< "usage: npack <package> -flag [ENTITY1[@FLAG1[@FLAG2...]] ENTITY2...]\n"
+				<< "\n"
+				<< "flags:\n"
+				<< "    COMPRESS [C] : compress entity with zlib\n"
+				<< "    ENCRYPT  [E] : encrypt entity with tea\n"
+				<< "\n"
+				<< "example:\n"
+				<< "    npack foo.npk -flag *.jpg@ENCRYPT\n"
+				<< "    npack foo.npk -flag bar.jpg@C@E --v\n"
+				<< "    npack foo.npk -flag bar.jpg --k 1:2:3:4   /* to remove flag */\n"
+				<< "\n"
+				<< "options:\n"
+				<< "    --k [--teakey] ARG : use ARG as TEAKEY. default key is 0:0:0:0.\n"
+				<< "    --v [--verbose]    : print working information.\n"
+				<< "    --o [--output] ARG : save package as new file named ARG.\n"
+				<< "    --f [--force]      : force overwrite old package file.\n";
+		}
+		else if(V(2,"list") || V(2,"-list") || V(2,"info") || V(2,"-info") )
+		{
+			cout << "list/info: show package information and entity list.\n"
+				<< "usage: npack <package> -list [PATTERN]\n"
+				<< "usage: npack <package> -list\n"
+				<< "\n"
+				<< "example:\n"
+				<< "    npack foo.npk -list\n"
+				<< "    npack foo.npk -list *.jpg --k 1:2:3:4\n"
+				<< "\n"
+				<< "options:\n"
+				<< "    --k [--teakey] ARG     : use ARG as TEAKEY. default key is 0:0:0:0.\n"
+				<< "    --v [--verbose]        : print working information.\n"
+				<< "    --h [--human-readable] : support enhanced readability.\n";
+		}
+		else if( V(2,"sync") || V(2,"-sync") || V(2,"update") || V(2,"-update") )
+		{
+			cout << "sync/update: synchronize the package with local files.\n"
+				<< "usage: npack <package> -sync [PATH]\n"
+				<< "\n"
+				<< "example:\n"
+				<< "    npack foo.npk -sync c:\\product --k 1:2:3:4\n"
+				<< "    npack foo.npk -sync c:\\product\\release --sa --sd\n"
+				<< "    npack foo.npk -sync c:\\product\\release --sa --ig *.tmp *.pdb\n"
+				<< "\n"
+				<< "options:\n"
+				<< "    --k [--teakey] ARG     : use ARG as TEAKEY. default key is 0:0:0:0.\n"
+				<< "    --v [--verbose]        : print working information.\n"
+				<< "    --g [--gluetime] ARG   : use ARG as gluetime. ARG is time_t value.\n"
+				<< "    --o [--output] ARG     : save package as new file named ARG.\n"
+				<< "    --f [--force]          : force overwrite old package file.\n"
+				<< "    --jc [--justcreate]    : create new package automatically if not exist.\n"
+				<< "    --nr [--norecursive]   : do not sync child directories.\n"
+				<< "    --fu [--forceupdate]   : force update with older local files.\n"
+				<< "    --sa [--syncadd]       : add new local files into the package.\n"
+				<< "    --sd [--syncdelete]    : delete entities that not exist in local disk.\n"
+				<< "    --wo [--withonly] ARGS : sync ARGS only(wildcard pattern).\n"
+				<< "    --ig [--ignore] ARGS   : do not sync ARGS(wildcard pattern).\n"
+				<< "                             you can use --wo and --ig at same time,\n"
+				<< "                             but --wo ARGS will be ignored by --ig ARGS.\n";
+		}
+	}
+}
+
+void error_n_exit()
+{
+	int err = g_npackError;
+	cout << npack_error_to_str(err) << "\n";
+	exit(err);
+}
+
+bool has_wildcard_pattern( const char* str )
+{
+	if( !str )
+		return false;
+
+	size_t len = strlen(str);
+	for( size_t i = 0; i < len; ++i )
+	{
+		if( str[i] == '?' || str[i] =='*' )
+			return true;
+	}
+	return false;
+}
+
+bool find_option( const char* option, int* pos )
+{
+	char buf[512];
+	sprintf( buf, "--%s", option );
+
+	for( int i = 0; i < c; ++i )
+	{
+		if( strncmp( v[i], buf, strlen(buf) ) == 0 )
+		{
+			if( ( pos != NULL ) && ( i < c-1 ) )
+				*pos = i + 1;;
+			return true;
+		}
+	}
+	return false;
+}
+
+void get_key()
+{
+	int pos = -1;
+	if( find_option( "k", &pos ) || find_option( "teakey", &pos ) )
+	{
+		if( pos == -1 )
+			bad_syntax();
+
+		char buf[512];
+		char* c;
+		c = buf;
+		strcpy( buf, v[pos] );
+
+		for( int i = 0; i < 4; ++i )
+		{
+			char* colonpos = strchr( c, ':' );
+			if( ( i != 3 ) && ( !colonpos ) )
+				bad_syntax();
+			k[i] = atoi( c );
+			c = colonpos + 1;
+		}
+
+		if( verbose )
+			cout << "using key " << v[pos] << "\n";
+
+	}
+}
+
+void get_verbose()
+{
+	verbose = find_option( "v" ) || find_option( "verbose" );
+}
+
+void get_output()
+{
+	int pos = -1;
+	if( find_option( "o", &pos ) || find_option( "output", &pos ) )
+	{
+		if( pos == -1 )
+			bad_syntax();
+
+		output = v[pos];
+
+		if( verbose )
+			cout << "using output target " << output << "\n";
+	}
+}
+
+void get_gluetime()
+{
+	int pos = -1;
+	if( find_option( "g", &pos ) || find_option( "gluetime", &pos ) )
+	{
+		if( pos == -1 )
+			bad_syntax();
+
+
+		NPACK_TIME gluetime;
+		gluetime = atoi( v[pos] );
+		npack_enable_gluetime( gluetime );
+
+		if( verbose )
+			cout << "using gluetime " << timeToString(gluetime) << "\n";
+	}
+}
+
+void get_forceoverwrite()
+{
+	forceoverwrite = find_option( "f" ) || find_option( "force" );
+}
+
+void get_norecursive()
+{
+	norecursive = find_option( "nr" ) || find_option( "norecursive" );
+}
+
+void get_human_readable()
+{
+	human_readable = find_option( "h" ) | find_option( "human-readable" );
+}
+
+void get_just_create()
+{
+	justcreate = find_option( "jc" ) | find_option( "justcreate" );
+}
+
+void get_sync_options()
+{
+	syncadd = find_option( "sa" ) | find_option( "syncadd" );
+	syncdelete = find_option( "sd" ) | find_option( "syncdelete" );
+	forceupdate = find_option( "fu" ) | find_option( "forceupdate" );
+}
+
+void get_withlist()
+{
+	withlist.clear();
+
+	int pos = -1;
+	if( find_option( "ow", &pos ) || find_option( "onlywith", &pos ) )
+	{
+		if( pos == -1 )
+			bad_syntax();
+
+		if( verbose )
+			cout << "using withonly filter ";
+
+		while( pos < c )
+		{
+			if( v[pos][0] == '-' )
+				break;
+
+			if( withlist.size() > 0 )
+				cout << ", ";
+			cout << v[pos];
+
+			withlist.push_back( v[pos] );
+			++pos;
+		}
+
+		if( verbose )
+		{
+			cout << "\n";
+			cout << _HR_;
+		}
+	}
+}
+void get_ignorelist()
+{
+	ignorelist.clear();
+
+	int pos = -1;
+	if( find_option( "ig", &pos ) || find_option( "ignore", &pos ) )
+	{
+		if( pos == -1 )
+			bad_syntax();
+
+		if( verbose )
+			cout << "using ignore filter ";
+
+		while( pos < c )
+		{
+			if( v[pos][0] == '-' )
+				break;
+
+			if( ignorelist.size() > 0 )
+				cout << ", ";
+			cout << v[pos];
+
+			ignorelist.push_back( v[pos] );
+			++pos;
+		}
+
+		if( verbose )
+		{
+			cout << "\n";
+			cout << _HR_;
+		}
+	}
+}
+
+bool valid_name( NPACK_CSTR name, NPACK_CSTR pattern )
+{
+	bool with = true;
+
+	if( pattern != NULL )
+	{
+		with = b_strcmp( pattern, name, IS_WINDOWS );
+	}
+	else
+	{
+		// check 'withonly' list
+		if( withlist.size() > 0 )
+		{
+			SLI iter = withlist.begin();
+			while( iter != withlist.end() )
+			{
+				if( b_strcmp( (*iter).c_str(), name, IS_WINDOWS ) )
+				{
+					with = true;
+					break;
+				}
+				++iter;
+			}
+		}
+	}
+
+	if( !with )
+		return false;
+
+	// check 'ignorable' list
+	if( ignorelist.size() > 0 )
+	{
+		SLI iter = ignorelist.begin();
+		while( iter != ignorelist.end() )
+		{
+			if( b_strcmp( (*iter).c_str(), name, IS_WINDOWS ) )
+				return false;
+			++iter;
+		}
+	}
+	return true;
+}
+
+void add_tfp( NPACK_CSTR fullpath, NPACK_CSTR filename )
+{
+	if( verbose )
+		cout << "    " << filename << "\n";
+
+	if( npack_package_add_file( package, fullpath, filename, NULL ) != NPACK_SUCCESS )
+		error_n_exit();
+}
+
+void add()
+{
+	int count = 0;
+
+	while( n < c )
+	{
+		++n;
+		if( n >= c )
+			break;
+		if( v[n][0] == '-' )
+			break;
+
+		if( verbose )
+			cout << "adding " << v[n] << "\n";
+
+		if( has_wildcard_pattern( v[n] ) )
+		{
+			char fullpath[512];
+			strcpy( fullpath, v[n] );
+			char *pattern = v[n], *atpos = NULL;
+
+			if( ( atpos = strchr( fullpath, PATH_SEPARATOR ) ) )
+			{
+				*atpos = '\0';
+				pattern = atpos + 1;
+			}
+			else
+			{
+				sprintf( fullpath, "." );
+			}
+			count += traverse_local( fullpath, fullpath, add_tfp, pattern );
+		}
+		else
+		{
+			char filename[512];
+			strcpy( filename, v[n] );
+			char *entityname = NULL, *atpos = NULL;
+
+			if( ( atpos = strchr( filename, '@' ) ) )
+			{
+				*atpos = '\0';
+				entityname = atpos + 1;
+			}
+
+			if( npack_package_add_file( package, filename, entityname, NULL ) != NPACK_SUCCESS )
+				error_n_exit();
+			++count;
+		}
+	}
+
+	if( verbose )
+		cout << count << " file(s) added.\n";
+	if( count > 0 )
+		modified = true;
+}
+
+
+void create()
+{
+	if( npack_package_new( &package, k ) != NPACK_SUCCESS )
+		error_n_exit();
+	if( npack_package_save( package, v[1], forceoverwrite ) != NPACK_SUCCESS )
+		error_n_exit();
+	if( npack_package_close( package ) != NPACK_SUCCESS )
+		error_n_exit();
+
+	if( verbose )
+		cout << "package " << v[1] << " has been created successfully.\n";
+
+	if( ( package = npack_package_open( v[1], k ) ) == NULL )
+		error_n_exit();
+	++n;
+}
+
+void del_tfp( NPACK_ENTITY entity )
+{
+	NPACK_ENTITYBODY* eb = (NPACK_ENTITYBODY*)entity;
+
+	if( verbose )
+		cout << "    " << eb->name_ << "\n";
+	if( npack_package_remove_entity( package, entity ) != NPACK_SUCCESS )
+		error_n_exit();
+}
+
+void del()
+{
+	int count = 0;
+	NPACK_ENTITY entity = NULL;
+
+	while( n < c )
+	{
+		++n;
+		if( n >= c )
+			break;
+		if( v[n][0] == '-' )
+			break;
+
+		if( verbose )
+			cout << "removing " << v[n] << "\n";
+
+		if( has_wildcard_pattern( v[n] ) )
+		{
+			count += traverse_package( del_tfp, v[n] );
+		}
+		else
+		{
+			entity = npack_package_get_entity( package, v[n] );
+			if( entity == NULL )
+				error_n_exit();
+			if( npack_package_remove_entity( package, entity ) != NPACK_SUCCESS )
+				error_n_exit();
+			++count;
+		}
+	}
+
+	if( verbose )
+		cout << count << " entity(s) removed.\n";
+	if( count > 0 )
+		modified = true;
+}
+
+void diff()
+{
+	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
+	NPACK_ENTITYBODY* eb = pb->pEntityHead_;
+
+	++n;
+
+	if( n >= c )
+		bad_syntax();
+	if( v[n][0] == '-' )
+		bad_syntax();
+
+	if( verbose )
+	{
+		cout << "Package      : " << output << "\n";
+		cout << "Version      : " << pb->info_.version_ << "\n";
+		cout << "Total entity : " << pb->info_.entityCount_ << "\n";
+		cout << _HR_;
+		cout << "     status       "
+			 << " name" << "\n";
+		cout << _HR_;
+	}
+
+
+	char path[255], buf[512];
+	unsigned int count[4] = { 0,0,0,0 };
+	size_t len = strlen(path)-1;
+	strcpy( path, v[n] );
+
+	// remove last \ mark
+	if( path[len] == PATH_SEPARATOR )
+		path[len] = '\0';
+
+	struct stat __sbuf;
+	int result;
+	int status = 0; // 0:not found, 1:same, 2:package is latest, 3:local is latest
+
+	while( eb )
+	{
+		sprintf( buf, "%s%c%s", path, PATH_SEPARATOR, eb->name_ );
+		result = stat( buf, &__sbuf );
+
+		if( result != 0 )
+		{
+			switch( errno )
+			{
+			case ENOENT:
+				status = 0;
+				break;
+			default:
+				/* Should never be reached. */
+				cout << "Unexpected error in _stat call.\n";
+				exit(-1);
+			}
+		}
+		else
+		{
+			if( __sbuf.st_mtime > eb->info_.modified_ )
+				status = 3;
+			else if( __sbuf.st_mtime < eb->info_.modified_ )
+				status = 2;
+			else
+				status = 1;
+		}
+		++count[status];
+
+		if( verbose )
+		{
+			switch( status )
+			{
+			case 0: cout << "not found        ? "; break;
+			case 1: cout << "same             = "; break;
+			case 2: cout << "newer than local + "; break;
+			case 3: cout << "older than local - "; break;
+			}
+		}
+		else
+		{
+			switch( status )
+			{
+			case 0: cout << "? "; break;
+			case 1: cout << "= "; break;
+			case 2: cout << "+ "; break;
+			case 3: cout << "- "; break;
+			}
+		}
+		cout << eb->name_ << "\n";
+		eb = eb->next_;
+	}
+
+	if( verbose )
+	{
+		cout << _HR_;
+		if( count[1] > 0 )
+			cout << count[1] << " entity(s) are same.\n";
+		if( count[2] > 0 )
+			cout << count[2] << " entity(s) are newer than local.\n";
+		if( count[3] > 0 )
+			cout << count[3] << " entity(s) are older than local.\n";
+		if( count[0] > 0 )
+			cout << count[0] << " entity(s) are not found in local.\n";
+	}
+}
+
+void expt_tfp( NPACK_ENTITY entity )
+{
+	NPACK_ENTITYBODY* eb = (NPACK_ENTITYBODY*)entity;
+
+	if( verbose )
+		cout << "    " << eb->name_ << "\n";
+
+	if( npack_entity_export( entity, eb->name_, forceoverwrite ) != NPACK_SUCCESS )
+		error_n_exit();
+}
+
+void expt()
+{
+	int count = 0;
+
+	while( n < c )
+	{
+		++n;
+		if( n >= c )
+			break;
+		if( v[n][0] == '-' )
+			break;
+
+		if( has_wildcard_pattern( v[n] ) )
+		{
+			if( verbose )
+				cout << "exporting " << v[n] << "\n";
+			count += traverse_package( expt_tfp, v[n] );
+		}
+		else
+		{
+			char entityname[512];
+			strcpy( entityname, v[n] );
+			char *filename = NULL, *atpos = NULL;
+
+			if( ( atpos = strchr( entityname, '@' ) ) )
+			{
+				*atpos = '\0';
+				filename = atpos + 1;
+			}
+
+			if( verbose )
+			{
+				if( filename )
+					cout << "exporting " << entityname << " as " << filename << "\n";
+				else
+					cout << "exporting " << v[n] << "\n";
+			}
+
+			if( !(entity = npack_package_get_entity( package, entityname ) ) )
+				error_n_exit();
+
+			if( npack_entity_export( entity, filename, forceoverwrite ) != NPACK_SUCCESS )
+				error_n_exit();
+
+			++count;
+		}
+	}
+
+	if( verbose )
+		cout << count << " file(s) exported.\n";
+}
+
+void flag_tfp( NPACK_ENTITY entity )
+{
+	NPACK_ENTITYBODY* eb = (NPACK_ENTITYBODY*)entity;
+
+	if( verbose )
+		cout << "    " << eb->name_ << "\n";
+	if( npack_entity_set_flag( entity, currentflag ) != NPACK_SUCCESS )
+		error_n_exit();
+}
+
+void flag()
+{
+	int count = 0;
+
+	while( n < c )
+	{
+		++n;
+		if( n >= c )
+			break;
+		if( v[n][0] == '-' )
+			break;
+
+		char entityname[512];
+		strcpy( entityname, v[n] );
+		char *flagchar = NULL;
+		NPACK_FLAG flag = NPACK_ENTITY_NULL;
+		if( NPACK_VERSION_CURRENT >= NPACK_VERSION_REFACTORING )
+			flag = NPACK_ENTITY_REVERSE;
+
+		flagchar = entityname;
+
+		while( ( flagchar = strchr( flagchar, '@' ) ) )
+		{
+			*flagchar = '\0';
+			flagchar++;
+			if( ( strnicmp( flagchar, "C", 1 ) == 0 )
+			 || ( strnicmp( flagchar, "COMPRESS", 8 ) == 0 ) )
+				flag |= NPACK_ENTITY_COMPRESS;
+			else if( ( strnicmp( flagchar, "E", 1 ) == 0 )
+			 || ( strnicmp( flagchar, "ENCRYPT", 7 ) == 0 ) )
+				flag |= NPACK_ENTITY_ENCRYPT;
+		}
+
+		if( verbose )
+		{
+			cout << "changing " << entityname;
+			if( flag & NPACK_ENTITY_COMPRESS )
+				cout << " -compress";
+			if( flag & NPACK_ENTITY_ENCRYPT )
+				cout << " -encrypt";
+			cout << "\n";
+		}
+
+		if( has_wildcard_pattern( v[n] ) )
+		{
+			currentflag = flag;
+			count += traverse_package( flag_tfp, entityname );
+		}
+		else
+		{
+			entity = npack_package_get_entity( package, entityname );
+			if( !entity )
+				error_n_exit();
+			if( npack_entity_set_flag( entity, flag ) != NPACK_SUCCESS )
+				error_n_exit();
+			++count;
+		}
+	}
+
+	if( verbose )
+		cout << count << " entity(s) changed.\n";
+	if( count > 0 )
+		modified = true;
+}
+
+void listinfo_tfp( NPACK_ENTITY entity )
+{
+	NPACK_ENTITYBODY* eb = (NPACK_ENTITYBODY*)entity;
+
+	char buf1[80], buf2[80], size1[80], size2[80];
+	bool readable_out;
+
+	if( eb->info_.size_ == 0 )
+	{
+		printf( "    <not stored yet>    %c%c   ---------- -------- %s\n",
+			(eb->newflag_ & NPACK_ENTITY_COMPRESS)?'C':' ',
+			(eb->newflag_ & NPACK_ENTITY_ENCRYPT)?'E':' ',
+			eb->name_ );
+	}
+	else
+	{
+		readable_out = false;
+
+		if( human_readable )
+		{
+			for( int i = 0; i < readable_size_count; ++i )
+			{
+				if( readable_size[i] <= eb->info_.originalSize_ )
+				{
+					commify( (double)eb->info_.size_ / readable_size[i], buf1, 1 ),
+					commify( (double)eb->info_.originalSize_ / readable_size[i], buf2, 1 ),
+					sprintf( size1, "%8s %2s", buf1, readable_unit[i] );
+					sprintf( size2, "%8s %2s", buf2, readable_unit[i] );
+
+					readable_out = true;
+					break;
+				}
+			}
+		}
+
+		if( !readable_out )
+		{
+			commify( eb->info_.size_, size1, 0 );
+			commify( eb->info_.originalSize_, size2, 0 );
+		}
+
+		printf( "%11s %11s %c%c   %17s %s\n",
+			size1,
+			size2,
+			(eb->info_.flag_ & NPACK_ENTITY_COMPRESS)?'C':' ',
+			(eb->info_.flag_ & NPACK_ENTITY_ENCRYPT)?'E':' ',
+			timeToString( eb->info_.modified_ ),
+			eb->name_ );
+	}
+}
+
+void listinfo()
+{
+	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
+	++n;
+	char* filter = NULL;
+
+	if( n < c )
+	{
+		if( v[n][0] != '-' )
+		{
+			filter = v[n];
+		}
+	}
+
+	cout << "Package      : " << output << "\n";
+	cout << "Version      : " << pb->info_.version_ << "\n";
+	cout << "Total entity : " << pb->info_.entityCount_ << "\n";
+	if( filter )
+		cout << "Using filter : " << filter << "\n";
+
+	cout << _HR_;
+	cout << "       size "
+		 << "   original "
+		 << "flag "
+		 << "date       "
+		 << "time     "
+		 << "name" << "\n";
+	cout << _HR_;
+
+	traverse_package( listinfo_tfp, filter );
+	cout << _HR_;
+}
+
+void sync_package()
+{
+	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
+
+
+	if( verbose )
+	{
+		cout << "Package      : " << output << "\n";
+		cout << "Version      : " << pb->info_.version_ << "\n";
+		cout << "Total entity : " << pb->info_.entityCount_ << "\n";
+		cout << _HR_;
+	}
+	++n;
+
+	if( n >= c )
+		bad_syntax();
+	if( v[n][0] == '-' )
+		bad_syntax();
+
+	char path[255];
+	size_t len = strlen(path)-1;
+	strcpy( path, v[n] );
+
+	// remove last \ mark
+	if( path[len] == PATH_SEPARATOR )
+		path[len] = '\0';
+
+	// reset count
+	for( int i = 0; i < 4; ++i )
+		sync_result[i] = 0;
+
+	sync_only_in_package( syncdelete, forceupdate, path );
+
+	if( syncadd )
+		sync_and_add( syncdelete, forceupdate, path, path );
+
+	// calc count
+	int total_count = 0;
+	for( int i = 1; i < 4; ++i )
+		total_count += sync_result[i];
+
+	if( total_count > 0 )
+		modified = true;
+	
+	if( verbose )
+	{
+		if( total_count == 0 )
+		{
+			cout << "Package is up-to-date. Nothing changed.\n";
+		}
+		else
+		{
+			cout << _HR_;
+			if( sync_result[3] > 0 )
+				cout << sync_result[3] << " entity(s) was added.\n";
+			if( sync_result[2] > 0 )
+				cout << sync_result[2] << " entity(s) was updated.\n";
+			if( sync_result[1] > 0 )
+				cout << sync_result[1] << " entity(s) was deleted.\n";
+		}
+	}
+}
+
+int traverse_local( const char* basepath, const char* path, LOCAL_TFP fp, NPACK_CSTR pattern )
+{
+	int count = 0;
+	DIR *pDIR;
+    struct dirent *pDirEnt;
+
+    /* Open the current directory */
+    pDIR = opendir( path );
+    if ( pDIR == NULL ) {
+        fprintf( stderr, "%s %d: opendir() failed (%s)\n",
+                 __FILE__, __LINE__, strerror( errno ));
+        exit( -1 );
+    }
+
+    /* Get each directory entry from pDIR and print its name */
+	char buf[512];
+	char *rel_name = NULL;
+	int result;
+	size_t basepath_len = strlen(basepath)+1;
+
+    pDirEnt = readdir( pDIR );
+	struct stat __sbuf;
+    while ( pDirEnt != NULL ) {
+		if( ( strncmp( pDirEnt->d_name, ".", 1 ) != 0 )
+		 &&	( strncmp( pDirEnt->d_name, "..", 2 ) != 0 ) )
+		{
+			sprintf( buf, "%s%c%s", path, PATH_SEPARATOR, pDirEnt->d_name );
+			rel_name = &buf[basepath_len];
+
+			result = stat( buf, &__sbuf );
+			if( result == 0 )
+			{
+				if( valid_name( pDirEnt->d_name, pattern ) )
+				{
+					if( __sbuf.st_mode & S_IFDIR )
+					{	// this is a directory
+						if( !norecursive )
+							count += traverse_local( basepath, buf, fp );
+					}
+					else
+					{	// this is a file
+						++count;
+						fp( buf, rel_name );
+					}
+				}
+			}
+		}
+		pDirEnt = readdir( pDIR );
+	}
+
+	/* Release the open directory */
+    closedir( pDIR );
+	
+	return count;
+}
+
+int traverse_package( PACKAGE_TFP fp, NPACK_CSTR pattern )
+{
+	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
+	NPACK_ENTITYBODY* eb = pb->pEntityHead_;
+	NPACK_ENTITYBODY* eb_;
+
+	int count = 0;
+	while( eb )
+	{
+		eb_ = eb;
+		eb = eb->next_;
+		if( valid_name( eb_->name_, pattern ) )
+		{
+			fp( eb_ );
+			++count;
+		}
+	}
+	return count;
+}
+
+void sync_and_add( bool sd, bool force, const char* basepath, const char* path )
+{
+
+	DIR *pDIR;
+    struct dirent *pDirEnt;
+
+    /* Open the current directory */
+
+    pDIR = opendir( path );
+
+    if ( pDIR == NULL ) {
+        fprintf( stderr, "%s %d: opendir() failed (%s)\n",
+                 __FILE__, __LINE__, strerror( errno ));
+        exit( -1 );
+    }
+
+    /* Get each directory entry from pDIR and print its name */
+	char buf[512];
+	char *rel_name = NULL;
+	int result;
+	size_t basepath_len = strlen(basepath)+1;
+
+    pDirEnt = readdir( pDIR );
+	struct stat __sbuf;
+    while ( pDirEnt != NULL ) {
+		if( ( strncmp( pDirEnt->d_name, ".", 1 ) != 0 )
+		 &&	( strncmp( pDirEnt->d_name, "..", 2 ) != 0 ) )
+		{
+			sprintf( buf, "%s%c%s", path, PATH_SEPARATOR, pDirEnt->d_name );
+			rel_name = &buf[basepath_len];
+
+			result = stat( buf, &__sbuf );
+			if( result == 0 )
+			{
+				if( valid_name( pDirEnt->d_name ) )
+				{
+					if( __sbuf.st_mode & S_IFDIR )
+					{	// this is a directory
+						sync_and_add( sd, force, basepath, buf );
+					}
+					else
+					{
+						if( NULL == npack_package_get_entity( package, rel_name ) )
+						{
+							if( verbose )
+								cout << "adding ";
+							else
+								cout << "A ";
+
+							cout << rel_name << "\n";
+
+							if( NPACK_SUCCESS != npack_package_add_file( package, buf, rel_name, NULL ) )
+								error_n_exit();
+
+							++sync_result[3];
+						}
+					}
+				}
+			}
+		}
+
+		pDirEnt = readdir( pDIR );
+	}
+
+    /* Release the open directory */
+
+    closedir( pDIR );
+}
+
+void sync_only_in_package( bool sd, bool force, const char* path )
+{
+	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
+	NPACK_ENTITYBODY* eb = pb->pEntityHead_;
+
+	char buf[512];
+	bool ignorable;
+	struct stat __sbuf;
+	int result;
+	int status = 0; // 0:delete, 1:pass, 2:update
+	ENTITYLIST el;
+
+	while( eb )
+	{
+		ignorable = false;
+		SLI iter = ignorelist.begin();
+		
+		while( iter != ignorelist.end() )
+		{
+			if( b_strcmp( (*iter).c_str(), eb->name_, IS_WINDOWS ) )
+			{
+				ignorable = true;
+				break;
+			}
+			++iter;
+		}
+
+		if( ignorable )
+		{
+			eb = eb->next_;
+			continue;
+		}
+
+		sprintf( buf, "%s%c%s", path, PATH_SEPARATOR, eb->name_ );
+		result = stat( buf, &__sbuf );
+
+		if( result != 0 )
+		{
+			switch( errno )
+			{
+			case ENOENT:
+				if( sd )
+					status = 1;
+				else
+					status = 0;
+				break;
+			default:
+				/* Should never be reached. */
+				cout << "Unexpected error in _stat call.\n";
+				exit(-1);
+			}
+		}
+		else
+		{
+			if( __sbuf.st_mtime > eb->info_.modified_ )
+				status = 2;
+			else if( ( __sbuf.st_mtime < eb->info_.modified_ ) || ( force ) )
+				status = 2;
+			else
+				status = 0;
+		}
+		++sync_result[status];
+
+		if( verbose )
+		{
+			switch( status )
+			{
+			case 1: cout << "deleting "; break;
+			case 2: cout << "updating "; break;
+			}
+		}
+		else
+		{
+			switch( status )
+			{
+			case 1: cout << "D "; break;
+			case 2: cout << "U "; break;
+			}
+		}
+		if( ( status == 2 ) || ( status == 1 ) )
+			cout << eb->name_ << "\n";
+
+		switch( status )
+		{
+		case 1:
+			el.push_back( eb );
+			break;
+		case 2:
+			npack_alloc_copy_string( &eb->localname_, buf );
+			break;
+		}
+		eb = eb->next_;
+	}
+
+	ELI iter = el.begin();
+	while( iter != el.end() )
+	{
+		npack_package_remove_entity( package, *iter );
+		++iter;
+	}
+}
