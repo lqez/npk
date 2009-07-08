@@ -51,7 +51,7 @@
 
 #include "deflate.h"
 
-#ifdef NPACK_DEV
+#ifdef NPK_DEV
 const char deflate_copyright[] =
    " deflate 1.2.3 Copyright 1995-2005 Jean-loup Gailly ";
 /*
@@ -1735,5 +1735,5 @@ local block_state deflate_rle(s, flush)
     return flush == Z_FINISH ? finish_done : block_done;
 }
 #endif
-#endif /* NPACK_DEV */
+#endif /* NPK_DEV */
 

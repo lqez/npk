@@ -8,7 +8,7 @@
 #define ZLIB_INTERNAL
 #include "zlib.h"
 
-#ifdef NPACK_DEV
+#ifdef NPK_DEV
 /* ===========================================================================
      Compresses the source buffer into the destination buffer. The level
    parameter has the same meaning as in deflateInit.  sourceLen is the byte
@@ -78,5 +78,5 @@ uLong ZEXPORT compressBound (sourceLen)
 {
     return sourceLen + (sourceLen >> 12) + (sourceLen >> 14) + 11;
 }
-#endif /*NPACK_DEV*/
+#endif /*NPK_DEV*/
 

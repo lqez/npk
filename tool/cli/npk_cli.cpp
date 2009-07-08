@@ -1,9 +1,9 @@
 /*
 
-	npack - General-Purpose File Packing Library
+	npk - General-Purpose File Packing Library
 	Copyright (c) 2009 Park Hyun woo(ez@amiryo.com)
 
-	npack command-line tool
+	npk command-line tool
 	
 	See README for copyright and license information.
 
@@ -17,14 +17,14 @@
 #include <string>
 #include <stdio.h>
 #include <algorithm>
-#include <npack.h>
-#include <npack_dev.h>
+#include <npk.h>
+#include <npk_dev.h>
 
 #include "helper_commify.hpp"
 #include "helper_timetostring.hpp"
 #include "helper_bstrcmp.h"
 
-#ifdef NPACK_PLATFORM_WINDOWS
+#ifdef NPK_PLATFORM_WINDOWS
 	#include "helper_dirent.h"
 	#define PATH_SEPARATOR '\\'
 	#define IS_WINDOWS true
@@ -42,8 +42,8 @@ using namespace std;
 /* TODO: Refactoring - remove duplicated codes in traversal functions and sync functions. */
 /* -------------------------------------------------------------------------------------- */
 
-typedef list<NPACK_ENTITY> ENTITYLIST;
-typedef list<NPACK_ENTITY>::iterator ELI;
+typedef list<NPK_ENTITY> ENTITYLIST;
+typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
@@ -73,16 +73,16 @@ bool syncdelete = false;
 bool forceupdate = false;
 bool justcreate = false;
 
-NPACK_FLAG currentflag;
+NPK_FLAG currentflag;
 STRLIST withlist;
 STRLIST ignorelist;
 
-NPACK_TEAKEY k[4] = { 0, 0, 0, 0 };
-NPACK_PACKAGE package = NULL;
-NPACK_ENTITY entity = NULL;
+NPK_TEAKEY k[4] = { 0, 0, 0, 0 };
+NPK_PACKAGE package = NULL;
+NPK_ENTITY entity = NULL;
 
-typedef	void( *LOCAL_TFP )( NPACK_CSTR fullpath, NPACK_CSTR filename );
-typedef	void( *PACKAGE_TFP )( NPACK_ENTITY entity );
+typedef	void( *LOCAL_TFP )( NPK_CSTR fullpath, NPK_CSTR filename );
+typedef	void( *PACKAGE_TFP )( NPK_ENTITY entity );
 
 // non-command function
 void title();
@@ -121,13 +121,13 @@ void get_just_create();
 void get_sync_options();
 
 // traversal function
-bool valid_name( NPACK_CSTR name, NPACK_CSTR pattern = NULL );
-int traverse_local( const char* basepath, const char* path, LOCAL_TFP fp, NPACK_CSTR pattern = NULL );
-int traverse_package( PACKAGE_TFP fp, NPACK_CSTR pattern = NULL );
+bool valid_name( NPK_CSTR name, NPK_CSTR pattern = NULL );
+int traverse_local( const char* basepath, const char* path, LOCAL_TFP fp, NPK_CSTR pattern = NULL );
+int traverse_package( PACKAGE_TFP fp, NPK_CSTR pattern = NULL );
 
 int main( int _c, char* _v[] )
 {
-#ifdef NPACK_PLATFORM_WINDOWS
+#ifdef NPK_PLATFORM_WINDOWS
 	_tzset();
 #else
 	tzset();
@@ -173,7 +173,7 @@ int main( int _c, char* _v[] )
 			}
 			else
 			{
-				if( ( package = npack_package_open( v[1], k ) ) == NULL )
+				if( ( package = npk_package_open( v[1], k ) ) == NULL )
 				{
 					if( justcreate )
 					{
@@ -219,13 +219,13 @@ int main( int _c, char* _v[] )
 				if( v[1] == output )
 					forceoverwrite = true;
 				
-				if( npack_package_save( package, output, forceoverwrite ) != NPACK_SUCCESS )
+				if( npk_package_save( package, output, forceoverwrite ) != NPK_SUCCESS )
 					error_n_exit();
 
 				if( verbose )
 					cout << "finished.\n";
 			}
-			if( npack_package_close( package ) != NPACK_SUCCESS )
+			if( npk_package_close( package ) != NPK_SUCCESS )
 				error_n_exit();
 		}
 	}
@@ -234,31 +234,31 @@ int main( int _c, char* _v[] )
 
 void basic_help()
 {
-	cout << "Type 'npack -help' for usage.\n";
+	cout << "Type 'npk -help' for usage.\n";
 }
 
 void bad_syntax()
 {
-	cout << "Bad syntax error. Please type 'npack -help' for usage.\n";
+	cout << "Bad syntax error. Please type 'npk -help' for usage.\n";
 	exit(-1);
 }
 
 void title()
 {
-	cout << "npack command-line client, version " << toolversion << ".\n";
+	cout << "npk command-line client, version " << toolversion << ".\n";
 }
 
 void version()
 {
-	cout << "npack command-line client, version " << toolversion << ".\n"
-		<< "Based on libnpack version " << baseversion << ".\n\n"
+	cout << "npk command-line client, version " << toolversion << ".\n"
+		<< "Based on libnpk version " << baseversion << ".\n\n"
 		<< "Copyright (C) 2009 Park Hyun woo(ez@amiryo.com)\n";
 }
 
 void info()
 {
-	cout << "Checkout the latest version of npack from:\n"
-		"    http://npack.googlecode.com/svn/trunk npack-read-only\n";
+	cout << "Checkout the latest version of npk from:\n"
+		"    http://npk.googlecode.com/svn/trunk npk-read-only\n";
 }
 
 void help()
@@ -266,9 +266,9 @@ void help()
 	if( c <= 2 )
 	{
 		title();
-		cout << "usage: npack <package> <command> [args]\n"
-			<< "Type 'npack -help <command>' for help on a specific command.\n"
-			<< "Type 'npack -version' to see the program version.\n"
+		cout << "usage: npk <package> <command> [args]\n"
+			<< "Type 'npk -help <command>' for help on a specific command.\n"
+			<< "Type 'npk -version' to see the program version.\n"
 			<< "\n"
 			<< "Available commands:\n"
 			<< "    -add\n"
@@ -288,13 +288,13 @@ void help()
 		if(V(2,"add") || V(2,"-add") || V(2,"insert") || V(2,"-insert") )
 		{
 			cout << "add/insert: add files into the package as entities.\n"
-				<< "usage: npack <package> -add [FILE1[@ENTITY] FILE2...]\n"
+				<< "usage: npk <package> -add [FILE1[@ENTITY] FILE2...]\n"
 				<< "       you can use wildcard pattern on filename.\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npack foo.npk -add *.jpg\n"
-				<< "    npack foo.npk -add bar.jpg@null.jpg --v\n"
-				<< "    npack foo.npk -add bar.jpg qoo.jpg --k 1:2:3:4\n"
+				<< "    npk foo.npk -add *.jpg\n"
+				<< "    npk foo.npk -add bar.jpg@null.jpg --v\n"
+				<< "    npk foo.npk -add bar.jpg qoo.jpg --k 1:2:3:4\n"
 				<< "\n"
 				<< "options:\n"
 				<< "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
@@ -306,11 +306,11 @@ void help()
 		}
 		else if(V(2,"create") || V(2,"-create") )
 		{
-			cout << "create: create a new npack package.\n"
-				<< "usage: npack <package> -create\n"
+			cout << "create: create a new npk package.\n"
+				<< "usage: npk <package> -create\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npack foo.npk -create\n"
+				<< "    npk foo.npk -create\n"
 				<< "\n"
 				<< "options:\n"
 				<< "    --v [--verbose] : print working information.\n"
@@ -319,12 +319,12 @@ void help()
 		else if(V(2,"delete") || V(2,"-delete") || V(2,"remove") || V(2,"-remove") )
 		{
 			cout << "delete/remove: delete entities from the package.\n"
-				<< "usage: npack <package> -delete [ENTITY1 ENTITY2...]\n"
+				<< "usage: npk <package> -delete [ENTITY1 ENTITY2...]\n"
 				<< "       you can use wildcard pattern on ENTITY name.\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npack foo.npk -delete *.jpg\n"
-				<< "    npack foo.npk -delete bar.jpg qoo.jpg --k 1:2:3:4\n"
+				<< "    npk foo.npk -delete *.jpg\n"
+				<< "    npk foo.npk -delete bar.jpg qoo.jpg --k 1:2:3:4\n"
 				<< "\n"
 				<< "options:\n"
 				<< "    --k [--teakey] ARG : use ARG as TEAKEY. default key is 0:0:0:0.\n"
@@ -335,11 +335,11 @@ void help()
 		else if(V(2,"diff") || V(2,"-diff") )
 		{
 			cout << "diff: show differences between the package and local path.\n"
-				<< "usage: npack <package> -diff [PATH]\n"
+				<< "usage: npk <package> -diff [PATH]\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npack foo.npk -diff d:\\product\\release\n"
-				<< "    npack foo.npk -diff d:\\foo --k 1:2:3:4\n"
+				<< "    npk foo.npk -diff d:\\product\\release\n"
+				<< "    npk foo.npk -diff d:\\foo --k 1:2:3:4\n"
 				<< "\n"
 				<< "options:\n"
 				<< "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
@@ -348,13 +348,13 @@ void help()
 		else if(V(2,"export") || V(2,"-export") )
 		{
 			cout << "export: export entities into local files from the package.\n"
-				<< "usage: npack <package> -export [ENTITY1[@FILE] ENTITY2...]\n"
+				<< "usage: npk <package> -export [ENTITY1[@FILE] ENTITY2...]\n"
 				<< "       you can use wildcard pattern on ENTITY name.\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npack foo.npk -export *.jpg\n"
-				<< "    npack foo.npk -export johndoe@bar.jpg --v\n"
-				<< "    npack foo.npk -export bar.jpg qoo.jpg --k 1:2:3:4\n"
+				<< "    npk foo.npk -export *.jpg\n"
+				<< "    npk foo.npk -export johndoe@bar.jpg --v\n"
+				<< "    npk foo.npk -export bar.jpg qoo.jpg --k 1:2:3:4\n"
 				<< "\n"
 				<< "options:\n"
 				<< "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
@@ -364,16 +364,16 @@ void help()
 		else if(V(2,"flag") || V(2,"-flag") )
 		{
 			cout << "flag: set flag(property) of entity in the package.\n"
-				<< "usage: npack <package> -flag [ENTITY1[@FLAG1[@FLAG2...]] ENTITY2...]\n"
+				<< "usage: npk <package> -flag [ENTITY1[@FLAG1[@FLAG2...]] ENTITY2...]\n"
 				<< "\n"
 				<< "flags:\n"
 				<< "    COMPRESS [C] : compress entity with zlib\n"
 				<< "    ENCRYPT  [E] : encrypt entity with tea\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npack foo.npk -flag *.jpg@ENCRYPT\n"
-				<< "    npack foo.npk -flag bar.jpg@C@E --v\n"
-				<< "    npack foo.npk -flag bar.jpg --k 1:2:3:4   /* to remove flag */\n"
+				<< "    npk foo.npk -flag *.jpg@ENCRYPT\n"
+				<< "    npk foo.npk -flag bar.jpg@C@E --v\n"
+				<< "    npk foo.npk -flag bar.jpg --k 1:2:3:4   /* to remove flag */\n"
 				<< "\n"
 				<< "options:\n"
 				<< "    --k [--teakey] ARG : use ARG as TEAKEY. default key is 0:0:0:0.\n"
@@ -384,12 +384,12 @@ void help()
 		else if(V(2,"list") || V(2,"-list") || V(2,"info") || V(2,"-info") )
 		{
 			cout << "list/info: show package information and entity list.\n"
-				<< "usage: npack <package> -list [PATTERN]\n"
-				<< "usage: npack <package> -list\n"
+				<< "usage: npk <package> -list [PATTERN]\n"
+				<< "usage: npk <package> -list\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npack foo.npk -list\n"
-				<< "    npack foo.npk -list *.jpg --k 1:2:3:4\n"
+				<< "    npk foo.npk -list\n"
+				<< "    npk foo.npk -list *.jpg --k 1:2:3:4\n"
 				<< "\n"
 				<< "options:\n"
 				<< "    --k [--teakey] ARG     : use ARG as TEAKEY. default key is 0:0:0:0.\n"
@@ -399,12 +399,12 @@ void help()
 		else if( V(2,"sync") || V(2,"-sync") || V(2,"update") || V(2,"-update") )
 		{
 			cout << "sync/update: synchronize the package with local files.\n"
-				<< "usage: npack <package> -sync [PATH]\n"
+				<< "usage: npk <package> -sync [PATH]\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npack foo.npk -sync c:\\product --k 1:2:3:4\n"
-				<< "    npack foo.npk -sync c:\\product\\release --sa --sd\n"
-				<< "    npack foo.npk -sync c:\\product\\release --sa --ig *.tmp *.pdb\n"
+				<< "    npk foo.npk -sync c:\\product --k 1:2:3:4\n"
+				<< "    npk foo.npk -sync c:\\product\\release --sa --sd\n"
+				<< "    npk foo.npk -sync c:\\product\\release --sa --ig *.tmp *.pdb\n"
 				<< "\n"
 				<< "options:\n"
 				<< "    --k [--teakey] ARG     : use ARG as TEAKEY. default key is 0:0:0:0.\n"
@@ -427,8 +427,8 @@ void help()
 
 void error_n_exit()
 {
-	int err = g_npackError;
-	cout << npack_error_to_str(err) << "\n";
+	int err = g_npkError;
+	cout << npk_error_to_str(err) << "\n";
 	exit(err);
 }
 
@@ -520,9 +520,9 @@ void get_gluetime()
 			bad_syntax();
 
 
-		NPACK_TIME gluetime;
+		NPK_TIME gluetime;
 		gluetime = atoi( v[pos] );
-		npack_enable_gluetime( gluetime );
+		npk_enable_gluetime( gluetime );
 
 		if( verbose )
 			cout << "using gluetime " << timeToString(gluetime) << "\n";
@@ -623,7 +623,7 @@ void get_ignorelist()
 	}
 }
 
-bool valid_name( NPACK_CSTR name, NPACK_CSTR pattern )
+bool valid_name( NPK_CSTR name, NPK_CSTR pattern )
 {
 	bool with = true;
 
@@ -666,12 +666,12 @@ bool valid_name( NPACK_CSTR name, NPACK_CSTR pattern )
 	return true;
 }
 
-void add_tfp( NPACK_CSTR fullpath, NPACK_CSTR filename )
+void add_tfp( NPK_CSTR fullpath, NPK_CSTR filename )
 {
 	if( verbose )
 		cout << "    " << filename << "\n";
 
-	if( npack_package_add_file( package, fullpath, filename, NULL ) != NPACK_SUCCESS )
+	if( npk_package_add_file( package, fullpath, filename, NULL ) != NPK_SUCCESS )
 		error_n_exit();
 }
 
@@ -719,7 +719,7 @@ void add()
 				entityname = atpos + 1;
 			}
 
-			if( npack_package_add_file( package, filename, entityname, NULL ) != NPACK_SUCCESS )
+			if( npk_package_add_file( package, filename, entityname, NULL ) != NPK_SUCCESS )
 				error_n_exit();
 			++count;
 		}
@@ -734,35 +734,35 @@ void add()
 
 void create()
 {
-	if( npack_package_new( &package, k ) != NPACK_SUCCESS )
+	if( npk_package_new( &package, k ) != NPK_SUCCESS )
 		error_n_exit();
-	if( npack_package_save( package, v[1], forceoverwrite ) != NPACK_SUCCESS )
+	if( npk_package_save( package, v[1], forceoverwrite ) != NPK_SUCCESS )
 		error_n_exit();
-	if( npack_package_close( package ) != NPACK_SUCCESS )
+	if( npk_package_close( package ) != NPK_SUCCESS )
 		error_n_exit();
 
 	if( verbose )
 		cout << "package " << v[1] << " has been created successfully.\n";
 
-	if( ( package = npack_package_open( v[1], k ) ) == NULL )
+	if( ( package = npk_package_open( v[1], k ) ) == NULL )
 		error_n_exit();
 	++n;
 }
 
-void del_tfp( NPACK_ENTITY entity )
+void del_tfp( NPK_ENTITY entity )
 {
-	NPACK_ENTITYBODY* eb = (NPACK_ENTITYBODY*)entity;
+	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
 
 	if( verbose )
 		cout << "    " << eb->name_ << "\n";
-	if( npack_package_remove_entity( package, entity ) != NPACK_SUCCESS )
+	if( npk_package_remove_entity( package, entity ) != NPK_SUCCESS )
 		error_n_exit();
 }
 
 void del()
 {
 	int count = 0;
-	NPACK_ENTITY entity = NULL;
+	NPK_ENTITY entity = NULL;
 
 	while( n < c )
 	{
@@ -781,10 +781,10 @@ void del()
 		}
 		else
 		{
-			entity = npack_package_get_entity( package, v[n] );
+			entity = npk_package_get_entity( package, v[n] );
 			if( entity == NULL )
 				error_n_exit();
-			if( npack_package_remove_entity( package, entity ) != NPACK_SUCCESS )
+			if( npk_package_remove_entity( package, entity ) != NPK_SUCCESS )
 				error_n_exit();
 			++count;
 		}
@@ -798,8 +798,8 @@ void del()
 
 void diff()
 {
-	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
-	NPACK_ENTITYBODY* eb = pb->pEntityHead_;
+	NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
+	NPK_ENTITYBODY* eb = pb->pEntityHead_;
 
 	++n;
 
@@ -900,14 +900,14 @@ void diff()
 	}
 }
 
-void expt_tfp( NPACK_ENTITY entity )
+void expt_tfp( NPK_ENTITY entity )
 {
-	NPACK_ENTITYBODY* eb = (NPACK_ENTITYBODY*)entity;
+	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
 
 	if( verbose )
 		cout << "    " << eb->name_ << "\n";
 
-	if( npack_entity_export( entity, eb->name_, forceoverwrite ) != NPACK_SUCCESS )
+	if( npk_entity_export( entity, eb->name_, forceoverwrite ) != NPK_SUCCESS )
 		error_n_exit();
 }
 
@@ -949,10 +949,10 @@ void expt()
 					cout << "exporting " << v[n] << "\n";
 			}
 
-			if( !(entity = npack_package_get_entity( package, entityname ) ) )
+			if( !(entity = npk_package_get_entity( package, entityname ) ) )
 				error_n_exit();
 
-			if( npack_entity_export( entity, filename, forceoverwrite ) != NPACK_SUCCESS )
+			if( npk_entity_export( entity, filename, forceoverwrite ) != NPK_SUCCESS )
 				error_n_exit();
 
 			++count;
@@ -963,13 +963,13 @@ void expt()
 		cout << count << " file(s) exported.\n";
 }
 
-void flag_tfp( NPACK_ENTITY entity )
+void flag_tfp( NPK_ENTITY entity )
 {
-	NPACK_ENTITYBODY* eb = (NPACK_ENTITYBODY*)entity;
+	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
 
 	if( verbose )
 		cout << "    " << eb->name_ << "\n";
-	if( npack_entity_set_flag( entity, currentflag ) != NPACK_SUCCESS )
+	if( npk_entity_set_flag( entity, currentflag ) != NPK_SUCCESS )
 		error_n_exit();
 }
 
@@ -988,9 +988,9 @@ void flag()
 		char entityname[512];
 		strcpy( entityname, v[n] );
 		char *flagchar = NULL;
-		NPACK_FLAG flag = NPACK_ENTITY_NULL;
-		if( NPACK_VERSION_CURRENT >= NPACK_VERSION_REFACTORING )
-			flag = NPACK_ENTITY_REVERSE;
+		NPK_FLAG flag = NPK_ENTITY_NULL;
+		if( NPK_VERSION_CURRENT >= NPK_VERSION_REFACTORING )
+			flag = NPK_ENTITY_REVERSE;
 
 		flagchar = entityname;
 
@@ -1000,18 +1000,18 @@ void flag()
 			flagchar++;
 			if( ( strnicmp( flagchar, "C", 1 ) == 0 )
 			 || ( strnicmp( flagchar, "COMPRESS", 8 ) == 0 ) )
-				flag |= NPACK_ENTITY_COMPRESS;
+				flag |= NPK_ENTITY_COMPRESS;
 			else if( ( strnicmp( flagchar, "E", 1 ) == 0 )
 			 || ( strnicmp( flagchar, "ENCRYPT", 7 ) == 0 ) )
-				flag |= NPACK_ENTITY_ENCRYPT;
+				flag |= NPK_ENTITY_ENCRYPT;
 		}
 
 		if( verbose )
 		{
 			cout << "changing " << entityname;
-			if( flag & NPACK_ENTITY_COMPRESS )
+			if( flag & NPK_ENTITY_COMPRESS )
 				cout << " -compress";
-			if( flag & NPACK_ENTITY_ENCRYPT )
+			if( flag & NPK_ENTITY_ENCRYPT )
 				cout << " -encrypt";
 			cout << "\n";
 		}
@@ -1023,10 +1023,10 @@ void flag()
 		}
 		else
 		{
-			entity = npack_package_get_entity( package, entityname );
+			entity = npk_package_get_entity( package, entityname );
 			if( !entity )
 				error_n_exit();
-			if( npack_entity_set_flag( entity, flag ) != NPACK_SUCCESS )
+			if( npk_entity_set_flag( entity, flag ) != NPK_SUCCESS )
 				error_n_exit();
 			++count;
 		}
@@ -1038,9 +1038,9 @@ void flag()
 		modified = true;
 }
 
-void listinfo_tfp( NPACK_ENTITY entity )
+void listinfo_tfp( NPK_ENTITY entity )
 {
-	NPACK_ENTITYBODY* eb = (NPACK_ENTITYBODY*)entity;
+	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
 
 	char buf1[80], buf2[80], size1[80], size2[80];
 	bool readable_out;
@@ -1048,8 +1048,8 @@ void listinfo_tfp( NPACK_ENTITY entity )
 	if( eb->info_.size_ == 0 )
 	{
 		printf( "    <not stored yet>    %c%c   ---------- -------- %s\n",
-			(eb->newflag_ & NPACK_ENTITY_COMPRESS)?'C':' ',
-			(eb->newflag_ & NPACK_ENTITY_ENCRYPT)?'E':' ',
+			(eb->newflag_ & NPK_ENTITY_COMPRESS)?'C':' ',
+			(eb->newflag_ & NPK_ENTITY_ENCRYPT)?'E':' ',
 			eb->name_ );
 	}
 	else
@@ -1082,8 +1082,8 @@ void listinfo_tfp( NPACK_ENTITY entity )
 		printf( "%11s %11s %c%c   %17s %s\n",
 			size1,
 			size2,
-			(eb->info_.flag_ & NPACK_ENTITY_COMPRESS)?'C':' ',
-			(eb->info_.flag_ & NPACK_ENTITY_ENCRYPT)?'E':' ',
+			(eb->info_.flag_ & NPK_ENTITY_COMPRESS)?'C':' ',
+			(eb->info_.flag_ & NPK_ENTITY_ENCRYPT)?'E':' ',
 			timeToString( eb->info_.modified_ ),
 			eb->name_ );
 	}
@@ -1091,7 +1091,7 @@ void listinfo_tfp( NPACK_ENTITY entity )
 
 void listinfo()
 {
-	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
+	NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
 	++n;
 	char* filter = NULL;
 
@@ -1124,7 +1124,7 @@ void listinfo()
 
 void sync_package()
 {
-	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
+	NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
 
 
 	if( verbose )
@@ -1185,7 +1185,7 @@ void sync_package()
 	}
 }
 
-int traverse_local( const char* basepath, const char* path, LOCAL_TFP fp, NPACK_CSTR pattern )
+int traverse_local( const char* basepath, const char* path, LOCAL_TFP fp, NPK_CSTR pattern )
 {
 	int count = 0;
 	DIR *pDIR;
@@ -1241,11 +1241,11 @@ int traverse_local( const char* basepath, const char* path, LOCAL_TFP fp, NPACK_
 	return count;
 }
 
-int traverse_package( PACKAGE_TFP fp, NPACK_CSTR pattern )
+int traverse_package( PACKAGE_TFP fp, NPK_CSTR pattern )
 {
-	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
-	NPACK_ENTITYBODY* eb = pb->pEntityHead_;
-	NPACK_ENTITYBODY* eb_;
+	NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
+	NPK_ENTITYBODY* eb = pb->pEntityHead_;
+	NPK_ENTITYBODY* eb_;
 
 	int count = 0;
 	while( eb )
@@ -1303,7 +1303,7 @@ void sync_and_add( bool sd, bool force, const char* basepath, const char* path )
 					}
 					else
 					{
-						if( NULL == npack_package_get_entity( package, rel_name ) )
+						if( NULL == npk_package_get_entity( package, rel_name ) )
 						{
 							if( verbose )
 								cout << "adding ";
@@ -1312,7 +1312,7 @@ void sync_and_add( bool sd, bool force, const char* basepath, const char* path )
 
 							cout << rel_name << "\n";
 
-							if( NPACK_SUCCESS != npack_package_add_file( package, buf, rel_name, NULL ) )
+							if( NPK_SUCCESS != npk_package_add_file( package, buf, rel_name, NULL ) )
 								error_n_exit();
 
 							++sync_result[3];
@@ -1332,8 +1332,8 @@ void sync_and_add( bool sd, bool force, const char* basepath, const char* path )
 
 void sync_only_in_package( bool sd, bool force, const char* path )
 {
-	NPACK_PACKAGEBODY* pb = (NPACK_PACKAGEBODY*)package;
-	NPACK_ENTITYBODY* eb = pb->pEntityHead_;
+	NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
+	NPK_ENTITYBODY* eb = pb->pEntityHead_;
 
 	char buf[512];
 	bool ignorable;
@@ -1418,7 +1418,7 @@ void sync_only_in_package( bool sd, bool force, const char* path )
 			el.push_back( eb );
 			break;
 		case 2:
-			npack_alloc_copy_string( &eb->localname_, buf );
+			npk_alloc_copy_string( &eb->localname_, buf );
 			break;
 		}
 		eb = eb->next_;
@@ -1427,7 +1427,7 @@ void sync_only_in_package( bool sd, bool force, const char* path )
 	ELI iter = el.begin();
 	while( iter != el.end() )
 	{
-		npack_package_remove_entity( package, *iter );
+		npk_package_remove_entity( package, *iter );
 		++iter;
 	}
 }

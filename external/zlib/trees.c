@@ -36,7 +36,7 @@
 #include "deflate.h"
 #pragma warning( disable : 4267 )
 
-#ifdef NPACK_DEV
+#ifdef NPK_DEV
 
 #ifdef DEBUG
 #  include <ctype.h>
@@ -1220,5 +1220,5 @@ local void copy_block(s, buf, len, header)
         put_byte(s, *buf++);
     }
 }
-#endif /* NPACK_DEV */
+#endif /* NPK_DEV */
 

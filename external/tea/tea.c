@@ -1,6 +1,6 @@
 #include <stddef.h>
 
-#ifdef NPACK_DEV
+#ifdef NPK_DEV
 void tea_encode(long* v, long* k)
 {
 	unsigned long y=v[0],z=v[1], sum=0,   /* set up */

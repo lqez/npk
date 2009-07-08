@@ -2,17 +2,17 @@ include_directories( ../../include )
 
 if( WIN32 )
 	set( SRCS
-		npack_cli.cpp
+		npk_cli.cpp
 		helper_dirent.c
 		)
 	if( BUILD_SHARED_LIBS )
-		add_definitions( -DNPACK_DLL )
+		add_definitions( -DNPK_DLL )
 	endif( BUILD_SHARED_LIBS )
 else( WIN32 )
 	set( SRCS
-		npack_cli.cpp
+		npk_cli.cpp
 		)
 endif( WIN32 )
 
-add_executable( npack ${SRCS} )
-target_link_libraries( npack libnpack )
+add_executable( npk ${SRCS} )
+target_link_libraries( npk libnpk )

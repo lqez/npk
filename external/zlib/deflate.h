@@ -23,7 +23,7 @@
 #  define GZIP
 #endif
 
-#ifdef NPACK_DEV
+#ifdef NPK_DEV
 /* ===========================================================================
  * Internal compression state.
  */
@@ -328,5 +328,5 @@ void _tr_stored_block OF((deflate_state *s, charf *buf, ulg stored_len,
 # define _tr_tally_dist(s, distance, length, flush) \
               flush = _tr_tally(s, distance, length)
 #endif
-#endif /* NPACK_DEV */
+#endif /* NPK_DEV */
 #endif /* DEFLATE_H */

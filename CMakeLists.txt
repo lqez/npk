@@ -1,17 +1,17 @@
 cmake_minimum_required ( VERSION 2.6 )
 
-project ( npack )
+project ( npk )
 
 set_directory_properties(
 	PROPERTY DEBUG_POSTFIX "d"
 )
 
 set( DEV_MODE OFF
-	CACHE BOOL "To build dev-lib or npack tools."
+	CACHE BOOL "Build dev. version library and tools."
 	)
 
 set( BUILD_SHARED_LIBS OFF
-	CACHE BOOL "Turn on if you want to build shared(dylib,so,dll) libraries."
+	CACHE BOOL "Build shared(dylib,so,dll) libraries."
 	)
 
 add_subdirectory( src )

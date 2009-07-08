@@ -238,7 +238,7 @@ ZEXTERN int ZEXPORT deflateInit OF((z_streamp strm, int level));
    perform any compression: this will be done by deflate().
 */
 
-#ifdef NPACK_DEV
+#ifdef NPK_DEV
 ZEXTERN int ZEXPORT deflate OF((z_streamp strm, int flush));
 /*
     deflate compresses as much data as possible, and stops when the input
@@ -534,7 +534,7 @@ ZEXTERN int ZEXPORT deflateInit2 OF((z_streamp strm,
    method). msg is set to null if there is no error message.  deflateInit2 does
    not perform any compression: this will be done by deflate().
 */
-#ifdef NPACK_DEV
+#ifdef NPK_DEV
 ZEXTERN int ZEXPORT deflateSetDictionary OF((z_streamp strm,
                                              const Bytef *dictionary,
                                              uInt  dictLength));
@@ -1006,7 +1006,7 @@ ZEXTERN uLong ZEXPORT zlibCompileFlags OF((void));
    standard memory allocation functions). The source code of these
    utility functions can easily be modified if you need special options.
 */
-#ifdef NPACK_DEV
+#ifdef NPK_DEV
 ZEXTERN int ZEXPORT compress OF((Bytef *dest,   uLongf *destLen,
                                  const Bytef *source, uLong sourceLen));
 /*
@@ -1316,7 +1316,7 @@ ZEXTERN uLong ZEXPORT crc32_combine OF((uLong crc1, uLong crc2, z_off_t len2));
 /* deflateInit and inflateInit are macros to allow checking the zlib version
  * and the compiler's view of z_stream:
  */
-#ifdef NPACK_DEV
+#ifdef NPK_DEV
 ZEXTERN int ZEXPORT deflateInit_ OF((z_streamp strm, int level,
                                      const char *version, int stream_size));
 ZEXTERN int ZEXPORT deflateInit2_ OF((z_streamp strm, int  level, int  method,

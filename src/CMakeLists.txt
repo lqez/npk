@@ -24,24 +24,24 @@ set( ZLIB_COMP_SRCS
 	)
 
 set( SRCS
-	npack.c
-	npack_common.c
+	npk.c
+	npk_common.c
 	)
 
 set( SRCS_DEV
-	npack_dev.c
+	npk_dev.c
 	)
 
 if( WIN32 )
 	if( BUILD_SHARED_LIBS )
-		add_definitions( -DNPACK_DLL -DNPACK_EXPORTS )
+		add_definitions( -DNPK_DLL -DNPK_EXPORTS )
 	endif( BUILD_SHARED_LIBS )
 endif( WIN32 )
 
 if( DEV_MODE )
-	add_definitions( -DZ_PREFIX -DNPACK_DEV )
-	add_library( libnpack ${SRCS} ${SRCS_DEV} ${TEA_SRCS} ${ZLIB_COMP_SRCS} ${ZLIB_UNCOMP_SRCS} )
+	add_definitions( -DZ_PREFIX -DNPK_DEV )
+	add_library( libnpk ${SRCS} ${SRCS_DEV} ${TEA_SRCS} ${ZLIB_COMP_SRCS} ${ZLIB_UNCOMP_SRCS} )
 else( DEV_MODE )
 	add_definitions( -DZ_PREFIX )
-	add_library( libnpack ${SRCS} ${TEA_SRCS} ${ZLIB_UNCOMP_SRCS} )
+	add_library( libnpk ${SRCS} ${TEA_SRCS} ${ZLIB_UNCOMP_SRCS} )
 endif( DEV_MODE )
