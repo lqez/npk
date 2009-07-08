@@ -64,7 +64,8 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 		goto npk_package_open_return_null_with_free;
 
 	if( strncmp( pb->info_.signature_, NPK_SIGNATURE, 4 ) != 0 )
-		goto npk_package_open_return_null_with_free;
+		if( strncmp( pb->info_.signature_, NPK_OLD_SIGNATURE, 4 ) != 0 )
+			goto npk_package_open_return_null_with_free;
 
 	// version 18 / read own tea key
 	if( pb->info_.version_ < NPK_VERSION_REFACTORING )
