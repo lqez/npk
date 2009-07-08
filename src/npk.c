@@ -22,7 +22,7 @@
 #include "../external/zlib/zlib.h"
 
 
-NPK_API int		g_npkError = 0;
+NPK_API int		g_npkError = 0;	/* this variable has no multi-thread safety */
 #ifdef NPK_PLATFORM_WINDOWS
 int				g_useCriticalSection = 0;
 #pragma warning( disable : 4996 )
@@ -67,18 +67,12 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 		goto npk_package_open_return_null_with_free;
 
 	// version 18 / read own tea key
-	if( pb->info_.version_ == NPK_VERSION_HASTEAKEY )
+	if( pb->info_.version_ < NPK_VERSION_REFACTORING )
 	{
-		if( npk_read( pb->handle_,
-						(void*)&pb->teakey_,
-						sizeof(NPK_PACKAGEINFO_V18),
-						g_callbackfp,
-						NPK_PROCESSTYPE_PACKAGEHEADER,
-						g_callbackSize,
-						filename ) != NPK_SUCCESS )
-			goto npk_package_open_return_null_with_free;
+		npk_error( NPK_ERROR_NotSupportedVersion );
+		goto npk_package_open_return_null_with_free;
 	}
-	else if( pb->info_.version_ >= NPK_VERSION_FIXTEAHACK )
+	else
 	{
 		if( teakey == NULL )
 		{
@@ -118,7 +112,7 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 		eb->owner_ = pb;
 
 		// read entity info
-		if( pb->info_.version_ >= NPK_VERSION_ENCRYPTEDHEADER )
+		if( pb->info_.version_ >= NPK_VERSION_REFACTORING )
 		{
 			if( pb->info_.version_ < NPK_VERSION_UNIXTIMESUPPORT )
 			{
@@ -170,30 +164,8 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 		}
 		else
 		{
-			if( npk_read( pb->handle_,
-							(void*)&oldinfo,
-							sizeof(NPK_ENTITYINFO_V21),
-							g_callbackfp,
-							NPK_PROCESSTYPE_ENTITYHEADER,
-							g_callbackSize,
-							filename ) != NPK_SUCCESS )
-				goto npk_package_open_return_null_with_free;
-
-			eb->info_.offset_ = oldinfo.offset_;
-			eb->info_.size_ = oldinfo.size_;
-			eb->info_.originalSize_ = oldinfo.originalSize_;
-			eb->info_.flag_ = oldinfo.flag_;
-			npk_win32filetime_to_timet( &oldinfo.modified_, &eb->info_.modified_ );
-			eb->info_.nameLength_ = oldinfo.nameLength_;
-
-			if( npk_read( pb->handle_,
-							(void*)buf,
-							sizeof(char) * eb->info_.nameLength_,
-							g_callbackfp,
-							NPK_PROCESSTYPE_ENTITYHEADER,
-							g_callbackSize,
-							filename ) != NPK_SUCCESS )
-				goto npk_package_open_return_null_with_free;
+			npk_error( NPK_ERROR_NotSupportedVersion );
+			goto npk_package_open_return_null_with_free;
 		}
 		eb->newflag_ = eb->info_.flag_;
 
@@ -205,13 +177,6 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 		npk_package_add_entity( pb, eb );
 	}
 
-	/*
-	if( entityCount != pb->info_.entityCount_ )
-	{
-		npk_error( NPK_ERROR_NotValidPackage );
-		goto npk_package_open_return_null_with_free;
-	}
-	*/
 	return (NPK_PACKAGE*)pb;
 
 npk_package_open_return_null_with_free:
@@ -227,14 +192,17 @@ npk_package_open_return_null_with_free:
 bool npk_package_close( NPK_PACKAGE package )
 {
 	NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
+	NPK_RESULT res;
+
 	if( !package )
 	{
 		npk_error( NPK_ERROR_PackageIsNull );
 		return false;
 	}
 
-	if( NPK_SUCCESS != npk_package_remove_all_entity( pb ) )
-		return g_npkError;
+	res = npk_package_remove_all_entity( pb );
+	if( NPK_SUCCESS != res )
+		return res;
 
 #ifdef NPK_PLATFORM_WINDOWS
 	DeleteCriticalSection( &pb->cs_ );

@@ -239,7 +239,8 @@ NPK_RESULT npk_entity_sub_flag( NPK_ENTITY entity, NPK_FLAG flag )
 NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 {
 	NPK_PACKAGEBODY*	pb;
-	NPK_ENTITYBODY*	eb = entity;
+	NPK_ENTITYBODY*		eb = entity;
+	NPK_RESULT			res;
 	bool				skipProcessing;
 
 	void*				buf = NULL;
@@ -255,8 +256,8 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 	skipProcessing = false;
 	if( eb->localname_ != NULL )
 	{	// read native file and write
-		if( npk_open( &filehandle, eb->localname_, false, false ) != NPK_SUCCESS )
-			return g_npkError;
+		if( ( res = npk_open( &filehandle, eb->localname_, false, false ) ) != NPK_SUCCESS )
+			return res;
 
 		endpos		= npk_seek( filehandle, 0, SEEK_END );
 		startpos	= npk_seek( filehandle, 0, SEEK_SET );
@@ -268,13 +269,13 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 		eb->info_.originalSize_ = size;
 		buf = malloc( size );
 
-		if( npk_read( filehandle,
+		if( ( res = npk_read( filehandle,
 						buf,
 						size,
 						g_callbackfp,
 						NPK_PROCESSTYPE_ENTITY,
 						g_callbackSize,
-						eb->name_ ) != NPK_SUCCESS )
+						eb->name_ ) ) != NPK_SUCCESS )
 			goto npk_entity_write_return_with_free;
 
 		npk_close( filehandle );
@@ -295,13 +296,13 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 			buf = malloc( size );
 			npk_seek( pb->handle_, (long)eb->info_.offset_, SEEK_SET );
 
-			if( npk_read( pb->handle_,
+			if( ( res = npk_read( pb->handle_,
 							buf,
 							size,
 							g_callbackfp,
 							NPK_PROCESSTYPE_ENTITY,
 							g_callbackSize,
-							eb->name_ ) != NPK_SUCCESS )
+							eb->name_ ) ) != NPK_SUCCESS )
 				goto npk_entity_write_return_with_free;
 			skipProcessing = true;
 		}
@@ -334,13 +335,13 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 
 	eb->info_.size_ = size;
 	eb->info_.offset_ = npk_tell( handle );
-	if( npk_write( handle,
+	if( ( res = npk_write( handle,
 					buf,
 					size,
 					g_callbackfp,
 					NPK_PROCESSTYPE_ENTITY,
 					g_callbackSize,
-					eb->name_ ) != NPK_SUCCESS )
+					eb->name_ ) ) != NPK_SUCCESS )
 		goto npk_entity_write_return_with_free;
 
 	free( buf );
@@ -352,7 +353,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 npk_entity_write_return_with_free:
 	NPK_SAFE_FREE( buf );
 	NPK_SAFE_FREE( buf_for_zlib );
-	return g_npkError;
+	return res;
 }
 
 NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceoverwrite )
@@ -360,6 +361,7 @@ NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceov
 	void* buf;
 	NPK_HANDLE handle;
 	NPK_ENTITYBODY* eb = entity;
+	NPK_RESULT res;
 
 	if( !entity )
 		return npk_error( NPK_ERROR_EntityIsNull );
@@ -368,29 +370,29 @@ NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceov
 	if( !buf )
 		return npk_error( NPK_ERROR_NotEnoughMemory );
 
-	if( !npk_entity_read( eb, buf ) )
-		return g_npkError;
+	if( !( res = npk_entity_read( eb, buf ) ) )
+		return res;
 
-	if( npk_open( &handle, filename, true, true ) != NPK_SUCCESS )
+	if( ( res = npk_open( &handle, filename, true, true ) ) != NPK_SUCCESS )
 	{
 		if( !forceoverwrite )
-			return g_npkError;
+			return res;
 	
-		if( npk_open( &handle, filename, true, false ) != NPK_SUCCESS )
-			return g_npkError;
+		if( ( res = npk_open( &handle, filename, true, false ) ) != NPK_SUCCESS )
+			return res;
 	}
 
-	if( npk_write( handle,
+	if( ( res = npk_write( handle,
 					buf,
 					eb->info_.originalSize_,
 					g_callbackfp,
 					NPK_PROCESSTYPE_ENTITY,
 					g_callbackSize,
-					eb->name_ ) != NPK_SUCCESS )
-		return g_npkError;
+					eb->name_ ) ) != NPK_SUCCESS )
+		return res;
 
-	if( npk_close( handle ) != NPK_SUCCESS )
-		return g_npkError;
+	if( ( res = npk_close( handle ) ) != NPK_SUCCESS )
+		return res;
 
 	npk_set_filetime( filename, eb->info_.modified_ );
 
@@ -401,14 +403,15 @@ NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceov
 
 NPK_RESULT npk_package_clear( NPK_PACKAGE package )
 {
+	NPK_RESULT res;
 	if( !package )
 		return npk_error( NPK_ERROR_PackageIsNull );
 
-	if( npk_package_remove_all_entity( package ) != NPK_SUCCESS )
-		return g_npkError;
+	if( ( res = npk_package_remove_all_entity( package ) ) != NPK_SUCCESS )
+		return res;
 
-	if( npk_package_init( package ) != NPK_SUCCESS )
-		return g_npkError;
+	if( ( res = npk_package_init( package ) ) != NPK_SUCCESS )
+		return res;
 
 	return NPK_SUCCESS;
 }
@@ -416,6 +419,7 @@ NPK_RESULT npk_package_clear( NPK_PACKAGE package )
 NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY* teakey )
 {
 	NPK_PACKAGEBODY* pb;
+	NPK_RESULT res;
 
 	if( teakey == NULL )
 		return npk_error( NPK_ERROR_NeedSpecifiedTeaKey );
@@ -425,10 +429,10 @@ NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY* teakey )
 	if( !pb )
 		return npk_error( NPK_ERROR_NotEnoughMemory );
 
-	if( npk_package_init( pb ) != NPK_SUCCESS )
+	if( ( res = npk_package_init( pb ) ) != NPK_SUCCESS )
 	{
 		NPK_SAFE_FREE( pb );
-		return g_npkError;
+		return res;
 	}
 
 	memcpy( pb->teakey_, teakey, sizeof(long) * 4 );
@@ -440,11 +444,12 @@ NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY* teakey )
 NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceoverwrite )
 {
 	NPK_PACKAGEBODY*	pb = package;
-	NPK_ENTITYBODY*	eb = NULL;
+	NPK_ENTITYBODY*		eb = NULL;
+	NPK_RESULT			res;
 	bool				bUseTemporaryFile = false;
 	NPK_SIZE			len;
 	int					savecount = 0;
-	NPK_STR			savefilename = NULL;
+	NPK_STR				savefilename = NULL;
 	int					savefilehandle;
 #ifdef NPK_PLATFORM_WINDOWS
 	SYSTEMTIME			st;
@@ -458,17 +463,17 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 	if( !filename )
 		return npk_error( NPK_ERROR_PackageHasNoName );
 
-	if( npk_open( &savefilehandle, filename, true, true ) == NPK_SUCCESS )
+	if( ( res = npk_open( &savefilehandle, filename, true, true ) ) == NPK_SUCCESS )
 	{
 		npk_alloc_copy_string( &savefilename, filename );
 	}
 	else
 	{
-		if( g_npkError != NPK_ERROR_FileAlreadyExists )
-			return g_npkError;
+		if( res != NPK_ERROR_FileAlreadyExists )
+			return res;
 
 		if( !forceoverwrite )
-			return g_npkError;
+			return res;
 
 		len = (NPK_SIZE)strlen( filename );
 		savefilename = malloc( sizeof(NPK_CHAR)*(len+2) );
@@ -480,8 +485,8 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 		savefilename[len+1] = '\0';
 		bUseTemporaryFile = true;
 
-		if( npk_open( &savefilehandle, savefilename, true, false ) != NPK_SUCCESS )
-			return g_npkError;
+		if( ( res = npk_open( &savefilehandle, savefilename, true, false ) ) != NPK_SUCCESS )
+			return res;
 	}
 
 	strncpy( pb->info_.signature_, NPK_SIGNATURE, sizeof(NPK_CHAR)*4 );
@@ -509,38 +514,38 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 	eb = pb->pEntityHead_;
 	while( eb != NULL )
 	{
-		if( npk_write_encrypt( pb->teakey_,
+		if( ( res = npk_write_encrypt( pb->teakey_,
 								savefilehandle,
 								&eb->info_,
 								sizeof(NPK_ENTITYINFO),
 								g_callbackfp,
 								NPK_PROCESSTYPE_ENTITYHEADER,
 								g_callbackSize,
-								eb->name_ ) != NPK_SUCCESS )
-			return g_npkError;
+								eb->name_ ) ) != NPK_SUCCESS )
+			return res;
 
-		if( npk_write_encrypt( pb->teakey_,
+		if( ( res = npk_write_encrypt( pb->teakey_,
 								savefilehandle,
 								eb->name_,
 								sizeof(NPK_CHAR)*eb->info_.nameLength_,
 								g_callbackfp,
 								NPK_PROCESSTYPE_ENTITYHEADER,
 								g_callbackSize,
-								eb->name_ ) != NPK_SUCCESS )
-			return g_npkError;
+								eb->name_ ) ) != NPK_SUCCESS )
+			return res;
 
 		eb = eb->next_;
 	}
 
 	npk_seek( savefilehandle, 0, SEEK_SET );
-	if( npk_write( savefilehandle,
+	if( ( res = npk_write( savefilehandle,
 					&pb->info_,
 					sizeof(NPK_PACKAGEINFO),
 					g_callbackfp,
 					NPK_PROCESSTYPE_PACKAGEHEADER,
 					g_callbackSize,
-					savefilename ) != NPK_SUCCESS )
-		return g_npkError;
+					savefilename ) ) != NPK_SUCCESS )
+		return res;
 
 	// V23, Write the package timestamp for other applications
 #ifdef NPK_PLATFORM_WINDOWS
@@ -550,14 +555,14 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 #else
 	time( (time_t*)&header_v23.modified_ );
 #endif
-	if( npk_write( savefilehandle,
+	if( ( res = npk_write( savefilehandle,
 					&header_v23,
 					sizeof(NPK_PACKAGEINFO_V23),
 					g_callbackfp,
 					NPK_PROCESSTYPE_PACKAGEHEADER,
 					g_callbackSize,
-					savefilename ) != NPK_SUCCESS )
-		return g_npkError;
+					savefilename ) ) != NPK_SUCCESS )
+		return res;
 
 	npk_flush( savefilehandle );
 	npk_close( pb->handle_ );
@@ -568,8 +573,8 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 		remove( filename );
 		rename( savefilename, filename );
 
-		if( npk_open( &pb->handle_, filename, false, false ) != NPK_SUCCESS )
-			return g_npkError;
+		if( (res = npk_open( &pb->handle_, filename, false, false ) ) != NPK_SUCCESS )
+			return res;
 	}
 	else
 	{
@@ -583,9 +588,10 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
 {
 	NPK_ENTITYBODY* eb;
 	NPK_CSTR __entityname;
+	NPK_RESULT res;
 
-	if(	npk_entity_alloc( (NPK_ENTITY*)&eb ) != NPK_SUCCESS )
-		return g_npkError;
+	if(	( res = npk_entity_alloc( (NPK_ENTITY*)&eb ) ) != NPK_SUCCESS )
+		return res;
 
 	if( entityname == NULL )
 	{
@@ -597,18 +603,18 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
 	else
 		__entityname = entityname;
 
-	if( npk_get_filetime( filename, &eb->info_.modified_ ) != NPK_SUCCESS )
+	if( ( res = npk_get_filetime( filename, &eb->info_.modified_ ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
-	if( npk_alloc_copy_string( &eb->localname_, filename ) != NPK_SUCCESS )
+	if( ( res = npk_alloc_copy_string( &eb->localname_, filename ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
-	if( npk_alloc_copy_string( &eb->name_, __entityname ) != NPK_SUCCESS )
+	if( ( res = npk_alloc_copy_string( &eb->name_, __entityname ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
 	eb->info_.nameLength_ = (NPK_SIZE)strlen( eb->name_ );
 
-	if( npk_package_add_entity( package, eb ) != NPK_SUCCESS )
+	if( ( res = npk_package_add_entity( package, eb ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
 	if( lpEntity )
@@ -617,7 +623,7 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
 	return NPK_SUCCESS;
 npk_package_add_file_return_with_error:
 	NPK_SAFE_FREE( eb );
-	return g_npkError;
+	return res;
 }
 
 NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )

@@ -57,6 +57,7 @@
 #define	NPK_ERROR_NotEnoughDiscSpace						-101
 #define	NPK_ERROR_CannotFindPackage							-103
 #define	NPK_ERROR_CancelByCallback							-200
+#define	NPK_ERROR_NotSupportedVersion						-255
 
 #endif /*_NPK_ERROR_H_*/
 

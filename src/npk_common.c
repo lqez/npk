@@ -272,16 +272,17 @@ NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_
 NPK_RESULT npk_entity_alloc( NPK_ENTITY* lpEntity )
 {
 	NPK_ENTITYBODY* eb;
+	NPK_RESULT res;
 
 	eb = malloc( sizeof(NPK_ENTITYBODY) );
 
 	if( !eb )
 		return npk_error( NPK_ERROR_NotEnoughMemory );
 
-	if( npk_entity_init( eb ) != NPK_SUCCESS )
+	if( ( res = npk_entity_init( eb ) ) != NPK_SUCCESS )
 	{
 		NPK_SAFE_FREE( eb );
-		return g_npkError;
+		return res;
 	}
 
 	*lpEntity = eb;

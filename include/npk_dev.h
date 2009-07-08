@@ -65,11 +65,6 @@ typedef struct NPK_DEV_API NPK_tagPACKAGEINFO
 	NPK_SIZE			entityDataOffset_;	/* Entities' data offset. */
 } NPK_PACKAGEINFO, *NPK_LPPACKAGEINFO;
 
-typedef struct NPK_DEV_API NPK_tagPACKAGEINFO_V18
-{
-	NPK_TEAKEY			teakey_[4];
-} NPK_PACKAGEINFO_V18, *NPK_LPPACKAGEINFO_V18;
-
 typedef struct NPK_DEV_API NPK_tagPACKAGEINFO_V23
 {
 	NPK_TIME			modified_;			/* Last modified date of package - 32bit time_t */
