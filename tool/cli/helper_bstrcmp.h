@@ -29,7 +29,8 @@ bool b_strcmp( const char* s, const char* d, bool caseinsensitive = true )
 						return false;
 				}
 			}
-			return false;
+			else
+				return false;
 		}
 		else if( s[sPos] =='\0' )
 		{

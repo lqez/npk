@@ -607,10 +607,12 @@ void get_ignorelist()
 			if( v[pos][0] == '-' )
 				break;
 
-			if( ignorelist.size() > 0 )
-				cout << ", ";
-			cout << v[pos];
-
+			if( verbose )
+			{
+				if( ignorelist.size() > 0 )
+					cout << ", ";
+				cout << v[pos];
+			}
 			ignorelist.push_back( v[pos] );
 			++pos;
 		}
