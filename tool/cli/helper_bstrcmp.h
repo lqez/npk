@@ -28,6 +28,8 @@ bool b_strcmp( const char* s, const char* d, bool caseinsensitive = true )
 					if( (s[sPos] + 32) != d[dPos] )
 						return false;
 				}
+				else
+					return false;
 			}
 			else
 				return false;
