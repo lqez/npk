@@ -1,4 +1,7 @@
 #pragma warning( disable : 4996 )
+#ifdef NPK_PLATFORM_LINUX
+#include <string.h>
+#endif
 void commify(double val, char *buf, int round, int comma = 3)
 {
 	char temp[255];

@@ -31,6 +31,7 @@
 	#pragma warning( disable : 4996 )
 #else
 	#include <dirent.h>
+	#include <string.h>
 	#define PATH_SEPARATOR '/'
 	#define strnicmp strncasecmp
 	#define IS_WINDOWS false
