@@ -15,4 +15,4 @@ else( WIN32 )
 endif( WIN32 )
 
 add_executable( npk ${SRCS} )
-target_link_libraries( npk libnpk )
+target_link_libraries( npk ${LIB_NAME} )
