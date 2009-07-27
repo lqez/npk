@@ -2,8 +2,9 @@
 #ifndef __TESTUTIL_H__
 #define __TESTUTIL_H__
 
+#include <iostream>
 #include <fcntl.h>
-#if defined(MINIDOM_PLATFORM_WINDOWS)
+#if defined( WIN32 )
 #include <io.h>
 #pragma warning ( disable : 4819 )
 #pragma warning ( disable : 4996 )
