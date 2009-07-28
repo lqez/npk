@@ -1,5 +1,9 @@
 include_directories( ../../include )
 
+if( CASE_SESITIVE )
+	add_definitions( -DNPK_CASESENSITIVE )
+endif( CASE_SESITIVE )
+
 if( WIN32 )
 	set( SRCS
 		npk_cli.cpp

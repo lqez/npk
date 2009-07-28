@@ -26,6 +26,8 @@ NPK_API int		g_npkError = 0;	/* this variable has no multi-thread safety */
 #ifdef NPK_PLATFORM_WINDOWS
 int				g_useCriticalSection = 0;
 #pragma warning( disable : 4996 )
+#else
+	#define strnicmp strncasecmp
 #endif
 
 NPK_CALLBACK	g_callbackfp;
@@ -235,10 +237,10 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
 
 	while( eb != NULL )
 	{
-#ifdef NPK_PLATFORM_WINDOWS
+#ifdef NPK_CASESENSITIVE
 		if( stricmp( eb->name_, entityname ) == 0 )
 #else
-		if( strcasecmp( eb->name_, entityname ) == 0 )
+		if( strcmp( eb->name_, entityname ) == 0 )
 #endif
 		{
 			pb->pEntityLatest_ = eb;

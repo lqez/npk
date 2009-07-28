@@ -38,6 +38,10 @@ if( WIN32 )
 	endif( BUILD_SHARED_LIBS )
 endif( WIN32 )
 
+if( CASE_SESITIVE )
+	add_definitions( -DNPK_CASESENSITIVE )
+endif( CASE_SESITIVE )
+
 if( DEV_MODE )
 	add_definitions( -DZ_PREFIX -DNPK_DEV )
 	add_library( libnpk ${SRCS} ${SRCS_DEV} ${TEA_SRCS} ${ZLIB_COMP_SRCS} ${ZLIB_UNCOMP_SRCS} )

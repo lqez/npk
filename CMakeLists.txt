@@ -13,6 +13,10 @@ set( DEV_MODE OFF
 	CACHE BOOL "Build dev. version library and tools."
 	)
 
+set( CASE_SENSITIVE OFF
+	CACHE BOOL "Turn on to support case-sensitive entity names."
+	)
+
 set( BUILD_SHARED_LIBS OFF
 	CACHE BOOL "Build shared(dylib,so,dll) libraries."
 	)

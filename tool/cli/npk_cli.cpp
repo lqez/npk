@@ -35,7 +35,7 @@
 	#define strnicmp strncasecmp
 #endif
 
-#if ( defined( NPK_PLATFORM_WINDOWS ) || defined( NPK_PLATFORM_MACOS ) )
+#if defined( NPK_CASESENSITIVE )
 	#define CASE_SENSITIVE true
 #else
 	#define CASE_SENSITIVE false 
