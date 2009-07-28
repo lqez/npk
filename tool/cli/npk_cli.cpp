@@ -27,14 +27,18 @@
 #ifdef NPK_PLATFORM_WINDOWS
 	#include "helper_dirent.h"
 	#define PATH_SEPARATOR '\\'
-	#define IS_WINDOWS true
 	#pragma warning( disable : 4996 )
 #else
 	#include <dirent.h>
 	#include <string.h>
 	#define PATH_SEPARATOR '/'
 	#define strnicmp strncasecmp
-	#define IS_WINDOWS false
+#endif
+
+#if ( defined( NPK_PLATFORM_WINDOWS ) || defined( NPK_PLATFORM_MACOS ) )
+	#define CASE_SENSITIVE true
+#else
+	#define CASE_SENSITIVE false 
 #endif
 
 using namespace std;
@@ -632,7 +636,7 @@ bool valid_name( NPK_CSTR name, NPK_CSTR pattern )
 
 	if( pattern != NULL )
 	{
-		with = b_strcmp( pattern, name, IS_WINDOWS );
+		with = b_strcmp( pattern, name, CASE_SENSITIVE );
 	}
 	else
 	{
@@ -642,7 +646,7 @@ bool valid_name( NPK_CSTR name, NPK_CSTR pattern )
 			SLI iter = withlist.begin();
 			while( iter != withlist.end() )
 			{
-				if( b_strcmp( (*iter).c_str(), name, IS_WINDOWS ) )
+				if( b_strcmp( (*iter).c_str(), name, CASE_SENSITIVE ) )
 				{
 					with = true;
 					break;
@@ -661,7 +665,7 @@ bool valid_name( NPK_CSTR name, NPK_CSTR pattern )
 		SLI iter = ignorelist.begin();
 		while( iter != ignorelist.end() )
 		{
-			if( b_strcmp( (*iter).c_str(), name, IS_WINDOWS ) )
+			if( b_strcmp( (*iter).c_str(), name, CASE_SENSITIVE ) )
 				return false;
 			++iter;
 		}
@@ -1352,7 +1356,7 @@ void sync_only_in_package( bool sd, bool force, const char* path )
 		
 		while( iter != ignorelist.end() )
 		{
-			if( b_strcmp( (*iter).c_str(), eb->name_, IS_WINDOWS ) )
+			if( b_strcmp( (*iter).c_str(), eb->name_, CASE_SENSITIVE ) )
 			{
 				ignorable = true;
 				break;

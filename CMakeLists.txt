@@ -2,11 +2,8 @@ cmake_minimum_required ( VERSION 2.6 )
 
 project ( npk )
 
-if( WIN32 )
-	set( LIB_NAME libnpk )
-else( WIN32 )
-	set( LIB_NAME npk )
-endif( WIN32 )
+set( CMAKE_STATIC_LIBRARY_PREFIX "" )
+set( CMAKE_SHARED_LIBRARY_PREFIX "" )
 
 set_directory_properties(
 	PROPERTY DEBUG_POSTFIX "d"

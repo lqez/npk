@@ -15,6 +15,7 @@ set( ITEMS
 if( DEV_MODE )
 	set( ITEMS
 		${ITEMS}
+		npk_write.cpp
 		)
 endif( DEV_MODE )
 
@@ -24,7 +25,7 @@ create_test_sourcelist( TESTS
 	)
 
 add_executable( tests ${TESTS} )
-target_link_libraries( tests ${LIB_NAME} )
+target_link_libraries( tests libnpk )
 
 remove( TESTS tests.cpp )
 
