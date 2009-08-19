@@ -9,6 +9,10 @@ set_directory_properties(
 	PROPERTY DEBUG_POSTFIX "d"
 )
 
+set( USE_ZLIB_PREFIX OFF
+	CACHE BOOL "Turn on to use Z_PREFIX option."
+	)
+
 set( DEV_MODE OFF
 	CACHE BOOL "Build dev. version library and tools."
 	)

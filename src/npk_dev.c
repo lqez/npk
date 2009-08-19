@@ -320,7 +320,11 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 			{
 				compressedSize = sizeof(char) * size + 256; // +256 for safety
 				buf_for_zlib = malloc( sizeof(char) * compressedSize );
-				z_compress( (Bytef*)buf_for_zlib, (uLong*)&compressedSize, (const Bytef*)buf, (uLong)size );
+#ifdef Z_PREFIX
+				z_compress( (Bytef*)buf_for_zlib, (z_uLong*)&compressedSize, (const Bytef*)buf, (z_uLong)size );
+#else
+				compress( (Bytef*)buf_for_zlib, (uLong*)&compressedSize, (const Bytef*)buf, (uLong)size );
+#endif
 				free( buf );
 				buf = buf_for_zlib;
 				buf_for_zlib = NULL;

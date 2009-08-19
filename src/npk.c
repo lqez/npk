@@ -327,7 +327,11 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
 
 		if( uncompLen >= NPK_MIN_SIZE_ZIPABLE )
 		{
+#ifdef Z_PREFIX
 			if( Z_OK != z_uncompress((Bytef*)(buf), (z_uLong*)&uncompLen, (const Bytef*)lpDecompressBuffer, (z_uLong)eb->info_.size_ ) )
+#else
+			if( Z_OK != uncompress((Bytef*)(buf), (uLong*)&uncompLen, (const Bytef*)lpDecompressBuffer, (uLong)eb->info_.size_ ) )
+#endif
 			{
 				npk_error( NPK_ERROR_FailToDecompress );
 				goto npk_entity_read_return_null_with_free;
