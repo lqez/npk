@@ -4,29 +4,44 @@
 
 int npk_write( int argc, char * argv [] )
 {
-	long teakey[4] = {0,0,0,0};
+	long teakey[4] = {1,2,3,4};
+
 	NPK_RESULT res;
 	NPK_PACKAGE pack;
 	NPK_ENTITY entity;
 
 	// create a pack
-	res = npk_package_new( &pack, teakey );
-	CHECK( res == NPK_SUCCESS );
-	res = npk_package_add_file( pack, "test.txt", "test.txt", &entity );
-	CHECK( res == NPK_SUCCESS );
-	res = npk_package_save( pack, "foo2.npk", true );
-	CHECK( res == NPK_SUCCESS );
+	CHECK( NPK_SUCCESS == npk_package_new( &pack, teakey ) );
+	CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "sample.txt", &entity ) );
+	CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "zip.txt", &entity ) );
+	CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_COMPRESS ) );
+	CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "tea.txt", &entity ) );
+	CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_ENCRYPT ) );
+	CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "zipntea.txt", &entity ) );
+	CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_COMPRESS | NPK_ENTITY_ENCRYPT | NPK_ENTITY_REVERSE ) );
+	CHECK( NPK_SUCCESS == npk_package_save( pack, "foo.npk", true ) );
+
 	npk_package_close( pack );
 
 	// validation
-	pack = npk_package_open( "foo2.npk", teakey );
-	entity = npk_package_get_entity( pack, "test.txt" );
-	size_t size = npk_entity_get_size( entity );
-	void* buf = malloc( size );
-	CHECK( npk_entity_read( entity, buf ) );
-	CHECK_EQUAL_STR_WITH_FILE( (const char*)buf, "test.txt" );
-	free( buf );
-	npk_package_close( pack );
+	pack = npk_package_open( "foo.npk", teakey );
+
+	std::string entityNames[4] = { "sample.txt", "zip.txt", "tea.txt", "zipntea.txt" };
+
+	for( int i = 0; i < 4; ++i )
+	{
+		NPK_ENTITY entity = npk_package_get_entity( pack, entityNames[i].c_str() );
+		CHECK( entity != NULL );
+
+		size_t size = npk_entity_get_size( entity );
+		void* buf = malloc( size );
+
+		CHECK( npk_entity_read( entity, buf ) );
+		CHECK_EQUAL_STR_WITH_FILE( (const char*)buf, "sample.txt" );
+
+		free( buf );
+	}
+
 
 	return 0;
 }

@@ -2,7 +2,7 @@ include_directories( ../include )
 
 set( SAMPLES
 	${SAMPLES}
-	test.txt
+	sample.txt
 	${PROJECT_SOURCE_DIR}/tests/*.npk
 	)
 
