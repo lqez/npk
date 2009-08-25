@@ -6,7 +6,6 @@ int npk_write( int argc, char * argv [] )
 {
 	long teakey[4] = {1,2,3,4};
 
-	NPK_RESULT res;
 	NPK_PACKAGE pack;
 	NPK_ENTITY entity;
 
