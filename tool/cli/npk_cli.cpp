@@ -263,7 +263,7 @@ void version()
 void info()
 {
 	cout << "Checkout the latest version of npk from:\n"
-		"    http://npk.googlecode.com/svn/trunk npk-read-only\n";
+		"    http://npk.googlecode.com/svn/trunk\n";
 }
 
 void help()
