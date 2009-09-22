@@ -247,6 +247,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 	void*				buf_for_zlib = NULL;
 	NPK_SIZE			compressedSize, size, endpos, startpos;
 	int					filehandle;
+	int					z_res;
 
 	if( !eb )
 		return npk_error( NPK_ERROR_EntityIsNull );
@@ -318,17 +319,24 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 		{
 			if( size >= NPK_MIN_SIZE_ZIPABLE )
 			{
-				compressedSize = sizeof(char) * size + 256; // +256 for safety
-				buf_for_zlib = malloc( sizeof(char) * compressedSize );
+				buf_for_zlib = malloc( sizeof(char) * size );
 #ifdef Z_PREFIX
-				z_compress( (Bytef*)buf_for_zlib, (z_uLong*)&compressedSize, (const Bytef*)buf, (z_uLong)size );
+				z_res = z_compress( (Bytef*)buf_for_zlib, (z_uLong*)&compressedSize, (const Bytef*)buf, (z_uLong)size );
 #else
-				compress( (Bytef*)buf_for_zlib, (uLong*)&compressedSize, (const Bytef*)buf, (uLong)size );
+				z_res = compress( (Bytef*)buf_for_zlib, (uLong*)&compressedSize, (const Bytef*)buf, (uLong)size );
 #endif
-				free( buf );
-				buf = buf_for_zlib;
-				buf_for_zlib = NULL;
-				size = (unsigned int)compressedSize;
+				if( z_res == Z_OK )
+				{
+					free( buf );
+					buf = buf_for_zlib;
+					buf_for_zlib = NULL;
+					size = (unsigned int)compressedSize;
+				}
+				else	// not suitable to compress
+				{
+					free( buf_for_zlib );
+					eb->newflag_ &= !NPK_ENTITY_COMPRESS;
+				}
 			}
 		}
 
@@ -455,6 +463,8 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 	int					savecount = 0;
 	NPK_STR				savefilename = NULL;
 	int					savefilehandle;
+	NPK_CHAR*			buf;
+	NPK_CHAR*			buf_pos;
 #ifdef NPK_PLATFORM_WINDOWS
 	SYSTEMTIME			st;
 	FILETIME			ft;
@@ -516,30 +526,31 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 	pb->info_.entityCount_ = savecount;
 
 	eb = pb->pEntityHead_;
+
+	// version 24, Take single encryption to whole entity headers
+	buf = malloc( (sizeof(NPK_ENTITYINFO)+260)*savecount );	// 260 = MAX_PATH on windows, isn't it enough?
+	if( !buf )
+		return( npk_error( NPK_ERROR_NotEnoughMemory ) );
+	buf_pos = buf;
+
 	while( eb != NULL )
 	{
-		if( ( res = npk_write_encrypt( pb->teakey_,
-								savefilehandle,
-								&eb->info_,
-								sizeof(NPK_ENTITYINFO),
-								g_callbackfp,
-								NPK_PROCESSTYPE_ENTITYHEADER,
-								g_callbackSize,
-								eb->name_ ) ) != NPK_SUCCESS )
-			return res;
-
-		if( ( res = npk_write_encrypt( pb->teakey_,
-								savefilehandle,
-								eb->name_,
-								sizeof(NPK_CHAR)*eb->info_.nameLength_,
-								g_callbackfp,
-								NPK_PROCESSTYPE_ENTITYHEADER,
-								g_callbackSize,
-								eb->name_ ) ) != NPK_SUCCESS )
-			return res;
-
+		memcpy( buf_pos, &eb->info_, sizeof(NPK_ENTITYINFO) );
+		buf_pos += sizeof(NPK_ENTITYINFO);
+		memcpy( buf_pos, eb->name_, sizeof(NPK_CHAR)*eb->info_.nameLength_ );
+		buf_pos += sizeof(NPK_CHAR)*eb->info_.nameLength_;
 		eb = eb->next_;
 	}
+	if( ( res = npk_write_encrypt( pb->teakey_,
+							savefilehandle,
+							buf,
+							buf_pos - buf,
+							g_callbackfp,
+							NPK_PROCESSTYPE_ENTITYHEADER,
+							g_callbackSize,
+							savefilename ) ) != NPK_SUCCESS )
+		return res;
+	NPK_SAFE_FREE( buf );
 
 	npk_seek( savefilehandle, 0, SEEK_SET );
 	if( ( res = npk_write( savefilehandle,
@@ -551,7 +562,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 					savefilename ) ) != NPK_SUCCESS )
 		return res;
 
-	// V23, Write the package timestamp for other applications
+	// version 23, Write the package timestamp for other applications
 #ifdef NPK_PLATFORM_WINDOWS
 	GetLocalTime( &st );
 	SystemTimeToFileTime( &st, &ft );
