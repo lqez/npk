@@ -1,6 +1,8 @@
 npk - General-Purpose File Packing Library
 Copyright (c) 2009 Park Hyun woo(ez@amiryo.com)
 
+(*) tab size of npk source is 4.
+
 Distributed under MIT license. (see below)
 
 ------------------------------------------------------------------------------
