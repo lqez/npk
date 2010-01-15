@@ -1,6 +1,6 @@
 /* created by ez@amiryo.com */
 // dos-style wildcard comparator
-bool b_strcmp( const char* s, const char* d, bool caseinsensitive = true )
+bool b_strcmp( const char* s, const char* d, bool casesensitive = true )
 {
 	bool asterisk = false;
 	int sPos = 0, dPos = 0;
@@ -16,7 +16,7 @@ bool b_strcmp( const char* s, const char* d, bool caseinsensitive = true )
 		if( ( s[sPos] != d[dPos] ) && ( s[sPos] != '?' ) && !asterisk )
 		{
 			// big and small letter check
-			if( caseinsensitive )
+			if( !casesensitive )
 			{
 				if( s[sPos] >= 'a' && s[sPos] <= 'z' && d[dPos] >= 'A' && d[dPos] <= 'Z' )
 				{

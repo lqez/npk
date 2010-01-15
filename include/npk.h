@@ -1,8 +1,6 @@
 /*
 
 	npk - General-Purpose File Packing Library
-	Copyright (c) 2009 Park Hyun woo(ez@amiryo.com)
-
 	See README for copyright and license information.
 
 */

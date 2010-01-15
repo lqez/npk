@@ -1,8 +1,6 @@
 /*
 
 	npk - General-Purpose File Packing Library
-	Copyright (c) 2009 Park Hyun woo(ez@amiryo.com)
-
 	See README for copyright and license information.
 
 */
@@ -293,9 +291,9 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
 	while( eb != NULL )
 	{
 #ifdef NPK_CASESENSITIVE
-		if( stricmp( eb->name_, entityname ) == 0 )
-#else
 		if( strcmp( eb->name_, entityname ) == 0 )
+#else
+		if( stricmp( eb->name_, entityname ) == 0 )
 #endif
 		{
 			pb->pEntityLatest_ = eb;
