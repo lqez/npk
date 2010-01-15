@@ -53,7 +53,7 @@ typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
 #define toolversion "1.4"
-#define baseversion "v23"
+#define baseversion "v24"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
 const char		_HR_[] = "-------------------------------------------------------------------------------\n";
