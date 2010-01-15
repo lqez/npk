@@ -10,6 +10,7 @@ set( ITEMS
 	${ITEMS}
 	npk_open.cpp
 	npk_read_entity.cpp
+	npk_case.cpp
 	)
 
 if( DEV_MODE )

@@ -41,6 +41,7 @@ int npk_write( int argc, char * argv [] )
 		free( buf );
 	}
 
+	npk_package_close( pack );
 
 	return 0;
 }
