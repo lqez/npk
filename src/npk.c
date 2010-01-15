@@ -26,6 +26,7 @@ int				g_useCriticalSection = 0;
 #pragma warning( disable : 4996 )
 #else
 	#define strnicmp strncasecmp
+	#define stricmp strcasecmp
 #endif
 
 NPK_CALLBACK	g_callbackfp;
