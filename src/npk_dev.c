@@ -608,9 +608,13 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
 
 	if( entityname == NULL )
 	{
+		__entityname = NULL;
+
 		if( ( entityname = strrchr( filename, '\\' ) ) == NULL )
+			if( ( entityname = strrchr( filename, '/' ) ) == NULL )
 			__entityname = filename;
-		else
+
+		if( __entityname == NULL )
 			__entityname = entityname + sizeof(NPK_CHAR);
 	}
 	else
@@ -634,6 +638,7 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
 		*lpEntity = eb;
 
 	return NPK_SUCCESS;
+
 npk_package_add_file_return_with_error:
 	NPK_SAFE_FREE( eb );
 	return res;
@@ -667,6 +672,7 @@ NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )
 	NPK_SAFE_FREE( eb->name_ );
 	NPK_SAFE_FREE( eb->localname_ );
 	NPK_SAFE_FREE( eb );
+
 	return NPK_SUCCESS;
 }
 

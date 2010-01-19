@@ -23,6 +23,7 @@
 #include "helper_commify.hpp"
 #include "helper_timetostring.hpp"
 #include "helper_bstrcmp.h"
+#include "helper_mkdirr.hpp"
 
 #ifdef NPK_PLATFORM_WINDOWS
 	#include "helper_dirent.h"
@@ -355,6 +356,8 @@ void help()
 			cout << "export: export entities into local files from the package.\n"
 				<< "usage: npk <package> -export [ENTITY1[@FILE] ENTITY2...]\n"
 				<< "       you can use wildcard pattern on ENTITY name.\n"
+				<< "note: if entity name contains directory, \n"
+				<< "      npk will create subdirectories automatically.\n"
 				<< "\n"
 				<< "example:\n"
 				<< "    npk foo.npk -export *.jpg\n"
