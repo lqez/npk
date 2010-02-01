@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <npk.h>
 #include <npk_dev.h>
+#include <conio.h>
 
 #include "helper_commify.hpp"
 #include "helper_timetostring.hpp"
@@ -53,7 +54,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.4"
+#define toolversion "1.5"
 #define baseversion "v24"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
@@ -977,10 +978,13 @@ void flag_tfp( NPK_ENTITY entity )
 {
 	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
 
-	if( verbose )
-		cout << "    " << eb->name_ << "\n";
-	if( npk_entity_set_flag( entity, currentflag ) != NPK_SUCCESS )
-		error_n_exit();
+	if( eb->info_.flag_ != currentflag )
+	{
+		if( verbose )
+			cout << "    " << eb->name_ << "\n";
+		if( npk_entity_set_flag( entity, currentflag ) != NPK_SUCCESS )
+			error_n_exit();
+	}
 }
 
 void flag()
@@ -1136,7 +1140,6 @@ void sync_package()
 {
 	NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
 
-
 	if( verbose )
 	{
 		cout << "Package      : " << output << "\n";
@@ -1152,8 +1155,8 @@ void sync_package()
 		bad_syntax();
 
 	char path[255];
-	size_t len = strlen(path)-1;
 	strcpy( path, v[n] );
+	size_t len = strlen(path)-1;
 
 	// remove last \ mark
 	if( path[len] == PATH_SEPARATOR )

@@ -317,13 +317,14 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 		{
 			if( size >= NPK_MIN_SIZE_ZIPABLE )
 			{
-				buf_for_zlib = malloc( sizeof(char) * size );
+				compressedSize = size;
+				buf_for_zlib = malloc( sizeof(char) * size + 2048);	// 2K for margin
 #ifdef Z_PREFIX
 				z_res = z_compress( (Bytef*)buf_for_zlib, (z_uLong*)&compressedSize, (const Bytef*)buf, (z_uLong)size );
 #else
 				z_res = compress( (Bytef*)buf_for_zlib, (uLong*)&compressedSize, (const Bytef*)buf, (uLong)size );
 #endif
-				if( z_res == Z_OK )
+				if( ( z_res == Z_OK ) && ( compressedSize < size ) )
 				{
 					free( buf );
 					buf = buf_for_zlib;
