@@ -54,7 +54,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.5"
+#define toolversion "1.6"
 #define baseversion "v24"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
@@ -88,8 +88,8 @@ NPK_TEAKEY k[4] = { 0, 0, 0, 0 };
 NPK_PACKAGE package = NULL;
 NPK_ENTITY entity = NULL;
 
-typedef	void( *LOCAL_TFP )( NPK_CSTR fullpath, NPK_CSTR filename );
-typedef	void( *PACKAGE_TFP )( NPK_ENTITY entity );
+typedef	bool( *LOCAL_TFP )( NPK_CSTR fullpath, NPK_CSTR filename );
+typedef	bool( *PACKAGE_TFP )( NPK_ENTITY entity );
 
 // non-command function
 void title();
@@ -677,13 +677,15 @@ bool valid_name( NPK_CSTR name, NPK_CSTR pattern )
 	return true;
 }
 
-void add_tfp( NPK_CSTR fullpath, NPK_CSTR filename )
+bool add_tfp( NPK_CSTR fullpath, NPK_CSTR filename )
 {
 	if( verbose )
 		cout << "    " << filename << "\n";
 
 	if( npk_package_add_file( package, fullpath, filename, NULL ) != NPK_SUCCESS )
 		error_n_exit();
+
+	return true;
 }
 
 void add()
@@ -760,7 +762,7 @@ void create()
 	++n;
 }
 
-void del_tfp( NPK_ENTITY entity )
+bool del_tfp( NPK_ENTITY entity )
 {
 	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
 
@@ -768,6 +770,8 @@ void del_tfp( NPK_ENTITY entity )
 		cout << "    " << eb->name_ << "\n";
 	if( npk_package_remove_entity( package, entity ) != NPK_SUCCESS )
 		error_n_exit();
+
+	return true;
 }
 
 void del()
@@ -911,7 +915,7 @@ void diff()
 	}
 }
 
-void expt_tfp( NPK_ENTITY entity )
+bool expt_tfp( NPK_ENTITY entity )
 {
 	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
 
@@ -920,6 +924,8 @@ void expt_tfp( NPK_ENTITY entity )
 
 	if( npk_entity_export( entity, eb->name_, forceoverwrite ) != NPK_SUCCESS )
 		error_n_exit();
+
+	return true;
 }
 
 void expt()
@@ -974,7 +980,7 @@ void expt()
 		cout << count << " file(s) exported.\n";
 }
 
-void flag_tfp( NPK_ENTITY entity )
+bool flag_tfp( NPK_ENTITY entity )
 {
 	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
 
@@ -984,7 +990,9 @@ void flag_tfp( NPK_ENTITY entity )
 			cout << "    " << eb->name_ << "\n";
 		if( npk_entity_set_flag( entity, currentflag ) != NPK_SUCCESS )
 			error_n_exit();
+		return true;
 	}
+	return false;
 }
 
 void flag()
@@ -1040,9 +1048,18 @@ void flag()
 			entity = npk_package_get_entity( package, entityname );
 			if( !entity )
 				error_n_exit();
-			if( npk_entity_set_flag( entity, flag ) != NPK_SUCCESS )
+
+			NPK_FLAG currentFlag = NPK_ENTITY_NULL;
+
+			if( npk_entity_get_current_flag( entity, &flag ) != NPK_SUCCESS )
 				error_n_exit();
-			++count;
+
+			if( currentFlag != flag )
+			{
+				if( npk_entity_set_flag( entity, flag ) != NPK_SUCCESS )
+					error_n_exit();
+				++count;
+			}
 		}
 	}
 
@@ -1052,7 +1069,7 @@ void flag()
 		modified = true;
 }
 
-void listinfo_tfp( NPK_ENTITY entity )
+bool listinfo_tfp( NPK_ENTITY entity )
 {
 	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
 
@@ -1101,6 +1118,7 @@ void listinfo_tfp( NPK_ENTITY entity )
 			timeToString( eb->info_.modified_ ),
 			eb->name_ );
 	}
+	return true;
 }
 
 void listinfo()
@@ -1267,8 +1285,8 @@ int traverse_package( PACKAGE_TFP fp, NPK_CSTR pattern )
 		eb = eb->next_;
 		if( valid_name( eb_->name_, pattern ) )
 		{
-			fp( eb_ );
-			++count;
+			if( fp( eb_ ) )
+				++count;
 		}
 	}
 	return count;

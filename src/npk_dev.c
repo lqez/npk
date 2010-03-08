@@ -204,6 +204,26 @@ NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* bu
 	return res;
 }
 
+NPK_RESULT npk_entity_get_current_flag( NPK_ENTITY entity, NPK_FLAG* flag )
+{
+	NPK_ENTITYBODY*	eb = entity;
+	if( !eb )
+		return npk_error( NPK_ERROR_EntityIsNull );
+
+	*flag = eb->info_.flag_;
+	return NPK_SUCCESS;
+}
+
+NPK_RESULT npk_entity_get_new_flag( NPK_ENTITY entity, NPK_FLAG* flag )
+{
+	NPK_ENTITYBODY*	eb = entity;
+	if( !eb )
+		return npk_error( NPK_ERROR_EntityIsNull );
+
+	*flag = eb->newflag_;
+	return NPK_SUCCESS;
+}
+
 NPK_RESULT npk_entity_set_flag( NPK_ENTITY entity, NPK_FLAG flag )
 {
 	NPK_ENTITYBODY*	eb = entity;

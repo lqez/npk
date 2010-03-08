@@ -119,6 +119,8 @@ NPK_DEV_API NPK_RESULT	npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, co
 /* Entity Functions */
 NPK_DEV_API NPK_RESULT	npk_entity_alloc( NPK_ENTITY* lpEntity );
 NPK_DEV_API NPK_RESULT	npk_entity_init( NPK_ENTITY entity );
+NPK_DEV_API NPK_RESULT	npk_entity_get_current_flag( NPK_ENTITY entity, NPK_FLAG* flag );
+NPK_DEV_API NPK_RESULT	npk_entity_get_new_flag( NPK_ENTITY entity, NPK_FLAG* flag );
 NPK_DEV_API NPK_RESULT	npk_entity_set_flag( NPK_ENTITY entity, NPK_FLAG flag );
 NPK_DEV_API NPK_RESULT	npk_entity_add_flag( NPK_ENTITY entity, NPK_FLAG flag );
 NPK_DEV_API NPK_RESULT	npk_entity_sub_flag( NPK_ENTITY entity, NPK_FLAG flag );
