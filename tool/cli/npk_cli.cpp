@@ -54,7 +54,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.6"
+#define toolversion "1.7"
 #define baseversion "v24"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
@@ -915,6 +915,27 @@ void diff()
 	}
 }
 
+NPK_RESULT expt_with_dir_check( NPK_ENTITY entity, const char* filename )
+{
+	// check directory
+	char pathname[512];
+	char* separator = 0;
+	strcpy( pathname, filename );
+
+	if( ( separator = strchr( pathname, '/' ) ) )
+	{
+		*separator = '\0';
+		mkdirr( pathname );
+	}
+	else if( ( separator = strchr( pathname, '\\' ) ) )
+	{
+		*separator = '\0';
+		mkdirr( pathname );
+	}
+
+	return( npk_entity_export( entity, filename, forceoverwrite ) );
+}
+
 bool expt_tfp( NPK_ENTITY entity )
 {
 	NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
@@ -922,7 +943,7 @@ bool expt_tfp( NPK_ENTITY entity )
 	if( verbose )
 		cout << "    " << eb->name_ << "\n";
 
-	if( npk_entity_export( entity, eb->name_, forceoverwrite ) != NPK_SUCCESS )
+	if( expt_with_dir_check( entity, eb->name_ ) != NPK_SUCCESS )
 		error_n_exit();
 
 	return true;
@@ -957,6 +978,8 @@ void expt()
 				*atpos = '\0';
 				filename = atpos + 1;
 			}
+			else
+				filename = entityname;
 
 			if( verbose )
 			{
@@ -969,7 +992,7 @@ void expt()
 			if( !(entity = npk_package_get_entity( package, entityname ) ) )
 				error_n_exit();
 
-			if( npk_entity_export( entity, filename, forceoverwrite ) != NPK_SUCCESS )
+			if( expt_with_dir_check( entity, filename ) != NPK_SUCCESS )
 				error_n_exit();
 
 			++count;
