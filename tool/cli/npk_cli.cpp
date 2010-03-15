@@ -19,7 +19,6 @@
 #include <algorithm>
 #include <npk.h>
 #include <npk_dev.h>
-#include <conio.h>
 
 #include "helper_commify.hpp"
 #include "helper_timetostring.hpp"
@@ -27,6 +26,7 @@
 #include "helper_mkdirr.hpp"
 
 #ifdef NPK_PLATFORM_WINDOWS
+	#include <conio.h>
 	#include "helper_dirent.h"
 	#define PATH_SEPARATOR '\\'
 	#pragma warning( disable : 4996 )
