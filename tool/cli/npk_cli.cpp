@@ -1,7 +1,7 @@
 /*
 
 	npk - General-Purpose File Packing Library
-	Copyright (c) 2009 Park Hyun woo(ez@amiryo.com)
+	Copyright (c) 2009-2010 Park Hyun woo(ez.amiryo@gmail.com)
 
 	npk command-line tool
 	
@@ -259,7 +259,7 @@ void version()
 {
 	cout << "npk command-line client, version " << toolversion << ".\n"
 		<< "Based on libnpk version " << baseversion << ".\n\n"
-		<< "Copyright (C) 2009 Park Hyun woo(ez@amiryo.com)\n";
+		<< "Copyright (C) 2009-2010 Park Hyun woo(ez.amiryo@gmail.com)\n";
 }
 
 void info()

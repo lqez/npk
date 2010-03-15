@@ -1,4 +1,4 @@
-/* created by ez@amiryo.com */
+/* created by ez.amiryo@gmail.com */
 // dos-style wildcard comparator
 bool b_strcmp( const char* s, const char* d, bool casesensitive = true )
 {
