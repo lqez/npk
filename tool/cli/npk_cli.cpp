@@ -1161,6 +1161,8 @@ void listinfo()
 	cout << "Package      : " << output << "\n";
 	cout << "Version      : " << pb->info_.version_ << "\n";
 	cout << "Total entity : " << pb->info_.entityCount_ << "\n";
+	if( pb->info_.version_ >= NPK_VERSION_PACKAGETIMESTAMP )
+		cout << "Timestamp    : " << timeToString( pb->modified_) << "\n";
 	if( filter )
 		cout << "Using filter : " << filter << "\n";
 

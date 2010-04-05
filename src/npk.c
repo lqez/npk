@@ -90,11 +90,9 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 	// version 23 / package timestamp
 	if( pb->info_.version_ >= NPK_VERSION_PACKAGETIMESTAMP )
 	{
-		NPK_TIME packageTimestamp;
-
 		if( npk_read( pb->handle_,
-						(void*)&packageTimestamp,
-						sizeof(NPK_PACKAGEINFO_V23),
+						(void*)&pb->modified_,
+						sizeof(time_t),
 						g_callbackfp,
 						NPK_PROCESSTYPE_PACKAGEHEADER,
 						g_callbackSize,
@@ -191,7 +189,7 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 				eb->info_.size_ = oldinfo.size_;
 				eb->info_.originalSize_ = oldinfo.originalSize_;
 				eb->info_.flag_ = oldinfo.flag_;
-				npk_win32filetime_to_timet( &oldinfo.modified_, &eb->info_.modified_ );
+				npk_filetime_to_unixtime( &oldinfo.modified_, &eb->info_.modified_ );
 				eb->info_.nameLength_ = oldinfo.nameLength_;
 			}
 			else

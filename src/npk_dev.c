@@ -484,10 +484,6 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 	int					savefilehandle;
 	NPK_CHAR*			buf;
 	NPK_CHAR*			buf_pos;
-#ifdef NPK_PLATFORM_WINDOWS
-	SYSTEMTIME			st;
-	FILETIME			ft;
-#endif
 	NPK_PACKAGEINFO_V23 header_v23;
 
 	if( !package )
@@ -582,13 +578,8 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 		return res;
 
 	// version 23, Write the package timestamp for other applications
-#ifdef NPK_PLATFORM_WINDOWS
-	GetLocalTime( &st );
-	SystemTimeToFileTime( &st, &ft );
-	npk_win32filetime_to_timet( (NPK_64BIT*)&ft, &header_v23.modified_ );
-#else
 	time( (time_t*)&header_v23.modified_ );
-#endif
+
 	if( ( res = npk_write( savefilehandle,
 					&header_v23,
 					sizeof(NPK_PACKAGEINFO_V23),

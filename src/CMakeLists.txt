@@ -33,6 +33,7 @@ set( SRCS_DEV
 	)
 
 if( WIN32 )
+	add_definitions( -D_USE_32BIT_TIME_T )
 	if( BUILD_SHARED_LIBS )
 		add_definitions( -DNPK_DLL -DNPK_EXPORTS )
 	endif( BUILD_SHARED_LIBS )

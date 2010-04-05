@@ -71,6 +71,7 @@ typedef struct NPK_DEV_API NPK_tagPACKAGEINFO_V23
 typedef struct NPK_DEV_API NPK_tagPACKAGEBODY
 {
 	NPK_PACKAGEINFO		info_;
+	NPK_TIME			modified_;
 	NPK_HANDLE			handle_;			/* File handle. */
 	NPK_TEAKEY			teakey_[4];
 
@@ -96,7 +97,7 @@ NPK_DEV_API NPK_RESULT	npk_error( NPK_RESULT res );
 NPK_DEV_API NPK_RESULT	npk_alloc_copy_string( NPK_STR* dst, NPK_CSTR src );
 NPK_DEV_API NPK_RESULT	npk_get_filetime( NPK_CSTR filename, NPK_TIME* pft );
 NPK_DEV_API NPK_RESULT	npk_set_filetime( NPK_CSTR filename, const NPK_TIME pft );
-NPK_DEV_API void		npk_win32filetime_to_timet( NPK_64BIT* pft, NPK_TIME* pt );
+NPK_DEV_API void		npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt );
 NPK_DEV_API void		npk_enable_gluetime( NPK_TIME time );
 NPK_DEV_API void		npk_disable_gluetime();
 

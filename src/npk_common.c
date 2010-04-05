@@ -147,7 +147,7 @@ NPK_RESULT npk_alloc_copy_string( NPK_STR* dst, NPK_CSTR src )
 	return NPK_SUCCESS;
 }
 
-void npk_win32filetime_to_timet( NPK_64BIT* pft, NPK_TIME* pt )
+void npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt )
 {
 	*pt = (NPK_TIME)((*pft - 116444736000000000LL)/10000000LL);
 }
