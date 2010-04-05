@@ -17,6 +17,7 @@ if( DEV_MODE )
 	set( ITEMS
 		${ITEMS}
 		npk_write.cpp
+		npk_durability.cpp
 		)
 endif( DEV_MODE )
 
