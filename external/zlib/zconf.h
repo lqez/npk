@@ -374,7 +374,7 @@ typedef uLong FAR uLongf;
 #  undef _LARGEFILE64_SOURCE
 #endif
 
-#if defined(Z_HAVE_UNISTD_H) || defined(_LARGEFILE64_SOURCE)
+#if 0//defined(Z_HAVE_UNISTD_H) || defined(_LARGEFILE64_SOURCE)
 #  include <unistd.h>       /* for SEEK_* and off_t */
 #  ifdef VMS
 #    include <unixio.h>     /* for off_t */

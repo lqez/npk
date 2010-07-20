@@ -22,7 +22,7 @@
 #if defined( WIN32 )
 #define CHECK(x) \
 	{if(!(x)) { printf("Assertion Failed : %s, %d\n",__FILE__,__LINE__); \
-		_asm{int 0x03}}}
+	__debugbreak(); }}
 #else
 #define CHECK(x) \
 	{if(!(x)) { printf("Assertion Failed : %s, %d\n",__FILE__,__LINE__); \
