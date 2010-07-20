@@ -1,9 +1,9 @@
 #include <stddef.h>
 
 #ifdef NPK_DEV
-void tea_encode(long* v, long* k)
+void tea_encode(int* v, int* k)
 {
-	unsigned long y=v[0],z=v[1], sum=0,   /* set up */
+	unsigned int y=v[0],z=v[1], sum=0,   /* set up */
 		delta=0x9e3779b9, n=32 ;             /* a key schedule constant */
 	while (n-->0) {                       /* basic cycle start */
 		sum += delta ;
@@ -13,19 +13,19 @@ void tea_encode(long* v, long* k)
 	v[0]=y ; v[1]=z ;
 }
 
-void tea_encode_buffer(char* in_buffer, size_t in_size, long* key)
+void tea_encode_buffer(char* in_buffer, unsigned int in_size, int* key)
 {
 	char *p;
-	size_t remain = in_size % 8;
-	size_t align_size = in_size - remain;
+	unsigned int remain = in_size % 8;
+	unsigned int align_size = in_size - remain;
 	for (p = in_buffer; p < in_buffer + align_size; p += 8)
-		tea_encode( (long*)p, key);
+		tea_encode( (int*)p, key);
 }
 #endif
 
-void tea_decode(long* v,long* k)
+void tea_decode(int* v,int* k)
 {
-	unsigned long n=32, sum, y=v[0], z=v[1],
+	unsigned int n=32, sum, y=v[0], z=v[1],
 		delta=0x9e3779b9 ;
 	sum=delta<<5 ;
 	/* start cycle */
@@ -37,11 +37,11 @@ void tea_decode(long* v,long* k)
 	v[0]=y ; v[1]=z ;
 }
 
-void tea_decode_buffer(char* in_buffer, size_t in_size, long* key)
+void tea_decode_buffer(char* in_buffer, unsigned int in_size, int* key)
 {
 	char *p;
-	size_t remain = in_size % 8;
-	size_t align_size = in_size - remain;
+	unsigned int remain = in_size % 8;
+	unsigned int align_size = in_size - remain;
 	for (p = in_buffer; p < in_buffer + align_size; p += 8)
-		tea_decode( (long*)p, key);
+		tea_decode( (int*)p, key);
 }

@@ -4,7 +4,7 @@
 
 int npk_read_entity( int argc, char * argv [] )
 {
-	long teakey[4] = {98521,16322,7163,992};
+	int teakey[4] = {98521,16322,7163,992};
 
 	NPK_PACKAGE pack = npk_package_open( "sample.npk", teakey );
 	CHECK( pack != NULL );
@@ -16,7 +16,7 @@ int npk_read_entity( int argc, char * argv [] )
 		NPK_ENTITY entity = npk_package_get_entity( pack, entityNames[i].c_str() );
 		CHECK( entity != NULL );
 
-		size_t size = npk_entity_get_size( entity );
+		NPK_SIZE size = npk_entity_get_size( entity );
 		void* buf = malloc( size );
 
 		CHECK( npk_entity_read( entity, buf ) );

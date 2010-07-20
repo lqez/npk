@@ -344,9 +344,12 @@ NPK_RESULT npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity )
 	if( !package )
 		return npk_error( NPK_ERROR_PackageIsNull );
 
+	printf( "npk_package_add_entity phase #1\n" );
+
 	if( npk_package_get_entity( package, eb->name_ ) != NULL )
 		return npk_error( NPK_ERROR_SameEntityExist );
 
+	printf( "npk_package_add_entity phase #2\n" );
 	pb->pEntityLatest_ = entity;
 	eb->owner_ = pb;
 

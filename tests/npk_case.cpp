@@ -5,7 +5,7 @@
 /* test for case-sensitive/insensitive entity name */
 int npk_case( int argc, char * argv [] )
 {
-	long teakey[4] = {1,2,3,4};
+	int teakey[4] = {1,2,3,4};
 
 	NPK_PACKAGE pack;
 	NPK_ENTITY entity;

@@ -11,7 +11,7 @@ int npk_durability( int argc, char * argv [] )
 
 	for( int t = 0; t < 100; ++t )
 	{
-		long teakey[4] = {rand(),rand(),rand(),rand()};
+		int teakey[4] = {rand(),rand(),rand(),rand()};
 
 		// create a pack
 		CHECK( NPK_SUCCESS == npk_package_new( &pack, teakey ) );
@@ -33,7 +33,7 @@ int npk_durability( int argc, char * argv [] )
 		{
 			CHECK( entity != NULL );
 
-			size_t size = npk_entity_get_size( entity );
+			NPK_SIZE size = npk_entity_get_size( entity );
 			void* buf = malloc( size );
 
 			CHECK( npk_entity_read( entity, buf ) );

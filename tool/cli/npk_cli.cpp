@@ -306,7 +306,7 @@ void help()
 				<< "options:\n"
 				<< "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
 				<< "    --v [--verbose]      : print working information.\n"
-				<< "    --g [--gluetime] ARG : use ARG as gluetime. ARG is time_t value.\n"
+				<< "    --g [--gluetime] ARG : use ARG as gluetime. ARG is UNIX timestamp(epoch).\n"
 				<< "    --o [--output] ARG   : save package as new file named ARG.\n"
 				<< "    --f [--force]        : force overwrite old package file.\n"
 				<< "    --jc [--justcreate]  : create new package automatically if not exist.\n";
@@ -418,7 +418,7 @@ void help()
 				<< "options:\n"
 				<< "    --k [--teakey] ARG     : use ARG as TEAKEY. default key is 0:0:0:0.\n"
 				<< "    --v [--verbose]        : print working information.\n"
-				<< "    --g [--gluetime] ARG   : use ARG as gluetime. ARG is time_t value.\n"
+				<< "    --g [--gluetime] ARG   : use ARG as gluetime. ARG is UNIX timestamp(epoch).\n"
 				<< "    --o [--output] ARG     : save package as new file named ARG.\n"
 				<< "    --f [--force]          : force overwrite old package file.\n"
 				<< "    --jc [--justcreate]    : create new package automatically if not exist.\n"

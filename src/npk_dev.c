@@ -466,7 +466,7 @@ NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY* teakey )
 		return res;
 	}
 
-	memcpy( pb->teakey_, teakey, sizeof(long) * 4 );
+	memcpy( pb->teakey_, teakey, sizeof(NPK_TEAKEY) * 4 );
 
 	*lpPackage = pb;
 	return NPK_SUCCESS;
@@ -578,6 +578,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
 		return res;
 
 	// version 23, Write the package timestamp for other applications
+	// TODO:reveal the return type of 'type' function on 64bit mac os
 	time( (time_t*)&header_v23.modified_ );
 
 	if( ( res = npk_write( savefilehandle,
@@ -615,6 +616,7 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
 	NPK_CSTR __entityname;
 	NPK_RESULT res;
 
+	printf( "npk_package_add_file phase #1\n" );
 	if(	( res = npk_entity_alloc( (NPK_ENTITY*)&eb ) ) != NPK_SUCCESS )
 		return res;
 
@@ -632,20 +634,25 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
 	else
 		__entityname = entityname;
 
+	printf( "npk_package_add_file phase #2\n" );
 	if( ( res = npk_get_filetime( filename, &eb->info_.modified_ ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
+	printf( "npk_package_add_file phase #3\n" );
 	if( ( res = npk_alloc_copy_string( &eb->localname_, filename ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
+	printf( "npk_package_add_file phase #4\n" );
 	if( ( res = npk_alloc_copy_string( &eb->name_, __entityname ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
 	eb->info_.nameLength_ = (NPK_SIZE)strlen( eb->name_ );
 
+	printf( "npk_package_add_file phase #5\n" );
 	if( ( res = npk_package_add_entity( package, eb ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
+	printf( "npk_package_add_file phase #6\n" );
 	if( lpEntity )
 		*lpEntity = eb;
 

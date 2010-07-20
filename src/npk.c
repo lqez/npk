@@ -43,6 +43,7 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 	NPK_CHAR*			pos;
 	long				entityheadersize = 0;
 
+
 	pb = malloc( sizeof(NPK_PACKAGEBODY) );
 
 	if( !pb )
@@ -56,7 +57,7 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 
 	if( npk_open( &pb->handle_, filename, false, false ) != NPK_SUCCESS )
 		goto npk_package_open_return_null_with_free;
-
+	
 	// Read common header
 	if( npk_read( pb->handle_,
 					(void*)&pb->info_,
@@ -84,7 +85,7 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 			npk_error( NPK_ERROR_NeedSpecifiedTeaKey );
 			goto npk_package_open_return_null_with_free;
 		}
-		memcpy( pb->teakey_, teakey, sizeof(long) * 4 );
+		memcpy( pb->teakey_, teakey, sizeof(NPK_TEAKEY) * 4 );
 	}
 
 	// version 23 / package timestamp
@@ -92,7 +93,7 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 	{
 		if( npk_read( pb->handle_,
 						(void*)&pb->modified_,
-						sizeof(time_t),
+						sizeof(NPK_TIME),
 						g_callbackfp,
 						NPK_PROCESSTYPE_PACKAGEHEADER,
 						g_callbackSize,
@@ -102,7 +103,6 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
 
 	entityCount = pb->info_.entityCount_;
 	pb->info_.entityCount_ = 0;
-
 
 	if( pb->info_.version_ >= NPK_VERSION_SINGLEPACKHEADER )
 	{
@@ -332,7 +332,8 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
 	NPK_PACKAGEBODY* pb = NULL;
 	void** lplpTarget = &buf;
 	void* lpDecompressBuffer = NULL;
-	NPK_SIZE uncompLen = 0;
+	//NPK_SIZE uncompLen = 0;
+	unsigned long uncompLen = 0;
 	NPK_RESULT res;
 
 	if( !entity )

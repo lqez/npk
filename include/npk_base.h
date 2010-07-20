@@ -17,7 +17,7 @@ typedef void*							NPK_PACKAGE;
 typedef void*							NPK_ENTITY;
 typedef int								NPK_HANDLE;
 typedef unsigned int					NPK_FLAG;
-typedef long							NPK_TEAKEY;
+typedef int								NPK_TEAKEY;
 typedef char							NPK_CHAR;
 typedef const NPK_CHAR*					NPK_CSTR;
 typedef NPK_CHAR*						NPK_STR;
