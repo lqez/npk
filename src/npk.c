@@ -32,7 +32,7 @@ int				g_useCriticalSection = 0;
 NPK_CALLBACK	g_callbackfp;
 NPK_SIZE		g_callbackSize;
 
-NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )
+NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )
 {
 	NPK_CHAR			buf[512];
 	NPK_PACKAGEBODY*	pb			= NULL;

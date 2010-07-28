@@ -129,7 +129,7 @@ NPK_DEV_API NPK_RESULT	npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle );
 NPK_DEV_API NPK_RESULT	npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceoverwrite );
 
 /* Package Functions */
-NPK_DEV_API NPK_RESULT	npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY* teakey );
+NPK_DEV_API NPK_RESULT	npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] );
 NPK_DEV_API NPK_RESULT	npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceoverwrite );
 NPK_DEV_API NPK_RESULT	npk_package_init( NPK_PACKAGE package );
 NPK_DEV_API NPK_RESULT	npk_package_clear( NPK_PACKAGE package );

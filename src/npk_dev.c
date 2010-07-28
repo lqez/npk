@@ -447,7 +447,7 @@ NPK_RESULT npk_package_clear( NPK_PACKAGE package )
 	return NPK_SUCCESS;
 }
 
-NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY* teakey )
+NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )
 {
 	NPK_PACKAGEBODY* pb;
 	NPK_RESULT res;
@@ -616,7 +616,6 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
 	NPK_CSTR __entityname;
 	NPK_RESULT res;
 
-	printf( "npk_package_add_file phase #1\n" );
 	if(	( res = npk_entity_alloc( (NPK_ENTITY*)&eb ) ) != NPK_SUCCESS )
 		return res;
 
@@ -634,25 +633,20 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
 	else
 		__entityname = entityname;
 
-	printf( "npk_package_add_file phase #2\n" );
 	if( ( res = npk_get_filetime( filename, &eb->info_.modified_ ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
-	printf( "npk_package_add_file phase #3\n" );
 	if( ( res = npk_alloc_copy_string( &eb->localname_, filename ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
-	printf( "npk_package_add_file phase #4\n" );
 	if( ( res = npk_alloc_copy_string( &eb->name_, __entityname ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
 	eb->info_.nameLength_ = (NPK_SIZE)strlen( eb->name_ );
 
-	printf( "npk_package_add_file phase #5\n" );
 	if( ( res = npk_package_add_entity( package, eb ) ) != NPK_SUCCESS )
 		goto npk_package_add_file_return_with_error;
 
-	printf( "npk_package_add_file phase #6\n" );
 	if( lpEntity )
 		*lpEntity = eb;
 
