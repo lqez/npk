@@ -122,7 +122,8 @@ bool npk_package_close( NPK_PACKAGE package )
 	DeleteCriticalSection( &pb->cs_ );
 #endif
 
-	npk_close( pb->handle_ );
+	if( false == pb->usingFdopen_ )
+		npk_close( pb->handle_ );
 
 	NPK_SAFE_FREE( pb );
 	return true;
