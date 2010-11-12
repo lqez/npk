@@ -32,17 +32,47 @@ int				g_useCriticalSection = 0;
 NPK_CALLBACK	g_callbackfp;
 NPK_SIZE		g_callbackSize;
 
+NPK_PACKAGE	npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] )
+{
+	NPK_PACKAGEBODY*	pb = NULL;
+	NPK_RESULT			res;
+
+	pb = malloc( sizeof(NPK_PACKAGEBODY) );
+
+	if( !pb )
+	{
+		npk_error( NPK_ERROR_NotEnoughMemory );
+		goto npk_package_open_return_null_with_free;
+	}
+
+	if( npk_package_init( pb ) != NPK_SUCCESS )
+		goto npk_package_open_return_null_with_free;
+
+	pb->handle_ = fd;
+	pb->usingFdopen_ = true;
+	pb->offsetJump_ = offset;
+
+	npk_seek( fd, offset, SEEK_CUR );
+	
+	res = __npk_package_open( pb, name, size, teakey );
+	if( res != NPK_SUCCESS )
+		goto npk_package_open_return_null_with_free;
+
+	return (NPK_PACKAGE*)pb;
+
+npk_package_open_return_null_with_free:
+	if( pb )
+		if( pb->handle_ > 0 )
+			npk_close( pb->handle_ );
+
+	NPK_SAFE_FREE( pb );
+	return NULL;
+}
+
 NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )
 {
-	NPK_CHAR			buf[512];
-	NPK_PACKAGEBODY*	pb			= NULL;
-	NPK_ENTITYBODY*		eb			= NULL;
-	NPK_ENTITYINFO_V21	oldinfo;
-	NPK_SIZE			entityCount	= 0;
-	NPK_CHAR*			entityheaderbuf;
-	NPK_CHAR*			pos;
-	long				entityheadersize = 0;
-
+	NPK_PACKAGEBODY*	pb = NULL;
+	NPK_RESULT			res;
 
 	pb = malloc( sizeof(NPK_PACKAGEBODY) );
 
@@ -58,179 +88,9 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )
 	if( npk_open( &pb->handle_, filename, false, false ) != NPK_SUCCESS )
 		goto npk_package_open_return_null_with_free;
 	
-	// Read common header
-	if( npk_read( pb->handle_,
-					(void*)&pb->info_,
-					sizeof(NPK_PACKAGEINFO),
-					g_callbackfp,
-					NPK_PROCESSTYPE_PACKAGEHEADER,
-					g_callbackSize,
-					filename ) != NPK_SUCCESS )
+	res = __npk_package_open( pb, filename, 0, teakey );
+	if( res != NPK_SUCCESS )
 		goto npk_package_open_return_null_with_free;
-
-	if( strncmp( pb->info_.signature_, NPK_SIGNATURE, 4 ) != 0 )
-		if( strncmp( pb->info_.signature_, NPK_OLD_SIGNATURE, 4 ) != 0 )
-			goto npk_package_open_return_null_with_free;
-
-	// version 18 / read own tea key
-	if( pb->info_.version_ < NPK_VERSION_REFACTORING )
-	{
-		npk_error( NPK_ERROR_NotSupportedVersion );
-		goto npk_package_open_return_null_with_free;
-	}
-	else
-	{
-		if( teakey == NULL )
-		{
-			npk_error( NPK_ERROR_NeedSpecifiedTeaKey );
-			goto npk_package_open_return_null_with_free;
-		}
-		memcpy( pb->teakey_, teakey, sizeof(NPK_TEAKEY) * 4 );
-	}
-
-	// version 23 / package timestamp
-	if( pb->info_.version_ >= NPK_VERSION_PACKAGETIMESTAMP )
-	{
-		if( npk_read( pb->handle_,
-						(void*)&pb->modified_,
-						sizeof(NPK_TIME),
-						g_callbackfp,
-						NPK_PROCESSTYPE_PACKAGEHEADER,
-						g_callbackSize,
-						filename ) != NPK_SUCCESS )
-			goto npk_package_open_return_null_with_free;
-	}
-
-	entityCount = pb->info_.entityCount_;
-	pb->info_.entityCount_ = 0;
-
-	if( pb->info_.version_ >= NPK_VERSION_SINGLEPACKHEADER )
-	{
-		entityheadersize = npk_seek( pb->handle_, 0, SEEK_END ) - (long)pb->info_.entityInfoOffset_;
-		npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_, SEEK_SET );
-
-		entityheaderbuf = malloc( entityheadersize );
-		if( !entityheaderbuf )
-		{
-			npk_error( NPK_ERROR_NotEnoughMemory );
-			goto npk_package_open_return_null_with_free;
-		}
-
-		if( npk_read_encrypt( teakey,
-								pb->handle_,
-								(void*)entityheaderbuf,
-								entityheadersize,
-								g_callbackfp,
-								NPK_PROCESSTYPE_ENTITYHEADER,
-								g_callbackSize,
-								filename ) != NPK_SUCCESS )
-			goto npk_package_open_return_null_with_free;
-
-		pos = entityheaderbuf;
-		
-		while( entityCount > 0 )
-		{
-			--entityCount;
-
-			if(	npk_entity_alloc( (NPK_ENTITY*)&eb ) != NPK_SUCCESS )
-				goto npk_package_open_return_null_with_free;
-
-			eb->owner_ = pb;
-			memcpy( &eb->info_, pos, sizeof(NPK_ENTITYINFO) );
-			pos += sizeof(NPK_ENTITYINFO);
-
-			if( eb->info_.offset_ >= pb->info_.entityInfoOffset_ )
-			{
-				npk_error( NPK_ERROR_InvalidTeaKey );
-				goto npk_package_open_return_null_with_free;
-			}
-
-			eb->newflag_ = eb->info_.flag_;
-			eb->name_ = malloc( sizeof(NPK_CHAR)*(eb->info_.nameLength_+1) );
-			if( !eb->name_ )
-			{
-				npk_error( NPK_ERROR_NotEnoughMemory );
-				goto npk_package_open_return_null_with_free;
-			}
-			eb->name_[eb->info_.nameLength_] = '\0';
-			memcpy( eb->name_, pos, eb->info_.nameLength_ );
-			pos += eb->info_.nameLength_;
-
-			npk_package_add_entity( pb, eb );
-		}
-		NPK_SAFE_FREE( entityheaderbuf );
-	}
-	else	// old style entity header
-	{
-		npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_, SEEK_SET );
-		while( entityCount > 0 )
-		{
-			--entityCount;
-
-			if(	npk_entity_alloc( (NPK_ENTITY*)&eb ) != NPK_SUCCESS )
-				goto npk_package_open_return_null_with_free;
-
-			eb->owner_ = pb;
-
-			// read entity info
-			if( pb->info_.version_ < NPK_VERSION_UNIXTIMESUPPORT )
-			{
-				if( npk_read_encrypt( teakey,
-										pb->handle_,
-										(void*)&oldinfo,
-										sizeof(NPK_ENTITYINFO),
-										g_callbackfp,
-										NPK_PROCESSTYPE_ENTITYHEADER,
-										g_callbackSize,
-										filename ) != NPK_SUCCESS )
-					goto npk_package_open_return_null_with_free;
-
-				eb->info_.offset_ = oldinfo.offset_;
-				eb->info_.size_ = oldinfo.size_;
-				eb->info_.originalSize_ = oldinfo.originalSize_;
-				eb->info_.flag_ = oldinfo.flag_;
-				npk_filetime_to_unixtime( &oldinfo.modified_, &eb->info_.modified_ );
-				eb->info_.nameLength_ = oldinfo.nameLength_;
-			}
-			else
-			{
-				if( npk_read_encrypt( teakey,
-										pb->handle_,
-										(void*)&eb->info_,
-										sizeof(NPK_ENTITYINFO),
-										g_callbackfp,
-										NPK_PROCESSTYPE_ENTITYHEADER,
-										g_callbackSize,
-										filename ) != NPK_SUCCESS )
-					goto npk_package_open_return_null_with_free;
-			}
-
-			if( eb->info_.offset_ >= pb->info_.entityInfoOffset_ )
-			{
-				npk_error( NPK_ERROR_InvalidTeaKey );
-				goto npk_package_open_return_null_with_free;
-			}
-
-			if( npk_read_encrypt( teakey,
-									pb->handle_,
-									(void*)buf,
-									sizeof(char) * eb->info_.nameLength_,
-									g_callbackfp,
-									NPK_PROCESSTYPE_ENTITYHEADER,
-									g_callbackSize,
-									filename ) != NPK_SUCCESS )
-				goto npk_package_open_return_null_with_free;
-
-			eb->newflag_ = eb->info_.flag_;
-
-			// copy name into entity body
-			buf[eb->info_.nameLength_] = '\0';
-			if( npk_alloc_copy_string( &eb->name_, buf ) != NPK_SUCCESS )
-				goto npk_package_open_return_null_with_free;
-
-			npk_package_add_entity( pb, eb );
-		}
-	}
 
 	return (NPK_PACKAGE*)pb;
 
@@ -239,7 +99,6 @@ npk_package_open_return_null_with_free:
 		if( pb->handle_ > 0 )
 			npk_close( pb->handle_ );
 
-	NPK_SAFE_FREE( eb );
 	NPK_SAFE_FREE( pb );
 	return NULL;
 }
@@ -353,7 +212,7 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
 	if( g_useCriticalSection )
 		EnterCriticalSection( &pb->cs_ );
 #endif
-	npk_seek( pb->handle_, (long)eb->info_.offset_, SEEK_SET );
+	npk_seek( pb->handle_, (long)eb->info_.offset_+pb->offsetJump_, SEEK_SET );
 
 	res = npk_read( pb->handle_,
 					(*lplpTarget),
@@ -437,7 +296,7 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
 	if( g_useCriticalSection )
 		EnterCriticalSection( &pb->cs_ );
 #endif
-	npk_seek( pb->handle_, (long)(eb->info_.offset_ + offset), SEEK_SET );
+	npk_seek( pb->handle_, (long)(eb->info_.offset_ + offset)+pb->offsetJump_, SEEK_SET );
 
 	res = npk_read( pb->handle_,
 					buf,

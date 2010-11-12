@@ -4,6 +4,7 @@ set( SAMPLES
 	${SAMPLES}
 	sample.txt
 	${PROJECT_SOURCE_DIR}/tests/*.npk
+	${PROJECT_SOURCE_DIR}/tests/*.bin
 	)
 
 set( ITEMS
@@ -11,6 +12,7 @@ set( ITEMS
 	npk_open.cpp
 	npk_read_entity.cpp
 	npk_case.cpp
+	npk_using_fd.cpp
 	)
 
 if( DEV_MODE )

@@ -7,7 +7,7 @@
 ARCHITECTURE_ID	build/CMakeFiles/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID /;"	d	file:
 ARCHITECTURE_ID	build/CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define ARCHITECTURE_ID /;"	d	file:
 Assert	external/zlib/zutil.h	/^#  define Assert(/;"	d
-BAD	external/zlib/inflate.h	/^    BAD,        \/* got a data error -- remain here until reset *\/$/;"	e	enum:__anon5
+BAD	external/zlib/inflate.h	/^    BAD,        \/* got a data error -- remain here until reset *\/$/;"	e	enum:__anon8
 BASE	external/zlib/adler32.c	/^#define BASE /;"	d	file:
 BITS	external/zlib/infback.c	/^#define BITS(/;"	d	file:
 BITS	external/zlib/inflate.c	/^#define BITS(/;"	d	file:
@@ -24,7 +24,7 @@ Byte	external/zlib/zconf.h	/^typedef unsigned char  Byte;  \/* 8 bits *\/$/;"	t
 Bytef	external/zlib/zconf.h	/^   typedef Byte  FAR Bytef;$/;"	t
 Bytef	external/zlib/zconf.h	/^#  define Bytef /;"	d
 CASE_SENSITIVE	tool/cli/npk_cli.cpp	/^	#define CASE_SENSITIVE /;"	d	file:
-CHECK	external/zlib/inflate.h	/^    CHECK,      \/* i: waiting for 32-bit check value *\/$/;"	e	enum:__anon5
+CHECK	external/zlib/inflate.h	/^    CHECK,      \/* i: waiting for 32-bit check value *\/$/;"	e	enum:__anon8
 CHECK	tests/testutil.h	/^#define CHECK(/;"	d
 CHECK_CLOSE	tests/testutil.h	/^#define CHECK_CLOSE(/;"	d
 CHECK_EQUAL	tests/testutil.h	/^#define CHECK_EQUAL(/;"	d
@@ -32,49 +32,57 @@ CHECK_EQUAL_STR	tests/testutil.h	/^#define CHECK_EQUAL_STR(/;"	d
 CHECK_EQUAL_STR_WITH_FILE	tests/testutil.h	/^static void CHECK_EQUAL_STR_WITH_FILE( const char* src, const char* filename )$/;"	f
 CLEAR_HASH	external/zlib/deflate.c	/^#define CLEAR_HASH(/;"	d	file:
 CMAKE_BINARY_DIR	build/Makefile	/^CMAKE_BINARY_DIR = \/Users\/lqez\/dev\/npk\/build$/;"	m
+CMAKE_BINARY_DIR	build/binding/Makefile	/^CMAKE_BINARY_DIR = \/Users\/lqez\/dev\/npk\/build$/;"	m
+CMAKE_BINARY_DIR	build/binding/python/Makefile	/^CMAKE_BINARY_DIR = \/Users\/lqez\/dev\/npk\/build$/;"	m
 CMAKE_BINARY_DIR	build/src/Makefile	/^CMAKE_BINARY_DIR = \/Users\/lqez\/dev\/npk\/build$/;"	m
 CMAKE_BINARY_DIR	build/tests/Makefile	/^CMAKE_BINARY_DIR = \/Users\/lqez\/dev\/npk\/build$/;"	m
 CMAKE_BINARY_DIR	build/tool/Makefile	/^CMAKE_BINARY_DIR = \/Users\/lqez\/dev\/npk\/build$/;"	m
 CMAKE_BINARY_DIR	build/tool/cli/Makefile	/^CMAKE_BINARY_DIR = \/Users\/lqez\/dev\/npk\/build$/;"	m
 CMAKE_COMMAND	build/Makefile	/^CMAKE_COMMAND = \/opt\/local\/bin\/cmake$/;"	m
+CMAKE_COMMAND	build/binding/Makefile	/^CMAKE_COMMAND = \/opt\/local\/bin\/cmake$/;"	m
+CMAKE_COMMAND	build/binding/python/Makefile	/^CMAKE_COMMAND = \/opt\/local\/bin\/cmake$/;"	m
 CMAKE_COMMAND	build/src/Makefile	/^CMAKE_COMMAND = \/opt\/local\/bin\/cmake$/;"	m
 CMAKE_COMMAND	build/tests/Makefile	/^CMAKE_COMMAND = \/opt\/local\/bin\/cmake$/;"	m
 CMAKE_COMMAND	build/tool/Makefile	/^CMAKE_COMMAND = \/opt\/local\/bin\/cmake$/;"	m
 CMAKE_COMMAND	build/tool/cli/Makefile	/^CMAKE_COMMAND = \/opt\/local\/bin\/cmake$/;"	m
 CMAKE_EDIT_COMMAND	build/Makefile	/^CMAKE_EDIT_COMMAND = \/opt\/local\/bin\/ccmake$/;"	m
+CMAKE_EDIT_COMMAND	build/binding/Makefile	/^CMAKE_EDIT_COMMAND = \/opt\/local\/bin\/ccmake$/;"	m
+CMAKE_EDIT_COMMAND	build/binding/python/Makefile	/^CMAKE_EDIT_COMMAND = \/opt\/local\/bin\/ccmake$/;"	m
 CMAKE_EDIT_COMMAND	build/src/Makefile	/^CMAKE_EDIT_COMMAND = \/opt\/local\/bin\/ccmake$/;"	m
 CMAKE_EDIT_COMMAND	build/tests/Makefile	/^CMAKE_EDIT_COMMAND = \/opt\/local\/bin\/ccmake$/;"	m
 CMAKE_EDIT_COMMAND	build/tool/Makefile	/^CMAKE_EDIT_COMMAND = \/opt\/local\/bin\/ccmake$/;"	m
 CMAKE_EDIT_COMMAND	build/tool/cli/Makefile	/^CMAKE_EDIT_COMMAND = \/opt\/local\/bin\/ccmake$/;"	m
 CMAKE_SOURCE_DIR	build/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/lqez\/dev\/npk$/;"	m
+CMAKE_SOURCE_DIR	build/binding/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/lqez\/dev\/npk$/;"	m
+CMAKE_SOURCE_DIR	build/binding/python/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/lqez\/dev\/npk$/;"	m
 CMAKE_SOURCE_DIR	build/src/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/lqez\/dev\/npk$/;"	m
 CMAKE_SOURCE_DIR	build/tests/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/lqez\/dev\/npk$/;"	m
 CMAKE_SOURCE_DIR	build/tool/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/lqez\/dev\/npk$/;"	m
 CMAKE_SOURCE_DIR	build/tool/cli/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/lqez\/dev\/npk$/;"	m
-CODELENS	external/zlib/inflate.h	/^        CODELENS,   \/* i: waiting for length\/lit and distance code lengths *\/$/;"	e	enum:__anon5
-CODES	external/zlib/inftrees.h	/^    CODES,$/;"	e	enum:__anon7
-COMMENT	external/zlib/inflate.h	/^    COMMENT,    \/* i: waiting for end of comment (gzip) *\/$/;"	e	enum:__anon5
+CODELENS	external/zlib/inflate.h	/^        CODELENS,   \/* i: waiting for length\/lit and distance code lengths *\/$/;"	e	enum:__anon8
+CODES	external/zlib/inftrees.h	/^    CODES,$/;"	e	enum:__anon10
+COMMENT	external/zlib/inflate.h	/^    COMMENT,    \/* i: waiting for end of comment (gzip) *\/$/;"	e	enum:__anon8
 COMMENT_STATE	external/zlib/deflate.h	/^#define COMMENT_STATE /;"	d
 COMPILER_ID	build/CMakeFiles/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_ID /;"	d	file:
 COMPILER_ID	build/CMakeFiles/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_ID /;"	d	file:
 COMPILER_ID	build/CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_ID /;"	d	file:
 COMPILER_ID	build/CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_ID /;"	d	file:
-COPY	external/zlib/inflate.h	/^        COPY,       \/* i\/o: waiting for input or output to copy stored block *\/$/;"	e	enum:__anon5
-COPY_	external/zlib/inflate.h	/^        COPY_,      \/* i\/o: same as COPY below, but only first time in *\/$/;"	e	enum:__anon5
+COPY	external/zlib/inflate.h	/^        COPY,       \/* i\/o: waiting for input or output to copy stored block *\/$/;"	e	enum:__anon8
+COPY_	external/zlib/inflate.h	/^        COPY_,      \/* i\/o: same as COPY below, but only first time in *\/$/;"	e	enum:__anon8
 CRC2	external/zlib/inflate.c	/^#  define CRC2(/;"	d	file:
 CRC4	external/zlib/inflate.c	/^#  define CRC4(/;"	d	file:
 Code	external/zlib/deflate.h	/^#define Code /;"	d
 DEFLATE_H	external/zlib/deflate.h	/^#define DEFLATE_H$/;"	d
 DEF_MEM_LEVEL	external/zlib/zutil.h	/^#  define DEF_MEM_LEVEL /;"	d
 DEF_WBITS	external/zlib/zutil.h	/^#  define DEF_WBITS /;"	d
-DICT	external/zlib/inflate.h	/^    DICT,       \/* waiting for inflateSetDictionary() call *\/$/;"	e	enum:__anon5
-DICTID	external/zlib/inflate.h	/^    DICTID,     \/* i: waiting for dictionary check value *\/$/;"	e	enum:__anon5
+DICT	external/zlib/inflate.h	/^    DICT,       \/* waiting for inflateSetDictionary() call *\/$/;"	e	enum:__anon8
+DICTID	external/zlib/inflate.h	/^    DICTID,     \/* i: waiting for dictionary check value *\/$/;"	e	enum:__anon8
 DIR	tool/cli/helper_dirent.c	/^struct DIR$/;"	s	file:
 DIR	tool/cli/helper_dirent.h	/^typedef struct DIR DIR;$/;"	t	typeref:struct:DIR
 DIRENT_INCLUDED	tool/cli/helper_dirent.h	/^#define DIRENT_INCLUDED$/;"	d
-DIST	external/zlib/inflate.h	/^            DIST,       \/* i: waiting for distance code *\/$/;"	e	enum:__anon5
-DISTEXT	external/zlib/inflate.h	/^            DISTEXT,    \/* i: waiting for distance extra bits *\/$/;"	e	enum:__anon5
-DISTS	external/zlib/inftrees.h	/^    DISTS$/;"	e	enum:__anon7
+DIST	external/zlib/inflate.h	/^            DIST,       \/* i: waiting for distance code *\/$/;"	e	enum:__anon8
+DISTEXT	external/zlib/inflate.h	/^            DISTEXT,    \/* i: waiting for distance extra bits *\/$/;"	e	enum:__anon8
+DISTS	external/zlib/inftrees.h	/^    DISTS$/;"	e	enum:__anon10
 DIST_CODE_LEN	external/zlib/trees.c	/^#define DIST_CODE_LEN /;"	d	file:
 DO1	external/zlib/adler32.c	/^#define DO1(/;"	d	file:
 DO1	external/zlib/crc32.c	/^#define DO1 /;"	d	file:
@@ -87,7 +95,7 @@ DOBIG32	external/zlib/crc32.c	/^#define DOBIG32 /;"	d	file:
 DOBIG4	external/zlib/crc32.c	/^#define DOBIG4 /;"	d	file:
 DOLIT32	external/zlib/crc32.c	/^#define DOLIT32 /;"	d	file:
 DOLIT4	external/zlib/crc32.c	/^#define DOLIT4 /;"	d	file:
-DONE	external/zlib/inflate.h	/^    DONE,       \/* finished check, done -- remain here until reset *\/$/;"	e	enum:__anon5
+DONE	external/zlib/inflate.h	/^    DONE,       \/* finished check, done -- remain here until reset *\/$/;"	e	enum:__anon8
 DROPBITS	external/zlib/infback.c	/^#define DROPBITS(/;"	d	file:
 DROPBITS	external/zlib/inflate.c	/^#define DROPBITS(/;"	d	file:
 DYNAMIC_CRC_TABLE	external/zlib/crc32.c	/^#    define DYNAMIC_CRC_TABLE$/;"	d	file:
@@ -103,50 +111,53 @@ ENTITYLIST	tool/cli/npk_cli.cpp	/^typedef list<NPK_ENTITY> ENTITYLIST;$/;"	t	fil
 EQUAL	external/zlib/deflate.c	/^#define EQUAL /;"	d	file:
 ERR_MSG	external/zlib/zutil.h	/^#define ERR_MSG(/;"	d
 ERR_RETURN	external/zlib/zutil.h	/^#define ERR_RETURN(/;"	d
-EXLEN	external/zlib/inflate.h	/^    EXLEN,      \/* i: waiting for extra length (gzip) *\/$/;"	e	enum:__anon5
-EXTRA	external/zlib/inflate.h	/^    EXTRA,      \/* i: waiting for extra bytes (gzip) *\/$/;"	e	enum:__anon5
+EXLEN	external/zlib/inflate.h	/^    EXLEN,      \/* i: waiting for extra length (gzip) *\/$/;"	e	enum:__anon8
+EXTRA	external/zlib/inflate.h	/^    EXTRA,      \/* i: waiting for extra bytes (gzip) *\/$/;"	e	enum:__anon8
 EXTRA_STATE	external/zlib/deflate.h	/^#define EXTRA_STATE /;"	d
 FAR	external/zlib/zconf.h	/^#      define FAR /;"	d
 FAR	external/zlib/zconf.h	/^#      undef FAR$/;"	d
 FAR	external/zlib/zconf.h	/^#  define FAR$/;"	d
 FINISH_STATE	external/zlib/deflate.h	/^#define FINISH_STATE /;"	d
-FLAGS	external/zlib/inflate.h	/^    FLAGS,      \/* i: waiting for method and flags (gzip) *\/$/;"	e	enum:__anon5
+FLAGS	external/zlib/inflate.h	/^    FLAGS,      \/* i: waiting for method and flags (gzip) *\/$/;"	e	enum:__anon8
 FLUSH_BLOCK	external/zlib/deflate.c	/^#define FLUSH_BLOCK(/;"	d	file:
 FLUSH_BLOCK_ONLY	external/zlib/deflate.c	/^#define FLUSH_BLOCK_ONLY(/;"	d	file:
 F_OPEN	external/zlib/zutil.h	/^#  define F_OPEN(/;"	d
 Freq	external/zlib/deflate.h	/^#define Freq /;"	d
+GCC_HASCLASSVISIBILITY	build/binding/npk_devPYTHON_wrap.c	/^#    define GCC_HASCLASSVISIBILITY$/;"	d	file:
 GF2_DIM	external/zlib/crc32.c	/^#define GF2_DIM /;"	d	file:
 GUNZIP	external/zlib/inflate.h	/^#  define GUNZIP$/;"	d
 GZIP	external/zlib/deflate.h	/^#  define GZIP$/;"	d
 HAVE_MEMCPY	external/zlib/zutil.h	/^#  define HAVE_MEMCPY$/;"	d
 HAVE_VSNPRINTF	external/zlib/zutil.h	/^#    define HAVE_VSNPRINTF$/;"	d
-HCRC	external/zlib/inflate.h	/^    HCRC,       \/* i: waiting for header crc (gzip) *\/$/;"	e	enum:__anon5
+HCRC	external/zlib/inflate.h	/^    HCRC,       \/* i: waiting for header crc (gzip) *\/$/;"	e	enum:__anon8
 HCRC_STATE	external/zlib/deflate.h	/^#define HCRC_STATE /;"	d
-HEAD	external/zlib/inflate.h	/^    HEAD,       \/* i: waiting for magic header *\/$/;"	e	enum:__anon5
+HEAD	external/zlib/inflate.h	/^    HEAD,       \/* i: waiting for magic header *\/$/;"	e	enum:__anon8
 HEAP_SIZE	external/zlib/deflate.h	/^#define HEAP_SIZE /;"	d
-ID_About	tool/gui/npk_gui.cpp	/^	ID_About,$/;"	e	enum:__anon8	file:
-ID_Quit	tool/gui/npk_gui.cpp	/^	ID_Quit = 1,$/;"	e	enum:__anon8	file:
+ID_About	tool/gui/npk_gui.cpp	/^	ID_About,$/;"	e	enum:__anon11	file:
+ID_Quit	tool/gui/npk_gui.cpp	/^	ID_Quit = 1,$/;"	e	enum:__anon11	file:
 ID_VOID_MAIN	build/CMakeFiles/CompilerIdC/CMakeCCompilerId.c	/^# define ID_VOID_MAIN$/;"	d	file:
 INITBITS	external/zlib/infback.c	/^#define INITBITS(/;"	d	file:
 INITBITS	external/zlib/inflate.c	/^#define INITBITS(/;"	d	file:
 INIT_STATE	external/zlib/deflate.h	/^#define INIT_STATE /;"	d
 INSERT_STRING	external/zlib/deflate.c	/^#define INSERT_STRING(/;"	d	file:
 IPos	external/zlib/deflate.h	/^typedef unsigned IPos;$/;"	t
-LEN	external/zlib/inflate.h	/^            LEN,        \/* i: waiting for length\/lit\/eob code *\/$/;"	e	enum:__anon5
-LENEXT	external/zlib/inflate.h	/^            LENEXT,     \/* i: waiting for length extra bits *\/$/;"	e	enum:__anon5
-LENGTH	external/zlib/inflate.h	/^    LENGTH,     \/* i: waiting for 32-bit length (gzip) *\/$/;"	e	enum:__anon5
+LEN	external/zlib/inflate.h	/^            LEN,        \/* i: waiting for length\/lit\/eob code *\/$/;"	e	enum:__anon8
+LENEXT	external/zlib/inflate.h	/^            LENEXT,     \/* i: waiting for length extra bits *\/$/;"	e	enum:__anon8
+LENGTH	external/zlib/inflate.h	/^    LENGTH,     \/* i: waiting for 32-bit length (gzip) *\/$/;"	e	enum:__anon8
 LENGTH_CODES	external/zlib/deflate.h	/^#define LENGTH_CODES /;"	d
-LENLENS	external/zlib/inflate.h	/^        LENLENS,    \/* i: waiting for code length code lengths *\/$/;"	e	enum:__anon5
-LENS	external/zlib/inftrees.h	/^    LENS,$/;"	e	enum:__anon7
-LEN_	external/zlib/inflate.h	/^            LEN_,       \/* i: same as LEN below, but only first time in *\/$/;"	e	enum:__anon5
-LIT	external/zlib/inflate.h	/^            LIT,        \/* o: waiting for output space to write literal *\/$/;"	e	enum:__anon5
+LENLENS	external/zlib/inflate.h	/^        LENLENS,    \/* i: waiting for code length code lengths *\/$/;"	e	enum:__anon8
+LENS	external/zlib/inftrees.h	/^    LENS,$/;"	e	enum:__anon10
+LEN_	external/zlib/inflate.h	/^            LEN_,       \/* i: same as LEN below, but only first time in *\/$/;"	e	enum:__anon8
+LIT	external/zlib/inflate.h	/^            LIT,        \/* o: waiting for output space to write literal *\/$/;"	e	enum:__anon8
 LITERALS	external/zlib/deflate.h	/^#define LITERALS /;"	d
+LLONG_MAX	build/binding/npk_devPYTHON_wrap.c	/^#   define LLONG_MAX /;"	d	file:
+LLONG_MIN	build/binding/npk_devPYTHON_wrap.c	/^#   define LLONG_MIN /;"	d	file:
 LOAD	external/zlib/infback.c	/^#define LOAD(/;"	d	file:
 LOAD	external/zlib/inflate.c	/^#define LOAD(/;"	d	file:
 LOCAL_TFP	tool/cli/npk_cli.cpp	/^typedef	bool( *LOCAL_TFP )( NPK_CSTR fullpath, NPK_CSTR filename );$/;"	t	file:
 L_CODES	external/zlib/deflate.h	/^#define L_CODES /;"	d
 Len	external/zlib/deflate.h	/^#define Len /;"	d
-MATCH	external/zlib/inflate.h	/^            MATCH,      \/* o: waiting for output space to copy string *\/$/;"	e	enum:__anon5
+MATCH	external/zlib/inflate.h	/^            MATCH,      \/* o: waiting for output space to copy string *\/$/;"	e	enum:__anon8
 MAXBITS	external/zlib/inftrees.c	/^#define MAXBITS /;"	d	file:
 MAXSEG_64K	external/zlib/zconf.h	/^#  define MAXSEG_64K$/;"	d
 MAX_BITS	external/zlib/deflate.h	/^#define MAX_BITS /;"	d
@@ -156,7 +167,7 @@ MAX_MATCH	external/zlib/zutil.h	/^#define MAX_MATCH /;"	d
 MAX_MEM_LEVEL	external/zlib/zconf.h	/^#    define MAX_MEM_LEVEL /;"	d
 MAX_PTR	external/zlib/zutil.c	/^#define MAX_PTR /;"	d	file:
 MAX_WBITS	external/zlib/zconf.h	/^#  define MAX_WBITS /;"	d
-MEM	external/zlib/inflate.h	/^    MEM,        \/* got an inflate() memory error -- remain here until reset *\/$/;"	e	enum:__anon5
+MEM	external/zlib/inflate.h	/^    MEM,        \/* got an inflate() memory error -- remain here until reset *\/$/;"	e	enum:__anon8
 MIN_LOOKAHEAD	external/zlib/deflate.h	/^#define MIN_LOOKAHEAD /;"	d
 MIN_MATCH	external/zlib/zutil.h	/^#define MIN_MATCH /;"	d
 MOD	external/zlib/adler32.c	/^#  define MOD(/;"	d	file:
@@ -167,7 +178,7 @@ MainFuncPointer	build/tests/tests.cpp	/^typedef int (*MainFuncPointer)(int , cha
 MyApp	tool/gui/npk_gui.cpp	/^class MyApp: public wxApp$/;"	c	file:
 MyFrame	tool/gui/npk_gui.cpp	/^MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)$/;"	f	class:MyFrame
 MyFrame	tool/gui/npk_gui.cpp	/^class MyFrame: public wxFrame$/;"	c	file:
-NAME	external/zlib/inflate.h	/^    NAME,       \/* i: waiting for end of file name (gzip) *\/$/;"	e	enum:__anon5
+NAME	external/zlib/inflate.h	/^    NAME,       \/* i: waiting for end of file name (gzip) *\/$/;"	e	enum:__anon8
 NAME_STATE	external/zlib/deflate.h	/^#define NAME_STATE /;"	d
 NEEDBITS	external/zlib/infback.c	/^#define NEEDBITS(/;"	d	file:
 NEEDBITS	external/zlib/inflate.c	/^#define NEEDBITS(/;"	d	file:
@@ -193,9 +204,15 @@ NPK_DEV_API	include/npk_conf.h	/^				#define NPK_DEV_API$/;"	d
 NPK_DEV_API	include/npk_conf.h	/^		#define NPK_DEV_API$/;"	d
 NPK_DEV_API	include/npk_conf.h	/^	#define NPK_DEV_API$/;"	d
 NPK_ENTITY	include/npk_base.h	/^typedef void*							NPK_ENTITY;$/;"	t
+NPK_ENTITYBODY	build/binding/python/npk.py	/^class NPK_ENTITYBODY(_object):$/;"	c
 NPK_ENTITYBODY	include/npk_dev.h	/^} NPK_ENTITYBODY, *NPK_LPENTITYBODY;$/;"	t	typeref:struct:NPK_tagENTITYBODY
+NPK_ENTITYBODY_swigregister	build/binding/python/npk.py	/^NPK_ENTITYBODY_swigregister = _npk.NPK_ENTITYBODY_swigregister$/;"	v
+NPK_ENTITYINFO	build/binding/python/npk.py	/^class NPK_ENTITYINFO(_object):$/;"	c
 NPK_ENTITYINFO	include/npk_dev.h	/^} NPK_ENTITYINFO, *NPK_LPENTITYINFO;$/;"	t	typeref:struct:NPK_tagENTITYINFO
+NPK_ENTITYINFO_V21	build/binding/python/npk.py	/^class NPK_ENTITYINFO_V21(_object):$/;"	c
 NPK_ENTITYINFO_V21	include/npk_dev.h	/^} NPK_ENTITYINFO_V21, *NPK_LPENTITYINFO_V21;$/;"	t	typeref:struct:NPK_tagENTITYINFO_V21
+NPK_ENTITYINFO_V21_swigregister	build/binding/python/npk.py	/^NPK_ENTITYINFO_V21_swigregister = _npk.NPK_ENTITYINFO_V21_swigregister$/;"	v
+NPK_ENTITYINFO_swigregister	build/binding/python/npk.py	/^NPK_ENTITYINFO_swigregister = _npk.NPK_ENTITYINFO_swigregister$/;"	v
 NPK_ENTITY_COMPRESS	include/npk_base.h	/^#define NPK_ENTITY_COMPRESS	/;"	d
 NPK_ENTITY_ENCRYPT	include/npk_base.h	/^#define NPK_ENTITY_ENCRYPT	/;"	d
 NPK_ENTITY_INHERIT	include/npk_base.h	/^#define NPK_ENTITY_INHERIT	/;"	d
@@ -256,9 +273,15 @@ NPK_MIN_SIZE_ZIPABLE	include/npk_base.h	/^#define NPK_MIN_SIZE_ZIPABLE	/;"	d
 NPK_NAMESIZE	include/npk_base.h	/^typedef unsigned short					NPK_NAMESIZE;$/;"	t
 NPK_OLD_SIGNATURE	include/npk_base.h	/^#define NPK_OLD_SIGNATURE	/;"	d
 NPK_PACKAGE	include/npk_base.h	/^typedef void*							NPK_PACKAGE;$/;"	t
+NPK_PACKAGEBODY	build/binding/python/npk.py	/^class NPK_PACKAGEBODY(_object):$/;"	c
 NPK_PACKAGEBODY	include/npk_dev.h	/^} NPK_PACKAGEBODY, *NPK_LPPACKAGEBODY;$/;"	t	typeref:struct:NPK_tagPACKAGEBODY
+NPK_PACKAGEBODY_swigregister	build/binding/python/npk.py	/^NPK_PACKAGEBODY_swigregister = _npk.NPK_PACKAGEBODY_swigregister$/;"	v
+NPK_PACKAGEINFO	build/binding/python/npk.py	/^class NPK_PACKAGEINFO(_object):$/;"	c
 NPK_PACKAGEINFO	include/npk_dev.h	/^} NPK_PACKAGEINFO, *NPK_LPPACKAGEINFO;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO
+NPK_PACKAGEINFO_V23	build/binding/python/npk.py	/^class NPK_PACKAGEINFO_V23(_object):$/;"	c
 NPK_PACKAGEINFO_V23	include/npk_dev.h	/^} NPK_PACKAGEINFO_V23, *NPK_LPPACKAGEINFO_V23;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO_V23
+NPK_PACKAGEINFO_V23_swigregister	build/binding/python/npk.py	/^NPK_PACKAGEINFO_V23_swigregister = _npk.NPK_PACKAGEINFO_V23_swigregister$/;"	v
+NPK_PACKAGEINFO_swigregister	build/binding/python/npk.py	/^NPK_PACKAGEINFO_swigregister = _npk.NPK_PACKAGEINFO_swigregister$/;"	v
 NPK_PLATFORM_BSD	include/npk_conf.h	/^    #define NPK_PLATFORM_BSD$/;"	d
 NPK_PLATFORM_LINUX	include/npk_conf.h	/^    #define NPK_PLATFORM_LINUX$/;"	d
 NPK_PLATFORM_MACOS	include/npk_conf.h	/^    #define NPK_PLATFORM_MACOS$/;"	d
@@ -291,7 +314,7 @@ NPK_tagPACKAGEINFO	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagPACKAGE
 NPK_tagPACKAGEINFO_V23	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagPACKAGEINFO_V23$/;"	s
 OF	external/zlib/zconf.h	/^#    define OF(/;"	d
 OFF	external/zlib/inffast.c	/^#  define OFF /;"	d	file:
-OS	external/zlib/inflate.h	/^    OS,         \/* i: waiting for extra flags and operating system (gzip) *\/$/;"	e	enum:__anon5
+OS	external/zlib/inflate.h	/^    OS,         \/* i: waiting for extra flags and operating system (gzip) *\/$/;"	e	enum:__anon8
 OS2	external/zlib/zconf.h	/^#  define OS2$/;"	d
 OS_CODE	external/zlib/zutil.h	/^#    define OS_CODE /;"	d
 OS_CODE	external/zlib/zutil.h	/^#  define OS_CODE /;"	d
@@ -307,8 +330,30 @@ PULL	external/zlib/infback.c	/^#define PULL(/;"	d	file:
 PULLBYTE	external/zlib/infback.c	/^#define PULLBYTE(/;"	d	file:
 PULLBYTE	external/zlib/inflate.c	/^#define PULLBYTE(/;"	d	file:
 PUP	external/zlib/inffast.c	/^#  define PUP(/;"	d	file:
+PY_SSIZE_T_MAX	build/binding/npk_devPYTHON_wrap.c	/^# define PY_SSIZE_T_MAX /;"	d	file:
+PY_SSIZE_T_MIN	build/binding/npk_devPYTHON_wrap.c	/^# define PY_SSIZE_T_MIN /;"	d	file:
 Pos	external/zlib/deflate.h	/^typedef ush Pos;$/;"	t
 Posf	external/zlib/deflate.h	/^typedef Pos FAR Posf;$/;"	t
+PyBool_FromLong	build/binding/npk_devPYTHON_wrap.c	/^PyObject *PyBool_FromLong(long ok)$/;"	f	file:
+PyClass_Check	build/binding/npk_devPYTHON_wrap.c	/^#define PyClass_Check(/;"	d	file:
+PyExc_StopIteration	build/binding/npk_devPYTHON_wrap.c	/^#  define PyExc_StopIteration /;"	d	file:
+PyInt_AsLong	build/binding/npk_devPYTHON_wrap.c	/^#define PyInt_AsLong(/;"	d	file:
+PyInt_Check	build/binding/npk_devPYTHON_wrap.c	/^#define PyInt_Check(/;"	d	file:
+PyInt_FromLong	build/binding/npk_devPYTHON_wrap.c	/^#define PyInt_FromLong(/;"	d	file:
+PyModule_AddObject	build/binding/npk_devPYTHON_wrap.c	/^PyModule_AddObject(PyObject *m, char *name, PyObject *o)$/;"	f
+PyOS_snprintf	build/binding/npk_devPYTHON_wrap.c	/^#  define PyOS_snprintf /;"	d	file:
+PyObject_DEL	build/binding/npk_devPYTHON_wrap.c	/^# define PyObject_DEL /;"	d	file:
+PyObject_Del	build/binding/npk_devPYTHON_wrap.c	/^# define PyObject_Del(/;"	d	file:
+PyObject_GenericGetAttr	build/binding/npk_devPYTHON_wrap.c	/^#  define PyObject_GenericGetAttr /;"	d	file:
+PySequence_Size	build/binding/npk_devPYTHON_wrap.c	/^#  define PySequence_Size /;"	d	file:
+PyString_AsStringAndSize	build/binding/npk_devPYTHON_wrap.c	/^#  define PyString_AsStringAndSize(/;"	d	file:
+PyString_Format	build/binding/npk_devPYTHON_wrap.c	/^#define PyString_Format(/;"	d	file:
+PyString_FromFormat	build/binding/npk_devPYTHON_wrap.c	/^PyString_FromFormat(const char *fmt, ...) {$/;"	f	file:
+Py_None	build/binding/npk_devPYTHON_wrap.c	/^#   define Py_None /;"	d	file:
+Py_None	build/binding/npk_devPYTHON_wrap.c	/^#   undef Py_None$/;"	d	file:
+Py_NotImplemented	build/binding/npk_devPYTHON_wrap.c	/^#  define Py_NotImplemented /;"	d	file:
+Py_TYPE	build/binding/npk_devPYTHON_wrap.c	/^#  define Py_TYPE(/;"	d	file:
+Py_ssize_t	build/binding/npk_devPYTHON_wrap.c	/^typedef int Py_ssize_t;$/;"	t	file:
 REPZ_11_138	external/zlib/trees.c	/^#define REPZ_11_138 /;"	d	file:
 REPZ_3_10	external/zlib/trees.c	/^#define REPZ_3_10 /;"	d	file:
 REP_3_6	external/zlib/trees.c	/^#define REP_3_6 /;"	d	file:
@@ -317,6 +362,8 @@ RESTORE	external/zlib/inflate.c	/^#define RESTORE(/;"	d	file:
 REV	external/zlib/crc32.c	/^#  define REV(/;"	d	file:
 REVERSE	external/zlib/inflate.c	/^#define REVERSE(/;"	d	file:
 RM	build/Makefile	/^RM = \/opt\/local\/bin\/cmake -E remove -f$/;"	m
+RM	build/binding/Makefile	/^RM = \/opt\/local\/bin\/cmake -E remove -f$/;"	m
+RM	build/binding/python/Makefile	/^RM = \/opt\/local\/bin\/cmake -E remove -f$/;"	m
 RM	build/src/Makefile	/^RM = \/opt\/local\/bin\/cmake -E remove -f$/;"	m
 RM	build/tests/Makefile	/^RM = \/opt\/local\/bin\/cmake -E remove -f$/;"	m
 RM	build/tool/Makefile	/^RM = \/opt\/local\/bin\/cmake -E remove -f$/;"	m
@@ -327,6 +374,8 @@ SEEK_END	external/zlib/zconf.h	/^#  define SEEK_END /;"	d
 SEEK_SET	external/zlib/zconf.h	/^#  define SEEK_SET /;"	d
 SEPARATOR	external/zlib/trees.c	/^#  define SEPARATOR(/;"	d	file:
 SHELL	build/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SHELL	build/binding/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SHELL	build/binding/python/Makefile	/^SHELL = \/bin\/sh$/;"	m
 SHELL	build/src/Makefile	/^SHELL = \/bin\/sh$/;"	m
 SHELL	build/tests/Makefile	/^SHELL = \/bin\/sh$/;"	m
 SHELL	build/tool/Makefile	/^SHELL = \/bin\/sh$/;"	m
@@ -338,28 +387,301 @@ STATIC_TREES	external/zlib/zutil.h	/^#define STATIC_TREES /;"	d
 STDC	external/zlib/zconf.h	/^#    define STDC$/;"	d
 STDC	external/zlib/zconf.h	/^#  define STDC$/;"	d
 STDC99	external/zlib/zconf.h	/^#      define STDC99$/;"	d
-STORED	external/zlib/inflate.h	/^        STORED,     \/* i: waiting for stored size (length and complement) *\/$/;"	e	enum:__anon5
+STORED	external/zlib/inflate.h	/^        STORED,     \/* i: waiting for stored size (length and complement) *\/$/;"	e	enum:__anon8
 STORED_BLOCK	external/zlib/zutil.h	/^#define STORED_BLOCK /;"	d
 STRLIST	tool/cli/npk_cli.cpp	/^typedef list<string> STRLIST;$/;"	t	file:
 SUFFIXES	build/Makefile	/^SUFFIXES =$/;"	m
+SUFFIXES	build/binding/Makefile	/^SUFFIXES =$/;"	m
+SUFFIXES	build/binding/python/Makefile	/^SUFFIXES =$/;"	m
 SUFFIXES	build/src/Makefile	/^SUFFIXES =$/;"	m
 SUFFIXES	build/tests/Makefile	/^SUFFIXES =$/;"	m
 SUFFIXES	build/tool/Makefile	/^SUFFIXES =$/;"	m
 SUFFIXES	build/tool/cli/Makefile	/^SUFFIXES =$/;"	m
-SYNC	external/zlib/inflate.h	/^    SYNC        \/* looking for synchronization bytes to restart inflate() *\/$/;"	e	enum:__anon5
+SWIGEXPORT	build/binding/npk_devPYTHON_wrap.c	/^#     define SWIGEXPORT /;"	d	file:
+SWIGEXPORT	build/binding/npk_devPYTHON_wrap.c	/^#     define SWIGEXPORT$/;"	d	file:
+SWIGINLINE	build/binding/npk_devPYTHON_wrap.c	/^#   define SWIGINLINE /;"	d	file:
+SWIGINLINE	build/binding/npk_devPYTHON_wrap.c	/^#   define SWIGINLINE$/;"	d	file:
+SWIGINTERN	build/binding/npk_devPYTHON_wrap.c	/^# define SWIGINTERN /;"	d	file:
+SWIGINTERNINLINE	build/binding/npk_devPYTHON_wrap.c	/^# define SWIGINTERNINLINE /;"	d	file:
+SWIGPYTHON	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGPYTHON$/;"	d	file:
+SWIGRUNTIME	build/binding/npk_devPYTHON_wrap.c	/^# define SWIGRUNTIME /;"	d	file:
+SWIGRUNTIMEINLINE	build/binding/npk_devPYTHON_wrap.c	/^# define SWIGRUNTIMEINLINE /;"	d	file:
+SWIGSTDCALL	build/binding/npk_devPYTHON_wrap.c	/^#   define SWIGSTDCALL /;"	d	file:
+SWIGSTDCALL	build/binding/npk_devPYTHON_wrap.c	/^#   define SWIGSTDCALL$/;"	d	file:
+SWIGTEMPLATEDISAMBIGUATOR	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIGTEMPLATEDISAMBIGUATOR /;"	d	file:
+SWIGTEMPLATEDISAMBIGUATOR	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIGTEMPLATEDISAMBIGUATOR$/;"	d	file:
+SWIGTYPE_p_NPK_64BIT	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_64BIT /;"	d	file:
+SWIGTYPE_p_NPK_BYTE	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_BYTE /;"	d	file:
+SWIGTYPE_p_NPK_CALLBACK	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_CALLBACK /;"	d	file:
+SWIGTYPE_p_NPK_CHAR	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_CHAR /;"	d	file:
+SWIGTYPE_p_NPK_ENTITY	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_ENTITY /;"	d	file:
+SWIGTYPE_p_NPK_FLAG	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_FLAG /;"	d	file:
+SWIGTYPE_p_NPK_HANDLE	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_HANDLE /;"	d	file:
+SWIGTYPE_p_NPK_NAMESIZE	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_NAMESIZE /;"	d	file:
+SWIGTYPE_p_NPK_PACKAGE	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_PACKAGE /;"	d	file:
+SWIGTYPE_p_NPK_RESULT	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_RESULT /;"	d	file:
+SWIGTYPE_p_NPK_SIZE	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_SIZE /;"	d	file:
+SWIGTYPE_p_NPK_TEAKEY	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_TEAKEY /;"	d	file:
+SWIGTYPE_p_NPK_TIME	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_TIME /;"	d	file:
+SWIGTYPE_p_NPK_tagENTITYBODY	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_tagENTITYBODY /;"	d	file:
+SWIGTYPE_p_NPK_tagENTITYINFO	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_tagENTITYINFO /;"	d	file:
+SWIGTYPE_p_NPK_tagENTITYINFO_V21	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_tagENTITYINFO_V21 /;"	d	file:
+SWIGTYPE_p_NPK_tagPACKAGEBODY	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_tagPACKAGEBODY /;"	d	file:
+SWIGTYPE_p_NPK_tagPACKAGEINFO	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_tagPACKAGEINFO /;"	d	file:
+SWIGTYPE_p_NPK_tagPACKAGEINFO_V23	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_NPK_tagPACKAGEINFO_V23 /;"	d	file:
+SWIGTYPE_p_char	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_char /;"	d	file:
+SWIGTYPE_p_int	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_int /;"	d	file:
+SWIGTYPE_p_p_char	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGTYPE_p_p_char /;"	d	file:
+SWIGUNUSED	build/binding/npk_devPYTHON_wrap.c	/^#     define SWIGUNUSED /;"	d	file:
+SWIGUNUSED	build/binding/npk_devPYTHON_wrap.c	/^#     define SWIGUNUSED$/;"	d	file:
+SWIGUNUSED	build/binding/npk_devPYTHON_wrap.c	/^#   define SWIGUNUSED /;"	d	file:
+SWIGUNUSEDPARM	build/binding/npk_devPYTHON_wrap.c	/^  swig_varlink_repr(swig_varlinkobject *SWIGUNUSEDPARM(v)) {$/;"	f
+SWIGUNUSEDPARM	build/binding/npk_devPYTHON_wrap.c	/^#   define SWIGUNUSEDPARM(/;"	d	file:
+SWIGVERSION	build/binding/npk_devPYTHON_wrap.c	/^#define SWIGVERSION /;"	d	file:
+SWIG_AcquirePtr	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_AcquirePtr(/;"	d	file:
+SWIG_AddCast	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_AddCast$/;"	d	file:
+SWIG_AddCast	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERNINLINE int SWIG_AddCast(int r) { $/;"	f
+SWIG_AddNewMask	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_AddNewMask(/;"	d	file:
+SWIG_AddTmpMask	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_AddTmpMask(/;"	d	file:
+SWIG_ArgError	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_ArgError(/;"	d	file:
+SWIG_AsCharPtrAndSize	build/binding/npk_devPYTHON_wrap.c	/^SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)$/;"	f
+SWIG_AsVal_bool	build/binding/npk_devPYTHON_wrap.c	/^SWIG_AsVal_bool (PyObject *obj, bool *val)$/;"	f
+SWIG_AsVal_double	build/binding/npk_devPYTHON_wrap.c	/^SWIG_AsVal_double (PyObject *obj, double *val)$/;"	f
+SWIG_AsVal_int	build/binding/npk_devPYTHON_wrap.c	/^SWIG_AsVal_int (PyObject * obj, int *val)$/;"	f
+SWIG_AsVal_long	build/binding/npk_devPYTHON_wrap.c	/^SWIG_AsVal_long (PyObject *obj, long* val)$/;"	f
+SWIG_AttributeError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_AttributeError /;"	d	file:
+SWIG_BADOBJ	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_BADOBJ /;"	d	file:
+SWIG_BUFFER_SIZE	build/binding/npk_devPYTHON_wrap.c	/^# define SWIG_BUFFER_SIZE /;"	d	file:
+SWIG_CASTRANKLIMIT	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_CASTRANKLIMIT /;"	d	file:
+SWIG_CASTRANKMASK	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_CASTRANKMASK /;"	d	file:
+SWIG_CAST_NEW_MEMORY	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_CAST_NEW_MEMORY /;"	d	file:
+SWIG_CanCastAsInteger	build/binding/npk_devPYTHON_wrap.c	/^SWIG_CanCastAsInteger(double *d, double min, double max) {$/;"	f
+SWIG_CastRank	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_CastRank(/;"	d	file:
+SWIG_CheckImplicit	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_CheckImplicit(/;"	d	file:
+SWIG_CheckState	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_CheckState(/;"	d	file:
+SWIG_CheckState	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERNINLINE int SWIG_CheckState(int r) { $/;"	f
+SWIG_ConvertFunctionPtr	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_ConvertFunctionPtr(/;"	d	file:
+SWIG_ConvertInstance	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_ConvertInstance(/;"	d	file:
+SWIG_ConvertMember	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_ConvertMember(/;"	d	file:
+SWIG_ConvertPacked	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_ConvertPacked(/;"	d	file:
+SWIG_ConvertPtr	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_ConvertPtr(/;"	d	file:
+SWIG_ConvertPtrAndOwn	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_ConvertPtrAndOwn(/;"	d	file:
+SWIG_DelNewMask	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_DelNewMask(/;"	d	file:
+SWIG_DelTmpMask	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_DelTmpMask(/;"	d	file:
+SWIG_DivisionByZero	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_DivisionByZero /;"	d	file:
+SWIG_ERROR	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_ERROR /;"	d	file:
+SWIG_EXPAND_AND_QUOTE_STRING	build/binding/npk_devPYTHON_wrap.c	/^# define SWIG_EXPAND_AND_QUOTE_STRING(/;"	d	file:
+SWIG_Error	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_Error(/;"	d	file:
+SWIG_ErrorType	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_ErrorType(/;"	d	file:
+SWIG_FromCharPtr	build/binding/npk_devPYTHON_wrap.c	/^SWIG_FromCharPtr(const char *cptr)$/;"	f
+SWIG_FromCharPtrAndSize	build/binding/npk_devPYTHON_wrap.c	/^SWIG_FromCharPtrAndSize(const char* carray, size_t size)$/;"	f
+SWIG_From_bool	build/binding/npk_devPYTHON_wrap.c	/^  SWIG_From_bool  (bool value)$/;"	f
+SWIG_From_int	build/binding/npk_devPYTHON_wrap.c	/^SWIG_From_int  (int value)$/;"	f
+SWIG_From_long	build/binding/npk_devPYTHON_wrap.c	/^  #define SWIG_From_long /;"	d	file:
+SWIG_GetModule	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_GetModule(/;"	d	file:
+SWIG_IOError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_IOError /;"	d	file:
+SWIG_IndexError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_IndexError /;"	d	file:
+SWIG_InitializeModule	build/binding/npk_devPYTHON_wrap.c	/^SWIG_InitializeModule(void *clientdata) {$/;"	f
+SWIG_InstallConstants	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_InstallConstants(/;"	d	file:
+SWIG_IsNewObj	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_IsNewObj(/;"	d	file:
+SWIG_IsOK	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_IsOK(/;"	d	file:
+SWIG_IsTmpObj	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_IsTmpObj(/;"	d	file:
+SWIG_MAXCASTRANK	build/binding/npk_devPYTHON_wrap.c	/^#    define SWIG_MAXCASTRANK /;"	d	file:
+SWIG_MangledTypeQuery	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_MangledTypeQuery(/;"	d	file:
+SWIG_MangledTypeQueryModule	build/binding/npk_devPYTHON_wrap.c	/^SWIG_MangledTypeQueryModule(swig_module_info *start, $/;"	f
+SWIG_MemoryError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_MemoryError /;"	d	file:
+SWIG_MustGetPtr	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_MustGetPtr(/;"	d	file:
+SWIG_NEWOBJ	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_NEWOBJ /;"	d	file:
+SWIG_NEWOBJMASK	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_NEWOBJMASK /;"	d	file:
+SWIG_NewClientData	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_NewClientData(/;"	d	file:
+SWIG_NewFunctionPtrObj	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_NewFunctionPtrObj(/;"	d	file:
+SWIG_NewInstanceObj	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_NewInstanceObj(/;"	d	file:
+SWIG_NewMemberObj	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_NewMemberObj(/;"	d	file:
+SWIG_NewPackedObj	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_NewPackedObj(/;"	d	file:
+SWIG_NewPointerObj	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_NewPointerObj(/;"	d	file:
+SWIG_NullReferenceError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_NullReferenceError /;"	d	file:
+SWIG_OK	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_OK /;"	d	file:
+SWIG_OLDOBJ	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_OLDOBJ /;"	d	file:
+SWIG_OverflowError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_OverflowError /;"	d	file:
+SWIG_POINTER_DISOWN	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_POINTER_DISOWN /;"	d	file:
+SWIG_POINTER_EXCEPTION	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_POINTER_EXCEPTION /;"	d	file:
+SWIG_POINTER_IMPLICIT_CONV	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_POINTER_IMPLICIT_CONV /;"	d	file:
+SWIG_POINTER_NEW	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_POINTER_NEW /;"	d	file:
+SWIG_POINTER_NOSHADOW	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_POINTER_NOSHADOW /;"	d	file:
+SWIG_POINTER_OWN	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_POINTER_OWN /;"	d	file:
+SWIG_PYBUFFER_SIZE	build/binding/npk_devPYTHON_wrap.c	/^# define SWIG_PYBUFFER_SIZE /;"	d	file:
+SWIG_PYTHON_BUILD_NONE	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_BUILD_NONE$/;"	d	file:
+SWIG_PYTHON_DIRECTOR_NO_VTABLE	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_PYTHON_DIRECTOR_NO_VTABLE$/;"	d	file:
+SWIG_PYTHON_INITIALIZE_THREADS	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_INITIALIZE_THREADS$/;"	d	file:
+SWIG_PYTHON_INITIALIZE_THREADS	build/binding/npk_devPYTHON_wrap.c	/^#     define SWIG_PYTHON_INITIALIZE_THREADS /;"	d	file:
+SWIG_PYTHON_INITIALIZE_THREADS	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_PYTHON_INITIALIZE_THREADS$/;"	d	file:
+SWIG_PYTHON_SLOW_GETSET_THIS	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_PYTHON_SLOW_GETSET_THIS /;"	d	file:
+SWIG_PYTHON_THREADS	build/binding/npk_devPYTHON_wrap.c	/^#    undef SWIG_PYTHON_THREADS$/;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_ALLOW	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_THREAD_BEGIN_ALLOW /;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_ALLOW	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_THREAD_BEGIN_ALLOW$/;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_ALLOW	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_PYTHON_THREAD_BEGIN_ALLOW$/;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_BLOCK	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_THREAD_BEGIN_BLOCK /;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_BLOCK	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_THREAD_BEGIN_BLOCK$/;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_BLOCK	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_PYTHON_THREAD_BEGIN_BLOCK$/;"	d	file:
+SWIG_PYTHON_THREAD_END_ALLOW	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_THREAD_END_ALLOW /;"	d	file:
+SWIG_PYTHON_THREAD_END_ALLOW	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_THREAD_END_ALLOW$/;"	d	file:
+SWIG_PYTHON_THREAD_END_ALLOW	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_PYTHON_THREAD_END_ALLOW$/;"	d	file:
+SWIG_PYTHON_THREAD_END_BLOCK	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_THREAD_END_BLOCK /;"	d	file:
+SWIG_PYTHON_THREAD_END_BLOCK	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_THREAD_END_BLOCK$/;"	d	file:
+SWIG_PYTHON_THREAD_END_BLOCK	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_PYTHON_THREAD_END_BLOCK$/;"	d	file:
+SWIG_PYTHON_USE_GIL	build/binding/npk_devPYTHON_wrap.c	/^#      define SWIG_PYTHON_USE_GIL$/;"	d	file:
+SWIG_PY_BINARY	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_PY_BINARY /;"	d	file:
+SWIG_PY_POINTER	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_PY_POINTER /;"	d	file:
+SWIG_PackData	build/binding/npk_devPYTHON_wrap.c	/^SWIG_PackData(char *c, void *ptr, size_t sz) {$/;"	f
+SWIG_PackDataName	build/binding/npk_devPYTHON_wrap.c	/^SWIG_PackDataName(char *buff, void *ptr, size_t sz, const char *name, size_t bsz) {$/;"	f
+SWIG_PackVoidPtr	build/binding/npk_devPYTHON_wrap.c	/^SWIG_PackVoidPtr(char *buff, void *ptr, const char *name, size_t bsz) {$/;"	f
+SWIG_PropagateClientData	build/binding/npk_devPYTHON_wrap.c	/^SWIG_PropagateClientData(void) {$/;"	f
+SWIG_PyInstanceMethod_New	build/binding/npk_devPYTHON_wrap.c	/^SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *self, PyObject *func)$/;"	f
+SWIG_Py_None	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Py_None(void)$/;"	f
+SWIG_Py_Void	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Py_Void(void)$/;"	f
+SWIG_Python_AcquirePtr	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_AcquirePtr(PyObject *obj, int own) {$/;"	f
+SWIG_Python_AddErrMesg	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_AddErrMesg(const char* mesg, int infront)$/;"	f
+SWIG_Python_AddErrorMsg	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_AddErrorMsg(const char* mesg)$/;"	f
+SWIG_Python_AppendOutput	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_AppendOutput(PyObject* result, PyObject* obj) {$/;"	f
+SWIG_Python_ArgFail	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_ArgFail(int argnum)$/;"	f
+SWIG_Python_CallFunctor	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_Python_CallFunctor(/;"	d	file:
+SWIG_Python_CheckImplicit	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_CheckImplicit(swig_type_info *ty)$/;"	f
+SWIG_Python_ConvertFunctionPtr	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_ConvertFunctionPtr(PyObject *obj, void **ptr, swig_type_info *ty) {$/;"	f
+SWIG_Python_ConvertPacked	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_ConvertPacked(PyObject *obj, void *ptr, size_t sz, swig_type_info *ty) {$/;"	f
+SWIG_Python_ConvertPtr	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_Python_ConvertPtr(/;"	d	file:
+SWIG_Python_ConvertPtrAndOwn	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_ConvertPtrAndOwn(PyObject *obj, void **ptr, swig_type_info *ty, int flags, int *own) {$/;"	f
+SWIG_Python_DestroyModule	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_DestroyModule(void *vptr)$/;"	f
+SWIG_Python_ErrorType	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_ErrorType(int code) {$/;"	f
+SWIG_Python_ExceptionType	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_ExceptionType(swig_type_info *desc) {$/;"	f
+SWIG_Python_FixMethods	build/binding/npk_devPYTHON_wrap.c	/^  SWIG_Python_FixMethods(PyMethodDef *methods,$/;"	f
+SWIG_Python_GetModule	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_GetModule(void) {$/;"	f
+SWIG_Python_GetSwigThis	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_GetSwigThis(PyObject *pyobj) $/;"	f
+SWIG_Python_InitShadowInstance	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_InitShadowInstance(PyObject *args) {$/;"	f
+SWIG_Python_InstallConstants	build/binding/npk_devPYTHON_wrap.c	/^  SWIG_Python_InstallConstants(PyObject *d, swig_const_info constants[]) {$/;"	f
+SWIG_Python_MustGetPtr	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int argnum, int flags) {$/;"	f
+SWIG_Python_NewPackedObj	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_NewPackedObj(void *ptr, size_t sz, swig_type_info *type) {$/;"	f
+SWIG_Python_NewPointerObj	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_NewPointerObj(void *ptr, swig_type_info *type, int flags) {$/;"	f
+SWIG_Python_NewShadowInstance	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_NewShadowInstance(SwigPyClientData *data, PyObject *swig_this)$/;"	f
+SWIG_Python_Raise	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_Python_Raise(/;"	d	file:
+SWIG_Python_SetConstant	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_SetConstant(PyObject *d, const char *name, PyObject *obj) {   $/;"	f
+SWIG_Python_SetErrorMsg	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_SetErrorMsg(PyObject *errtype, const char *msg) {$/;"	f
+SWIG_Python_SetErrorObj	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_SetErrorObj(PyObject *errtype, PyObject *obj) {$/;"	f
+SWIG_Python_SetModule	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_SetModule(swig_module_info *swig_module) {$/;"	f
+SWIG_Python_SetSwigThis	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_SetSwigThis(PyObject *inst, PyObject *swig_this)$/;"	f
+SWIG_Python_TypeCache	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_TypeCache(void) {$/;"	f
+SWIG_Python_TypeError	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_TypeError(const char *type, PyObject *obj)$/;"	f
+SWIG_Python_TypeQuery	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_TypeQuery(const char *type)$/;"	f
+SWIG_Python_UnpackTuple	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_UnpackTuple(PyObject *args, const char *name, Py_ssize_t min, Py_ssize_t max, PyObject **objs)$/;"	f
+SWIG_Python_addvarlink	build/binding/npk_devPYTHON_wrap.c	/^  SWIG_Python_addvarlink(PyObject *p, char *name, PyObject *(*get_attr)(void), int (*set_attr)(PyObject *p)) {$/;"	f
+SWIG_Python_newvarlink	build/binding/npk_devPYTHON_wrap.c	/^  SWIG_Python_newvarlink(void) {$/;"	f
+SWIG_Python_str_AsChar	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_str_AsChar(PyObject *str)$/;"	f
+SWIG_Python_str_DelForPy3	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_Python_str_DelForPy3(/;"	d	file:
+SWIG_Python_str_FromChar	build/binding/npk_devPYTHON_wrap.c	/^SWIG_Python_str_FromChar(const char *c)$/;"	f
+SWIG_Python_str_FromFormat	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_Python_str_FromFormat /;"	d	file:
+SWIG_QUOTE_STRING	build/binding/npk_devPYTHON_wrap.c	/^# define SWIG_QUOTE_STRING(/;"	d	file:
+SWIG_RUNTIME_VERSION	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_RUNTIME_VERSION /;"	d	file:
+SWIG_RuntimeError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_RuntimeError /;"	d	file:
+SWIG_STATIC_POINTER	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_STATIC_POINTER(/;"	d	file:
+SWIG_SetErrorMsg	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_SetErrorMsg /;"	d	file:
+SWIG_SetErrorObj	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_SetErrorObj /;"	d	file:
+SWIG_SetModule	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_SetModule(/;"	d	file:
+SWIG_SyntaxError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_SyntaxError /;"	d	file:
+SWIG_SystemError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_SystemError /;"	d	file:
+SWIG_TMPOBJ	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_TMPOBJ /;"	d	file:
+SWIG_TMPOBJMASK	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_TMPOBJMASK /;"	d	file:
+SWIG_TYPE_TABLE_NAME	build/binding/npk_devPYTHON_wrap.c	/^# define SWIG_TYPE_TABLE_NAME /;"	d	file:
+SWIG_TYPE_TABLE_NAME	build/binding/npk_devPYTHON_wrap.c	/^# define SWIG_TYPE_TABLE_NAME$/;"	d	file:
+SWIG_This	build/binding/npk_devPYTHON_wrap.c	/^SWIG_This(void)$/;"	f
+SWIG_TypeCast	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeCast(swig_cast_info *ty, void *ptr, int *newmemory) {$/;"	f
+SWIG_TypeCheck	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeCheck(const char *c, swig_type_info *ty) {$/;"	f
+SWIG_TypeCheckStruct	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeCheckStruct(swig_type_info *from, swig_type_info *ty) {$/;"	f
+SWIG_TypeClientData	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeClientData(swig_type_info *ti, void *clientdata) {$/;"	f
+SWIG_TypeCompare	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeCompare(const char *nb, const char *tb) {$/;"	f
+SWIG_TypeDynamicCast	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeDynamicCast(swig_type_info *ty, void **ptr) {$/;"	f
+SWIG_TypeEquiv	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeEquiv(const char *nb, const char *tb) {$/;"	f
+SWIG_TypeError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_TypeError /;"	d	file:
+SWIG_TypeName	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeName(const swig_type_info *ty) {$/;"	f
+SWIG_TypeNameComp	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeNameComp(const char *f1, const char *l1,$/;"	f
+SWIG_TypeNewClientData	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeNewClientData(swig_type_info *ti, void *clientdata) {$/;"	f
+SWIG_TypePrettyName	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypePrettyName(const swig_type_info *type) {$/;"	f
+SWIG_TypeQuery	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_TypeQuery(/;"	d	file:
+SWIG_TypeQueryModule	build/binding/npk_devPYTHON_wrap.c	/^SWIG_TypeQueryModule(swig_module_info *start, $/;"	f
+SWIG_TypeRank	build/binding/npk_devPYTHON_wrap.c	/^#    define SWIG_TypeRank /;"	d	file:
+SWIG_UnknownError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_UnknownError /;"	d	file:
+SWIG_UnpackData	build/binding/npk_devPYTHON_wrap.c	/^SWIG_UnpackData(const char *c, void *ptr, size_t sz) {$/;"	f
+SWIG_UnpackDataName	build/binding/npk_devPYTHON_wrap.c	/^SWIG_UnpackDataName(const char *c, void *ptr, size_t sz, const char *name) {$/;"	f
+SWIG_UnpackVoidPtr	build/binding/npk_devPYTHON_wrap.c	/^SWIG_UnpackVoidPtr(const char *c, void **ptr, const char *name) {$/;"	f
+SWIG_VERSION	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_VERSION /;"	d	file:
+SWIG_ValueError	build/binding/npk_devPYTHON_wrap.c	/^#define  SWIG_ValueError /;"	d	file:
+SWIG_addvarlink	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_addvarlink(/;"	d	file:
+SWIG_arg_fail	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_arg_fail(/;"	d	file:
+SWIG_as_voidptr	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_as_voidptr(/;"	d	file:
+SWIG_as_voidptrptr	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_as_voidptrptr(/;"	d	file:
+SWIG_contract_assert	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_contract_assert(/;"	d	file:
+SWIG_exception_fail	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_exception_fail(/;"	d	file:
+SWIG_fail	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_fail /;"	d	file:
+SWIG_globals	build/binding/npk_devPYTHON_wrap.c	/^  SWIG_globals(void) {$/;"	f
+SWIG_init	build/binding/npk_devPYTHON_wrap.c	/^#  define SWIG_init /;"	d	file:
+SWIG_init	build/binding/npk_devPYTHON_wrap.c	/^SWIG_init(void) {$/;"	f
+SWIG_name	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_name /;"	d	file:
+SWIG_newvarlink	build/binding/npk_devPYTHON_wrap.c	/^#define SWIG_newvarlink(/;"	d	file:
+SWIG_pchar_descriptor	build/binding/npk_devPYTHON_wrap.c	/^SWIG_pchar_descriptor(void)$/;"	f
+SYNC	external/zlib/inflate.h	/^    SYNC        \/* looking for synchronization bytes to restart inflate() *\/$/;"	e	enum:__anon8
 SYS16BIT	external/zlib/zconf.h	/^#      define SYS16BIT$/;"	d
-TABLE	external/zlib/inflate.h	/^        TABLE,      \/* i: waiting for dynamic block table lengths *\/$/;"	e	enum:__anon5
+SwigMethods	build/binding/npk_devPYTHON_wrap.c	/^static PyMethodDef SwigMethods[] = {$/;"	v	file:
+SwigPyClientData	build/binding/npk_devPYTHON_wrap.c	/^} SwigPyClientData;$/;"	t	typeref:struct:__anon1	file:
+SwigPyClientData_Del	build/binding/npk_devPYTHON_wrap.c	/^SwigPyClientData_Del(SwigPyClientData* data)$/;"	f
+SwigPyClientData_New	build/binding/npk_devPYTHON_wrap.c	/^SwigPyClientData_New(PyObject* obj)$/;"	f
+SwigPyObject	build/binding/npk_devPYTHON_wrap.c	/^} SwigPyObject;$/;"	t	typeref:struct:__anon2	file:
+SwigPyObject_Check	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_Check(PyObject *op) {$/;"	f
+SwigPyObject_GetDesc	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_GetDesc(PyObject *self)$/;"	f
+SwigPyObject_New	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_New(void *ptr, swig_type_info *ty, int own)$/;"	f
+SwigPyObject_acquire	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_acquire(PyObject *v)$/;"	f
+SwigPyObject_append	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_append(PyObject* v, PyObject* next)$/;"	f
+SwigPyObject_compare	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_compare(SwigPyObject *v, SwigPyObject *w)$/;"	f
+SwigPyObject_dealloc	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_dealloc(PyObject *v)$/;"	f
+SwigPyObject_disown	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_disown(PyObject *v)$/;"	f
+SwigPyObject_format	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_format(const char* fmt, SwigPyObject *v)$/;"	f
+SwigPyObject_getattr	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_getattr(SwigPyObject *sobj,char *name)$/;"	f
+SwigPyObject_hex	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_hex(SwigPyObject *v)$/;"	f
+SwigPyObject_long	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_long(SwigPyObject *v)$/;"	f
+SwigPyObject_next	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_next(PyObject* v)$/;"	f
+SwigPyObject_oct	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_oct(SwigPyObject *v)$/;"	f
+SwigPyObject_own	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_own(PyObject *v, PyObject *args)$/;"	f
+SwigPyObject_print	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_print(SwigPyObject *v, FILE *fp, int SWIGUNUSEDPARM(flags))$/;"	f
+SwigPyObject_repr	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_repr(SwigPyObject *v)$/;"	f
+SwigPyObject_richcompare	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_richcompare(SwigPyObject *v, SwigPyObject *w, int op)$/;"	f
+SwigPyObject_str	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_str(SwigPyObject *v)$/;"	f
+SwigPyObject_type	build/binding/npk_devPYTHON_wrap.c	/^SwigPyObject_type(void) {$/;"	f
+SwigPyPacked	build/binding/npk_devPYTHON_wrap.c	/^} SwigPyPacked;$/;"	t	typeref:struct:__anon3	file:
+SwigPyPacked_Check	build/binding/npk_devPYTHON_wrap.c	/^SwigPyPacked_Check(PyObject *op) {$/;"	f
+SwigPyPacked_New	build/binding/npk_devPYTHON_wrap.c	/^SwigPyPacked_New(void *ptr, size_t size, swig_type_info *ty)$/;"	f
+SwigPyPacked_UnpackData	build/binding/npk_devPYTHON_wrap.c	/^SwigPyPacked_UnpackData(PyObject *obj, void *ptr, size_t size)$/;"	f
+SwigPyPacked_compare	build/binding/npk_devPYTHON_wrap.c	/^SwigPyPacked_compare(SwigPyPacked *v, SwigPyPacked *w)$/;"	f
+SwigPyPacked_dealloc	build/binding/npk_devPYTHON_wrap.c	/^SwigPyPacked_dealloc(PyObject *v)$/;"	f
+SwigPyPacked_print	build/binding/npk_devPYTHON_wrap.c	/^SwigPyPacked_print(SwigPyPacked *v, FILE *fp, int SWIGUNUSEDPARM(flags))$/;"	f
+SwigPyPacked_repr	build/binding/npk_devPYTHON_wrap.c	/^SwigPyPacked_repr(SwigPyPacked *v)$/;"	f
+SwigPyPacked_str	build/binding/npk_devPYTHON_wrap.c	/^SwigPyPacked_str(SwigPyPacked *v)$/;"	f
+SwigPyPacked_type	build/binding/npk_devPYTHON_wrap.c	/^SwigPyPacked_type(void) {$/;"	f
+Swig_var_g_callbackSize_get	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERN PyObject *Swig_var_g_callbackSize_get(void) {$/;"	f
+Swig_var_g_callbackSize_set	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERN int Swig_var_g_callbackSize_set(PyObject *_val) {$/;"	f
+Swig_var_g_callbackfp_get	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERN PyObject *Swig_var_g_callbackfp_get(void) {$/;"	f
+Swig_var_g_callbackfp_set	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERN int Swig_var_g_callbackfp_set(PyObject *_val) {$/;"	f
+Swig_var_g_npkError_get	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERN PyObject *Swig_var_g_npkError_get(void) {$/;"	f
+Swig_var_g_npkError_set	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERN int Swig_var_g_npkError_set(PyObject *_val) {$/;"	f
+TABLE	external/zlib/inflate.h	/^        TABLE,      \/* i: waiting for dynamic block table lengths *\/$/;"	e	enum:__anon8
 TBLS	external/zlib/crc32.c	/^#  define TBLS /;"	d	file:
-TIME	external/zlib/inflate.h	/^    TIME,       \/* i: waiting for modification time (gzip) *\/$/;"	e	enum:__anon5
+TIME	external/zlib/inflate.h	/^    TIME,       \/* i: waiting for modification time (gzip) *\/$/;"	e	enum:__anon8
 TOO_FAR	external/zlib/deflate.c	/^#  define TOO_FAR /;"	d	file:
 TRY_FREE	external/zlib/zutil.h	/^#define TRY_FREE(/;"	d
-TYPE	external/zlib/inflate.h	/^        TYPE,       \/* i: waiting for type bits, including last-flag bit *\/$/;"	e	enum:__anon5
-TYPEDO	external/zlib/inflate.h	/^        TYPEDO,     \/* i: same, but skip check to exit inflate on new block *\/$/;"	e	enum:__anon5
+TYPE	external/zlib/inflate.h	/^        TYPE,       \/* i: waiting for type bits, including last-flag bit *\/$/;"	e	enum:__anon8
+TYPEDO	external/zlib/inflate.h	/^        TYPEDO,     \/* i: same, but skip check to exit inflate on new block *\/$/;"	e	enum:__anon8
 Trace	external/zlib/zutil.h	/^#  define Trace(/;"	d
 Tracec	external/zlib/zutil.h	/^#  define Tracec(/;"	d
 Tracecv	external/zlib/zutil.h	/^#  define Tracecv(/;"	d
 Tracev	external/zlib/zutil.h	/^#  define Tracev(/;"	d
 Tracevv	external/zlib/zutil.h	/^#  define Tracevv(/;"	d
+ULLONG_MAX	build/binding/npk_devPYTHON_wrap.c	/^#   define ULLONG_MAX /;"	d	file:
 UNALIGNED_OK	external/zlib/zconf.h	/^#  define UNALIGNED_OK$/;"	d
 UPDATE	external/zlib/inflate.c	/^#  define UPDATE(/;"	d	file:
 UPDATE_HASH	external/zlib/deflate.c	/^#define UPDATE_HASH(/;"	d	file:
@@ -423,6 +745,7 @@ Z_TEXT	external/zlib/zlib.h	/^#define Z_TEXT /;"	d
 Z_TREES	external/zlib/zlib.h	/^#define Z_TREES /;"	d
 Z_UNKNOWN	external/zlib/zlib.h	/^#define Z_UNKNOWN /;"	d
 Z_VERSION_ERROR	external/zlib/zlib.h	/^#define Z_VERSION_ERROR /;"	d
+_CRT_SECURE_NO_DEPRECATE	build/binding/npk_devPYTHON_wrap.c	/^# define _CRT_SECURE_NO_DEPRECATE$/;"	d	file:
 _HR_	tool/cli/npk_cli.cpp	/^const char		_HR_[] = "-------------------------------------------------------------------------------\\n";$/;"	v
 _LARGEFILE64_SOURCE	external/zlib/zconf.h	/^#  undef _LARGEFILE64_SOURCE$/;"	d
 _NPK_BASE_H_	include/npk_base.h	/^#define _NPK_BASE_H_$/;"	d
@@ -431,7 +754,60 @@ _NPK_DEV_H_	include/npk_dev.h	/^#define _NPK_DEV_H_$/;"	d
 _NPK_ERROR_H_	include/npk_error.h	/^#define _NPK_ERROR_H_$/;"	d
 _NPK_H_	include/npk.h	/^#define _NPK_H_$/;"	d
 _PTRDIFF_T_DEFINED	external/zlib/zutil.h	/^#      define _PTRDIFF_T_DEFINED$/;"	d
+_PySwigObject_type	build/binding/npk_devPYTHON_wrap.c	/^_PySwigObject_type(void) {$/;"	f
+_PySwigPacked_type	build/binding/npk_devPYTHON_wrap.c	/^_PySwigPacked_type(void) {$/;"	f
+_SCL_SECURE_NO_DEPRECATE	build/binding/npk_devPYTHON_wrap.c	/^# define _SCL_SECURE_NO_DEPRECATE$/;"	d	file:
+_SWIG_Py_None	build/binding/npk_devPYTHON_wrap.c	/^_SWIG_Py_None(void)$/;"	f
+_SWIG_This	build/binding/npk_devPYTHON_wrap.c	/^_SWIG_This(void)$/;"	f
 __TESTUTIL_H__	tests/testutil.h	/^#define __TESTUTIL_H__$/;"	d
+__del__	build/binding/python/npk.py	/^    __del__ = lambda self : None;$/;"	v	class:NPK_ENTITYBODY
+__del__	build/binding/python/npk.py	/^    __del__ = lambda self : None;$/;"	v	class:NPK_ENTITYINFO
+__del__	build/binding/python/npk.py	/^    __del__ = lambda self : None;$/;"	v	class:NPK_ENTITYINFO_V21
+__del__	build/binding/python/npk.py	/^    __del__ = lambda self : None;$/;"	v	class:NPK_PACKAGEBODY
+__del__	build/binding/python/npk.py	/^    __del__ = lambda self : None;$/;"	v	class:NPK_PACKAGEINFO
+__del__	build/binding/python/npk.py	/^    __del__ = lambda self : None;$/;"	v	class:NPK_PACKAGEINFO_V23
+__getattr__	build/binding/python/npk.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, NPK_ENTITYBODY, name)$/;"	v	class:NPK_ENTITYBODY
+__getattr__	build/binding/python/npk.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, NPK_ENTITYINFO, name)$/;"	v	class:NPK_ENTITYINFO
+__getattr__	build/binding/python/npk.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, NPK_ENTITYINFO_V21, name)$/;"	v	class:NPK_ENTITYINFO_V21
+__getattr__	build/binding/python/npk.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, NPK_PACKAGEBODY, name)$/;"	v	class:NPK_PACKAGEBODY
+__getattr__	build/binding/python/npk.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, NPK_PACKAGEINFO, name)$/;"	v	class:NPK_PACKAGEINFO
+__getattr__	build/binding/python/npk.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, NPK_PACKAGEINFO_V23, name)$/;"	v	class:NPK_PACKAGEINFO_V23
+__init__	build/binding/python/npk.py	/^    def __init__(self): $/;"	m	class:NPK_ENTITYBODY
+__init__	build/binding/python/npk.py	/^    def __init__(self): $/;"	m	class:NPK_ENTITYINFO
+__init__	build/binding/python/npk.py	/^    def __init__(self): $/;"	m	class:NPK_ENTITYINFO_V21
+__init__	build/binding/python/npk.py	/^    def __init__(self): $/;"	m	class:NPK_PACKAGEBODY
+__init__	build/binding/python/npk.py	/^    def __init__(self): $/;"	m	class:NPK_PACKAGEINFO
+__init__	build/binding/python/npk.py	/^    def __init__(self): $/;"	m	class:NPK_PACKAGEINFO_V23
+__repr__	build/binding/python/npk.py	/^    __repr__ = _swig_repr$/;"	v	class:NPK_ENTITYBODY
+__repr__	build/binding/python/npk.py	/^    __repr__ = _swig_repr$/;"	v	class:NPK_ENTITYINFO
+__repr__	build/binding/python/npk.py	/^    __repr__ = _swig_repr$/;"	v	class:NPK_ENTITYINFO_V21
+__repr__	build/binding/python/npk.py	/^    __repr__ = _swig_repr$/;"	v	class:NPK_PACKAGEBODY
+__repr__	build/binding/python/npk.py	/^    __repr__ = _swig_repr$/;"	v	class:NPK_PACKAGEINFO
+__repr__	build/binding/python/npk.py	/^    __repr__ = _swig_repr$/;"	v	class:NPK_PACKAGEINFO_V23
+__setattr__	build/binding/python/npk.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, NPK_ENTITYBODY, name, value)$/;"	v	class:NPK_ENTITYBODY
+__setattr__	build/binding/python/npk.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, NPK_ENTITYINFO, name, value)$/;"	v	class:NPK_ENTITYINFO
+__setattr__	build/binding/python/npk.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, NPK_ENTITYINFO_V21, name, value)$/;"	v	class:NPK_ENTITYINFO_V21
+__setattr__	build/binding/python/npk.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, NPK_PACKAGEBODY, name, value)$/;"	v	class:NPK_PACKAGEBODY
+__setattr__	build/binding/python/npk.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, NPK_PACKAGEINFO, name, value)$/;"	v	class:NPK_PACKAGEINFO
+__setattr__	build/binding/python/npk.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, NPK_PACKAGEINFO_V23, name, value)$/;"	v	class:NPK_PACKAGEINFO_V23
+__swig_destroy__	build/binding/python/npk.py	/^    __swig_destroy__ = _npk.delete_NPK_ENTITYBODY$/;"	v	class:NPK_ENTITYBODY
+__swig_destroy__	build/binding/python/npk.py	/^    __swig_destroy__ = _npk.delete_NPK_ENTITYINFO$/;"	v	class:NPK_ENTITYINFO
+__swig_destroy__	build/binding/python/npk.py	/^    __swig_destroy__ = _npk.delete_NPK_ENTITYINFO_V21$/;"	v	class:NPK_ENTITYINFO_V21
+__swig_destroy__	build/binding/python/npk.py	/^    __swig_destroy__ = _npk.delete_NPK_PACKAGEBODY$/;"	v	class:NPK_PACKAGEBODY
+__swig_destroy__	build/binding/python/npk.py	/^    __swig_destroy__ = _npk.delete_NPK_PACKAGEINFO$/;"	v	class:NPK_PACKAGEINFO
+__swig_destroy__	build/binding/python/npk.py	/^    __swig_destroy__ = _npk.delete_NPK_PACKAGEINFO_V23$/;"	v	class:NPK_PACKAGEINFO_V23
+__swig_getmethods__	build/binding/python/npk.py	/^    __swig_getmethods__ = {}$/;"	v	class:NPK_ENTITYBODY
+__swig_getmethods__	build/binding/python/npk.py	/^    __swig_getmethods__ = {}$/;"	v	class:NPK_ENTITYINFO
+__swig_getmethods__	build/binding/python/npk.py	/^    __swig_getmethods__ = {}$/;"	v	class:NPK_ENTITYINFO_V21
+__swig_getmethods__	build/binding/python/npk.py	/^    __swig_getmethods__ = {}$/;"	v	class:NPK_PACKAGEBODY
+__swig_getmethods__	build/binding/python/npk.py	/^    __swig_getmethods__ = {}$/;"	v	class:NPK_PACKAGEINFO
+__swig_getmethods__	build/binding/python/npk.py	/^    __swig_getmethods__ = {}$/;"	v	class:NPK_PACKAGEINFO_V23
+__swig_setmethods__	build/binding/python/npk.py	/^    __swig_setmethods__ = {}$/;"	v	class:NPK_ENTITYBODY
+__swig_setmethods__	build/binding/python/npk.py	/^    __swig_setmethods__ = {}$/;"	v	class:NPK_ENTITYINFO
+__swig_setmethods__	build/binding/python/npk.py	/^    __swig_setmethods__ = {}$/;"	v	class:NPK_ENTITYINFO_V21
+__swig_setmethods__	build/binding/python/npk.py	/^    __swig_setmethods__ = {}$/;"	v	class:NPK_PACKAGEBODY
+__swig_setmethods__	build/binding/python/npk.py	/^    __swig_setmethods__ = {}$/;"	v	class:NPK_PACKAGEINFO
+__swig_setmethods__	build/binding/python/npk.py	/^    __swig_setmethods__ = {}$/;"	v	class:NPK_PACKAGEINFO_V23
 _dist_code	external/zlib/trees.c	/^uch _dist_code[DIST_CODE_LEN];$/;"	v
 _dist_code	external/zlib/trees.h	/^const uch ZLIB_INTERNAL _dist_code[DIST_CODE_LEN] = {$/;"	v
 _dist_code	external/zlib/zconf.h	/^#  define _dist_code /;"	d
@@ -440,6 +816,60 @@ _hfree	external/zlib/zutil.c	/^#  define _hfree /;"	d	file:
 _length_code	external/zlib/trees.c	/^uch _length_code[MAX_MATCH-MIN_MATCH+1];$/;"	v
 _length_code	external/zlib/trees.h	/^const uch ZLIB_INTERNAL _length_code[MAX_MATCH-MIN_MATCH+1]= {$/;"	v
 _length_code	external/zlib/zconf.h	/^#  define _length_code /;"	d
+_newclass	build/binding/python/npk.py	/^    _newclass = 0$/;"	v
+_npk	build/binding/python/npk.py	/^            import _npk$/;"	i
+_npk	build/binding/python/npk.py	/^    _npk = swig_import_helper()$/;"	v
+_npk	build/binding/python/npk.py	/^    import _npk$/;"	i
+_object	build/binding/python/npk.py	/^    class _object : pass$/;"	c
+_swig_getattr	build/binding/python/npk.py	/^def _swig_getattr(self,class_type,name):$/;"	f
+_swig_property	build/binding/python/npk.py	/^    _swig_property = property$/;"	v
+_swig_repr	build/binding/python/npk.py	/^def _swig_repr(self):$/;"	f
+_swig_setattr	build/binding/python/npk.py	/^def _swig_setattr(self,class_type,name,value):$/;"	f
+_swig_setattr_nondynamic	build/binding/python/npk.py	/^def _swig_setattr_nondynamic(self,class_type,name,value,static=1):$/;"	f
+_swigc__p_NPK_64BIT	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_64BIT[] = {  {&_swigt__p_NPK_64BIT, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_BYTE	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_BYTE[] = {  {&_swigt__p_NPK_BYTE, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_CALLBACK	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_CALLBACK[] = {  {&_swigt__p_NPK_CALLBACK, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_CHAR	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_CHAR[] = {  {&_swigt__p_NPK_CHAR, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_ENTITY	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_ENTITY[] = {  {&_swigt__p_NPK_ENTITY, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_FLAG	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_FLAG[] = {  {&_swigt__p_NPK_FLAG, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_HANDLE	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_HANDLE[] = {  {&_swigt__p_NPK_HANDLE, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_NAMESIZE	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_NAMESIZE[] = {  {&_swigt__p_NPK_NAMESIZE, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_PACKAGE	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_PACKAGE[] = {  {&_swigt__p_NPK_PACKAGE, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_RESULT	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_RESULT[] = {  {&_swigt__p_NPK_RESULT, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_SIZE	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_SIZE[] = {  {&_swigt__p_NPK_SIZE, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_TEAKEY	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_TEAKEY[] = {  {&_swigt__p_NPK_TEAKEY, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_TIME	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_TIME[] = {  {&_swigt__p_NPK_TIME, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_tagENTITYBODY	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_tagENTITYBODY[] = {  {&_swigt__p_NPK_tagENTITYBODY, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_tagENTITYINFO	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_tagENTITYINFO[] = {  {&_swigt__p_NPK_tagENTITYINFO, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_tagENTITYINFO_V21	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_tagENTITYINFO_V21[] = {  {&_swigt__p_NPK_tagENTITYINFO_V21, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_tagPACKAGEBODY	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_tagPACKAGEBODY[] = {  {&_swigt__p_NPK_tagPACKAGEBODY, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_tagPACKAGEINFO	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_tagPACKAGEINFO[] = {  {&_swigt__p_NPK_tagPACKAGEINFO, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_NPK_tagPACKAGEINFO_V23	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_NPK_tagPACKAGEINFO_V23[] = {  {&_swigt__p_NPK_tagPACKAGEINFO_V23, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_char	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_int	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_p_char	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigt__p_NPK_64BIT	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_64BIT = {"_p_NPK_64BIT", "NPK_64BIT *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_BYTE	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_BYTE = {"_p_NPK_BYTE", "NPK_BYTE *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_CALLBACK	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_CALLBACK = {"_p_NPK_CALLBACK", "NPK_CALLBACK *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_CHAR	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_CHAR = {"_p_NPK_CHAR", "NPK_CHAR *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_ENTITY	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_ENTITY = {"_p_NPK_ENTITY", "NPK_ENTITY *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_FLAG	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_FLAG = {"_p_NPK_FLAG", "NPK_FLAG *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_HANDLE	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_HANDLE = {"_p_NPK_HANDLE", "NPK_HANDLE *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_NAMESIZE	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_NAMESIZE = {"_p_NPK_NAMESIZE", "NPK_NAMESIZE *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_PACKAGE	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_PACKAGE = {"_p_NPK_PACKAGE", "NPK_PACKAGE *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_RESULT	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_RESULT = {"_p_NPK_RESULT", "NPK_RESULT *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_SIZE	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_SIZE = {"_p_NPK_SIZE", "NPK_SIZE *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_TEAKEY	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_TEAKEY = {"_p_NPK_TEAKEY", "NPK_TEAKEY *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_TIME	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_TIME = {"_p_NPK_TIME", "NPK_TIME *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_tagENTITYBODY	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_tagENTITYBODY = {"_p_NPK_tagENTITYBODY", "struct NPK_tagENTITYBODY *|NPK_ENTITYBODY *|NPK_LPENTITYBODY", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_tagENTITYINFO	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_tagENTITYINFO = {"_p_NPK_tagENTITYINFO", "struct NPK_tagENTITYINFO *|NPK_ENTITYINFO *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_tagENTITYINFO_V21	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_tagENTITYINFO_V21 = {"_p_NPK_tagENTITYINFO_V21", "struct NPK_tagENTITYINFO_V21 *|NPK_ENTITYINFO_V21 *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_tagPACKAGEBODY	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_tagPACKAGEBODY = {"_p_NPK_tagPACKAGEBODY", "struct NPK_tagPACKAGEBODY *|NPK_PACKAGEBODY *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_tagPACKAGEINFO	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_tagPACKAGEINFO = {"_p_NPK_tagPACKAGEINFO", "struct NPK_tagPACKAGEINFO *|NPK_PACKAGEINFO *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_NPK_tagPACKAGEINFO_V23	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_NPK_tagPACKAGEINFO_V23 = {"_p_NPK_tagPACKAGEINFO_V23", "struct NPK_tagPACKAGEINFO_V23 *|NPK_PACKAGEINFO_V23 *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_char	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_int	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_int = {"_p_int", "int *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_p_char	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, (void*)0, 0};$/;"	v	file:
 _tr_align	external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_align(s)$/;"	f
 _tr_align	external/zlib/zconf.h	/^#  define _tr_align /;"	d
 _tr_flush_block	external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_flush_block(s, buf, stored_len, last)$/;"	f
@@ -452,6 +882,7 @@ _tr_tally	external/zlib/trees.c	/^int ZLIB_INTERNAL _tr_tally (s, dist, lc)$/;"	
 _tr_tally	external/zlib/zconf.h	/^#  define _tr_tally /;"	d
 _tr_tally_dist	external/zlib/deflate.h	/^# define _tr_tally_dist(/;"	d
 _tr_tally_lit	external/zlib/deflate.h	/^# define _tr_tally_lit(/;"	d
+_wrap_npk_log	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERN PyObject *_wrap_npk_log(PyObject *self, PyObject *args) {$/;"	f
 add	tool/cli/npk_cli.cpp	/^void add()$/;"	f
 add_tfp	tool/cli/npk_cli.cpp	/^bool add_tfp( NPK_CSTR fullpath, NPK_CSTR filename )$/;"	f
 adler	external/zlib/zlib.h	/^    uLong   adler;      \/* adler32 value of the uncompressed data *\/$/;"	m	struct:z_stream_s
@@ -465,6 +896,7 @@ adler32_combine64	external/zlib/zconf.h	/^#  define adler32_combine64 /;"	d
 adler32_combine_	external/zlib/adler32.c	/^local uLong adler32_combine_(adler1, adler2, len2)$/;"	f
 alloc_func	external/zlib/zconf.h	/^#  define alloc_func /;"	d
 alloc_func	external/zlib/zlib.h	/^typedef voidpf (*alloc_func) OF((voidpf opaque, uInt items, uInt size));$/;"	t
+args	build/binding/npk_devPYTHON_wrap.c	/^SWIGINTERN PyObject *_wrap_npk_log__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {$/;"	v
 avail_in	external/zlib/zlib.h	/^    uInt     avail_in;  \/* number of bytes available at next_in *\/$/;"	m	struct:z_stream_s
 avail_out	external/zlib/zlib.h	/^    uInt     avail_out; \/* remaining free space at next_out *\/$/;"	m	struct:z_stream_s
 b_strcmp	tool/cli/helper_bstrcmp.h	/^bool b_strcmp( const char* s, const char* d, bool casesensitive = true )$/;"	f
@@ -482,30 +914,34 @@ bi_reverse	external/zlib/trees.c	/^local unsigned bi_reverse(code, len)$/;"	f
 bi_valid	external/zlib/deflate.h	/^    int bi_valid;$/;"	m	struct:internal_state
 bi_windup	external/zlib/trees.c	/^local void bi_windup(s)$/;"	f
 bits	external/zlib/inflate.h	/^    unsigned bits;              \/* number of bits in "in" *\/$/;"	m	struct:inflate_state
-bits	external/zlib/inftrees.h	/^    unsigned char bits;         \/* bits in this part of the code *\/$/;"	m	struct:__anon6
+bits	external/zlib/inftrees.h	/^    unsigned char bits;         \/* bits in this part of the code *\/$/;"	m	struct:__anon9
 bits_sent	external/zlib/deflate.h	/^    ulg bits_sent;      \/* bit length of compressed data sent mod 2^32 *\/$/;"	m	struct:internal_state
 bl_count	external/zlib/deflate.h	/^    ush bl_count[MAX_BITS+1];$/;"	m	struct:internal_state
 bl_desc	external/zlib/deflate.h	/^    struct tree_desc_s bl_desc;              \/* desc. for bit length tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::tree_desc_s
 bl_order	external/zlib/trees.c	/^local const uch bl_order[BL_CODES]$/;"	v
 bl_tree	external/zlib/deflate.h	/^    struct ct_data_s bl_tree[2*BL_CODES+1];  \/* Huffman tree for bit lengths *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::ct_data_s
-block_done	external/zlib/deflate.c	/^    block_done,     \/* block flush performed *\/$/;"	e	enum:__anon2	file:
+block_done	external/zlib/deflate.c	/^    block_done,     \/* block flush performed *\/$/;"	e	enum:__anon5	file:
 block_start	external/zlib/deflate.h	/^    long block_start;$/;"	m	struct:internal_state
-block_state	external/zlib/deflate.c	/^} block_state;$/;"	t	typeref:enum:__anon2	file:
+block_state	external/zlib/deflate.c	/^} block_state;$/;"	t	typeref:enum:__anon5	file:
 bool	include/npk_conf.h	/^	#define bool /;"	d
 build_bl_tree	external/zlib/trees.c	/^local int build_bl_tree(s)$/;"	f
 build_tree	external/zlib/trees.c	/^local void build_tree(s, desc)$/;"	f
 c	tool/cli/npk_cli.cpp	/^int					c;		\/\/ argc$/;"	v
+cast	build/binding/npk_devPYTHON_wrap.c	/^  struct swig_cast_info  *cast;			\/* linked list of types that can cast into this type *\/$/;"	m	struct:swig_type_info	typeref:struct:swig_type_info::swig_cast_info	file:
+cast_initial	build/binding/npk_devPYTHON_wrap.c	/^  swig_cast_info         **cast_initial;	\/* Array of initially generated casting structures *\/$/;"	m	struct:swig_module_info	file:
 charf	external/zlib/zconf.h	/^#  define charf /;"	d
 charf	external/zlib/zconf.h	/^typedef char  FAR charf;$/;"	t
 check	external/zlib/inflate.h	/^    unsigned long check;        \/* protected copy of check value *\/$/;"	m	struct:inflate_state
 check_match	external/zlib/deflate.c	/^#  define check_match(/;"	d	file:
 check_match	external/zlib/deflate.c	/^local void check_match(s, start, match, length)$/;"	f
+clientdata	build/binding/npk_devPYTHON_wrap.c	/^  void                    *clientdata;		\/* Language specific module data *\/$/;"	m	struct:swig_module_info	file:
+clientdata	build/binding/npk_devPYTHON_wrap.c	/^  void                   *clientdata;		\/* language specific type data *\/$/;"	m	struct:swig_type_info	file:
 closedir	tool/cli/helper_dirent.c	/^int closedir(DIR *dir)$/;"	f
 cmakeGeneratedFunctionMapEntries	build/tests/tests.cpp	/^functionMapEntry cmakeGeneratedFunctionMapEntries[] = {$/;"	v
-code	external/zlib/deflate.h	/^        ush  code;       \/* bit string *\/$/;"	m	union:ct_data_s::__anon3
-code	external/zlib/inftrees.h	/^} code;$/;"	t	typeref:struct:__anon6
+code	external/zlib/deflate.h	/^        ush  code;       \/* bit string *\/$/;"	m	union:ct_data_s::__anon6
+code	external/zlib/inftrees.h	/^} code;$/;"	t	typeref:struct:__anon9
 codes	external/zlib/inflate.h	/^    code codes[ENOUGH];         \/* space for code tables *\/$/;"	m	struct:inflate_state
-codetype	external/zlib/inftrees.h	/^} codetype;$/;"	t	typeref:enum:__anon7
+codetype	external/zlib/inftrees.h	/^} codetype;$/;"	t	typeref:enum:__anon10
 comm_max	external/zlib/zlib.h	/^    uInt    comm_max;   \/* space at comment (only when reading header) *\/$/;"	m	struct:gz_header_s
 comment	external/zlib/zlib.h	/^    Bytef   *comment;   \/* pointer to zero-terminated comment or Z_NULL *\/$/;"	m	struct:gz_header_s
 commify	tool/cli/helper_commify.hpp	/^void commify(double val, char *buf, int round, int comma = 3)$/;"	f
@@ -523,6 +959,7 @@ config_s	external/zlib/deflate.c	/^typedef struct config_s {$/;"	s	file:
 configuration_table	external/zlib/deflate.c	/^local const config configuration_table[10] = {$/;"	v
 configuration_table	external/zlib/deflate.c	/^local const config configuration_table[2] = {$/;"	v
 const	external/zlib/zconf.h	/^#    define const /;"	d
+converter	build/binding/npk_devPYTHON_wrap.c	/^  swig_converter_func     converter;		\/* function to cast the void pointers *\/$/;"	m	struct:swig_cast_info	file:
 copy_block	external/zlib/trees.c	/^local void copy_block(s, buf, len, header)$/;"	f
 crc32	external/zlib/crc32.c	/^unsigned long ZEXPORT crc32(crc, buf, len)$/;"	f
 crc32	external/zlib/zconf.h	/^#  define crc32 /;"	d
@@ -542,12 +979,14 @@ cs_	include/npk_dev.h	/^	CRITICAL_SECTION	cs_;$/;"	m	struct:NPK_tagPACKAGEBODY
 ct_data	external/zlib/deflate.h	/^} FAR ct_data;$/;"	t	typeref:struct:ct_data_s
 ct_data_s	external/zlib/deflate.h	/^typedef struct ct_data_s {$/;"	s
 currentflag	tool/cli/npk_cli.cpp	/^NPK_FLAG currentflag;$/;"	v
+cvar	build/binding/python/npk.py	/^cvar = _npk.cvar$/;"	v
 d_buf	external/zlib/deflate.h	/^    ushf *d_buf;$/;"	m	struct:internal_state
 d_code	external/zlib/deflate.h	/^#define d_code(/;"	d
 d_desc	external/zlib/deflate.h	/^    struct tree_desc_s d_desc;               \/* desc. for distance tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::tree_desc_s
 d_name	tool/cli/helper_dirent.h	/^    char *d_name;$/;"	m	struct:dirent
-dad	external/zlib/deflate.h	/^        ush  dad;        \/* father node in Huffman tree *\/$/;"	m	union:ct_data_s::__anon4
+dad	external/zlib/deflate.h	/^        ush  dad;        \/* father node in Huffman tree *\/$/;"	m	union:ct_data_s::__anon7
 data_type	external/zlib/zlib.h	/^    int     data_type;  \/* best guess about the data type: binary or text *\/$/;"	m	struct:z_stream_s
+dcast	build/binding/npk_devPYTHON_wrap.c	/^  swig_dycast_func        dcast;		\/* dynamic cast function down a hierarchy *\/$/;"	m	struct:swig_type_info	file:
 deflate	external/zlib/deflate.c	/^int ZEXPORT deflate (strm, flush)$/;"	f
 deflate	external/zlib/zconf.h	/^#  define deflate /;"	d
 deflateBound	external/zlib/deflate.c	/^uLong ZEXPORT deflateBound(strm, sourceLen)$/;"	f
@@ -584,19 +1023,23 @@ deflate_state	external/zlib/deflate.h	/^} FAR deflate_state;$/;"	t	typeref:struc
 deflate_stored	external/zlib/deflate.c	/^local block_state deflate_stored(s, flush)$/;"	f
 del	tool/cli/npk_cli.cpp	/^void del()$/;"	f
 del_tfp	tool/cli/npk_cli.cpp	/^bool del_tfp( NPK_ENTITY entity )$/;"	f
+delargs	build/binding/npk_devPYTHON_wrap.c	/^  int delargs;$/;"	m	struct:__anon1	file:
 depth	external/zlib/deflate.h	/^    uch depth[2*L_CODES+1];$/;"	m	struct:internal_state
+destroy	build/binding/npk_devPYTHON_wrap.c	/^  PyObject *destroy;$/;"	m	struct:__anon1	file:
 detect_data_type	external/zlib/trees.c	/^local int detect_data_type(s)$/;"	f
 diff	tool/cli/npk_cli.cpp	/^void diff()$/;"	f
 dirent	tool/cli/helper_dirent.h	/^struct dirent$/;"	s
+dirname	build/binding/python/npk.py	/^        from os.path import dirname$/;"	i
 distbits	external/zlib/inflate.h	/^    unsigned distbits;          \/* index bits for distcode *\/$/;"	m	struct:inflate_state
 distcode	external/zlib/inflate.h	/^    code const FAR *distcode;   \/* starting table for distance codes *\/$/;"	m	struct:inflate_state
 distfix	external/zlib/inffixed.h	/^    static const code distfix[32] = {$/;"	v
-dl	external/zlib/deflate.h	/^    } dl;$/;"	m	struct:ct_data_s	typeref:union:ct_data_s::__anon4
+dl	external/zlib/deflate.h	/^    } dl;$/;"	m	struct:ct_data_s	typeref:union:ct_data_s::__anon7
 dmax	external/zlib/inflate.h	/^    unsigned dmax;              \/* zlib header max distance (INFLATE_STRICT) *\/$/;"	m	struct:inflate_state
 done	external/zlib/zlib.h	/^    int     done;       \/* true when done reading gzip header (not used$/;"	m	struct:gz_header_s
 dummy	external/zlib/deflate.c	/^struct static_tree_desc_s {int dummy;}; \/* for buggy compilers *\/$/;"	m	struct:static_tree_desc_s	file:
 dummy	external/zlib/zlib.h	/^    struct internal_state {int dummy;};$/;"	m	struct:internal_state
 dummy	external/zlib/zutil.c	/^struct internal_state      {int dummy;}; \/* for buggy compilers *\/$/;"	m	struct:internal_state	file:
+dvalue	build/binding/npk_devPYTHON_wrap.c	/^  double dvalue;$/;"	m	struct:swig_const_info	file:
 dyn_dtree	external/zlib/deflate.h	/^    struct ct_data_s dyn_dtree[2*D_CODES+1]; \/* distance tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::ct_data_s
 dyn_ltree	external/zlib/deflate.h	/^    struct ct_data_s dyn_ltree[HEAP_SIZE];   \/* literal and length tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::ct_data_s
 dyn_tree	external/zlib/deflate.h	/^    ct_data *dyn_tree;           \/* the dynamic tree *\/$/;"	m	struct:tree_desc_s
@@ -620,14 +1063,14 @@ extra_lbits	external/zlib/trees.c	/^local const int extra_lbits[LENGTH_CODES] \/
 extra_len	external/zlib/zlib.h	/^    uInt    extra_len;  \/* extra field length (valid if extra != Z_NULL) *\/$/;"	m	struct:gz_header_s
 extra_max	external/zlib/zlib.h	/^    uInt    extra_max;  \/* space at extra (only when reading header) *\/$/;"	m	struct:gz_header_s
 false	include/npk_conf.h	/^	#define false /;"	d
-fc	external/zlib/deflate.h	/^    } fc;$/;"	m	struct:ct_data_s	typeref:union:ct_data_s::__anon3
+fc	external/zlib/deflate.h	/^    } fc;$/;"	m	struct:ct_data_s	typeref:union:ct_data_s::__anon6
 fdopen	external/zlib/zutil.h	/^#      define fdopen(/;"	d
 fdopen	external/zlib/zutil.h	/^#    define fdopen(/;"	d
 fdopen	external/zlib/zutil.h	/^#  define fdopen(/;"	d
 fill_window	external/zlib/deflate.c	/^local void fill_window(s)$/;"	f
 find_option	tool/cli/npk_cli.cpp	/^bool find_option( const char* option, int* pos )$/;"	f
-finish_done	external/zlib/deflate.c	/^    finish_done     \/* finish done, accept no more input or output *\/$/;"	e	enum:__anon2	file:
-finish_started	external/zlib/deflate.c	/^    finish_started, \/* finish started, need only more output at next deflate *\/$/;"	e	enum:__anon2	file:
+finish_done	external/zlib/deflate.c	/^    finish_done     \/* finish done, accept no more input or output *\/$/;"	e	enum:__anon5	file:
+finish_started	external/zlib/deflate.c	/^    finish_started, \/* finish started, need only more output at next deflate *\/$/;"	e	enum:__anon5	file:
 fixedtables	external/zlib/infback.c	/^local void fixedtables(state)$/;"	f
 fixedtables	external/zlib/inflate.c	/^local void fixedtables(state)$/;"	f
 flag	tool/cli/npk_cli.cpp	/^void flag()$/;"	f
@@ -640,10 +1083,10 @@ forceoverwrite	tool/cli/npk_cli.cpp	/^bool forceoverwrite = false;$/;"	v
 forceupdate	tool/cli/npk_cli.cpp	/^bool forceupdate = false;$/;"	v
 free_func	external/zlib/zconf.h	/^#  define free_func /;"	d
 free_func	external/zlib/zlib.h	/^typedef void   (*free_func)  OF((voidpf opaque, voidpf address));$/;"	t
-freq	external/zlib/deflate.h	/^        ush  freq;       \/* frequency count *\/$/;"	m	union:ct_data_s::__anon3
-func	build/tests/tests.cpp	/^  MainFuncPointer func;$/;"	m	struct:__anon1	file:
+freq	external/zlib/deflate.h	/^        ush  freq;       \/* frequency count *\/$/;"	m	union:ct_data_s::__anon6
+func	build/tests/tests.cpp	/^  MainFuncPointer func;$/;"	m	struct:__anon4	file:
 func	external/zlib/deflate.c	/^   compress_func func;$/;"	m	struct:config_s	file:
-functionMapEntry	build/tests/tests.cpp	/^} functionMapEntry;$/;"	t	typeref:struct:__anon1	file:
+functionMapEntry	build/tests/tests.cpp	/^} functionMapEntry;$/;"	t	typeref:struct:__anon4	file:
 g_callbackSize	src/npk.c	/^NPK_SIZE		g_callbackSize;$/;"	v
 g_callbackfp	src/npk.c	/^NPK_CALLBACK	g_callbackfp;$/;"	v
 g_gluetime	src/npk_dev.c	/^NPK_TIME	g_gluetime;$/;"	v
@@ -653,6 +1096,7 @@ g_use_gluetime	src/npk_dev.c	/^bool		g_use_gluetime;$/;"	v
 gen_bitlen	external/zlib/trees.c	/^local void gen_bitlen(s, desc)$/;"	f
 gen_codes	external/zlib/trees.c	/^local void gen_codes (tree, max_code, bl_count)$/;"	f
 gen_trees_header	external/zlib/trees.c	/^void gen_trees_header()$/;"	f
+get_attr	build/binding/npk_devPYTHON_wrap.c	/^    PyObject *(*get_attr)(void);       \/* Return the current value *\/$/;"	m	struct:swig_globalvar	file:
 get_crc_table	external/zlib/crc32.c	/^const unsigned long FAR * ZEXPORT get_crc_table()$/;"	f
 get_crc_table	external/zlib/zconf.h	/^#  define get_crc_table /;"	d
 get_forceoverwrite	tool/cli/npk_cli.cpp	/^void get_forceoverwrite()$/;"	f
@@ -735,6 +1179,8 @@ high_water	external/zlib/deflate.h	/^    ulg high_water;$/;"	m	struct:internal_s
 hold	external/zlib/inflate.h	/^    unsigned long hold;         \/* input bit accumulator *\/$/;"	m	struct:inflate_state
 human_readable	tool/cli/npk_cli.cpp	/^bool human_readable = false;$/;"	v
 ignorelist	tool/cli/npk_cli.cpp	/^STRLIST ignorelist;$/;"	v
+imp	build/binding/python/npk.py	/^        import imp$/;"	i
+implicitconv	build/binding/npk_devPYTHON_wrap.c	/^  int implicitconv;$/;"	m	struct:__anon1	file:
 in_func	external/zlib/zconf.h	/^#  define in_func /;"	d
 in_func	external/zlib/zlib.h	/^typedef unsigned (*in_func) OF((void FAR *, unsigned char FAR * FAR *));$/;"	t
 inflate	external/zlib/inflate.c	/^int ZEXPORT inflate(strm, flush)$/;"	f
@@ -778,7 +1224,7 @@ inflate_copyright	external/zlib/inftrees.c	/^const char inflate_copyright[] =$/;
 inflate_copyright	external/zlib/zconf.h	/^#  define inflate_copyright /;"	d
 inflate_fast	external/zlib/inffast.c	/^void ZLIB_INTERNAL inflate_fast(strm, start)$/;"	f
 inflate_fast	external/zlib/zconf.h	/^#  define inflate_fast /;"	d
-inflate_mode	external/zlib/inflate.h	/^} inflate_mode;$/;"	t	typeref:enum:__anon5
+inflate_mode	external/zlib/inflate.h	/^} inflate_mode;$/;"	t	typeref:enum:__anon8
 inflate_state	external/zlib/inflate.h	/^struct inflate_state {$/;"	s
 inflate_table	external/zlib/inftrees.c	/^int ZLIB_INTERNAL inflate_table(type, lens, codes, table, bits, work)$/;"	f
 inflate_table	external/zlib/zconf.h	/^#  define inflate_table /;"	d
@@ -802,13 +1248,14 @@ intf	external/zlib/zconf.h	/^#  define intf /;"	d
 intf	external/zlib/zconf.h	/^typedef int   FAR intf;$/;"	t
 justcreate	tool/cli/npk_cli.cpp	/^bool justcreate = false;$/;"	v
 k	tool/cli/npk_cli.cpp	/^NPK_TEAKEY k[4] = { 0, 0, 0, 0 };$/;"	v
+klass	build/binding/npk_devPYTHON_wrap.c	/^  PyObject *klass;$/;"	m	struct:__anon1	file:
 l_buf	external/zlib/deflate.h	/^    uchf *l_buf;          \/* buffer for literals or lengths *\/$/;"	m	struct:internal_state
 l_desc	external/zlib/deflate.h	/^    struct tree_desc_s l_desc;               \/* desc. for literal tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::tree_desc_s
 last	external/zlib/inflate.h	/^    int last;                   \/* true if processing last block *\/$/;"	m	struct:inflate_state
 last_eob_len	external/zlib/deflate.h	/^    int last_eob_len;   \/* bit length of EOB code for last block *\/$/;"	m	struct:internal_state
 last_flush	external/zlib/deflate.h	/^    int   last_flush;    \/* value of flush param for previous deflate call *\/$/;"	m	struct:internal_state
 last_lit	external/zlib/deflate.h	/^    uInt last_lit;      \/* running index in l_buf *\/$/;"	m	struct:internal_state
-len	external/zlib/deflate.h	/^        ush  len;        \/* length of bit string *\/$/;"	m	union:ct_data_s::__anon4
+len	external/zlib/deflate.h	/^        ush  len;        \/* length of bit string *\/$/;"	m	union:ct_data_s::__anon7
 lenbits	external/zlib/inflate.h	/^    unsigned lenbits;           \/* index bits for lencode *\/$/;"	m	struct:inflate_state
 lencode	external/zlib/inflate.h	/^    code const FAR *lencode;    \/* starting table for length\/literal codes *\/$/;"	m	struct:inflate_state
 lenfix	external/zlib/inffixed.h	/^    static const code lenfix[512] = {$/;"	v
@@ -826,6 +1273,7 @@ localname_	include/npk_dev.h	/^	NPK_STR				localname_;			\/* Local Foldername + 
 longest_match	external/zlib/deflate.c	/^local uInt longest_match(s, cur_match)$/;"	f
 lookahead	external/zlib/deflate.h	/^    uInt lookahead;              \/* number of valid bytes ahead in window *\/$/;"	m	struct:internal_state
 lowercase	build/tests/tests.cpp	/^char* lowercase(const char *string)$/;"	f
+lvalue	build/binding/npk_devPYTHON_wrap.c	/^  long lvalue;$/;"	m	struct:swig_const_info	file:
 main	build/CMakeFiles/CompilerIdC/CMakeCCompilerId.c	/^int main(int argc, char* argv[])$/;"	f
 main	build/CMakeFiles/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f
 main	build/CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(int argc, char* argv[])$/;"	f
@@ -855,7 +1303,10 @@ modified_	include/npk_dev.h	/^	NPK_TIME			modified_;			\/* Last modified date of
 modified_	include/npk_dev.h	/^	NPK_TIME			modified_;$/;"	m	struct:NPK_tagPACKAGEBODY
 msg	external/zlib/zlib.h	/^    char     *msg;      \/* last error message, NULL if no error *\/$/;"	m	struct:z_stream_s
 n	tool/cli/npk_cli.cpp	/^int					n = 0;	\/\/ current argc number$/;"	v
-name	build/tests/tests.cpp	/^  const char* name;$/;"	m	struct:__anon1	file:
+name	build/binding/npk_devPYTHON_wrap.c	/^    char       *name;                  \/* Name of global variable *\/$/;"	m	struct:swig_globalvar	file:
+name	build/binding/npk_devPYTHON_wrap.c	/^  char *name;$/;"	m	struct:swig_const_info	file:
+name	build/binding/npk_devPYTHON_wrap.c	/^  const char             *name;			\/* mangled name of this type *\/$/;"	m	struct:swig_type_info	file:
+name	build/tests/tests.cpp	/^  const char* name;$/;"	m	struct:__anon4	file:
 name	external/zlib/zlib.h	/^    Bytef   *name;      \/* pointer to zero-terminated file name or Z_NULL *\/$/;"	m	struct:gz_header_s
 name	tool/cli/helper_dirent.c	/^    char                *name;  \/* null-terminated char string *\/$/;"	m	struct:DIR	file:
 nameLength_	include/npk_dev.h	/^ 	NPK_NAMESIZE		nameLength_;		\/* Length of Foldername + FileName. *\/$/;"	m	struct:NPK_tagENTITYINFO
@@ -864,9 +1315,15 @@ name_	include/npk_dev.h	/^	NPK_STR				name_;				\/* Foldername + FileName. *\/$/
 name_max	external/zlib/zlib.h	/^    uInt    name_max;   \/* space at name (only when reading header) *\/$/;"	m	struct:gz_header_s
 ncode	external/zlib/inflate.h	/^    unsigned ncode;             \/* number of code length code lengths *\/$/;"	m	struct:inflate_state
 ndist	external/zlib/inflate.h	/^    unsigned ndist;             \/* number of distance code lengths *\/$/;"	m	struct:inflate_state
-need_more	external/zlib/deflate.c	/^    need_more,      \/* block not completed, need more input or more output *\/$/;"	e	enum:__anon2	file:
+need_more	external/zlib/deflate.c	/^    need_more,      \/* block not completed, need more input or more output *\/$/;"	e	enum:__anon5	file:
 new_ptr	external/zlib/zutil.c	/^    voidpf new_ptr;$/;"	m	struct:ptr_table_s	file:
+newargs	build/binding/npk_devPYTHON_wrap.c	/^  PyObject *newargs;$/;"	m	struct:__anon1	file:
 newflag_	include/npk_dev.h	/^	NPK_FLAG			newflag_;			\/* New entity flags *\/$/;"	m	struct:NPK_tagENTITYBODY
+newraw	build/binding/npk_devPYTHON_wrap.c	/^  PyObject *newraw;$/;"	m	struct:__anon1	file:
+next	build/binding/npk_devPYTHON_wrap.c	/^    struct swig_globalvar *next;$/;"	m	struct:swig_globalvar	typeref:struct:swig_globalvar::swig_globalvar	file:
+next	build/binding/npk_devPYTHON_wrap.c	/^  PyObject *next;$/;"	m	struct:__anon2	file:
+next	build/binding/npk_devPYTHON_wrap.c	/^  struct swig_cast_info  *next;			\/* pointer to next cast in linked list *\/$/;"	m	struct:swig_cast_info	typeref:struct:swig_cast_info::swig_cast_info	file:
+next	build/binding/npk_devPYTHON_wrap.c	/^  struct swig_module_info *next;		\/* Pointer to next element in circularly linked list *\/$/;"	m	struct:swig_module_info	typeref:struct:swig_module_info::swig_module_info	file:
 next	external/zlib/inflate.h	/^    code FAR *next;             \/* next available space in codes[] *\/$/;"	m	struct:inflate_state
 next_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	next_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
 next_in	external/zlib/zlib.h	/^    Bytef    *next_in;  \/* next input byte *\/$/;"	m	struct:z_stream_s
@@ -876,63 +1333,156 @@ nice_length	external/zlib/deflate.c	/^   ush nice_length; \/* quit search above 
 nice_match	external/zlib/deflate.h	/^    int nice_match; \/* Stop searching when current match exceeds this *\/$/;"	m	struct:internal_state
 nlen	external/zlib/inflate.h	/^    unsigned nlen;              \/* number of length code lengths *\/$/;"	m	struct:inflate_state
 norecursive	tool/cli/npk_cli.cpp	/^bool norecursive = false;$/;"	v
+npk	build/binding/python/npk_test.py	/^import npk$/;"	i
+npk_alloc_copy_string	build/binding/python/npk.py	/^def npk_alloc_copy_string(*args):$/;"	f
+npk_alloc_copy_string	build/binding/python/npk.py	/^npk_alloc_copy_string = _npk.npk_alloc_copy_string$/;"	v
 npk_alloc_copy_string	src/npk_common.c	/^NPK_RESULT npk_alloc_copy_string( NPK_STR* dst, NPK_CSTR src )$/;"	f
 npk_case	tests/npk_case.cpp	/^int npk_case( int argc, char * argv [] )$/;"	f
+npk_close	build/binding/python/npk.py	/^def npk_close(*args):$/;"	f
+npk_close	build/binding/python/npk.py	/^npk_close = _npk.npk_close$/;"	v
 npk_close	src/npk_common.c	/^NPK_RESULT npk_close( NPK_HANDLE handle )$/;"	f
+npk_disable_callback	build/binding/python/npk.py	/^def npk_disable_callback():$/;"	f
+npk_disable_callback	build/binding/python/npk.py	/^npk_disable_callback = _npk.npk_disable_callback$/;"	v
 npk_disable_callback	src/npk.c	/^void npk_disable_callback()$/;"	f
 npk_disable_criticalsection	src/npk.c	/^void npk_disable_criticalsection()$/;"	f
+npk_disable_gluetime	build/binding/python/npk.py	/^def npk_disable_gluetime():$/;"	f
+npk_disable_gluetime	build/binding/python/npk.py	/^npk_disable_gluetime = _npk.npk_disable_gluetime$/;"	v
 npk_disable_gluetime	src/npk_dev.c	/^void npk_disable_gluetime()$/;"	f
 npk_durability	tests/npk_durability.cpp	/^int npk_durability( int argc, char * argv [] )$/;"	f
+npk_enable_callback	build/binding/python/npk.py	/^def npk_enable_callback(*args):$/;"	f
+npk_enable_callback	build/binding/python/npk.py	/^npk_enable_callback = _npk.npk_enable_callback$/;"	v
 npk_enable_callback	src/npk.c	/^void npk_enable_callback( NPK_CALLBACK cb, NPK_SIZE cb_size )$/;"	f
 npk_enable_criticalsection	src/npk.c	/^void npk_enable_criticalsection()$/;"	f
+npk_enable_gluetime	build/binding/python/npk.py	/^def npk_enable_gluetime(*args):$/;"	f
+npk_enable_gluetime	build/binding/python/npk.py	/^npk_enable_gluetime = _npk.npk_enable_gluetime$/;"	v
 npk_enable_gluetime	src/npk_dev.c	/^void npk_enable_gluetime( NPK_TIME time )$/;"	f
+npk_entity_add_flag	build/binding/python/npk.py	/^def npk_entity_add_flag(*args):$/;"	f
+npk_entity_add_flag	build/binding/python/npk.py	/^npk_entity_add_flag = _npk.npk_entity_add_flag$/;"	v
 npk_entity_add_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_add_flag( NPK_ENTITY entity, NPK_FLAG flag )$/;"	f
+npk_entity_alloc	build/binding/python/npk.py	/^def npk_entity_alloc(*args):$/;"	f
+npk_entity_alloc	build/binding/python/npk.py	/^npk_entity_alloc = _npk.npk_entity_alloc$/;"	v
 npk_entity_alloc	src/npk_common.c	/^NPK_RESULT npk_entity_alloc( NPK_ENTITY* lpEntity )$/;"	f
+npk_entity_export	build/binding/python/npk.py	/^def npk_entity_export(*args):$/;"	f
+npk_entity_export	build/binding/python/npk.py	/^npk_entity_export = _npk.npk_entity_export$/;"	v
 npk_entity_export	src/npk_dev.c	/^NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceoverwrite )$/;"	f
+npk_entity_get_current_flag	build/binding/python/npk.py	/^def npk_entity_get_current_flag(*args):$/;"	f
+npk_entity_get_current_flag	build/binding/python/npk.py	/^npk_entity_get_current_flag = _npk.npk_entity_get_current_flag$/;"	v
 npk_entity_get_current_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_get_current_flag( NPK_ENTITY entity, NPK_FLAG* flag )$/;"	f
+npk_entity_get_name	build/binding/python/npk.py	/^def npk_entity_get_name(*args):$/;"	f
+npk_entity_get_name	build/binding/python/npk.py	/^npk_entity_get_name = _npk.npk_entity_get_name$/;"	v
 npk_entity_get_name	src/npk.c	/^NPK_CSTR npk_entity_get_name( NPK_ENTITY entity )$/;"	f
+npk_entity_get_new_flag	build/binding/python/npk.py	/^def npk_entity_get_new_flag(*args):$/;"	f
+npk_entity_get_new_flag	build/binding/python/npk.py	/^npk_entity_get_new_flag = _npk.npk_entity_get_new_flag$/;"	v
 npk_entity_get_new_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_get_new_flag( NPK_ENTITY entity, NPK_FLAG* flag )$/;"	f
+npk_entity_get_size	build/binding/python/npk.py	/^def npk_entity_get_size(*args):$/;"	f
+npk_entity_get_size	build/binding/python/npk.py	/^npk_entity_get_size = _npk.npk_entity_get_size$/;"	v
 npk_entity_get_size	src/npk.c	/^NPK_SIZE npk_entity_get_size( NPK_ENTITY entity )$/;"	f
+npk_entity_init	build/binding/python/npk.py	/^def npk_entity_init(*args):$/;"	f
+npk_entity_init	build/binding/python/npk.py	/^npk_entity_init = _npk.npk_entity_init$/;"	v
 npk_entity_init	src/npk_common.c	/^NPK_RESULT npk_entity_init( NPK_ENTITY entity )$/;"	f
+npk_entity_next	build/binding/python/npk.py	/^def npk_entity_next(*args):$/;"	f
+npk_entity_next	build/binding/python/npk.py	/^npk_entity_next = _npk.npk_entity_next$/;"	v
 npk_entity_next	src/npk.c	/^NPK_ENTITY npk_entity_next( NPK_ENTITY entity )$/;"	f
+npk_entity_read	build/binding/python/npk.py	/^def npk_entity_read(*args):$/;"	f
+npk_entity_read	build/binding/python/npk.py	/^npk_entity_read = _npk.npk_entity_read$/;"	v
 npk_entity_read	src/npk.c	/^bool npk_entity_read( NPK_ENTITY entity, void* buf )$/;"	f
+npk_entity_read_partial	build/binding/python/npk.py	/^def npk_entity_read_partial(*args):$/;"	f
+npk_entity_read_partial	build/binding/python/npk.py	/^npk_entity_read_partial = _npk.npk_entity_read_partial$/;"	v
 npk_entity_read_partial	src/npk.c	/^bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK_SIZE size )$/;"	f
+npk_entity_set_flag	build/binding/python/npk.py	/^def npk_entity_set_flag(*args):$/;"	f
+npk_entity_set_flag	build/binding/python/npk.py	/^npk_entity_set_flag = _npk.npk_entity_set_flag$/;"	v
 npk_entity_set_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_set_flag( NPK_ENTITY entity, NPK_FLAG flag )$/;"	f
+npk_entity_sub_flag	build/binding/python/npk.py	/^def npk_entity_sub_flag(*args):$/;"	f
+npk_entity_sub_flag	build/binding/python/npk.py	/^npk_entity_sub_flag = _npk.npk_entity_sub_flag$/;"	v
 npk_entity_sub_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_sub_flag( NPK_ENTITY entity, NPK_FLAG flag )$/;"	f
+npk_entity_write	build/binding/python/npk.py	/^def npk_entity_write(*args):$/;"	f
+npk_entity_write	build/binding/python/npk.py	/^npk_entity_write = _npk.npk_entity_write$/;"	v
 npk_entity_write	src/npk_dev.c	/^NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )$/;"	f
+npk_error	build/binding/python/npk.py	/^def npk_error(*args):$/;"	f
+npk_error	build/binding/python/npk.py	/^npk_error = _npk.npk_error$/;"	v
 npk_error	src/npk_common.c	/^NPK_RESULT npk_error( NPK_RESULT res )$/;"	f
+npk_error_to_str	build/binding/python/npk.py	/^def npk_error_to_str(*args):$/;"	f
+npk_error_to_str	build/binding/python/npk.py	/^npk_error_to_str = _npk.npk_error_to_str$/;"	v
 npk_error_to_str	src/npk_common.c	/^NPK_STR npk_error_to_str( NPK_RESULT res )$/;"	f
+npk_filetime_to_unixtime	build/binding/python/npk.py	/^def npk_filetime_to_unixtime(*args):$/;"	f
+npk_filetime_to_unixtime	build/binding/python/npk.py	/^npk_filetime_to_unixtime = _npk.npk_filetime_to_unixtime$/;"	v
 npk_filetime_to_unixtime	src/npk_common.c	/^void npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt )$/;"	f
+npk_flush	build/binding/python/npk.py	/^def npk_flush(*args):$/;"	f
+npk_flush	build/binding/python/npk.py	/^npk_flush = _npk.npk_flush$/;"	v
 npk_flush	src/npk_dev.c	/^NPK_RESULT npk_flush( NPK_HANDLE handle )$/;"	f
+npk_get_filetime	build/binding/python/npk.py	/^def npk_get_filetime(*args):$/;"	f
+npk_get_filetime	build/binding/python/npk.py	/^npk_get_filetime = _npk.npk_get_filetime$/;"	v
 npk_get_filetime	src/npk_dev.c	/^NPK_RESULT npk_get_filetime( NPK_CSTR filename, NPK_TIME* pft )$/;"	f
+npk_log	build/binding/python/npk.py	/^def npk_log(*args):$/;"	f
+npk_log	build/binding/python/npk.py	/^npk_log = _npk.npk_log$/;"	v
 npk_log	src/npk_dev.c	/^void npk_log( NPK_CSTR format, ... )$/;"	f
+npk_open	build/binding/python/npk.py	/^def npk_open(*args):$/;"	f
+npk_open	build/binding/python/npk.py	/^npk_open = _npk.npk_open$/;"	v
 npk_open	src/npk_common.c	/^NPK_RESULT npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist )$/;"	f
 npk_open	tests/npk_open.cpp	/^int npk_open( int argc, char * argv [] )$/;"	f
+npk_package_add_entity	build/binding/python/npk.py	/^def npk_package_add_entity(*args):$/;"	f
+npk_package_add_entity	build/binding/python/npk.py	/^npk_package_add_entity = _npk.npk_package_add_entity$/;"	v
 npk_package_add_entity	src/npk_common.c	/^NPK_RESULT npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity )$/;"	f
+npk_package_add_file	build/binding/python/npk.py	/^def npk_package_add_file(*args):$/;"	f
+npk_package_add_file	build/binding/python/npk.py	/^npk_package_add_file = _npk.npk_package_add_file$/;"	v
 npk_package_add_file	src/npk_dev.c	/^NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CSTR entityname, NPK_ENTITY* lpEntity )$/;"	f
+npk_package_clear	build/binding/python/npk.py	/^def npk_package_clear(*args):$/;"	f
+npk_package_clear	build/binding/python/npk.py	/^npk_package_clear = _npk.npk_package_clear$/;"	v
 npk_package_clear	src/npk_dev.c	/^NPK_RESULT npk_package_clear( NPK_PACKAGE package )$/;"	f
+npk_package_close	build/binding/python/npk.py	/^def npk_package_close(*args):$/;"	f
+npk_package_close	build/binding/python/npk.py	/^npk_package_close = _npk.npk_package_close$/;"	v
 npk_package_close	src/npk.c	/^bool npk_package_close( NPK_PACKAGE package )$/;"	f
+npk_package_get_entity	build/binding/python/npk.py	/^def npk_package_get_entity(*args):$/;"	f
+npk_package_get_entity	build/binding/python/npk.py	/^npk_package_get_entity = _npk.npk_package_get_entity$/;"	v
 npk_package_get_entity	src/npk.c	/^NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )$/;"	f
+npk_package_get_first_entity	build/binding/python/npk.py	/^def npk_package_get_first_entity(*args):$/;"	f
+npk_package_get_first_entity	build/binding/python/npk.py	/^npk_package_get_first_entity = _npk.npk_package_get_first_entity$/;"	v
 npk_package_get_first_entity	src/npk.c	/^NPK_ENTITY npk_package_get_first_entity( NPK_PACKAGE package )$/;"	f
+npk_package_init	build/binding/python/npk.py	/^def npk_package_init(*args):$/;"	f
+npk_package_init	build/binding/python/npk.py	/^npk_package_init = _npk.npk_package_init$/;"	v
 npk_package_init	src/npk_common.c	/^NPK_RESULT npk_package_init( NPK_PACKAGE package )$/;"	f
-npk_package_new	src/npk_dev.c	/^NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY* teakey )$/;"	f
-npk_package_open	src/npk.c	/^NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY* teakey )$/;"	f
+npk_package_new	build/binding/python/npk.py	/^def npk_package_new(*args):$/;"	f
+npk_package_new	build/binding/python/npk.py	/^npk_package_new = _npk.npk_package_new$/;"	v
+npk_package_new	src/npk_dev.c	/^NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )$/;"	f
+npk_package_open	build/binding/python/npk.py	/^def npk_package_open(*args):$/;"	f
+npk_package_open	build/binding/python/npk.py	/^npk_package_open = _npk.npk_package_open$/;"	v
+npk_package_open	src/npk.c	/^NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )$/;"	f
+npk_package_remove_all_entity	build/binding/python/npk.py	/^def npk_package_remove_all_entity(*args):$/;"	f
+npk_package_remove_all_entity	build/binding/python/npk.py	/^npk_package_remove_all_entity = _npk.npk_package_remove_all_entity$/;"	v
 npk_package_remove_all_entity	src/npk_common.c	/^NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )$/;"	f
+npk_package_remove_entity	build/binding/python/npk.py	/^def npk_package_remove_entity(*args):$/;"	f
+npk_package_remove_entity	build/binding/python/npk.py	/^npk_package_remove_entity = _npk.npk_package_remove_entity$/;"	v
 npk_package_remove_entity	src/npk_dev.c	/^NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )$/;"	f
+npk_package_save	build/binding/python/npk.py	/^def npk_package_save(*args):$/;"	f
+npk_package_save	build/binding/python/npk.py	/^npk_package_save = _npk.npk_package_save$/;"	v
 npk_package_save	src/npk_dev.c	/^NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceoverwrite )$/;"	f
+npk_read	build/binding/python/npk.py	/^def npk_read(*args):$/;"	f
+npk_read	build/binding/python/npk.py	/^npk_read = _npk.npk_read$/;"	v
 npk_read	src/npk_common.c	/^NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,$/;"	f
+npk_read_encrypt	build/binding/python/npk.py	/^def npk_read_encrypt(*args):$/;"	f
+npk_read_encrypt	build/binding/python/npk.py	/^npk_read_encrypt = _npk.npk_read_encrypt$/;"	v
 npk_read_encrypt	src/npk_common.c	/^NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_SIZE size,$/;"	f
 npk_read_entity	tests/npk_read_entity.cpp	/^int npk_read_entity( int argc, char * argv [] )$/;"	f
+npk_seek	build/binding/python/npk.py	/^def npk_seek(*args):$/;"	f
+npk_seek	build/binding/python/npk.py	/^npk_seek = _npk.npk_seek$/;"	v
 npk_seek	src/npk_common.c	/^long npk_seek( NPK_HANDLE handle, long offset, int origin )$/;"	f
+npk_set_filetime	build/binding/python/npk.py	/^def npk_set_filetime(*args):$/;"	f
+npk_set_filetime	build/binding/python/npk.py	/^npk_set_filetime = _npk.npk_set_filetime$/;"	v
 npk_set_filetime	src/npk_dev.c	/^NPK_RESULT npk_set_filetime( NPK_CSTR filename, const NPK_TIME pft )$/;"	f
+npk_tell	build/binding/python/npk.py	/^def npk_tell(*args):$/;"	f
+npk_tell	build/binding/python/npk.py	/^npk_tell = _npk.npk_tell$/;"	v
 npk_tell	src/npk_dev.c	/^long npk_tell( NPK_HANDLE handle )$/;"	f
+npk_write	build/binding/python/npk.py	/^def npk_write(*args):$/;"	f
+npk_write	build/binding/python/npk.py	/^npk_write = _npk.npk_write$/;"	v
 npk_write	src/npk_dev.c	/^NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,$/;"	f
 npk_write	tests/npk_write.cpp	/^int npk_write( int argc, char * argv [] )$/;"	f
+npk_write_encrypt	build/binding/python/npk.py	/^def npk_write_encrypt(*args):$/;"	f
+npk_write_encrypt	build/binding/python/npk.py	/^npk_write_encrypt = _npk.npk_write_encrypt$/;"	v
 npk_write_encrypt	src/npk_dev.c	/^NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_SIZE size,$/;"	f
 offset	external/zlib/inflate.h	/^    unsigned offset;            \/* distance back to copy string from *\/$/;"	m	struct:inflate_state
 offset_	include/npk_dev.h	/^	NPK_SIZE			offset_;			\/* Data position. *\/$/;"	m	struct:NPK_tagENTITYINFO
 offset_	include/npk_dev.h	/^	NPK_SIZE			offset_;			\/* Data position. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
-op	external/zlib/inftrees.h	/^    unsigned char op;           \/* operation, extra bits, table bits *\/$/;"	m	struct:__anon6
+op	external/zlib/inftrees.h	/^    unsigned char op;           \/* operation, extra bits, table bits *\/$/;"	m	struct:__anon9
 opaque	external/zlib/zlib.h	/^    voidpf     opaque;  \/* private data object passed to zalloc and zfree *\/$/;"	m	struct:z_stream_s
 opendir	tool/cli/helper_dirent.c	/^DIR *opendir(const char *name)$/;"	f
 opt_len	external/zlib/deflate.h	/^    ulg opt_len;        \/* bit length of current block with optimal trees *\/$/;"	m	struct:internal_state
@@ -943,10 +1493,14 @@ os	external/zlib/zlib.h	/^    int     os;         \/* operating system *\/$/;"	m
 out_func	external/zlib/zconf.h	/^#  define out_func /;"	d
 out_func	external/zlib/zlib.h	/^typedef int (*out_func) OF((void FAR *, unsigned char FAR *, unsigned));$/;"	t
 output	tool/cli/npk_cli.cpp	/^char* output = NULL;$/;"	v
+own	build/binding/npk_devPYTHON_wrap.c	/^  int own;$/;"	m	struct:__anon2	file:
+owndata	build/binding/npk_devPYTHON_wrap.c	/^  int                    owndata;		\/* flag if the structure owns the clientdata *\/$/;"	m	struct:swig_type_info	file:
 owner_	include/npk_dev.h	/^	NPK_PACKAGE			owner_;$/;"	m	struct:NPK_tagENTITYBODY
 pEntityHead_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityHead_;$/;"	m	struct:NPK_tagPACKAGEBODY
 pEntityLatest_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityLatest_;$/;"	m	struct:NPK_tagPACKAGEBODY
 pEntityTail_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityTail_;$/;"	m	struct:NPK_tagPACKAGEBODY
+pack	build/binding/npk_devPYTHON_wrap.c	/^  void *pack;$/;"	m	struct:__anon3	file:
+pack	build/binding/python/npk_test.py	/^pack = new_NPK_PACKAGE()$/;"	v
 package	tool/cli/npk_cli.cpp	/^NPK_PACKAGE package = NULL;$/;"	v
 pending	external/zlib/deflate.h	/^    uInt   pending;      \/* nb of bytes in the pending buffer *\/$/;"	m	struct:internal_state
 pending_buf	external/zlib/deflate.h	/^    Bytef *pending_buf;  \/* output still pending *\/$/;"	m	struct:internal_state
@@ -954,21 +1508,26 @@ pending_buf_size	external/zlib/deflate.h	/^    ulg   pending_buf_size; \/* size 
 pending_out	external/zlib/deflate.h	/^    Bytef *pending_out;  \/* next pending byte to output to the stream *\/$/;"	m	struct:internal_state
 pqdownheap	external/zlib/trees.c	/^local void pqdownheap(s, tree, k)$/;"	f
 pqremove	external/zlib/trees.c	/^#define pqremove(/;"	d	file:
+prev	build/binding/npk_devPYTHON_wrap.c	/^  struct swig_cast_info  *prev;			\/* pointer to the previous cast *\/$/;"	m	struct:swig_cast_info	typeref:struct:swig_cast_info::swig_cast_info	file:
 prev	external/zlib/deflate.h	/^    Posf *prev;$/;"	m	struct:internal_state
 prev_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	prev_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
 prev_length	external/zlib/deflate.h	/^    uInt prev_length;$/;"	m	struct:internal_state
 prev_match	external/zlib/deflate.h	/^    IPos prev_match;             \/* previous match *\/$/;"	m	struct:internal_state
+ptr	build/binding/npk_devPYTHON_wrap.c	/^  void *ptr;$/;"	m	struct:__anon2	file:
 ptr_table	external/zlib/zutil.c	/^} ptr_table;$/;"	t	typeref:struct:ptr_table_s	file:
 ptr_table_s	external/zlib/zutil.c	/^typedef struct ptr_table_s {$/;"	s	file:
 ptrdiff_t	external/zlib/zutil.h	/^       typedef int ptrdiff_t;$/;"	t
+ptype	build/binding/npk_devPYTHON_wrap.c	/^  swig_type_info **ptype;$/;"	m	struct:swig_const_info	file:
 putShortMSB	external/zlib/deflate.c	/^local void putShortMSB (s, b)$/;"	f
 put_byte	external/zlib/deflate.h	/^#define put_byte(/;"	d
 put_short	external/zlib/trees.c	/^#define put_short(/;"	d	file:
+pvalue	build/binding/npk_devPYTHON_wrap.c	/^  void   *pvalue;$/;"	m	struct:swig_const_info	file:
 read_buf	external/zlib/deflate.c	/^local int read_buf(strm, buf, size)$/;"	f
 readable_size	tool/cli/npk_cli.cpp	/^const int		readable_size[readable_size_count] = { 1024*1024*1024, 1024*1024, 1024 };$/;"	v
 readable_size_count	tool/cli/npk_cli.cpp	/^const int		readable_size_count = 3;$/;"	v
 readable_unit	tool/cli/npk_cli.cpp	/^const char*		readable_unit[readable_size_count] = { "GB", "MB", "KB" };$/;"	v
 readdir	tool/cli/helper_dirent.c	/^struct dirent *readdir(DIR *dir)$/;"	f
+res	build/binding/python/npk_test.py	/^res = npk.npk_package_new( pack, [1,2,3,4] )$/;"	v
 reserved	external/zlib/zlib.h	/^    uLong   reserved;   \/* reserved for future use *\/$/;"	m	struct:z_stream_s
 reserved_	include/npk_dev.h	/^	NPK_BYTE			reserved_[4];		\/* Reserved for 64bit-time_t *\/$/;"	m	struct:NPK_tagENTITYINFO
 result	tool/cli/helper_dirent.c	/^    struct dirent       result; \/* d_name null iff first time *\/$/;"	m	struct:DIR	typeref:struct:DIR::dirent	file:
@@ -980,7 +1539,10 @@ send_bits	external/zlib/trees.c	/^#define send_bits(/;"	d	file:
 send_bits	external/zlib/trees.c	/^local void send_bits(s, value, length)$/;"	f
 send_code	external/zlib/trees.c	/^#  define send_code(/;"	d	file:
 send_tree	external/zlib/trees.c	/^local void send_tree (s, tree, max_code)$/;"	f
+set_attr	build/binding/npk_devPYTHON_wrap.c	/^    int       (*set_attr)(PyObject *); \/* Set the value *\/$/;"	m	struct:swig_globalvar	file:
 signature_	include/npk_dev.h	/^	NPK_CHAR			signature_[4];		\/* NPAK *\/$/;"	m	struct:NPK_tagPACKAGEINFO
+size	build/binding/npk_devPYTHON_wrap.c	/^  size_t                 size;		        \/* Number of types in this module *\/$/;"	m	struct:swig_module_info	file:
+size	build/binding/npk_devPYTHON_wrap.c	/^  size_t size;$/;"	m	struct:__anon3	file:
 size_	include/npk_dev.h	/^	NPK_SIZE			size_;				\/* Data size. *\/$/;"	m	struct:NPK_tagENTITYINFO
 size_	include/npk_dev.h	/^	NPK_SIZE			size_;				\/* Data size. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
 smaller	external/zlib/trees.c	/^#define smaller(/;"	d	file:
@@ -999,12 +1561,41 @@ static_tree_desc	external/zlib/deflate.h	/^typedef struct static_tree_desc_s  st
 static_tree_desc_s	external/zlib/deflate.c	/^struct static_tree_desc_s {int dummy;}; \/* for buggy compilers *\/$/;"	s	file:
 static_tree_desc_s	external/zlib/trees.c	/^struct static_tree_desc_s {$/;"	s	file:
 status	external/zlib/deflate.h	/^    int   status;        \/* as the name implies *\/$/;"	m	struct:internal_state
+str	build/binding/npk_devPYTHON_wrap.c	/^  const char             *str;			\/* human readable name of this type *\/$/;"	m	struct:swig_type_info	file:
 strategy	external/zlib/deflate.h	/^    int strategy; \/* favor or force Huffman coding*\/$/;"	m	struct:internal_state
 stricmp	src/npk.c	/^	#define stricmp /;"	d	file:
 strm	external/zlib/deflate.h	/^    z_streamp strm;      \/* pointer back to this zlib stream *\/$/;"	m	struct:internal_state
 strnicmp	src/npk.c	/^	#define strnicmp /;"	d	file:
 strnicmp	tool/cli/npk_cli.cpp	/^	#define strnicmp /;"	d	file:
 strstart	external/zlib/deflate.h	/^    uInt strstart;               \/* start of string to insert *\/$/;"	m	struct:internal_state
+swig_cast_info	build/binding/npk_devPYTHON_wrap.c	/^typedef struct swig_cast_info {$/;"	s	file:
+swig_cast_info	build/binding/npk_devPYTHON_wrap.c	/^} swig_cast_info;$/;"	t	typeref:struct:swig_cast_info	file:
+swig_cast_initial	build/binding/npk_devPYTHON_wrap.c	/^static swig_cast_info *swig_cast_initial[] = {$/;"	v	file:
+swig_const_info	build/binding/npk_devPYTHON_wrap.c	/^typedef struct swig_const_info {$/;"	s	file:
+swig_const_info	build/binding/npk_devPYTHON_wrap.c	/^} swig_const_info;$/;"	t	typeref:struct:swig_const_info	file:
+swig_const_table	build/binding/npk_devPYTHON_wrap.c	/^static swig_const_info swig_const_table[] = {$/;"	v	file:
+swig_converter_func	build/binding/npk_devPYTHON_wrap.c	/^typedef void *(*swig_converter_func)(void *, int *);$/;"	t	file:
+swig_dycast_func	build/binding/npk_devPYTHON_wrap.c	/^typedef struct swig_type_info *(*swig_dycast_func)(void **);$/;"	t	typeref:struct:swig_dycast_func	file:
+swig_globalvar	build/binding/npk_devPYTHON_wrap.c	/^  typedef struct swig_globalvar {$/;"	s	file:
+swig_globalvar	build/binding/npk_devPYTHON_wrap.c	/^  } swig_globalvar;$/;"	t	typeref:struct:swig_globalvar	file:
+swig_import_helper	build/binding/python/npk.py	/^    def swig_import_helper():$/;"	f
+swig_module	build/binding/npk_devPYTHON_wrap.c	/^static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};$/;"	v	file:
+swig_module_info	build/binding/npk_devPYTHON_wrap.c	/^typedef struct swig_module_info {$/;"	s	file:
+swig_module_info	build/binding/npk_devPYTHON_wrap.c	/^} swig_module_info;$/;"	t	typeref:struct:swig_module_info	file:
+swig_owntype	build/binding/npk_devPYTHON_wrap.c	/^#define swig_owntype /;"	d	file:
+swig_type_info	build/binding/npk_devPYTHON_wrap.c	/^typedef struct swig_type_info {$/;"	s	file:
+swig_type_info	build/binding/npk_devPYTHON_wrap.c	/^} swig_type_info;$/;"	t	typeref:struct:swig_type_info	file:
+swig_type_initial	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info *swig_type_initial[] = {$/;"	v	file:
+swig_types	build/binding/npk_devPYTHON_wrap.c	/^static swig_type_info *swig_types[23];$/;"	v	file:
+swig_varlink_dealloc	build/binding/npk_devPYTHON_wrap.c	/^  swig_varlink_dealloc(swig_varlinkobject *v) {$/;"	f
+swig_varlink_getattr	build/binding/npk_devPYTHON_wrap.c	/^  swig_varlink_getattr(swig_varlinkobject *v, char *n) {$/;"	f
+swig_varlink_print	build/binding/npk_devPYTHON_wrap.c	/^  swig_varlink_print(swig_varlinkobject *v, FILE *fp, int SWIGUNUSEDPARM(flags)) {$/;"	f
+swig_varlink_setattr	build/binding/npk_devPYTHON_wrap.c	/^  swig_varlink_setattr(swig_varlinkobject *v, char *n, PyObject *p) {$/;"	f
+swig_varlink_str	build/binding/npk_devPYTHON_wrap.c	/^  swig_varlink_str(swig_varlinkobject *v) {$/;"	f
+swig_varlink_type	build/binding/npk_devPYTHON_wrap.c	/^  swig_varlink_type(void) {$/;"	f
+swig_varlinkobject	build/binding/npk_devPYTHON_wrap.c	/^  typedef struct swig_varlinkobject {$/;"	s	file:
+swig_varlinkobject	build/binding/npk_devPYTHON_wrap.c	/^  } swig_varlinkobject;$/;"	t	typeref:struct:swig_varlinkobject	file:
+swigobject_methods	build/binding/npk_devPYTHON_wrap.c	/^swigobject_methods[] = {$/;"	v	file:
 sync_and_add	tool/cli/npk_cli.cpp	/^void sync_and_add( bool sd, bool force, const char* basepath, const char* path )$/;"	f
 sync_only_in_package	tool/cli/npk_cli.cpp	/^void sync_only_in_package( bool sd, bool force, const char* path )$/;"	f
 sync_package	tool/cli/npk_cli.cpp	/^void sync_package()$/;"	f
@@ -1032,6 +1623,12 @@ traverse_package	tool/cli/npk_cli.cpp	/^int traverse_package( PACKAGE_TFP fp, NP
 tree_desc	external/zlib/deflate.h	/^} FAR tree_desc;$/;"	t	typeref:struct:tree_desc_s
 tree_desc_s	external/zlib/deflate.h	/^typedef struct tree_desc_s {$/;"	s
 true	include/npk_conf.h	/^	#define true /;"	d
+ty	build/binding/npk_devPYTHON_wrap.c	/^  swig_type_info *ty;$/;"	m	struct:__anon2	file:
+ty	build/binding/npk_devPYTHON_wrap.c	/^  swig_type_info *ty;$/;"	m	struct:__anon3	file:
+type	build/binding/npk_devPYTHON_wrap.c	/^  int type;$/;"	m	struct:swig_const_info	file:
+type	build/binding/npk_devPYTHON_wrap.c	/^  swig_type_info         *type;			\/* pointer to type that is equivalent to this type *\/$/;"	m	struct:swig_cast_info	file:
+type_initial	build/binding/npk_devPYTHON_wrap.c	/^  swig_type_info         **type_initial;	\/* Array of initially generated type structures *\/$/;"	m	struct:swig_module_info	file:
+types	build/binding/npk_devPYTHON_wrap.c	/^  swig_type_info         **types;		\/* Array of pointers to swig_type_info structures that are in this module *\/$/;"	m	struct:swig_module_info	file:
 u4	external/zlib/crc32.c	/^           typedef unsigned short u4;$/;"	t	file:
 u4	external/zlib/crc32.c	/^         typedef unsigned long u4;$/;"	t	file:
 u4	external/zlib/crc32.c	/^       typedef unsigned int u4;$/;"	t	file:
@@ -1052,12 +1649,14 @@ updatewindow	external/zlib/inflate.c	/^local int updatewindow(strm, out)$/;"	f
 ush	external/zlib/zutil.h	/^typedef unsigned short ush;$/;"	t
 ushf	external/zlib/zutil.h	/^typedef ush FAR ushf;$/;"	t
 v	tool/cli/npk_cli.cpp	/^char				**v;	\/\/ argv$/;"	v
-val	external/zlib/inftrees.h	/^    unsigned short val;         \/* offset in table or code value *\/$/;"	m	struct:__anon6
+val	external/zlib/inftrees.h	/^    unsigned short val;         \/* offset in table or code value *\/$/;"	m	struct:__anon9
 valid_name	tool/cli/npk_cli.cpp	/^bool valid_name( NPK_CSTR name, NPK_CSTR pattern )$/;"	f
+vars	build/binding/npk_devPYTHON_wrap.c	/^    swig_globalvar *vars;$/;"	m	struct:swig_varlinkobject	file:
 verbose	external/zlib/zutil.c	/^#    define verbose /;"	d	file:
 verbose	tool/cli/npk_cli.cpp	/^bool verbose = false;$/;"	v
 version	tool/cli/npk_cli.cpp	/^void version()$/;"	f
 version_	include/npk_dev.h	/^	int					version_;			\/* Package version. *\/$/;"	m	struct:NPK_tagPACKAGEINFO
+version_info	build/binding/python/npk.py	/^from sys import version_info$/;"	i
 voidp	external/zlib/zconf.h	/^   typedef Byte       *voidp;$/;"	t
 voidp	external/zlib/zconf.h	/^   typedef void       *voidp;$/;"	t
 voidp	external/zlib/zconf.h	/^#  define voidp /;"	d

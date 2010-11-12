@@ -313,7 +313,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 		{	// just copy
 			size = eb->info_.size_;
 			buf = malloc( size );
-			npk_seek( pb->handle_, (long)eb->info_.offset_, SEEK_SET );
+			npk_seek( pb->handle_, (long)eb->info_.offset_+pb->offsetJump_, SEEK_SET );
 
 			if( ( res = npk_read( pb->handle_,
 							buf,

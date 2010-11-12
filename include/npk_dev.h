@@ -81,6 +81,8 @@ typedef struct NPK_DEV_API NPK_tagPACKAGEBODY
 #ifdef _WIN32
 	CRITICAL_SECTION	cs_;
 #endif
+	bool				usingFdopen_;
+	long				offsetJump_;
 } NPK_PACKAGEBODY, *NPK_LPPACKAGEBODY;
 #pragma pack(pop)
 
