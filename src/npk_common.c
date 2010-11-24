@@ -404,8 +404,6 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, NPK_CHAR* filename, long fil
 	long				entityheadersize = 0;
 	NPK_RESULT			res;
 
-
-	printf( "phase #1\n" );
 	// Read common header
 	res = npk_read( pb->handle_,
 					(void*)&pb->info_,
@@ -414,15 +412,12 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, NPK_CHAR* filename, long fil
 					NPK_PROCESSTYPE_PACKAGEHEADER,
 					g_callbackSize,
 					filename );
-	printf( "phase #1.1:%d\n", errno );
 	if( res != NPK_SUCCESS ) return res;
-	printf( "phase #1.5\n" );
 
 	if( strncmp( pb->info_.signature_, NPK_SIGNATURE, 4 ) != 0 )
 		if( strncmp( pb->info_.signature_, NPK_OLD_SIGNATURE, 4 ) != 0 )
 			return( npk_error( NPK_ERROR_NotValidPackage ) );
 
-	printf( "phase #2\n" );
 	// version 18 / read own tea key
 	if( pb->info_.version_ < NPK_VERSION_REFACTORING )
 	{
@@ -437,7 +432,6 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, NPK_CHAR* filename, long fil
 		memcpy( pb->teakey_, teakey, sizeof(NPK_TEAKEY) * 4 );
 	}
 
-	printf( "phase #3\n" );
 	// version 23 / package timestamp
 	if( pb->info_.version_ >= NPK_VERSION_PACKAGETIMESTAMP )
 	{
@@ -454,7 +448,6 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, NPK_CHAR* filename, long fil
 	entityCount = pb->info_.entityCount_;
 	pb->info_.entityCount_ = 0;
 
-	printf( "phase #4\n" );
 	if( pb->info_.version_ >= NPK_VERSION_SINGLEPACKHEADER )
 	{
 		if( filesize == 0 )
