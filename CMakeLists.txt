@@ -30,7 +30,7 @@ set( BUILD_PYTHON_BINDING ON
 	)
 
 add_subdirectory( src )
-add_subdirectory( binding )
+#add_subdirectory( binding )
 if( DEV_MODE )
 	add_subdirectory( tool )
 endif( DEV_MODE )
