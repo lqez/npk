@@ -393,7 +393,7 @@ NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )
 	return NPK_SUCCESS;
 }
 
-NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, NPK_CHAR* filename, long filesize, NPK_TEAKEY teakey[4] )
+NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, long filesize, NPK_TEAKEY teakey[4] )
 {
 	NPK_CHAR			buf[512];
 	NPK_ENTITYBODY*		eb = NULL;

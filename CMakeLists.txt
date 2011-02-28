@@ -25,7 +25,7 @@ set( BUILD_SHARED_LIBS OFF
 	CACHE BOOL "Build shared(dylib,so,dll) libraries."
 	)
 
-set( BUILD_PYTHON_BINDING ON
+set( BUILD_PYTHON_BINDING OFF
 	CACHE STRING "Build python binding (needed on npk gui tool, need swig)."
 	)
 
