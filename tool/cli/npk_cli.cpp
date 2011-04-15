@@ -1,7 +1,7 @@
 /*
 
 	npk - General-Purpose File Packing Library
-	Copyright (c) 2009-2010 Park Hyun woo(ez.amiryo@gmail.com)
+	Copyright (c) 2009-2011 Park Hyun woo(ez.amiryo@gmail.com)
 
 	npk command-line tool
 	
@@ -54,7 +54,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.7"
+#define toolversion "1.72"
 #define baseversion "v24"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
@@ -259,7 +259,7 @@ void version()
 {
 	cout << "npk command-line client, version " << toolversion << ".\n"
 		<< "Based on libnpk version " << baseversion << ".\n\n"
-		<< "Copyright (C) 2009-2010 Park Hyun woo(ez.amiryo@gmail.com)\n";
+		<< "Copyright (C) 2009-2011 Park Hyun woo(ez.amiryo@gmail.com)\n";
 }
 
 void info()
@@ -287,7 +287,7 @@ void help()
 			<< "    -list\n"
 			<< "    -sync\n"
 			<< "\n"
-			<< "You can also use one or more command at once.\n";
+			<< "You can also use multiple commands at once.\n";
 		info();
 	}
 	else
@@ -295,7 +295,7 @@ void help()
 		if(V(2,"add") || V(2,"-add") || V(2,"insert") || V(2,"-insert") )
 		{
 			cout << "add/insert: add files into the package as entities.\n"
-				<< "usage: npk <package> -add [FILE1[@ENTITY] FILE2...]\n"
+				<< "usage: npk <package> -add <FILE1[@ENTITY]> [FILE2] ...\n"
 				<< "       you can use wildcard pattern on filename.\n"
 				<< "\n"
 				<< "example:\n"
@@ -326,7 +326,7 @@ void help()
 		else if(V(2,"delete") || V(2,"-delete") || V(2,"remove") || V(2,"-remove") )
 		{
 			cout << "delete/remove: delete entities from the package.\n"
-				<< "usage: npk <package> -delete [ENTITY1 ENTITY2...]\n"
+				<< "usage: npk <package> -delete <ENTITY1> [ENTITY2] ...\n"
 				<< "       you can use wildcard pattern on ENTITY name.\n"
 				<< "\n"
 				<< "example:\n"
@@ -342,10 +342,10 @@ void help()
 		else if(V(2,"diff") || V(2,"-diff") )
 		{
 			cout << "diff: show differences between the package and local path.\n"
-				<< "usage: npk <package> -diff [PATH]\n"
+				<< "usage: npk <package> -diff <PATH>\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npk foo.npk -diff d:\\product\\release\n"
+				<< "    npk foo.npk -diff /home/users/lqez/bar\n"
 				<< "    npk foo.npk -diff d:\\foo --k 1:2:3:4\n"
 				<< "\n"
 				<< "options:\n"
@@ -355,14 +355,14 @@ void help()
 		else if(V(2,"export") || V(2,"-export") )
 		{
 			cout << "export: export entities into local files from the package.\n"
-				<< "usage: npk <package> -export [ENTITY1[@FILE] ENTITY2...]\n"
+				<< "usage: npk <package> -export <ENTITY1[@FILE]> [ENTITY2] ...\n"
 				<< "       you can use wildcard pattern on ENTITY name.\n"
 				<< "note: if entity name contains directory, \n"
 				<< "      npk will create subdirectories automatically.\n"
 				<< "\n"
 				<< "example:\n"
 				<< "    npk foo.npk -export *.jpg\n"
-				<< "    npk foo.npk -export johndoe@bar.jpg --v\n"
+				<< "    npk foo.npk -export bar.jpg@new_bar.jpg --v\n"
 				<< "    npk foo.npk -export bar.jpg qoo.jpg --k 1:2:3:4\n"
 				<< "\n"
 				<< "options:\n"
@@ -373,7 +373,7 @@ void help()
 		else if(V(2,"flag") || V(2,"-flag") )
 		{
 			cout << "flag: set flag(property) of entity in the package.\n"
-				<< "usage: npk <package> -flag [ENTITY1[@FLAG1[@FLAG2...]] ENTITY2...]\n"
+				<< "usage: npk <package> -flag <ENTITY1[@FLAG1][@FLAG2]...> [ENTITY2] ...\n"
 				<< "\n"
 				<< "flags:\n"
 				<< "    COMPRESS [C] : compress entity with zlib\n"
@@ -394,7 +394,6 @@ void help()
 		{
 			cout << "list/info: show package information and entity list.\n"
 				<< "usage: npk <package> -list [PATTERN]\n"
-				<< "usage: npk <package> -list\n"
 				<< "\n"
 				<< "example:\n"
 				<< "    npk foo.npk -list\n"
@@ -408,10 +407,10 @@ void help()
 		else if( V(2,"sync") || V(2,"-sync") || V(2,"update") || V(2,"-update") )
 		{
 			cout << "sync/update: synchronize the package with local files.\n"
-				<< "usage: npk <package> -sync [PATH]\n"
+				<< "usage: npk <package> -sync <PATH>\n"
 				<< "\n"
 				<< "example:\n"
-				<< "    npk foo.npk -sync c:\\product --k 1:2:3:4\n"
+				<< "    npk foo.npk -sync /home/users/lqez/bar --k 1:2:3:4\n"
 				<< "    npk foo.npk -sync c:\\product\\release --sa --sd\n"
 				<< "    npk foo.npk -sync c:\\product\\release --sa --ig *.tmp *.pdb\n"
 				<< "\n"
@@ -1170,8 +1169,8 @@ void listinfo()
 	cout << "       size "
 		 << "   original "
 		 << "flag "
-		 << "date       "
-		 << "time     "
+		 << "   date    "
+		 << "  time   "
 		 << "name" << "\n";
 	cout << _HR_;
 

@@ -1,5 +1,5 @@
 /* created by ez.amiryo@gmail.com */
-// dos-style wildcard comparator
+// msdos-like wildcard comparator
 bool b_strcmp( const char* s, const char* d, bool casesensitive = true )
 {
 	bool asterisk = false;

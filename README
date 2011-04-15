@@ -1,5 +1,7 @@
-npk - General-Purpose File Packing Library
-Copyright (c) 2009-2010 Park Hyun woo(ez.amiryo@gmail.com)
+libnpk - multi platform file packing library written in C
+npk - command line tool for creating & manipulating npk files
+
+Copyright (c) 2009-2011 Park Hyun woo(ez.amiryo@gmail.com)
 
 (*) tab size of npk source is 4.
 
