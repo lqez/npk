@@ -20,6 +20,7 @@ if( DEV_MODE )
 		${ITEMS}
 		npk_write.cpp
 		npk_durability.cpp
+		npk_export.cpp
 		)
 endif( DEV_MODE )
 
