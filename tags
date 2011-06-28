@@ -387,7 +387,8 @@ _NPK_ERROR_H_	include/npk_error.h	/^#define _NPK_ERROR_H_$/;"	d
 _NPK_H_	include/npk.h	/^#define _NPK_H_$/;"	d
 _PTRDIFF_T_DEFINED	external/zlib/zutil.h	/^#      define _PTRDIFF_T_DEFINED$/;"	d
 __TESTUTIL_H__	tests/testutil.h	/^#define __TESTUTIL_H__$/;"	d
-__npk_package_open	src/npk_common.c	/^NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, long filesize, NPK_TEAKEY teakey[4] )$/;"	f
+__npk_package_add_entity	src/npk_common.c	/^NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, bool check )$/;"	f
+__npk_package_open	src/npk.c	/^NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, long filesize, NPK_TEAKEY teakey[4] )$/;"	f
 _dist_code	external/zlib/trees.c	/^uch _dist_code[DIST_CODE_LEN];$/;"	v
 _dist_code	external/zlib/trees.h	/^const uch ZLIB_INTERNAL _dist_code[DIST_CODE_LEN] = {$/;"	v
 _dist_code	external/zlib/zconf.h	/^#  define _dist_code /;"	d
@@ -843,6 +844,7 @@ npk_entity_sub_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_sub_flag( NPK_ENTITY e
 npk_entity_write	src/npk_dev.c	/^NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )$/;"	f
 npk_error	src/npk_common.c	/^NPK_RESULT npk_error( NPK_RESULT res )$/;"	f
 npk_error_to_str	src/npk_common.c	/^NPK_STR npk_error_to_str( NPK_RESULT res )$/;"	f
+npk_export	tests/npk_export.cpp	/^int npk_export( int argc, char * argv [] )$/;"	f
 npk_filetime_to_unixtime	src/npk_common.c	/^void npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt )$/;"	f
 npk_flush	src/npk_dev.c	/^NPK_RESULT npk_flush( NPK_HANDLE handle )$/;"	f
 npk_get_filetime	src/npk_dev.c	/^NPK_RESULT npk_get_filetime( NPK_CSTR filename, NPK_TIME* pft )$/;"	f

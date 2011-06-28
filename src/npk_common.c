@@ -337,18 +337,20 @@ NPK_RESULT npk_package_init( NPK_PACKAGE package )
 	return NPK_SUCCESS;
 }
 
-NPK_RESULT npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity )
+NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, bool check )
 {
 	NPK_ENTITYBODY* eb = entity;
 	NPK_PACKAGEBODY* pb = package;
 
-	if( !entity )
-		return npk_error( NPK_ERROR_EntityIsNull );
-	if( !package )
-		return npk_error( NPK_ERROR_PackageIsNull );
-
-	if( npk_package_get_entity( package, eb->name_ ) != NULL )
-		return npk_error( NPK_ERROR_SameEntityExist );
+	if( check )
+	{
+		if( !entity )
+			return npk_error( NPK_ERROR_EntityIsNull );
+		if( !package )
+			return npk_error( NPK_ERROR_PackageIsNull );
+		if( npk_package_get_entity( package, eb->name_ ) != NULL )
+			return npk_error( NPK_ERROR_SameEntityExist );
+	}
 
 	pb->pEntityLatest_ = entity;
 	eb->owner_ = pb;
@@ -367,6 +369,11 @@ NPK_RESULT npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity )
 	++pb->info_.entityCount_;
 
 	return NPK_SUCCESS;
+}
+
+NPK_RESULT npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity )
+{
+	return __npk_package_add_entity( package, entity, true );
 }
 
 NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )

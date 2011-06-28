@@ -475,7 +475,7 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
 			memcpy( eb->name_, pos, eb->info_.nameLength_ );
 			pos += eb->info_.nameLength_;
 
-			npk_package_add_entity( pb, eb );
+			__npk_package_add_entity( pb, eb, false );
 		}
 		NPK_SAFE_FREE( entityheaderbuf );
 	}
@@ -553,7 +553,7 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
 			if( res != NPK_SUCCESS )
 				goto __npk_package_open_return_res_with_free;
 
-			npk_package_add_entity( pb, eb );
+			__npk_package_add_entity( pb, eb, false );
 		}
 	}
 	return NPK_SUCCESS;
