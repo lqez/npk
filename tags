@@ -156,6 +156,7 @@ NPK_ACCESSTYPE_WRITE	include/npk_base.h	/^#define NPK_ACCESSTYPE_WRITE	/;"	d
 NPK_API	include/npk_conf.h	/^			#define NPK_API /;"	d
 NPK_API	include/npk_conf.h	/^		#define NPK_API$/;"	d
 NPK_API	include/npk_conf.h	/^	#define NPK_API$/;"	d
+NPK_BUCKET	include/npk_dev.h	/^} NPK_BUCKET, *NPK_LPBUCKET;$/;"	t	typeref:struct:NPK_tagBUCKET
 NPK_BYTE	include/npk_base.h	/^typedef char							NPK_BYTE;$/;"	t
 NPK_CALLBACK	include/npk_base.h	/^typedef	int( *NPK_CALLBACK )(	int accessType,$/;"	t
 NPK_CHAR	include/npk_base.h	/^typedef char							NPK_CHAR;$/;"	t
@@ -217,6 +218,9 @@ NPK_ERROR_SourceStringisNull	include/npk_error.h	/^#define NPK_ERROR_SourceStrin
 NPK_ERROR_ZeroFileSize	include/npk_error.h	/^#define	NPK_ERROR_ZeroFileSize	/;"	d
 NPK_FLAG	include/npk_base.h	/^typedef unsigned int					NPK_FLAG;$/;"	t
 NPK_HANDLE	include/npk_base.h	/^typedef int								NPK_HANDLE;$/;"	t
+NPK_HASHKEY	include/npk_base.h	/^typedef unsigned int					NPK_HASHKEY;$/;"	t
+NPK_HASH_BUCKETS	include/npk_base.h	/^#define NPK_HASH_BUCKETS	/;"	d
+NPK_LPBUCKET	include/npk_dev.h	/^} NPK_BUCKET, *NPK_LPBUCKET;$/;"	t	typeref:struct:NPK_tagBUCKET
 NPK_LPENTITYBODY	include/npk_dev.h	/^} NPK_ENTITYBODY, *NPK_LPENTITYBODY;$/;"	t	typeref:struct:NPK_tagENTITYBODY
 NPK_LPENTITYINFO	include/npk_dev.h	/^} NPK_ENTITYINFO, *NPK_LPENTITYINFO;$/;"	t	typeref:struct:NPK_tagENTITYINFO
 NPK_LPENTITYINFO_V21	include/npk_dev.h	/^} NPK_ENTITYINFO_V21, *NPK_LPENTITYINFO_V21;$/;"	t	typeref:struct:NPK_tagENTITYINFO_V21
@@ -255,6 +259,7 @@ NPK_VERSION_PACKAGETIMESTAMP	include/npk_base.h	/^#define NPK_VERSION_PACKAGETIM
 NPK_VERSION_REFACTORING	include/npk_base.h	/^#define NPK_VERSION_REFACTORING	/;"	d
 NPK_VERSION_SINGLEPACKHEADER	include/npk_base.h	/^#define NPK_VERSION_SINGLEPACKHEADER	/;"	d
 NPK_VERSION_UNIXTIMESUPPORT	include/npk_base.h	/^#define NPK_VERSION_UNIXTIMESUPPORT	/;"	d
+NPK_tagBUCKET	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagBUCKET$/;"	s
 NPK_tagENTITYBODY	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagENTITYBODY$/;"	s
 NPK_tagENTITYINFO	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagENTITYINFO$/;"	s
 NPK_tagENTITYINFO_V21	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagENTITYINFO_V21$/;"	s
@@ -449,6 +454,7 @@ block_done	external/zlib/deflate.c	/^    block_done,     \/* block flush perform
 block_start	external/zlib/deflate.h	/^    long block_start;$/;"	m	struct:internal_state
 block_state	external/zlib/deflate.c	/^} block_state;$/;"	t	typeref:enum:__anon1	file:
 bool	include/npk_conf.h	/^	#define bool /;"	d
+bucket_	include/npk_dev.h	/^	NPK_LPBUCKET		bucket_[NPK_HASH_BUCKETS];$/;"	m	struct:NPK_tagPACKAGEBODY
 build_bl_tree	external/zlib/trees.c	/^local int build_bl_tree(s)$/;"	f
 build_tree	external/zlib/trees.c	/^local void build_tree(s, desc)$/;"	f
 c	tool/cli/npk_cli.cpp	/^int					c;		\/\/ argc$/;"	v
@@ -810,6 +816,7 @@ need_more	external/zlib/deflate.c	/^    need_more,      \/* block not completed,
 new_ptr	external/zlib/zutil.c	/^    voidpf new_ptr;$/;"	m	struct:ptr_table_s	file:
 newflag_	include/npk_dev.h	/^	NPK_FLAG			newflag_;			\/* New entity flags *\/$/;"	m	struct:NPK_tagENTITYBODY
 next	external/zlib/inflate.h	/^    code FAR *next;             \/* next available space in codes[] *\/$/;"	m	struct:inflate_state
+nextInBucket_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	nextInBucket_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
 next_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	next_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
 next_in	external/zlib/zlib.h	/^    Bytef    *next_in;  \/* next input byte *\/$/;"	m	struct:z_stream_s
 next_out	external/zlib/zlib.h	/^    Bytef    *next_out; \/* next output byte should be put there *\/$/;"	m	struct:z_stream_s
@@ -847,18 +854,20 @@ npk_error_to_str	src/npk_common.c	/^NPK_STR npk_error_to_str( NPK_RESULT res )$/
 npk_export	tests/npk_export.cpp	/^int npk_export( int argc, char * argv [] )$/;"	f
 npk_filetime_to_unixtime	src/npk_common.c	/^void npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt )$/;"	f
 npk_flush	src/npk_dev.c	/^NPK_RESULT npk_flush( NPK_HANDLE handle )$/;"	f
+npk_get_bucket	src/npk_common.c	/^NPK_HASHKEY npk_get_bucket( NPK_CSTR name )$/;"	f
 npk_get_filetime	src/npk_dev.c	/^NPK_RESULT npk_get_filetime( NPK_CSTR filename, NPK_TIME* pft )$/;"	f
+npk_hash	tests/npk_hash.cpp	/^int npk_hash( int argc, char * argv [] )$/;"	f
 npk_log	src/npk_dev.c	/^void npk_log( NPK_CSTR format, ... )$/;"	f
 npk_open	src/npk_common.c	/^NPK_RESULT npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist )$/;"	f
 npk_open	tests/npk_open.cpp	/^int npk_open( int argc, char * argv [] )$/;"	f
 npk_package_add_entity	src/npk_common.c	/^NPK_RESULT npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity )$/;"	f
 npk_package_add_file	src/npk_dev.c	/^NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CSTR entityname, NPK_ENTITY* lpEntity )$/;"	f
+npk_package_alloc	src/npk_common.c	/^NPK_RESULT npk_package_alloc( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )$/;"	f
 npk_package_clear	src/npk_dev.c	/^NPK_RESULT npk_package_clear( NPK_PACKAGE package )$/;"	f
 npk_package_close	src/npk.c	/^bool npk_package_close( NPK_PACKAGE package )$/;"	f
 npk_package_get_entity	src/npk.c	/^NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )$/;"	f
 npk_package_get_first_entity	src/npk.c	/^NPK_ENTITY npk_package_get_first_entity( NPK_PACKAGE package )$/;"	f
 npk_package_init	src/npk_common.c	/^NPK_RESULT npk_package_init( NPK_PACKAGE package )$/;"	f
-npk_package_new	src/npk_dev.c	/^NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )$/;"	f
 npk_package_open	src/npk.c	/^NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )$/;"	f
 npk_package_open_with_fd	src/npk.c	/^NPK_PACKAGE	npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] )$/;"	f
 npk_package_remove_all_entity	src/npk_common.c	/^NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )$/;"	f
@@ -890,8 +899,10 @@ out_func	external/zlib/zconf.h	/^#  define out_func /;"	d
 out_func	external/zlib/zlib.h	/^typedef int (*out_func) OF((void FAR *, unsigned char FAR *, unsigned));$/;"	t
 output	tool/cli/npk_cli.cpp	/^char* output = NULL;$/;"	v
 owner_	include/npk_dev.h	/^	NPK_PACKAGE			owner_;$/;"	m	struct:NPK_tagENTITYBODY
+pEntityHead_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityHead_;$/;"	m	struct:NPK_tagBUCKET
 pEntityHead_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityHead_;$/;"	m	struct:NPK_tagPACKAGEBODY
 pEntityLatest_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityLatest_;$/;"	m	struct:NPK_tagPACKAGEBODY
+pEntityTail_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityTail_;$/;"	m	struct:NPK_tagBUCKET
 pEntityTail_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityTail_;$/;"	m	struct:NPK_tagPACKAGEBODY
 package	tool/cli/npk_cli.cpp	/^NPK_PACKAGE package = NULL;$/;"	v
 pending	external/zlib/deflate.h	/^    uInt   pending;      \/* nb of bytes in the pending buffer *\/$/;"	m	struct:internal_state
@@ -901,6 +912,7 @@ pending_out	external/zlib/deflate.h	/^    Bytef *pending_out;  \/* next pending 
 pqdownheap	external/zlib/trees.c	/^local void pqdownheap(s, tree, k)$/;"	f
 pqremove	external/zlib/trees.c	/^#define pqremove(/;"	d	file:
 prev	external/zlib/deflate.h	/^    Posf *prev;$/;"	m	struct:internal_state
+prevInBucket_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	prevInBucket_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
 prev_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	prev_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
 prev_length	external/zlib/deflate.h	/^    uInt prev_length;$/;"	m	struct:internal_state
 prev_match	external/zlib/deflate.h	/^    IPos prev_match;             \/* previous match *\/$/;"	m	struct:internal_state
@@ -998,6 +1010,7 @@ updatewindow	external/zlib/inflate.c	/^local int updatewindow(strm, out)$/;"	f
 ush	external/zlib/zutil.h	/^typedef unsigned short ush;$/;"	t
 ushf	external/zlib/zutil.h	/^typedef ush FAR ushf;$/;"	t
 usingFdopen_	include/npk_dev.h	/^	bool				usingFdopen_;$/;"	m	struct:NPK_tagPACKAGEBODY
+usingHashmap_	include/npk_dev.h	/^	bool				usingHashmap_;$/;"	m	struct:NPK_tagPACKAGEBODY
 v	tool/cli/npk_cli.cpp	/^char				**v;	\/\/ argv$/;"	v
 val	external/zlib/inftrees.h	/^    unsigned short val;         \/* offset in table or code value *\/$/;"	m	struct:__anon5
 valid_name	tool/cli/npk_cli.cpp	/^bool valid_name( NPK_CSTR name, NPK_CSTR pattern )$/;"	f

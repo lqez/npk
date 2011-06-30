@@ -32,6 +32,206 @@ int				g_useCriticalSection = 0;
 NPK_CALLBACK	g_callbackfp;
 NPK_SIZE		g_callbackSize;
 
+NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, bool check );
+NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, long filesize, NPK_TEAKEY teakey[4] )
+{
+	NPK_CHAR			buf[512];
+	NPK_ENTITYBODY*		eb = NULL;
+	NPK_ENTITYINFO_V21	oldinfo;
+	NPK_SIZE			entityCount	= 0;
+	NPK_CHAR*			entityheaderbuf;
+	NPK_CHAR*			pos;
+	long				entityheadersize = 0;
+	NPK_RESULT			res;
+
+	// Read common header
+	res = npk_read( pb->handle_,
+					(void*)&pb->info_,
+					sizeof(NPK_PACKAGEINFO),
+					g_callbackfp,
+					NPK_PROCESSTYPE_PACKAGEHEADER,
+					g_callbackSize,
+					filename );
+	if( res != NPK_SUCCESS ) return res;
+
+	if( strncmp( pb->info_.signature_, NPK_SIGNATURE, 4 ) != 0 )
+		if( strncmp( pb->info_.signature_, NPK_OLD_SIGNATURE, 4 ) != 0 )
+			return( npk_error( NPK_ERROR_NotValidPackage ) );
+
+	// version 18 / read own tea key
+	if( pb->info_.version_ < NPK_VERSION_REFACTORING )
+	{
+		return ( npk_error( NPK_ERROR_NotSupportedVersion ) );
+	}
+	else
+	{
+		if( teakey == NULL )
+		{
+			return ( npk_error( NPK_ERROR_NeedSpecifiedTeaKey ) );
+		}
+		memcpy( pb->teakey_, teakey, sizeof(NPK_TEAKEY) * 4 );
+	}
+
+	// version 23 / package timestamp
+	if( pb->info_.version_ >= NPK_VERSION_PACKAGETIMESTAMP )
+	{
+		res = npk_read( pb->handle_,
+						(void*)&pb->modified_,
+						sizeof(NPK_TIME),
+						g_callbackfp,
+						NPK_PROCESSTYPE_PACKAGEHEADER,
+						g_callbackSize,
+						filename );
+		if( res != NPK_SUCCESS ) return res;
+	}
+
+	entityCount = pb->info_.entityCount_;
+	pb->info_.entityCount_ = 0;
+
+	if( pb->info_.version_ >= NPK_VERSION_SINGLEPACKHEADER )
+	{
+		if( filesize == 0 )
+			filesize = npk_seek( pb->handle_, 0, SEEK_END );
+		entityheadersize = filesize - (long)pb->info_.entityInfoOffset_;
+		npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_+pb->offsetJump_, SEEK_SET );
+
+		entityheaderbuf = malloc( entityheadersize );
+		if( !entityheaderbuf )
+		{
+			return( npk_error( NPK_ERROR_NotEnoughMemory ) );
+		}
+
+		res = npk_read_encrypt( teakey,
+								pb->handle_,
+								(void*)entityheaderbuf,
+								entityheadersize,
+								g_callbackfp,
+								NPK_PROCESSTYPE_ENTITYHEADER,
+								g_callbackSize,
+								filename );
+		if( res != NPK_SUCCESS ) return res;
+
+		pos = entityheaderbuf;
+		
+		while( entityCount > 0 )
+		{
+			--entityCount;
+
+			res = npk_entity_alloc( (NPK_ENTITY*)&eb );
+			if(	res != NPK_SUCCESS )
+				goto __npk_package_open_return_res_with_free;
+
+			eb->owner_ = pb;
+			memcpy( &eb->info_, pos, sizeof(NPK_ENTITYINFO) );
+			pos += sizeof(NPK_ENTITYINFO);
+
+			if( eb->info_.offset_ >= pb->info_.entityInfoOffset_ )
+			{
+				res = npk_error( NPK_ERROR_InvalidTeaKey );
+				goto __npk_package_open_return_res_with_free;
+			}
+
+			eb->newflag_ = eb->info_.flag_;
+			eb->name_ = malloc( sizeof(NPK_CHAR)*(eb->info_.nameLength_+1) );
+			if( !eb->name_ )
+			{
+				res = npk_error( NPK_ERROR_NotEnoughMemory );
+				goto __npk_package_open_return_res_with_free;
+			}
+			eb->name_[eb->info_.nameLength_] = '\0';
+			memcpy( eb->name_, pos, eb->info_.nameLength_ );
+			pos += eb->info_.nameLength_;
+
+			__npk_package_add_entity( pb, eb, false );
+		}
+		NPK_SAFE_FREE( entityheaderbuf );
+	}
+	else	// old style entity header
+	{
+		npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_+pb->offsetJump_, SEEK_SET );
+		while( entityCount > 0 )
+		{
+			--entityCount;
+
+			res = npk_entity_alloc( (NPK_ENTITY*)&eb );
+			if(	res != NPK_SUCCESS )
+				goto __npk_package_open_return_res_with_free;
+
+			eb->owner_ = pb;
+
+			// read entity info
+			if( pb->info_.version_ < NPK_VERSION_UNIXTIMESUPPORT )
+			{
+				res = npk_read_encrypt( teakey,
+										pb->handle_,
+										(void*)&oldinfo,
+										sizeof(NPK_ENTITYINFO),
+										g_callbackfp,
+										NPK_PROCESSTYPE_ENTITYHEADER,
+										g_callbackSize,
+										filename );
+				if( res != NPK_SUCCESS )
+					goto __npk_package_open_return_res_with_free;
+
+				eb->info_.offset_ = oldinfo.offset_;
+				eb->info_.size_ = oldinfo.size_;
+				eb->info_.originalSize_ = oldinfo.originalSize_;
+				eb->info_.flag_ = oldinfo.flag_;
+				npk_filetime_to_unixtime( &oldinfo.modified_, &eb->info_.modified_ );
+				eb->info_.nameLength_ = oldinfo.nameLength_;
+			}
+			else
+			{
+				res = npk_read_encrypt( teakey,
+										pb->handle_,
+										(void*)&eb->info_,
+										sizeof(NPK_ENTITYINFO),
+										g_callbackfp,
+										NPK_PROCESSTYPE_ENTITYHEADER,
+										g_callbackSize,
+										filename );
+				if( res != NPK_SUCCESS )
+					goto __npk_package_open_return_res_with_free;
+			}
+
+			if( eb->info_.offset_ >= pb->info_.entityInfoOffset_ )
+			{
+				res = npk_error( NPK_ERROR_InvalidTeaKey );
+				goto __npk_package_open_return_res_with_free;
+			}
+
+			
+			res = npk_read_encrypt( teakey,
+									pb->handle_,
+									(void*)buf,
+									sizeof(char) * eb->info_.nameLength_,
+									g_callbackfp,
+									NPK_PROCESSTYPE_ENTITYHEADER,
+									g_callbackSize,
+									filename );
+			if( res != NPK_SUCCESS )
+				goto __npk_package_open_return_res_with_free;
+
+			eb->newflag_ = eb->info_.flag_;
+
+			// copy name into entity body
+			buf[eb->info_.nameLength_] = '\0';
+			res = npk_alloc_copy_string( &eb->name_, buf );
+			if( res != NPK_SUCCESS )
+				goto __npk_package_open_return_res_with_free;
+
+			__npk_package_add_entity( pb, eb, false );
+		}
+	}
+	return NPK_SUCCESS;
+
+__npk_package_open_return_res_with_free:
+
+	NPK_SAFE_FREE( eb );
+	return res;
+}
+
+
 NPK_PACKAGE	npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] )
 {
 	NPK_PACKAGEBODY*	pb = NULL;
@@ -130,7 +330,6 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
 	NPK_ENTITYBODY* eb = NULL;
 	NPK_PACKAGEBODY* pb = package;
 	NPK_BUCKET* bucket = NULL;
-	int bno = -1;
 
 	if( !package )
 	{
@@ -381,203 +580,5 @@ NPK_ENTITY npk_entity_next( NPK_ENTITY entity )
 	}
 
 	return eb->next_;
-}
-
-NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, long filesize, NPK_TEAKEY teakey[4] )
-{
-	NPK_CHAR			buf[512];
-	NPK_ENTITYBODY*		eb = NULL;
-	NPK_ENTITYINFO_V21	oldinfo;
-	NPK_SIZE			entityCount	= 0;
-	NPK_CHAR*			entityheaderbuf;
-	NPK_CHAR*			pos;
-	long				entityheadersize = 0;
-	NPK_RESULT			res;
-
-	// Read common header
-	res = npk_read( pb->handle_,
-					(void*)&pb->info_,
-					sizeof(NPK_PACKAGEINFO),
-					g_callbackfp,
-					NPK_PROCESSTYPE_PACKAGEHEADER,
-					g_callbackSize,
-					filename );
-	if( res != NPK_SUCCESS ) return res;
-
-	if( strncmp( pb->info_.signature_, NPK_SIGNATURE, 4 ) != 0 )
-		if( strncmp( pb->info_.signature_, NPK_OLD_SIGNATURE, 4 ) != 0 )
-			return( npk_error( NPK_ERROR_NotValidPackage ) );
-
-	// version 18 / read own tea key
-	if( pb->info_.version_ < NPK_VERSION_REFACTORING )
-	{
-		return ( npk_error( NPK_ERROR_NotSupportedVersion ) );
-	}
-	else
-	{
-		if( teakey == NULL )
-		{
-			return ( npk_error( NPK_ERROR_NeedSpecifiedTeaKey ) );
-		}
-		memcpy( pb->teakey_, teakey, sizeof(NPK_TEAKEY) * 4 );
-	}
-
-	// version 23 / package timestamp
-	if( pb->info_.version_ >= NPK_VERSION_PACKAGETIMESTAMP )
-	{
-		res = npk_read( pb->handle_,
-						(void*)&pb->modified_,
-						sizeof(NPK_TIME),
-						g_callbackfp,
-						NPK_PROCESSTYPE_PACKAGEHEADER,
-						g_callbackSize,
-						filename );
-		if( res != NPK_SUCCESS ) return res;
-	}
-
-	entityCount = pb->info_.entityCount_;
-	pb->info_.entityCount_ = 0;
-
-	if( pb->info_.version_ >= NPK_VERSION_SINGLEPACKHEADER )
-	{
-		if( filesize == 0 )
-			filesize = npk_seek( pb->handle_, 0, SEEK_END );
-		entityheadersize = filesize - (long)pb->info_.entityInfoOffset_;
-		npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_+pb->offsetJump_, SEEK_SET );
-
-		entityheaderbuf = malloc( entityheadersize );
-		if( !entityheaderbuf )
-		{
-			return( npk_error( NPK_ERROR_NotEnoughMemory ) );
-		}
-
-		res = npk_read_encrypt( teakey,
-								pb->handle_,
-								(void*)entityheaderbuf,
-								entityheadersize,
-								g_callbackfp,
-								NPK_PROCESSTYPE_ENTITYHEADER,
-								g_callbackSize,
-								filename );
-		if( res != NPK_SUCCESS ) return res;
-
-		pos = entityheaderbuf;
-		
-		while( entityCount > 0 )
-		{
-			--entityCount;
-
-			res = npk_entity_alloc( (NPK_ENTITY*)&eb );
-			if(	res != NPK_SUCCESS )
-				goto __npk_package_open_return_res_with_free;
-
-			eb->owner_ = pb;
-			memcpy( &eb->info_, pos, sizeof(NPK_ENTITYINFO) );
-			pos += sizeof(NPK_ENTITYINFO);
-
-			if( eb->info_.offset_ >= pb->info_.entityInfoOffset_ )
-			{
-				res = npk_error( NPK_ERROR_InvalidTeaKey );
-				goto __npk_package_open_return_res_with_free;
-			}
-
-			eb->newflag_ = eb->info_.flag_;
-			eb->name_ = malloc( sizeof(NPK_CHAR)*(eb->info_.nameLength_+1) );
-			if( !eb->name_ )
-			{
-				res = npk_error( NPK_ERROR_NotEnoughMemory );
-				goto __npk_package_open_return_res_with_free;
-			}
-			eb->name_[eb->info_.nameLength_] = '\0';
-			memcpy( eb->name_, pos, eb->info_.nameLength_ );
-			pos += eb->info_.nameLength_;
-
-			__npk_package_add_entity( pb, eb, false );
-		}
-		NPK_SAFE_FREE( entityheaderbuf );
-	}
-	else	// old style entity header
-	{
-		npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_+pb->offsetJump_, SEEK_SET );
-		while( entityCount > 0 )
-		{
-			--entityCount;
-
-			res = npk_entity_alloc( (NPK_ENTITY*)&eb );
-			if(	res != NPK_SUCCESS )
-				goto __npk_package_open_return_res_with_free;
-
-			eb->owner_ = pb;
-
-			// read entity info
-			if( pb->info_.version_ < NPK_VERSION_UNIXTIMESUPPORT )
-			{
-				res = npk_read_encrypt( teakey,
-										pb->handle_,
-										(void*)&oldinfo,
-										sizeof(NPK_ENTITYINFO),
-										g_callbackfp,
-										NPK_PROCESSTYPE_ENTITYHEADER,
-										g_callbackSize,
-										filename );
-				if( res != NPK_SUCCESS )
-					goto __npk_package_open_return_res_with_free;
-
-				eb->info_.offset_ = oldinfo.offset_;
-				eb->info_.size_ = oldinfo.size_;
-				eb->info_.originalSize_ = oldinfo.originalSize_;
-				eb->info_.flag_ = oldinfo.flag_;
-				npk_filetime_to_unixtime( &oldinfo.modified_, &eb->info_.modified_ );
-				eb->info_.nameLength_ = oldinfo.nameLength_;
-			}
-			else
-			{
-				res = npk_read_encrypt( teakey,
-										pb->handle_,
-										(void*)&eb->info_,
-										sizeof(NPK_ENTITYINFO),
-										g_callbackfp,
-										NPK_PROCESSTYPE_ENTITYHEADER,
-										g_callbackSize,
-										filename );
-				if( res != NPK_SUCCESS )
-					goto __npk_package_open_return_res_with_free;
-			}
-
-			if( eb->info_.offset_ >= pb->info_.entityInfoOffset_ )
-			{
-				res = npk_error( NPK_ERROR_InvalidTeaKey );
-				goto __npk_package_open_return_res_with_free;
-			}
-
-			
-			res = npk_read_encrypt( teakey,
-									pb->handle_,
-									(void*)buf,
-									sizeof(char) * eb->info_.nameLength_,
-									g_callbackfp,
-									NPK_PROCESSTYPE_ENTITYHEADER,
-									g_callbackSize,
-									filename );
-			if( res != NPK_SUCCESS )
-				goto __npk_package_open_return_res_with_free;
-
-			eb->newflag_ = eb->info_.flag_;
-
-			// copy name into entity body
-			buf[eb->info_.nameLength_] = '\0';
-			res = npk_alloc_copy_string( &eb->name_, buf );
-			if( res != NPK_SUCCESS )
-				goto __npk_package_open_return_res_with_free;
-
-			__npk_package_add_entity( pb, eb, false );
-		}
-	}
-	return NPK_SUCCESS;
-
-__npk_package_open_return_res_with_free:
-
-	NPK_SAFE_FREE( eb );
-	return res;
 }
 
