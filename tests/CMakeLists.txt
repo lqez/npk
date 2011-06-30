@@ -21,6 +21,7 @@ if( DEV_MODE )
 		npk_write.cpp
 		npk_durability.cpp
 		npk_export.cpp
+		npk_hash.cpp
 		)
 endif( DEV_MODE )
 

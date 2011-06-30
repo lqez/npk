@@ -315,6 +315,7 @@ NPK_RESULT npk_entity_init( NPK_ENTITY entity )
 NPK_RESULT npk_package_init( NPK_PACKAGE package )
 {
 	NPK_PACKAGEBODY* pb = package;
+	int i = 0;
 
 	if( !package )
 		return npk_error( NPK_ERROR_PackageIsNull );
@@ -332,6 +333,13 @@ NPK_RESULT npk_package_init( NPK_PACKAGE package )
 	InitializeCriticalSection( &pb->cs_ );
 #endif
 
+	for( i = 0; i < NPK_HASH_BUCKETS; ++i )
+	{
+		pb->bucket_[i]->pEntityHead_ = NULL;
+		pb->bucket_[i]->pEntityTail_ = NULL;
+	}
+
+	pb->usingHashmap_			= false;
 	pb->usingFdopen_			= false;
 	pb->offsetJump_				= 0;
 	return NPK_SUCCESS;
@@ -341,6 +349,7 @@ NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, boo
 {
 	NPK_ENTITYBODY* eb = entity;
 	NPK_PACKAGEBODY* pb = package;
+	NPK_BUCKET* bucket = NULL;
 
 	if( check )
 	{
@@ -354,6 +363,7 @@ NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, boo
 
 	pb->pEntityLatest_ = entity;
 	eb->owner_ = pb;
+	bucket = pb->bucket_[npk_get_bucket(eb->name_)];
 
 	if( pb->pEntityHead_ == NULL )
 	{
@@ -366,7 +376,23 @@ NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, boo
 		eb->prev_ = pb->pEntityTail_;
 		pb->pEntityTail_ = eb;
 	}
+
+	if( bucket->pEntityHead_ == NULL )
+	{
+		bucket->pEntityHead_ = eb;
+		bucket->pEntityTail_ = eb;
+	}
+	else
+	{
+		bucket->pEntityTail_->nextInBucket_ = eb;
+		eb->prevInBucket_ = bucket->pEntityTail_;
+		bucket->pEntityTail_ = eb;
+	}
+
 	++pb->info_.entityCount_;
+
+	if( ++pb->info_.entityCount_ >= NPK_HASH_BUCKETS )
+		pb->usingHashmap_ = true;
 
 	return NPK_SUCCESS;
 }

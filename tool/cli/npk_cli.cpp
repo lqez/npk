@@ -746,7 +746,7 @@ void add()
 
 void create()
 {
-	if( npk_package_new( &package, k ) != NPK_SUCCESS )
+	if( npk_package_alloc( &package, k ) != NPK_SUCCESS )
 		error_n_exit();
 	if( npk_package_save( package, v[1], forceoverwrite ) != NPK_SUCCESS )
 		error_n_exit();

@@ -33,6 +33,8 @@
 
 #ifdef NPK_DEV
 
+#define MOD_ADLER 65521
+
 bool		g_use_gluetime;
 NPK_TIME	g_gluetime;
 
@@ -107,6 +109,30 @@ void npk_disable_gluetime()
 	g_use_gluetime = false;
 }
 
+/* adler32 algorithm from http://en.wikipedia.org/wiki/Adler-32 */
+NPK_HASHKEY npk_get_bucket( NPK_CSTR name )
+{
+    NPK_HASHKEY a = 1, b = 0;
+
+	while( *name )
+    {
+        a = (a + *name) % MOD_ADLER;
+        b = (b + a) % MOD_ADLER;
+		++name;
+    }
+    return ( (b << 16) | a ) % NPK_HASH_BUCKETS;
+}
+
+/*
+NPK_HASHKEY npk_get_bucket( NPK_CSTR name )
+{
+	NPK_HASHKEY total = 0;
+	while( *name ) {
+		total += *name++;
+	}
+	return( total % NPK_HASH_BUCKETS );
+}
+*/
 
 NPK_RESULT npk_flush( NPK_HANDLE handle )
 {
@@ -118,7 +144,6 @@ NPK_RESULT npk_flush( NPK_HANDLE handle )
 	fsync( handle );
 #endif
 	}
-
 	return NPK_SUCCESS;
 }
 
@@ -447,10 +472,11 @@ NPK_RESULT npk_package_clear( NPK_PACKAGE package )
 	return NPK_SUCCESS;
 }
 
-NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )
+NPK_RESULT npk_package_alloc( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )
 {
 	NPK_PACKAGEBODY* pb;
 	NPK_RESULT res;
+	int i;
 
 	if( teakey == NULL )
 		return npk_error( NPK_ERROR_NeedSpecifiedTeaKey );
@@ -459,6 +485,13 @@ NPK_RESULT npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )
 
 	if( !pb )
 		return npk_error( NPK_ERROR_NotEnoughMemory );
+
+	for( i = 0; i < NPK_HASH_BUCKETS; ++i )
+	{
+		pb->bucket_[i] = malloc( sizeof(NPK_BUCKET) );
+		if( !pb->bucket_[i] )
+			return npk_error( NPK_ERROR_NotEnoughMemory );
+	}
 
 	if( ( res = npk_package_init( pb ) ) != NPK_SUCCESS )
 	{

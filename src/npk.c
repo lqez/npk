@@ -37,13 +37,9 @@ NPK_PACKAGE	npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long s
 	NPK_PACKAGEBODY*	pb = NULL;
 	NPK_RESULT			res;
 
-	pb = malloc( sizeof(NPK_PACKAGEBODY) );
-
-	if( !pb )
-	{
-		npk_error( NPK_ERROR_NotEnoughMemory );
-		goto npk_package_open_return_null_with_free;
-	}
+	res = npk_package_alloc( (NPK_PACKAGE*)&pb, teakey );
+	if( res != NPK_SUCCESS )
+		return NULL;
 
 	if( npk_package_init( pb ) != NPK_SUCCESS )
 		goto npk_package_open_return_null_with_free;
@@ -74,13 +70,9 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )
 	NPK_PACKAGEBODY*	pb = NULL;
 	NPK_RESULT			res;
 
-	pb = malloc( sizeof(NPK_PACKAGEBODY) );
-
-	if( !pb )
-	{
-		npk_error( NPK_ERROR_NotEnoughMemory );
-		goto npk_package_open_return_null_with_free;
-	}
+	res = npk_package_alloc( (NPK_PACKAGE*)&pb, teakey );
+	if( res != NPK_SUCCESS )
+		return NULL;
 
 	if( npk_package_init( pb ) != NPK_SUCCESS )
 		goto npk_package_open_return_null_with_free;
@@ -107,6 +99,7 @@ bool npk_package_close( NPK_PACKAGE package )
 {
 	NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
 	NPK_RESULT res;
+	int i;
 
 	if( !package )
 	{
@@ -125,6 +118,9 @@ bool npk_package_close( NPK_PACKAGE package )
 	if( false == pb->usingFdopen_ )
 		npk_close( pb->handle_ );
 
+	for( i = 0; i < NPK_HASH_BUCKETS; ++i )
+		NPK_SAFE_FREE( pb->bucket_[i] );
+
 	NPK_SAFE_FREE( pb );
 	return true;
 }
@@ -133,6 +129,8 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
 {
 	NPK_ENTITYBODY* eb = NULL;
 	NPK_PACKAGEBODY* pb = package;
+	NPK_BUCKET* bucket = NULL;
+	int bno = -1;
 
 	if( !package )
 	{
@@ -140,25 +138,44 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
 		return NULL;
 	}
 
-	eb = pb->pEntityHead_;
-	if( eb == NULL )
+	if( pb->usingHashmap_ )
 	{
-		/* This is not an error. Package is just empty.*/
-		return NULL;
-	}
-
-	while( eb != NULL )
-	{
-#ifdef NPK_CASESENSITIVE
-		if( strcmp( eb->name_, entityname ) == 0 )
-#else
-		if( stricmp( eb->name_, entityname ) == 0 )
-#endif
+		bucket = pb->bucket_[npk_get_bucket(entityname)];
+		if( bucket != NULL )
 		{
-			pb->pEntityLatest_ = eb;
-			return eb;
+			eb = bucket->pEntityHead_;
+			while( eb != NULL )
+			{
+#ifdef NPK_CASESENSITIVE
+				if( strcmp( eb->name_, entityname ) == 0 )
+#else
+				if( stricmp( eb->name_, entityname ) == 0 )
+#endif
+				{
+					pb->pEntityLatest_ = eb;
+					return eb;
+				}
+				eb = eb->nextInBucket_;
+			}
 		}
-		eb = eb->next_;
+	}
+	else /* not usingHashmap_ */
+	{
+		eb = pb->pEntityHead_;
+		while( eb != NULL )
+		{
+#ifdef NPK_CASESENSITIVE
+			if( strcmp( eb->name_, entityname ) == 0 )
+#else
+			if( stricmp( eb->name_, entityname ) == 0 )
+#endif
+			{
+				pb->pEntityLatest_ = eb;
+				return eb;
+			}
+			eb = eb->next_;
+		}
+
 	}
 	npk_error( NPK_ERROR_CannotFindEntity );
 	return NULL;

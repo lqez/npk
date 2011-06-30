@@ -52,6 +52,8 @@ typedef struct NPK_DEV_API NPK_tagENTITYBODY
 
 	struct NPK_tagENTITYBODY*	prev_;
 	struct NPK_tagENTITYBODY*	next_;
+	struct NPK_tagENTITYBODY*	prevInBucket_;
+	struct NPK_tagENTITYBODY*	nextInBucket_;
 } NPK_ENTITYBODY, *NPK_LPENTITYBODY;
 
 typedef struct NPK_DEV_API NPK_tagPACKAGEINFO
@@ -68,6 +70,12 @@ typedef struct NPK_DEV_API NPK_tagPACKAGEINFO_V23
 	NPK_TIME			modified_;			/* Last modified date of package - 32bit time_t */
 } NPK_PACKAGEINFO_V23, *NPK_LPPACKAGEINFO_V23;
 
+typedef struct NPK_DEV_API NPK_tagBUCKET
+{
+	NPK_LPENTITYBODY	pEntityHead_;
+	NPK_LPENTITYBODY	pEntityTail_;
+} NPK_BUCKET, *NPK_LPBUCKET;
+
 typedef struct NPK_DEV_API NPK_tagPACKAGEBODY
 {
 	NPK_PACKAGEINFO		info_;
@@ -81,6 +89,8 @@ typedef struct NPK_DEV_API NPK_tagPACKAGEBODY
 #ifdef _WIN32
 	CRITICAL_SECTION	cs_;
 #endif
+	NPK_LPBUCKET		bucket_[NPK_HASH_BUCKETS];
+	bool				usingHashmap_;
 	bool				usingFdopen_;
 	long				offsetJump_;
 } NPK_PACKAGEBODY, *NPK_LPPACKAGEBODY;
@@ -102,6 +112,7 @@ NPK_DEV_API NPK_RESULT	npk_set_filetime( NPK_CSTR filename, const NPK_TIME pft )
 NPK_DEV_API void		npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt );
 NPK_DEV_API void		npk_enable_gluetime( NPK_TIME time );
 NPK_DEV_API void		npk_disable_gluetime();
+NPK_DEV_API NPK_HASHKEY	npk_get_bucket( NPK_CSTR name );
 
 /* File I/O Functions */
 NPK_DEV_API NPK_RESULT	npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist );
@@ -131,9 +142,9 @@ NPK_DEV_API NPK_RESULT	npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle );
 NPK_DEV_API NPK_RESULT	npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceoverwrite );
 
 /* Package Functions */
-NPK_DEV_API NPK_RESULT	npk_package_new( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] );
-NPK_DEV_API NPK_RESULT	npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceoverwrite );
+NPK_DEV_API NPK_RESULT	npk_package_alloc( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] );
 NPK_DEV_API NPK_RESULT	npk_package_init( NPK_PACKAGE package );
+NPK_DEV_API NPK_RESULT	npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceoverwrite );
 NPK_DEV_API NPK_RESULT	npk_package_clear( NPK_PACKAGE package );
 NPK_DEV_API NPK_RESULT	npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CSTR entityname, NPK_ENTITY* lpEntity );
 NPK_DEV_API NPK_RESULT	npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity );

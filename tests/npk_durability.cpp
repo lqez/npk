@@ -14,7 +14,7 @@ int npk_durability( int argc, char * argv [] )
 		int teakey[4] = {rand(),rand(),rand(),rand()};
 
 		// create a pack
-		CHECK( NPK_SUCCESS == npk_package_new( &pack, teakey ) );
+		CHECK( NPK_SUCCESS == npk_package_alloc( &pack, teakey ) );
 		CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "sample.txt", &entity ) );
 		CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "zip.txt", &entity ) );
 		CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_COMPRESS ) );

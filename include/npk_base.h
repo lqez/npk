@@ -17,6 +17,7 @@ typedef void*							NPK_PACKAGE;
 typedef void*							NPK_ENTITY;
 typedef int								NPK_HANDLE;
 typedef unsigned int					NPK_FLAG;
+typedef unsigned int					NPK_HASHKEY;
 typedef int								NPK_TEAKEY;
 typedef char							NPK_CHAR;
 typedef const NPK_CHAR*					NPK_CSTR;
@@ -33,6 +34,7 @@ typedef int								NPK_TIME;
 #define NPK_SIGNATURE_LENGTH			4
 #define NPK_MAXFOLDERNFILENAME			512
 #define NPK_MIN_SIZE_ZIPABLE			256
+#define NPK_HASH_BUCKETS				257
 
 // Version Information
 #define NPK_VERSION_REFACTORING			21
