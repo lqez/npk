@@ -54,7 +54,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.72"
+#define toolversion "1.73"
 #define baseversion "v24"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
@@ -1354,7 +1354,10 @@ void sync_and_add( bool sd, bool force, const char* basepath, const char* path )
 				{
 					if( __sbuf.st_mode & S_IFDIR )
 					{	// this is a directory
-						sync_and_add( sd, force, basepath, buf );
+						if( !norecursive )
+						{
+							sync_and_add( sd, force, basepath, buf );
+						}
 					}
 					else
 					{
@@ -1399,12 +1402,13 @@ void sync_only_in_package( bool sd, bool force, const char* path )
 
 	while( eb )
 	{
+		status = 0;
 		ignorable = false;
 		SLI iter = ignorelist.begin();
 		
 		while( iter != ignorelist.end() )
 		{
-			if( b_strcmp( (*iter).c_str(), eb->name_, CASE_SENSITIVE ) )
+			if( b_strcmp_path_delimited( (*iter).c_str(), eb->name_, PATH_SEPARATOR, CASE_SENSITIVE ) )
 			{
 				ignorable = true;
 				break;
@@ -1412,40 +1416,61 @@ void sync_only_in_package( bool sd, bool force, const char* path )
 			++iter;
 		}
 
-		if( ignorable )
+		if( norecursive )
 		{
-			eb = eb->next_;
-			continue;
-		}
-
-		sprintf( buf, "%s%c%s", path, PATH_SEPARATOR, eb->name_ );
-		result = stat( buf, &__sbuf );
-
-		if( result != 0 )
-		{
-			switch( errno )
+			if( strchr( eb->name_, PATH_SEPARATOR ) )
 			{
-			case ENOENT:
-				if( sd )
-					status = 1;
-				else
-					status = 0;
-				break;
-			default:
-				/* Should never be reached. */
-				cout << "Unexpected error in _stat call.\n";
-				exit(-1);
+				ignorable = true;
 			}
 		}
-		else
+
+		if( ignorable )
 		{
-			if( __sbuf.st_mtime > eb->info_.modified_ )
-				status = 2;
-			else if( ( __sbuf.st_mtime < eb->info_.modified_ ) || ( force ) )
-				status = 2;
+			if( sd )
+			{
+				status = 1;
+			}
 			else
-				status = 0;
+			{
+				eb = eb->next_;
+				continue;
+			}
 		}
+
+		if ( status == 0 )
+		{
+			sprintf( buf, "%s%c%s", path, PATH_SEPARATOR, eb->name_ );
+			result = stat( buf, &__sbuf );
+
+			if( result != 0 )
+			{
+				switch( errno )
+				{
+				case ENOENT:
+					if( sd )
+					{
+						status = 1;
+					}
+					break;
+				default:
+					/* Should never be reached. */
+					cout << "Unexpected error in _stat call.\n";
+					exit(-1);
+				}
+			}
+			else
+			{
+				if( __sbuf.st_mtime > eb->info_.modified_ )
+				{
+					status = 2;
+				}
+				else if( ( __sbuf.st_mtime < eb->info_.modified_ ) || ( force ) )
+				{
+					status = 2;
+				}
+			}
+		}
+
 		++sync_result[status];
 
 		if( verbose )

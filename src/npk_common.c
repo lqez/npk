@@ -424,7 +424,7 @@ NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, boo
 
 	++pb->info_.entityCount_;
 
-	if( ++pb->info_.entityCount_ >= NPK_HASH_BUCKETS )
+	if( pb->info_.entityCount_ >= NPK_HASH_BUCKETS )
 		pb->usingHashmap_ = true;
 
 	return NPK_SUCCESS;
