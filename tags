@@ -4,1074 +4,1085 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-Assert	external/zlib/zutil.h	/^#  define Assert(/;"	d
-BAD	external/zlib/inflate.h	/^    BAD,        \/* got a data error -- remain here until reset *\/$/;"	e	enum:__anon4
-BASE	external/zlib/adler32.c	/^#define BASE /;"	d	file:
-BITS	external/zlib/infback.c	/^#define BITS(/;"	d	file:
-BITS	external/zlib/inflate.c	/^#define BITS(/;"	d	file:
-BL_CODES	external/zlib/deflate.h	/^#define BL_CODES /;"	d
-BUILDFIXED	external/zlib/inflate.c	/^#    define BUILDFIXED$/;"	d	file:
-BUSY_STATE	external/zlib/deflate.h	/^#define BUSY_STATE /;"	d
-BYFOUR	external/zlib/crc32.c	/^#          undef BYFOUR /;"	d	file:
-BYFOUR	external/zlib/crc32.c	/^#    define BYFOUR$/;"	d	file:
-BYTEBITS	external/zlib/infback.c	/^#define BYTEBITS(/;"	d	file:
-BYTEBITS	external/zlib/inflate.c	/^#define BYTEBITS(/;"	d	file:
-Buf_size	external/zlib/trees.c	/^#define Buf_size /;"	d	file:
-Byte	external/zlib/zconf.h	/^#  define Byte /;"	d
-Byte	external/zlib/zconf.h	/^typedef unsigned char  Byte;  \/* 8 bits *\/$/;"	t
-Bytef	external/zlib/zconf.h	/^   typedef Byte  FAR Bytef;$/;"	t
-Bytef	external/zlib/zconf.h	/^#  define Bytef /;"	d
-CASE_SENSITIVE	tool/cli/npk_cli.cpp	/^	#define CASE_SENSITIVE /;"	d	file:
-CHECK	external/zlib/inflate.h	/^    CHECK,      \/* i: waiting for 32-bit check value *\/$/;"	e	enum:__anon4
-CHECK	tests/testutil.h	/^#define CHECK(/;"	d
-CHECK_CLOSE	tests/testutil.h	/^#define CHECK_CLOSE(/;"	d
-CHECK_EQUAL	tests/testutil.h	/^#define CHECK_EQUAL(/;"	d
-CHECK_EQUAL_STR	tests/testutil.h	/^#define CHECK_EQUAL_STR(/;"	d
-CHECK_EQUAL_STR_WITH_FILE	tests/testutil.h	/^static void CHECK_EQUAL_STR_WITH_FILE( const char* src, const char* filename )$/;"	f
-CLEAR_HASH	external/zlib/deflate.c	/^#define CLEAR_HASH(/;"	d	file:
-CODELENS	external/zlib/inflate.h	/^        CODELENS,   \/* i: waiting for length\/lit and distance code lengths *\/$/;"	e	enum:__anon4
-CODES	external/zlib/inftrees.h	/^    CODES,$/;"	e	enum:__anon6
-COMMENT	external/zlib/inflate.h	/^    COMMENT,    \/* i: waiting for end of comment (gzip) *\/$/;"	e	enum:__anon4
-COMMENT_STATE	external/zlib/deflate.h	/^#define COMMENT_STATE /;"	d
-COPY	external/zlib/inflate.h	/^        COPY,       \/* i\/o: waiting for input or output to copy stored block *\/$/;"	e	enum:__anon4
-COPY_	external/zlib/inflate.h	/^        COPY_,      \/* i\/o: same as COPY below, but only first time in *\/$/;"	e	enum:__anon4
-CRC2	external/zlib/inflate.c	/^#  define CRC2(/;"	d	file:
-CRC4	external/zlib/inflate.c	/^#  define CRC4(/;"	d	file:
-Code	external/zlib/deflate.h	/^#define Code /;"	d
-DEFLATE_H	external/zlib/deflate.h	/^#define DEFLATE_H$/;"	d
-DEF_MEM_LEVEL	external/zlib/zutil.h	/^#  define DEF_MEM_LEVEL /;"	d
-DEF_WBITS	external/zlib/zutil.h	/^#  define DEF_WBITS /;"	d
-DICT	external/zlib/inflate.h	/^    DICT,       \/* waiting for inflateSetDictionary() call *\/$/;"	e	enum:__anon4
-DICTID	external/zlib/inflate.h	/^    DICTID,     \/* i: waiting for dictionary check value *\/$/;"	e	enum:__anon4
-DIR	tool/cli/helper_dirent.c	/^struct DIR$/;"	s	file:
-DIR	tool/cli/helper_dirent.h	/^typedef struct DIR DIR;$/;"	t	typeref:struct:DIR
-DIRENT_INCLUDED	tool/cli/helper_dirent.h	/^#define DIRENT_INCLUDED$/;"	d
-DIST	external/zlib/inflate.h	/^            DIST,       \/* i: waiting for distance code *\/$/;"	e	enum:__anon4
-DISTEXT	external/zlib/inflate.h	/^            DISTEXT,    \/* i: waiting for distance extra bits *\/$/;"	e	enum:__anon4
-DISTS	external/zlib/inftrees.h	/^    DISTS$/;"	e	enum:__anon6
-DIST_CODE_LEN	external/zlib/trees.c	/^#define DIST_CODE_LEN /;"	d	file:
-DO1	external/zlib/adler32.c	/^#define DO1(/;"	d	file:
-DO1	external/zlib/crc32.c	/^#define DO1 /;"	d	file:
-DO16	external/zlib/adler32.c	/^#define DO16(/;"	d	file:
-DO2	external/zlib/adler32.c	/^#define DO2(/;"	d	file:
-DO4	external/zlib/adler32.c	/^#define DO4(/;"	d	file:
-DO8	external/zlib/adler32.c	/^#define DO8(/;"	d	file:
-DO8	external/zlib/crc32.c	/^#define DO8 /;"	d	file:
-DOBIG32	external/zlib/crc32.c	/^#define DOBIG32 /;"	d	file:
-DOBIG4	external/zlib/crc32.c	/^#define DOBIG4 /;"	d	file:
-DOLIT32	external/zlib/crc32.c	/^#define DOLIT32 /;"	d	file:
-DOLIT4	external/zlib/crc32.c	/^#define DOLIT4 /;"	d	file:
-DONE	external/zlib/inflate.h	/^    DONE,       \/* finished check, done -- remain here until reset *\/$/;"	e	enum:__anon4
-DROPBITS	external/zlib/infback.c	/^#define DROPBITS(/;"	d	file:
-DROPBITS	external/zlib/inflate.c	/^#define DROPBITS(/;"	d	file:
-DYNAMIC_CRC_TABLE	external/zlib/crc32.c	/^#    define DYNAMIC_CRC_TABLE$/;"	d	file:
-DYN_TREES	external/zlib/zutil.h	/^#define DYN_TREES /;"	d
-D_CODES	external/zlib/deflate.h	/^#define D_CODES /;"	d
-Dad	external/zlib/deflate.h	/^#define Dad /;"	d
-ELI	tool/cli/npk_cli.cpp	/^typedef list<NPK_ENTITY>::iterator ELI;$/;"	t	file:
-END_BLOCK	external/zlib/trees.c	/^#define END_BLOCK /;"	d	file:
-ENOUGH	external/zlib/inftrees.h	/^#define ENOUGH /;"	d
-ENOUGH_DISTS	external/zlib/inftrees.h	/^#define ENOUGH_DISTS /;"	d
-ENOUGH_LENS	external/zlib/inftrees.h	/^#define ENOUGH_LENS /;"	d
-ENTITYLIST	tool/cli/npk_cli.cpp	/^typedef list<NPK_ENTITY> ENTITYLIST;$/;"	t	file:
-EQUAL	external/zlib/deflate.c	/^#define EQUAL /;"	d	file:
-ERR_MSG	external/zlib/zutil.h	/^#define ERR_MSG(/;"	d
-ERR_RETURN	external/zlib/zutil.h	/^#define ERR_RETURN(/;"	d
-EXLEN	external/zlib/inflate.h	/^    EXLEN,      \/* i: waiting for extra length (gzip) *\/$/;"	e	enum:__anon4
-EXTRA	external/zlib/inflate.h	/^    EXTRA,      \/* i: waiting for extra bytes (gzip) *\/$/;"	e	enum:__anon4
-EXTRA_STATE	external/zlib/deflate.h	/^#define EXTRA_STATE /;"	d
-FAR	external/zlib/zconf.h	/^#      define FAR /;"	d
-FAR	external/zlib/zconf.h	/^#      undef FAR$/;"	d
-FAR	external/zlib/zconf.h	/^#  define FAR$/;"	d
-FINISH_STATE	external/zlib/deflate.h	/^#define FINISH_STATE /;"	d
-FLAGS	external/zlib/inflate.h	/^    FLAGS,      \/* i: waiting for method and flags (gzip) *\/$/;"	e	enum:__anon4
-FLUSH_BLOCK	external/zlib/deflate.c	/^#define FLUSH_BLOCK(/;"	d	file:
-FLUSH_BLOCK_ONLY	external/zlib/deflate.c	/^#define FLUSH_BLOCK_ONLY(/;"	d	file:
-F_OPEN	external/zlib/zutil.h	/^#  define F_OPEN(/;"	d
-Freq	external/zlib/deflate.h	/^#define Freq /;"	d
-GF2_DIM	external/zlib/crc32.c	/^#define GF2_DIM /;"	d	file:
-GUNZIP	external/zlib/inflate.h	/^#  define GUNZIP$/;"	d
-GZIP	external/zlib/deflate.h	/^#  define GZIP$/;"	d
-HAVE_MEMCPY	external/zlib/zutil.h	/^#  define HAVE_MEMCPY$/;"	d
-HAVE_VSNPRINTF	external/zlib/zutil.h	/^#    define HAVE_VSNPRINTF$/;"	d
-HCRC	external/zlib/inflate.h	/^    HCRC,       \/* i: waiting for header crc (gzip) *\/$/;"	e	enum:__anon4
-HCRC_STATE	external/zlib/deflate.h	/^#define HCRC_STATE /;"	d
-HEAD	external/zlib/inflate.h	/^    HEAD,       \/* i: waiting for magic header *\/$/;"	e	enum:__anon4
-HEAP_SIZE	external/zlib/deflate.h	/^#define HEAP_SIZE /;"	d
-ID_About	tool/gui/npk_gui.cpp	/^	ID_About,$/;"	e	enum:__anon7	file:
-ID_Quit	tool/gui/npk_gui.cpp	/^	ID_Quit = 1,$/;"	e	enum:__anon7	file:
-INITBITS	external/zlib/infback.c	/^#define INITBITS(/;"	d	file:
-INITBITS	external/zlib/inflate.c	/^#define INITBITS(/;"	d	file:
-INIT_STATE	external/zlib/deflate.h	/^#define INIT_STATE /;"	d
-INSERT_STRING	external/zlib/deflate.c	/^#define INSERT_STRING(/;"	d	file:
-IPos	external/zlib/deflate.h	/^typedef unsigned IPos;$/;"	t
-LEN	external/zlib/inflate.h	/^            LEN,        \/* i: waiting for length\/lit\/eob code *\/$/;"	e	enum:__anon4
-LENEXT	external/zlib/inflate.h	/^            LENEXT,     \/* i: waiting for length extra bits *\/$/;"	e	enum:__anon4
-LENGTH	external/zlib/inflate.h	/^    LENGTH,     \/* i: waiting for 32-bit length (gzip) *\/$/;"	e	enum:__anon4
-LENGTH_CODES	external/zlib/deflate.h	/^#define LENGTH_CODES /;"	d
-LENLENS	external/zlib/inflate.h	/^        LENLENS,    \/* i: waiting for code length code lengths *\/$/;"	e	enum:__anon4
-LENS	external/zlib/inftrees.h	/^    LENS,$/;"	e	enum:__anon6
-LEN_	external/zlib/inflate.h	/^            LEN_,       \/* i: same as LEN below, but only first time in *\/$/;"	e	enum:__anon4
-LIT	external/zlib/inflate.h	/^            LIT,        \/* o: waiting for output space to write literal *\/$/;"	e	enum:__anon4
-LITERALS	external/zlib/deflate.h	/^#define LITERALS /;"	d
-LOAD	external/zlib/infback.c	/^#define LOAD(/;"	d	file:
-LOAD	external/zlib/inflate.c	/^#define LOAD(/;"	d	file:
-LOCAL_TFP	tool/cli/npk_cli.cpp	/^typedef	bool( *LOCAL_TFP )( NPK_CSTR fullpath, NPK_CSTR filename );$/;"	t	file:
-L_CODES	external/zlib/deflate.h	/^#define L_CODES /;"	d
-Len	external/zlib/deflate.h	/^#define Len /;"	d
-MATCH	external/zlib/inflate.h	/^            MATCH,      \/* o: waiting for output space to copy string *\/$/;"	e	enum:__anon4
-MAXBITS	external/zlib/inftrees.c	/^#define MAXBITS /;"	d	file:
-MAXSEG_64K	external/zlib/zconf.h	/^#  define MAXSEG_64K$/;"	d
-MAX_BITS	external/zlib/deflate.h	/^#define MAX_BITS /;"	d
-MAX_BL_BITS	external/zlib/trees.c	/^#define MAX_BL_BITS /;"	d	file:
-MAX_DIST	external/zlib/deflate.h	/^#define MAX_DIST(/;"	d
-MAX_MATCH	external/zlib/zutil.h	/^#define MAX_MATCH /;"	d
-MAX_MEM_LEVEL	external/zlib/zconf.h	/^#    define MAX_MEM_LEVEL /;"	d
-MAX_PTR	external/zlib/zutil.c	/^#define MAX_PTR /;"	d	file:
-MAX_WBITS	external/zlib/zconf.h	/^#  define MAX_WBITS /;"	d
-MEM	external/zlib/inflate.h	/^    MEM,        \/* got an inflate() memory error -- remain here until reset *\/$/;"	e	enum:__anon4
-MIN_LOOKAHEAD	external/zlib/deflate.h	/^#define MIN_LOOKAHEAD /;"	d
-MIN_MATCH	external/zlib/zutil.h	/^#define MIN_MATCH /;"	d
-MOD	external/zlib/adler32.c	/^#  define MOD(/;"	d	file:
-MOD4	external/zlib/adler32.c	/^#  define MOD4(/;"	d	file:
-MSDOS	external/zlib/zconf.h	/^#  define MSDOS$/;"	d
-MY_ZCALLOC	external/zlib/zutil.c	/^#  define MY_ZCALLOC$/;"	d	file:
-MyApp	tool/gui/npk_gui.cpp	/^class MyApp: public wxApp$/;"	c	file:
-MyFrame	tool/gui/npk_gui.cpp	/^MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)$/;"	f	class:MyFrame
-MyFrame	tool/gui/npk_gui.cpp	/^class MyFrame: public wxFrame$/;"	c	file:
-NAME	external/zlib/inflate.h	/^    NAME,       \/* i: waiting for end of file name (gzip) *\/$/;"	e	enum:__anon4
-NAME_STATE	external/zlib/deflate.h	/^#define NAME_STATE /;"	d
-NEEDBITS	external/zlib/infback.c	/^#define NEEDBITS(/;"	d	file:
-NEEDBITS	external/zlib/inflate.c	/^#define NEEDBITS(/;"	d	file:
-NIL	external/zlib/deflate.c	/^#define NIL /;"	d	file:
-NMAX	external/zlib/adler32.c	/^#define NMAX /;"	d	file:
-NO_DUMMY_DECL	external/zlib/zconf.h	/^#  define NO_DUMMY_DECL$/;"	d
-NO_MEMCPY	external/zlib/zutil.h	/^#  define NO_MEMCPY$/;"	d
-NO_vsnprintf	external/zlib/zconf.h	/^#  define NO_vsnprintf$/;"	d
-NO_vsnprintf	external/zlib/zutil.h	/^#    define NO_vsnprintf$/;"	d
-NO_vsnprintf	external/zlib/zutil.h	/^#  define NO_vsnprintf$/;"	d
-NPK_64BIT	include/npk_base.h	/^typedef unsigned long long				NPK_64BIT;$/;"	t
-NPK_ACCESSTYPE_READ	include/npk_base.h	/^#define NPK_ACCESSTYPE_READ	/;"	d
-NPK_ACCESSTYPE_WRITE	include/npk_base.h	/^#define NPK_ACCESSTYPE_WRITE	/;"	d
-NPK_API	include/npk_conf.h	/^			#define NPK_API /;"	d
-NPK_API	include/npk_conf.h	/^		#define NPK_API$/;"	d
-NPK_API	include/npk_conf.h	/^	#define NPK_API$/;"	d
-NPK_BUCKET	include/npk_dev.h	/^} NPK_BUCKET, *NPK_LPBUCKET;$/;"	t	typeref:struct:NPK_tagBUCKET
-NPK_BYTE	include/npk_base.h	/^typedef char							NPK_BYTE;$/;"	t
-NPK_CALLBACK	include/npk_base.h	/^typedef	int( *NPK_CALLBACK )(	int accessType,$/;"	t
-NPK_CHAR	include/npk_base.h	/^typedef char							NPK_CHAR;$/;"	t
-NPK_CSTR	include/npk_base.h	/^typedef const NPK_CHAR*					NPK_CSTR;$/;"	t
-NPK_DEV_API	include/npk_conf.h	/^				#define NPK_DEV_API /;"	d
-NPK_DEV_API	include/npk_conf.h	/^				#define NPK_DEV_API$/;"	d
-NPK_DEV_API	include/npk_conf.h	/^		#define NPK_DEV_API$/;"	d
-NPK_DEV_API	include/npk_conf.h	/^	#define NPK_DEV_API$/;"	d
-NPK_ENTITY	include/npk_base.h	/^typedef void*							NPK_ENTITY;$/;"	t
-NPK_ENTITYBODY	include/npk_dev.h	/^} NPK_ENTITYBODY, *NPK_LPENTITYBODY;$/;"	t	typeref:struct:NPK_tagENTITYBODY
-NPK_ENTITYINFO	include/npk_dev.h	/^} NPK_ENTITYINFO, *NPK_LPENTITYINFO;$/;"	t	typeref:struct:NPK_tagENTITYINFO
-NPK_ENTITYINFO_V21	include/npk_dev.h	/^} NPK_ENTITYINFO_V21, *NPK_LPENTITYINFO_V21;$/;"	t	typeref:struct:NPK_tagENTITYINFO_V21
-NPK_ENTITY_COMPRESS	include/npk_base.h	/^#define NPK_ENTITY_COMPRESS	/;"	d
-NPK_ENTITY_ENCRYPT	include/npk_base.h	/^#define NPK_ENTITY_ENCRYPT	/;"	d
-NPK_ENTITY_INHERIT	include/npk_base.h	/^#define NPK_ENTITY_INHERIT	/;"	d
-NPK_ENTITY_NULL	include/npk_base.h	/^#define NPK_ENTITY_NULL	/;"	d
-NPK_ENTITY_REVERSE	include/npk_base.h	/^#define NPK_ENTITY_REVERSE	/;"	d
-NPK_ENTITY_TEXTFILE	include/npk_base.h	/^#define NPK_ENTITY_TEXTFILE	/;"	d
-NPK_ERROR	include/npk_error.h	/^#define NPK_ERROR	/;"	d
-NPK_ERROR_AlreadyAllocated	include/npk_error.h	/^#define	NPK_ERROR_AlreadyAllocated	/;"	d
-NPK_ERROR_CancelByCallback	include/npk_error.h	/^#define	NPK_ERROR_CancelByCallback	/;"	d
-NPK_ERROR_CannotCopyToItself	include/npk_error.h	/^#define NPK_ERROR_CannotCopyToItself	/;"	d
-NPK_ERROR_CannotCreateFile	include/npk_error.h	/^#define	NPK_ERROR_CannotCreateFile	/;"	d
-NPK_ERROR_CannotFindEntity	include/npk_error.h	/^#define	NPK_ERROR_CannotFindEntity	/;"	d
-NPK_ERROR_CannotFindPackage	include/npk_error.h	/^#define	NPK_ERROR_CannotFindPackage	/;"	d
-NPK_ERROR_CantReadCompressOrEncryptEntityByPartial	include/npk_error.h	/^#define NPK_ERROR_CantReadCompressOrEncryptEntityByPartial	/;"	d
-NPK_ERROR_EntityIsNotInThePackage	include/npk_error.h	/^#define NPK_ERROR_EntityIsNotInThePackage	/;"	d
-NPK_ERROR_EntityIsNull	include/npk_error.h	/^#define NPK_ERROR_EntityIsNull	/;"	d
-NPK_ERROR_FailToDecompress	include/npk_error.h	/^#define	NPK_ERROR_FailToDecompress	/;"	d
-NPK_ERROR_FailToGetFiletime	include/npk_error.h	/^#define	NPK_ERROR_FailToGetFiletime	/;"	d
-NPK_ERROR_FailToSetFiletime	include/npk_error.h	/^#define	NPK_ERROR_FailToSetFiletime	/;"	d
-NPK_ERROR_FileAlreadyExists	include/npk_error.h	/^#define	NPK_ERROR_FileAlreadyExists	/;"	d
-NPK_ERROR_FileNotFound	include/npk_error.h	/^#define	NPK_ERROR_FileNotFound	/;"	d
-NPK_ERROR_FileOpenError	include/npk_error.h	/^#define	NPK_ERROR_FileOpenError	/;"	d
-NPK_ERROR_FileReadError	include/npk_error.h	/^#define	NPK_ERROR_FileReadError	/;"	d
-NPK_ERROR_FileSaveError	include/npk_error.h	/^#define	NPK_ERROR_FileSaveError	/;"	d
-NPK_ERROR_InvalidTeaKey	include/npk_error.h	/^#define NPK_ERROR_InvalidTeaKey	/;"	d
-NPK_ERROR_NeedSpecifiedTeaKey	include/npk_error.h	/^#define	NPK_ERROR_NeedSpecifiedTeaKey	/;"	d
-NPK_ERROR_NoEntityInPackage	include/npk_error.h	/^#define	NPK_ERROR_NoEntityInPackage	/;"	d
-NPK_ERROR_NonAllocatedBuffer	include/npk_error.h	/^#define	NPK_ERROR_NonAllocatedBuffer	/;"	d
-NPK_ERROR_NonStaticPackage	include/npk_error.h	/^#define	NPK_ERROR_NonStaticPackage	/;"	d
-NPK_ERROR_NotEnoughDiscSpace	include/npk_error.h	/^#define	NPK_ERROR_NotEnoughDiscSpace	/;"	d
-NPK_ERROR_NotEnoughMemory	include/npk_error.h	/^#define	NPK_ERROR_NotEnoughMemory	/;"	d
-NPK_ERROR_NotOpenedPackage	include/npk_error.h	/^#define	NPK_ERROR_NotOpenedPackage	/;"	d
-NPK_ERROR_NotSupportedVersion	include/npk_error.h	/^#define	NPK_ERROR_NotSupportedVersion	/;"	d
-NPK_ERROR_NotValidEntity	include/npk_error.h	/^#define NPK_ERROR_NotValidEntity	/;"	d
-NPK_ERROR_NotValidFileName	include/npk_error.h	/^#define	NPK_ERROR_NotValidFileName	/;"	d
-NPK_ERROR_NotValidPackage	include/npk_error.h	/^#define	NPK_ERROR_NotValidPackage	/;"	d
-NPK_ERROR_NullPointerBuffer	include/npk_error.h	/^#define	NPK_ERROR_NullPointerBuffer	/;"	d
-NPK_ERROR_OpenedPackage	include/npk_error.h	/^#define	NPK_ERROR_OpenedPackage	/;"	d
-NPK_ERROR_PackageHasNoName	include/npk_error.h	/^#define	NPK_ERROR_PackageHasNoName	/;"	d
-NPK_ERROR_PackageHasNoVersion	include/npk_error.h	/^#define	NPK_ERROR_PackageHasNoVersion	/;"	d
-NPK_ERROR_PackageIsNull	include/npk_error.h	/^#define NPK_ERROR_PackageIsNull	/;"	d
-NPK_ERROR_PermissionDenied	include/npk_error.h	/^#define	NPK_ERROR_PermissionDenied	/;"	d
-NPK_ERROR_ReadOnlyFile	include/npk_error.h	/^#define	NPK_ERROR_ReadOnlyFile	/;"	d
-NPK_ERROR_SameEntityExist	include/npk_error.h	/^#define	NPK_ERROR_SameEntityExist	/;"	d
-NPK_ERROR_SamePackageExist	include/npk_error.h	/^#define	NPK_ERROR_SamePackageExist	/;"	d
-NPK_ERROR_SourceStringisNull	include/npk_error.h	/^#define NPK_ERROR_SourceStringisNull	/;"	d
-NPK_ERROR_ZeroFileSize	include/npk_error.h	/^#define	NPK_ERROR_ZeroFileSize	/;"	d
-NPK_FLAG	include/npk_base.h	/^typedef unsigned int					NPK_FLAG;$/;"	t
-NPK_HANDLE	include/npk_base.h	/^typedef int								NPK_HANDLE;$/;"	t
-NPK_HASHKEY	include/npk_base.h	/^typedef unsigned int					NPK_HASHKEY;$/;"	t
-NPK_HASH_BUCKETS	include/npk_base.h	/^#define NPK_HASH_BUCKETS	/;"	d
-NPK_LPBUCKET	include/npk_dev.h	/^} NPK_BUCKET, *NPK_LPBUCKET;$/;"	t	typeref:struct:NPK_tagBUCKET
-NPK_LPENTITYBODY	include/npk_dev.h	/^} NPK_ENTITYBODY, *NPK_LPENTITYBODY;$/;"	t	typeref:struct:NPK_tagENTITYBODY
-NPK_LPENTITYINFO	include/npk_dev.h	/^} NPK_ENTITYINFO, *NPK_LPENTITYINFO;$/;"	t	typeref:struct:NPK_tagENTITYINFO
-NPK_LPENTITYINFO_V21	include/npk_dev.h	/^} NPK_ENTITYINFO_V21, *NPK_LPENTITYINFO_V21;$/;"	t	typeref:struct:NPK_tagENTITYINFO_V21
-NPK_LPPACKAGEBODY	include/npk_dev.h	/^} NPK_PACKAGEBODY, *NPK_LPPACKAGEBODY;$/;"	t	typeref:struct:NPK_tagPACKAGEBODY
-NPK_LPPACKAGEINFO	include/npk_dev.h	/^} NPK_PACKAGEINFO, *NPK_LPPACKAGEINFO;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO
-NPK_LPPACKAGEINFO_V23	include/npk_dev.h	/^} NPK_PACKAGEINFO_V23, *NPK_LPPACKAGEINFO_V23;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO_V23
-NPK_MAXFOLDERNFILENAME	include/npk_base.h	/^#define NPK_MAXFOLDERNFILENAME	/;"	d
-NPK_MIN_SIZE_ZIPABLE	include/npk_base.h	/^#define NPK_MIN_SIZE_ZIPABLE	/;"	d
-NPK_NAMESIZE	include/npk_base.h	/^typedef unsigned short					NPK_NAMESIZE;$/;"	t
-NPK_OLD_SIGNATURE	include/npk_base.h	/^#define NPK_OLD_SIGNATURE	/;"	d
-NPK_PACKAGE	include/npk_base.h	/^typedef void*							NPK_PACKAGE;$/;"	t
-NPK_PACKAGEBODY	include/npk_dev.h	/^} NPK_PACKAGEBODY, *NPK_LPPACKAGEBODY;$/;"	t	typeref:struct:NPK_tagPACKAGEBODY
-NPK_PACKAGEINFO	include/npk_dev.h	/^} NPK_PACKAGEINFO, *NPK_LPPACKAGEINFO;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO
-NPK_PACKAGEINFO_V23	include/npk_dev.h	/^} NPK_PACKAGEINFO_V23, *NPK_LPPACKAGEINFO_V23;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO_V23
-NPK_PLATFORM_BSD	include/npk_conf.h	/^    #define NPK_PLATFORM_BSD$/;"	d
-NPK_PLATFORM_LINUX	include/npk_conf.h	/^    #define NPK_PLATFORM_LINUX$/;"	d
-NPK_PLATFORM_MACOS	include/npk_conf.h	/^    #define NPK_PLATFORM_MACOS$/;"	d
-NPK_PLATFORM_NAME	include/npk_conf.h	/^    #define NPK_PLATFORM_NAME /;"	d
-NPK_PLATFORM_WINDOWS	include/npk_conf.h	/^    #define NPK_PLATFORM_WINDOWS$/;"	d
-NPK_PROCESSTYPE_ENTITY	include/npk_base.h	/^#define NPK_PROCESSTYPE_ENTITY	/;"	d
-NPK_PROCESSTYPE_ENTITYHEADER	include/npk_base.h	/^#define NPK_PROCESSTYPE_ENTITYHEADER	/;"	d
-NPK_PROCESSTYPE_FILE	include/npk_base.h	/^#define NPK_PROCESSTYPE_FILE	/;"	d
-NPK_PROCESSTYPE_PACKAGE	include/npk_base.h	/^#define NPK_PROCESSTYPE_PACKAGE	/;"	d
-NPK_PROCESSTYPE_PACKAGEHEADER	include/npk_base.h	/^#define NPK_PROCESSTYPE_PACKAGEHEADER	/;"	d
-NPK_RESULT	include/npk_base.h	/^typedef int								NPK_RESULT;$/;"	t
-NPK_SAFE_FREE	include/npk_dev.h	/^#define NPK_SAFE_FREE(/;"	d
-NPK_SIGNATURE	include/npk_base.h	/^#define NPK_SIGNATURE	/;"	d
-NPK_SIGNATURE_LENGTH	include/npk_base.h	/^#define NPK_SIGNATURE_LENGTH	/;"	d
-NPK_SIZE	include/npk_base.h	/^typedef int								NPK_SIZE;$/;"	t
-NPK_STR	include/npk_base.h	/^typedef NPK_CHAR*						NPK_STR;$/;"	t
-NPK_SUCCESS	include/npk_error.h	/^#define NPK_SUCCESS	/;"	d
-NPK_TEAKEY	include/npk_base.h	/^typedef int								NPK_TEAKEY;$/;"	t
-NPK_TIME	include/npk_base.h	/^typedef int								NPK_TIME;$/;"	t
-NPK_VERSION_CURRENT	include/npk_base.h	/^#define NPK_VERSION_CURRENT	/;"	d
-NPK_VERSION_PACKAGETIMESTAMP	include/npk_base.h	/^#define NPK_VERSION_PACKAGETIMESTAMP	/;"	d
-NPK_VERSION_REFACTORING	include/npk_base.h	/^#define NPK_VERSION_REFACTORING	/;"	d
-NPK_VERSION_SINGLEPACKHEADER	include/npk_base.h	/^#define NPK_VERSION_SINGLEPACKHEADER	/;"	d
-NPK_VERSION_UNIXTIMESUPPORT	include/npk_base.h	/^#define NPK_VERSION_UNIXTIMESUPPORT	/;"	d
-NPK_tagBUCKET	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagBUCKET$/;"	s
-NPK_tagENTITYBODY	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagENTITYBODY$/;"	s
-NPK_tagENTITYINFO	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagENTITYINFO$/;"	s
-NPK_tagENTITYINFO_V21	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagENTITYINFO_V21$/;"	s
-NPK_tagPACKAGEBODY	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagPACKAGEBODY$/;"	s
-NPK_tagPACKAGEINFO	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagPACKAGEINFO$/;"	s
-NPK_tagPACKAGEINFO_V23	include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagPACKAGEINFO_V23$/;"	s
-OF	external/zlib/zconf.h	/^#    define OF(/;"	d
-OFF	external/zlib/inffast.c	/^#  define OFF /;"	d	file:
-OS	external/zlib/inflate.h	/^    OS,         \/* i: waiting for extra flags and operating system (gzip) *\/$/;"	e	enum:__anon4
-OS2	external/zlib/zconf.h	/^#  define OS2$/;"	d
-OS_CODE	external/zlib/zutil.h	/^#    define OS_CODE /;"	d
-OS_CODE	external/zlib/zutil.h	/^#  define OS_CODE /;"	d
-O_BINARY	include/npk_conf.h	/^#define O_BINARY /;"	d
-O_BINARY	tests/testutil.h	/^#define O_BINARY /;"	d
-OnInit	tool/gui/npk_gui.cpp	/^bool MyApp::OnInit()$/;"	f	class:MyApp
-PACKAGE_TFP	tool/cli/npk_cli.cpp	/^typedef	bool( *PACKAGE_TFP )( NPK_ENTITY entity );$/;"	t	file:
-PATH_SEPARATOR	tool/cli/npk_cli.cpp	/^	#define PATH_SEPARATOR /;"	d	file:
-PRESET_DICT	external/zlib/zutil.h	/^#define PRESET_DICT /;"	d
-PULL	external/zlib/infback.c	/^#define PULL(/;"	d	file:
-PULLBYTE	external/zlib/infback.c	/^#define PULLBYTE(/;"	d	file:
-PULLBYTE	external/zlib/inflate.c	/^#define PULLBYTE(/;"	d	file:
-PUP	external/zlib/inffast.c	/^#  define PUP(/;"	d	file:
-Pos	external/zlib/deflate.h	/^typedef ush Pos;$/;"	t
-Posf	external/zlib/deflate.h	/^typedef Pos FAR Posf;$/;"	t
-REPZ_11_138	external/zlib/trees.c	/^#define REPZ_11_138 /;"	d	file:
-REPZ_3_10	external/zlib/trees.c	/^#define REPZ_3_10 /;"	d	file:
-REP_3_6	external/zlib/trees.c	/^#define REP_3_6 /;"	d	file:
-RESTORE	external/zlib/infback.c	/^#define RESTORE(/;"	d	file:
-RESTORE	external/zlib/inflate.c	/^#define RESTORE(/;"	d	file:
-REV	external/zlib/crc32.c	/^#  define REV(/;"	d	file:
-REVERSE	external/zlib/inflate.c	/^#define REVERSE(/;"	d	file:
-ROOM	external/zlib/infback.c	/^#define ROOM(/;"	d	file:
-SEEK_CUR	external/zlib/zconf.h	/^#  define SEEK_CUR /;"	d
-SEEK_END	external/zlib/zconf.h	/^#  define SEEK_END /;"	d
-SEEK_SET	external/zlib/zconf.h	/^#  define SEEK_SET /;"	d
-SEPARATOR	external/zlib/trees.c	/^#  define SEPARATOR(/;"	d	file:
-SLI	tool/cli/npk_cli.cpp	/^typedef list<string>::iterator SLI;$/;"	t	file:
-SMALLEST	external/zlib/trees.c	/^#define SMALLEST /;"	d	file:
-SMALL_MEDIUM	external/zlib/zconf.h	/^#    define SMALL_MEDIUM$/;"	d
-STATIC_TREES	external/zlib/zutil.h	/^#define STATIC_TREES /;"	d
-STDC	external/zlib/zconf.h	/^#    define STDC$/;"	d
-STDC	external/zlib/zconf.h	/^#  define STDC$/;"	d
-STDC99	external/zlib/zconf.h	/^#      define STDC99$/;"	d
-STORED	external/zlib/inflate.h	/^        STORED,     \/* i: waiting for stored size (length and complement) *\/$/;"	e	enum:__anon4
-STORED_BLOCK	external/zlib/zutil.h	/^#define STORED_BLOCK /;"	d
-STRLIST	tool/cli/npk_cli.cpp	/^typedef list<string> STRLIST;$/;"	t	file:
-SYNC	external/zlib/inflate.h	/^    SYNC        \/* looking for synchronization bytes to restart inflate() *\/$/;"	e	enum:__anon4
-SYS16BIT	external/zlib/zconf.h	/^#      define SYS16BIT$/;"	d
-TABLE	external/zlib/inflate.h	/^        TABLE,      \/* i: waiting for dynamic block table lengths *\/$/;"	e	enum:__anon4
-TBLS	external/zlib/crc32.c	/^#  define TBLS /;"	d	file:
-TIME	external/zlib/inflate.h	/^    TIME,       \/* i: waiting for modification time (gzip) *\/$/;"	e	enum:__anon4
-TOO_FAR	external/zlib/deflate.c	/^#  define TOO_FAR /;"	d	file:
-TRY_FREE	external/zlib/zutil.h	/^#define TRY_FREE(/;"	d
-TYPE	external/zlib/inflate.h	/^        TYPE,       \/* i: waiting for type bits, including last-flag bit *\/$/;"	e	enum:__anon4
-TYPEDO	external/zlib/inflate.h	/^        TYPEDO,     \/* i: same, but skip check to exit inflate on new block *\/$/;"	e	enum:__anon4
-Trace	external/zlib/zutil.h	/^#  define Trace(/;"	d
-Tracec	external/zlib/zutil.h	/^#  define Tracec(/;"	d
-Tracecv	external/zlib/zutil.h	/^#  define Tracecv(/;"	d
-Tracev	external/zlib/zutil.h	/^#  define Tracev(/;"	d
-Tracevv	external/zlib/zutil.h	/^#  define Tracevv(/;"	d
-UNALIGNED_OK	external/zlib/zconf.h	/^#  define UNALIGNED_OK$/;"	d
-UPDATE	external/zlib/inflate.c	/^#  define UPDATE(/;"	d	file:
-UPDATE_HASH	external/zlib/deflate.c	/^#define UPDATE_HASH(/;"	d	file:
-V	tool/cli/npk_cli.cpp	/^#define V(/;"	d	file:
-WIN32	external/zlib/zconf.h	/^#    define WIN32$/;"	d
-WINDOWS	external/zlib/zconf.h	/^#  define WINDOWS$/;"	d
-WIN_INIT	external/zlib/deflate.h	/^#define WIN_INIT /;"	d
-WXUNUSED	tool/gui/npk_gui.cpp	/^void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))$/;"	f	class:MyFrame
-WXUNUSED	tool/gui/npk_gui.cpp	/^void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))$/;"	f	class:MyFrame
-ZALLOC	external/zlib/zutil.h	/^#define ZALLOC(/;"	d
-ZCONF_H	external/zlib/zconf.h	/^#define ZCONF_H$/;"	d
-ZEXPORT	external/zlib/zconf.h	/^#      define ZEXPORT /;"	d
-ZEXPORT	external/zlib/zconf.h	/^#    define ZEXPORT /;"	d
-ZEXPORT	external/zlib/zconf.h	/^#  define ZEXPORT$/;"	d
-ZEXPORTVA	external/zlib/zconf.h	/^#      define ZEXPORTVA /;"	d
-ZEXPORTVA	external/zlib/zconf.h	/^#  define ZEXPORTVA$/;"	d
-ZEXTERN	external/zlib/zconf.h	/^#        define ZEXTERN /;"	d
-ZEXTERN	external/zlib/zconf.h	/^#  define ZEXTERN /;"	d
-ZFREE	external/zlib/zutil.h	/^#define ZFREE(/;"	d
-ZLIB_H	external/zlib/zlib.h	/^#define ZLIB_H$/;"	d
-ZLIB_INTERNAL	external/zlib/compress.c	/^#define ZLIB_INTERNAL$/;"	d	file:
-ZLIB_INTERNAL	external/zlib/uncompr.c	/^#define ZLIB_INTERNAL$/;"	d	file:
-ZLIB_INTERNAL	external/zlib/zutil.h	/^#  define ZLIB_INTERNAL /;"	d
-ZLIB_INTERNAL	external/zlib/zutil.h	/^#  define ZLIB_INTERNAL$/;"	d
-ZLIB_VERNUM	external/zlib/zlib.h	/^#define ZLIB_VERNUM /;"	d
-ZLIB_VERSION	external/zlib/zlib.h	/^#define ZLIB_VERSION /;"	d
-ZLIB_VER_MAJOR	external/zlib/zlib.h	/^#define ZLIB_VER_MAJOR /;"	d
-ZLIB_VER_MINOR	external/zlib/zlib.h	/^#define ZLIB_VER_MINOR /;"	d
-ZLIB_VER_REVISION	external/zlib/zlib.h	/^#define ZLIB_VER_REVISION /;"	d
-ZLIB_VER_SUBREVISION	external/zlib/zlib.h	/^#define ZLIB_VER_SUBREVISION /;"	d
-ZUTIL_H	external/zlib/zutil.h	/^#define ZUTIL_H$/;"	d
-Z_ASCII	external/zlib/zlib.h	/^#define Z_ASCII /;"	d
-Z_BEST_COMPRESSION	external/zlib/zlib.h	/^#define Z_BEST_COMPRESSION /;"	d
-Z_BEST_SPEED	external/zlib/zlib.h	/^#define Z_BEST_SPEED /;"	d
-Z_BINARY	external/zlib/zlib.h	/^#define Z_BINARY /;"	d
-Z_BLOCK	external/zlib/zlib.h	/^#define Z_BLOCK /;"	d
-Z_BUF_ERROR	external/zlib/zlib.h	/^#define Z_BUF_ERROR /;"	d
-Z_DATA_ERROR	external/zlib/zlib.h	/^#define Z_DATA_ERROR /;"	d
-Z_DEFAULT_COMPRESSION	external/zlib/zlib.h	/^#define Z_DEFAULT_COMPRESSION /;"	d
-Z_DEFAULT_STRATEGY	external/zlib/zlib.h	/^#define Z_DEFAULT_STRATEGY /;"	d
-Z_DEFLATED	external/zlib/zlib.h	/^#define Z_DEFLATED /;"	d
-Z_ERRNO	external/zlib/zlib.h	/^#define Z_ERRNO /;"	d
-Z_FILTERED	external/zlib/zlib.h	/^#define Z_FILTERED /;"	d
-Z_FINISH	external/zlib/zlib.h	/^#define Z_FINISH /;"	d
-Z_FIXED	external/zlib/zlib.h	/^#define Z_FIXED /;"	d
-Z_FULL_FLUSH	external/zlib/zlib.h	/^#define Z_FULL_FLUSH /;"	d
-Z_HAVE_UNISTD_H	external/zlib/zconf.h	/^#  define Z_HAVE_UNISTD_H$/;"	d
-Z_HUFFMAN_ONLY	external/zlib/zlib.h	/^#define Z_HUFFMAN_ONLY /;"	d
-Z_MEM_ERROR	external/zlib/zlib.h	/^#define Z_MEM_ERROR /;"	d
-Z_NEED_DICT	external/zlib/zlib.h	/^#define Z_NEED_DICT /;"	d
-Z_NO_COMPRESSION	external/zlib/zlib.h	/^#define Z_NO_COMPRESSION /;"	d
-Z_NO_FLUSH	external/zlib/zlib.h	/^#define Z_NO_FLUSH /;"	d
-Z_NULL	external/zlib/zlib.h	/^#define Z_NULL /;"	d
-Z_OK	external/zlib/zlib.h	/^#define Z_OK /;"	d
-Z_PARTIAL_FLUSH	external/zlib/zlib.h	/^#define Z_PARTIAL_FLUSH /;"	d
-Z_RLE	external/zlib/zlib.h	/^#define Z_RLE /;"	d
-Z_STREAM_END	external/zlib/zlib.h	/^#define Z_STREAM_END /;"	d
-Z_STREAM_ERROR	external/zlib/zlib.h	/^#define Z_STREAM_ERROR /;"	d
-Z_SYNC_FLUSH	external/zlib/zlib.h	/^#define Z_SYNC_FLUSH /;"	d
-Z_TEXT	external/zlib/zlib.h	/^#define Z_TEXT /;"	d
-Z_TREES	external/zlib/zlib.h	/^#define Z_TREES /;"	d
-Z_UNKNOWN	external/zlib/zlib.h	/^#define Z_UNKNOWN /;"	d
-Z_VERSION_ERROR	external/zlib/zlib.h	/^#define Z_VERSION_ERROR /;"	d
-_HR_	tool/cli/npk_cli.cpp	/^const char		_HR_[] = "-------------------------------------------------------------------------------\\n";$/;"	v
-_LARGEFILE64_SOURCE	external/zlib/zconf.h	/^#  undef _LARGEFILE64_SOURCE$/;"	d
-_NPK_BASE_H_	include/npk_base.h	/^#define _NPK_BASE_H_$/;"	d
-_NPK_DEF_H_	include/npk_conf.h	/^#define _NPK_DEF_H_$/;"	d
-_NPK_DEV_H_	include/npk_dev.h	/^#define _NPK_DEV_H_$/;"	d
-_NPK_ERROR_H_	include/npk_error.h	/^#define _NPK_ERROR_H_$/;"	d
-_NPK_H_	include/npk.h	/^#define _NPK_H_$/;"	d
-_PTRDIFF_T_DEFINED	external/zlib/zutil.h	/^#      define _PTRDIFF_T_DEFINED$/;"	d
-__TESTUTIL_H__	tests/testutil.h	/^#define __TESTUTIL_H__$/;"	d
-__npk_package_add_entity	src/npk_common.c	/^NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, bool check )$/;"	f
-__npk_package_open	src/npk.c	/^NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, long filesize, NPK_TEAKEY teakey[4] )$/;"	f
-_dist_code	external/zlib/trees.c	/^uch _dist_code[DIST_CODE_LEN];$/;"	v
-_dist_code	external/zlib/trees.h	/^const uch ZLIB_INTERNAL _dist_code[DIST_CODE_LEN] = {$/;"	v
-_dist_code	external/zlib/zconf.h	/^#  define _dist_code /;"	d
-_halloc	external/zlib/zutil.c	/^#  define _halloc /;"	d	file:
-_hfree	external/zlib/zutil.c	/^#  define _hfree /;"	d	file:
-_length_code	external/zlib/trees.c	/^uch _length_code[MAX_MATCH-MIN_MATCH+1];$/;"	v
-_length_code	external/zlib/trees.h	/^const uch ZLIB_INTERNAL _length_code[MAX_MATCH-MIN_MATCH+1]= {$/;"	v
-_length_code	external/zlib/zconf.h	/^#  define _length_code /;"	d
-_tr_align	external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_align(s)$/;"	f
-_tr_align	external/zlib/zconf.h	/^#  define _tr_align /;"	d
-_tr_flush_block	external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_flush_block(s, buf, stored_len, last)$/;"	f
-_tr_flush_block	external/zlib/zconf.h	/^#  define _tr_flush_block /;"	d
-_tr_init	external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_init(s)$/;"	f
-_tr_init	external/zlib/zconf.h	/^#  define _tr_init /;"	d
-_tr_stored_block	external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_stored_block(s, buf, stored_len, last)$/;"	f
-_tr_stored_block	external/zlib/zconf.h	/^#  define _tr_stored_block /;"	d
-_tr_tally	external/zlib/trees.c	/^int ZLIB_INTERNAL _tr_tally (s, dist, lc)$/;"	f
-_tr_tally	external/zlib/zconf.h	/^#  define _tr_tally /;"	d
-_tr_tally_dist	external/zlib/deflate.h	/^# define _tr_tally_dist(/;"	d
-_tr_tally_lit	external/zlib/deflate.h	/^# define _tr_tally_lit(/;"	d
-add	tool/cli/npk_cli.cpp	/^void add()$/;"	f
-add_tfp	tool/cli/npk_cli.cpp	/^bool add_tfp( NPK_CSTR fullpath, NPK_CSTR filename )$/;"	f
-adler	external/zlib/zlib.h	/^    uLong   adler;      \/* adler32 value of the uncompressed data *\/$/;"	m	struct:z_stream_s
-adler32	external/zlib/adler32.c	/^uLong ZEXPORT adler32(adler, buf, len)$/;"	f
-adler32	external/zlib/zconf.h	/^#  define adler32 /;"	d
-adler32_combine	external/zlib/adler32.c	/^uLong ZEXPORT adler32_combine(adler1, adler2, len2)$/;"	f
-adler32_combine	external/zlib/zconf.h	/^#  define adler32_combine /;"	d
-adler32_combine	external/zlib/zlib.h	/^#  define adler32_combine /;"	d
-adler32_combine64	external/zlib/adler32.c	/^uLong ZEXPORT adler32_combine64(adler1, adler2, len2)$/;"	f
-adler32_combine64	external/zlib/zconf.h	/^#  define adler32_combine64 /;"	d
-adler32_combine_	external/zlib/adler32.c	/^local uLong adler32_combine_(adler1, adler2, len2)$/;"	f
-alloc_func	external/zlib/zconf.h	/^#  define alloc_func /;"	d
-alloc_func	external/zlib/zlib.h	/^typedef voidpf (*alloc_func) OF((voidpf opaque, uInt items, uInt size));$/;"	t
-avail_in	external/zlib/zlib.h	/^    uInt     avail_in;  \/* number of bytes available at next_in *\/$/;"	m	struct:z_stream_s
-avail_out	external/zlib/zlib.h	/^    uInt     avail_out; \/* remaining free space at next_out *\/$/;"	m	struct:z_stream_s
-b_strcmp	tool/cli/helper_bstrcmp.h	/^bool b_strcmp( const char* s, const char* d, bool casesensitive = true )$/;"	f
-back	external/zlib/inflate.h	/^    int back;                   \/* bits back of last unprocessed length\/lit *\/$/;"	m	struct:inflate_state
-bad_syntax	tool/cli/npk_cli.cpp	/^void bad_syntax()$/;"	f
-base_dist	external/zlib/trees.c	/^local int base_dist[D_CODES];$/;"	v
-base_dist	external/zlib/trees.h	/^local const int base_dist[D_CODES] = {$/;"	v
-base_length	external/zlib/trees.c	/^local int base_length[LENGTH_CODES];$/;"	v
-base_length	external/zlib/trees.h	/^local const int base_length[LENGTH_CODES] = {$/;"	v
-baseversion	tool/cli/npk_cli.cpp	/^#define baseversion /;"	d	file:
-basic_help	tool/cli/npk_cli.cpp	/^void basic_help()$/;"	f
-bi_buf	external/zlib/deflate.h	/^    ush bi_buf;$/;"	m	struct:internal_state
-bi_flush	external/zlib/trees.c	/^local void bi_flush(s)$/;"	f
-bi_reverse	external/zlib/trees.c	/^local unsigned bi_reverse(code, len)$/;"	f
-bi_valid	external/zlib/deflate.h	/^    int bi_valid;$/;"	m	struct:internal_state
-bi_windup	external/zlib/trees.c	/^local void bi_windup(s)$/;"	f
-bits	external/zlib/inflate.h	/^    unsigned bits;              \/* number of bits in "in" *\/$/;"	m	struct:inflate_state
-bits	external/zlib/inftrees.h	/^    unsigned char bits;         \/* bits in this part of the code *\/$/;"	m	struct:__anon5
-bits_sent	external/zlib/deflate.h	/^    ulg bits_sent;      \/* bit length of compressed data sent mod 2^32 *\/$/;"	m	struct:internal_state
-bl_count	external/zlib/deflate.h	/^    ush bl_count[MAX_BITS+1];$/;"	m	struct:internal_state
-bl_desc	external/zlib/deflate.h	/^    struct tree_desc_s bl_desc;              \/* desc. for bit length tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::tree_desc_s
-bl_order	external/zlib/trees.c	/^local const uch bl_order[BL_CODES]$/;"	v
-bl_tree	external/zlib/deflate.h	/^    struct ct_data_s bl_tree[2*BL_CODES+1];  \/* Huffman tree for bit lengths *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::ct_data_s
-block_done	external/zlib/deflate.c	/^    block_done,     \/* block flush performed *\/$/;"	e	enum:__anon1	file:
-block_start	external/zlib/deflate.h	/^    long block_start;$/;"	m	struct:internal_state
-block_state	external/zlib/deflate.c	/^} block_state;$/;"	t	typeref:enum:__anon1	file:
-bool	include/npk_conf.h	/^	#define bool /;"	d
-bucket_	include/npk_dev.h	/^	NPK_LPBUCKET		bucket_[NPK_HASH_BUCKETS];$/;"	m	struct:NPK_tagPACKAGEBODY
-build_bl_tree	external/zlib/trees.c	/^local int build_bl_tree(s)$/;"	f
-build_tree	external/zlib/trees.c	/^local void build_tree(s, desc)$/;"	f
-c	tool/cli/npk_cli.cpp	/^int					c;		\/\/ argc$/;"	v
-charf	external/zlib/zconf.h	/^#  define charf /;"	d
-charf	external/zlib/zconf.h	/^typedef char  FAR charf;$/;"	t
-check	external/zlib/inflate.h	/^    unsigned long check;        \/* protected copy of check value *\/$/;"	m	struct:inflate_state
-check_match	external/zlib/deflate.c	/^#  define check_match(/;"	d	file:
-check_match	external/zlib/deflate.c	/^local void check_match(s, start, match, length)$/;"	f
-closedir	tool/cli/helper_dirent.c	/^int closedir(DIR *dir)$/;"	f
-code	external/zlib/deflate.h	/^        ush  code;       \/* bit string *\/$/;"	m	union:ct_data_s::__anon2
-code	external/zlib/inftrees.h	/^} code;$/;"	t	typeref:struct:__anon5
-codes	external/zlib/inflate.h	/^    code codes[ENOUGH];         \/* space for code tables *\/$/;"	m	struct:inflate_state
-codetype	external/zlib/inftrees.h	/^} codetype;$/;"	t	typeref:enum:__anon6
-comm_max	external/zlib/zlib.h	/^    uInt    comm_max;   \/* space at comment (only when reading header) *\/$/;"	m	struct:gz_header_s
-comment	external/zlib/zlib.h	/^    Bytef   *comment;   \/* pointer to zero-terminated comment or Z_NULL *\/$/;"	m	struct:gz_header_s
-commify	tool/cli/helper_commify.hpp	/^void commify(double val, char *buf, int round, int comma = 3)$/;"	f
-compress	external/zlib/compress.c	/^int ZEXPORT compress (dest, destLen, source, sourceLen)$/;"	f
-compress	external/zlib/zconf.h	/^#  define compress /;"	d
-compress2	external/zlib/compress.c	/^int ZEXPORT compress2 (dest, destLen, source, sourceLen, level)$/;"	f
-compress2	external/zlib/zconf.h	/^#  define compress2 /;"	d
-compressBound	external/zlib/compress.c	/^uLong ZEXPORT compressBound (sourceLen)$/;"	f
-compressBound	external/zlib/zconf.h	/^#  define compressBound /;"	d
-compress_block	external/zlib/trees.c	/^local void compress_block(s, ltree, dtree)$/;"	f
-compress_func	external/zlib/deflate.c	/^typedef block_state (*compress_func) OF((deflate_state *s, int flush));$/;"	t	file:
-compressed_len	external/zlib/deflate.h	/^    ulg compressed_len; \/* total bit length of compressed file mod 2^32 *\/$/;"	m	struct:internal_state
-config	external/zlib/deflate.c	/^} config;$/;"	t	typeref:struct:config_s	file:
-config_s	external/zlib/deflate.c	/^typedef struct config_s {$/;"	s	file:
-configuration_table	external/zlib/deflate.c	/^local const config configuration_table[10] = {$/;"	v
-configuration_table	external/zlib/deflate.c	/^local const config configuration_table[2] = {$/;"	v
-const	external/zlib/zconf.h	/^#    define const /;"	d
-copy_block	external/zlib/trees.c	/^local void copy_block(s, buf, len, header)$/;"	f
-crc32	external/zlib/crc32.c	/^unsigned long ZEXPORT crc32(crc, buf, len)$/;"	f
-crc32	external/zlib/zconf.h	/^#  define crc32 /;"	d
-crc32_big	external/zlib/crc32.c	/^local unsigned long crc32_big(crc, buf, len)$/;"	f
-crc32_combine	external/zlib/crc32.c	/^uLong ZEXPORT crc32_combine(crc1, crc2, len2)$/;"	f
-crc32_combine	external/zlib/zconf.h	/^#  define crc32_combine /;"	d
-crc32_combine	external/zlib/zlib.h	/^#  define crc32_combine /;"	d
-crc32_combine64	external/zlib/crc32.c	/^uLong ZEXPORT crc32_combine64(crc1, crc2, len2)$/;"	f
-crc32_combine64	external/zlib/zconf.h	/^#  define crc32_combine64 /;"	d
-crc32_combine_	external/zlib/crc32.c	/^local uLong crc32_combine_(crc1, crc2, len2)$/;"	f
-crc32_little	external/zlib/crc32.c	/^local unsigned long crc32_little(crc, buf, len)$/;"	f
-crc_table	external/zlib/crc32.c	/^local unsigned long FAR crc_table[TBLS][256];$/;"	v
-crc_table	external/zlib/crc32.h	/^local const unsigned long FAR crc_table[TBLS][256] =$/;"	v
-crc_table_empty	external/zlib/crc32.c	/^local volatile int crc_table_empty = 1;$/;"	v
-create	tool/cli/npk_cli.cpp	/^void create()$/;"	f
-cs_	include/npk_dev.h	/^	CRITICAL_SECTION	cs_;$/;"	m	struct:NPK_tagPACKAGEBODY
-ct_data	external/zlib/deflate.h	/^} FAR ct_data;$/;"	t	typeref:struct:ct_data_s
-ct_data_s	external/zlib/deflate.h	/^typedef struct ct_data_s {$/;"	s
-currentflag	tool/cli/npk_cli.cpp	/^NPK_FLAG currentflag;$/;"	v
-d_buf	external/zlib/deflate.h	/^    ushf *d_buf;$/;"	m	struct:internal_state
-d_code	external/zlib/deflate.h	/^#define d_code(/;"	d
-d_desc	external/zlib/deflate.h	/^    struct tree_desc_s d_desc;               \/* desc. for distance tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::tree_desc_s
-d_name	tool/cli/helper_dirent.h	/^    char *d_name;$/;"	m	struct:dirent
-dad	external/zlib/deflate.h	/^        ush  dad;        \/* father node in Huffman tree *\/$/;"	m	union:ct_data_s::__anon3
-data_type	external/zlib/zlib.h	/^    int     data_type;  \/* best guess about the data type: binary or text *\/$/;"	m	struct:z_stream_s
-deflate	external/zlib/deflate.c	/^int ZEXPORT deflate (strm, flush)$/;"	f
-deflate	external/zlib/zconf.h	/^#  define deflate /;"	d
-deflateBound	external/zlib/deflate.c	/^uLong ZEXPORT deflateBound(strm, sourceLen)$/;"	f
-deflateBound	external/zlib/zconf.h	/^#  define deflateBound /;"	d
-deflateCopy	external/zlib/deflate.c	/^int ZEXPORT deflateCopy (dest, source)$/;"	f
-deflateCopy	external/zlib/zconf.h	/^#  define deflateCopy /;"	d
-deflateEnd	external/zlib/deflate.c	/^int ZEXPORT deflateEnd (strm)$/;"	f
-deflateEnd	external/zlib/zconf.h	/^#  define deflateEnd /;"	d
-deflateInit	external/zlib/zlib.h	/^#define deflateInit(/;"	d
-deflateInit2	external/zlib/zlib.h	/^#define deflateInit2(/;"	d
-deflateInit2_	external/zlib/deflate.c	/^int ZEXPORT deflateInit2_(strm, level, method, windowBits, memLevel, strategy,$/;"	f
-deflateInit2_	external/zlib/zconf.h	/^#  define deflateInit2_ /;"	d
-deflateInit_	external/zlib/deflate.c	/^int ZEXPORT deflateInit_(strm, level, version, stream_size)$/;"	f
-deflateInit_	external/zlib/zconf.h	/^#  define deflateInit_ /;"	d
-deflateParams	external/zlib/deflate.c	/^int ZEXPORT deflateParams(strm, level, strategy)$/;"	f
-deflateParams	external/zlib/zconf.h	/^#  define deflateParams /;"	d
-deflatePrime	external/zlib/deflate.c	/^int ZEXPORT deflatePrime (strm, bits, value)$/;"	f
-deflatePrime	external/zlib/zconf.h	/^#  define deflatePrime /;"	d
-deflateReset	external/zlib/deflate.c	/^int ZEXPORT deflateReset (strm)$/;"	f
-deflateReset	external/zlib/zconf.h	/^#  define deflateReset /;"	d
-deflateSetDictionary	external/zlib/deflate.c	/^int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)$/;"	f
-deflateSetDictionary	external/zlib/zconf.h	/^#  define deflateSetDictionary /;"	d
-deflateSetHeader	external/zlib/deflate.c	/^int ZEXPORT deflateSetHeader (strm, head)$/;"	f
-deflateSetHeader	external/zlib/zconf.h	/^#  define deflateSetHeader /;"	d
-deflateTune	external/zlib/deflate.c	/^int ZEXPORT deflateTune(strm, good_length, max_lazy, nice_length, max_chain)$/;"	f
-deflateTune	external/zlib/zconf.h	/^#  define deflateTune /;"	d
-deflate_copyright	external/zlib/deflate.c	/^const char deflate_copyright[] =$/;"	v
-deflate_copyright	external/zlib/zconf.h	/^#  define deflate_copyright /;"	d
-deflate_fast	external/zlib/deflate.c	/^local block_state deflate_fast(s, flush)$/;"	f
-deflate_huff	external/zlib/deflate.c	/^local block_state deflate_huff(s, flush)$/;"	f
-deflate_rle	external/zlib/deflate.c	/^local block_state deflate_rle(s, flush)$/;"	f
-deflate_slow	external/zlib/deflate.c	/^local block_state deflate_slow(s, flush)$/;"	f
-deflate_state	external/zlib/deflate.h	/^} FAR deflate_state;$/;"	t	typeref:struct:internal_state
-deflate_stored	external/zlib/deflate.c	/^local block_state deflate_stored(s, flush)$/;"	f
-del	tool/cli/npk_cli.cpp	/^void del()$/;"	f
-del_tfp	tool/cli/npk_cli.cpp	/^bool del_tfp( NPK_ENTITY entity )$/;"	f
-depth	external/zlib/deflate.h	/^    uch depth[2*L_CODES+1];$/;"	m	struct:internal_state
-detect_data_type	external/zlib/trees.c	/^local int detect_data_type(s)$/;"	f
-diff	tool/cli/npk_cli.cpp	/^void diff()$/;"	f
-dirent	tool/cli/helper_dirent.h	/^struct dirent$/;"	s
-distbits	external/zlib/inflate.h	/^    unsigned distbits;          \/* index bits for distcode *\/$/;"	m	struct:inflate_state
-distcode	external/zlib/inflate.h	/^    code const FAR *distcode;   \/* starting table for distance codes *\/$/;"	m	struct:inflate_state
-distfix	external/zlib/inffixed.h	/^    static const code distfix[32] = {$/;"	v
-dl	external/zlib/deflate.h	/^    } dl;$/;"	m	struct:ct_data_s	typeref:union:ct_data_s::__anon3
-dmax	external/zlib/inflate.h	/^    unsigned dmax;              \/* zlib header max distance (INFLATE_STRICT) *\/$/;"	m	struct:inflate_state
-done	external/zlib/zlib.h	/^    int     done;       \/* true when done reading gzip header (not used$/;"	m	struct:gz_header_s
-dummy	external/zlib/deflate.c	/^struct static_tree_desc_s {int dummy;}; \/* for buggy compilers *\/$/;"	m	struct:static_tree_desc_s	file:
-dummy	external/zlib/zlib.h	/^    struct internal_state {int dummy;};$/;"	m	struct:internal_state
-dummy	external/zlib/zutil.c	/^struct internal_state      {int dummy;}; \/* for buggy compilers *\/$/;"	m	struct:internal_state	file:
-dyn_dtree	external/zlib/deflate.h	/^    struct ct_data_s dyn_dtree[2*D_CODES+1]; \/* distance tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::ct_data_s
-dyn_ltree	external/zlib/deflate.h	/^    struct ct_data_s dyn_ltree[HEAP_SIZE];   \/* literal and length tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::ct_data_s
-dyn_tree	external/zlib/deflate.h	/^    ct_data *dyn_tree;           \/* the dynamic tree *\/$/;"	m	struct:tree_desc_s
-elems	external/zlib/trees.c	/^    int     elems;               \/* max number of elements in the tree *\/$/;"	m	struct:static_tree_desc_s	file:
-entity	tool/cli/npk_cli.cpp	/^NPK_ENTITY entity = NULL;$/;"	v
-entityCount_	include/npk_dev.h	/^	NPK_SIZE			entityCount_;		\/* Quantity of entities. *\/$/;"	m	struct:NPK_tagPACKAGEINFO
-entityDataOffset_	include/npk_dev.h	/^	NPK_SIZE			entityDataOffset_;	\/* Entities' data offset. *\/$/;"	m	struct:NPK_tagPACKAGEINFO
-entityInfoOffset_	include/npk_dev.h	/^	NPK_SIZE			entityInfoOffset_;	\/* Entities' information offset. *\/$/;"	m	struct:NPK_tagPACKAGEINFO
-errno	external/zlib/zutil.c	/^    int errno = 0;$/;"	v
-error_n_exit	tool/cli/npk_cli.cpp	/^void error_n_exit()$/;"	f
-expt	tool/cli/npk_cli.cpp	/^void expt()$/;"	f
-expt_tfp	tool/cli/npk_cli.cpp	/^bool expt_tfp( NPK_ENTITY entity )$/;"	f
-expt_with_dir_check	tool/cli/npk_cli.cpp	/^NPK_RESULT expt_with_dir_check( NPK_ENTITY entity, const char* filename )$/;"	f
-extra	external/zlib/inflate.h	/^    unsigned extra;             \/* extra bits needed *\/$/;"	m	struct:inflate_state
-extra	external/zlib/zlib.h	/^    Bytef   *extra;     \/* pointer to extra field or Z_NULL if none *\/$/;"	m	struct:gz_header_s
-extra_base	external/zlib/trees.c	/^    int     extra_base;          \/* base index for extra_bits *\/$/;"	m	struct:static_tree_desc_s	file:
-extra_bits	external/zlib/trees.c	/^    const intf *extra_bits;      \/* extra bits for each code or NULL *\/$/;"	m	struct:static_tree_desc_s	file:
-extra_blbits	external/zlib/trees.c	/^local const int extra_blbits[BL_CODES]\/* extra bits for each bit length code *\/$/;"	v
-extra_dbits	external/zlib/trees.c	/^local const int extra_dbits[D_CODES] \/* extra bits for each distance code *\/$/;"	v
-extra_lbits	external/zlib/trees.c	/^local const int extra_lbits[LENGTH_CODES] \/* extra bits for each length code *\/$/;"	v
-extra_len	external/zlib/zlib.h	/^    uInt    extra_len;  \/* extra field length (valid if extra != Z_NULL) *\/$/;"	m	struct:gz_header_s
-extra_max	external/zlib/zlib.h	/^    uInt    extra_max;  \/* space at extra (only when reading header) *\/$/;"	m	struct:gz_header_s
-false	include/npk_conf.h	/^	#define false /;"	d
-fc	external/zlib/deflate.h	/^    } fc;$/;"	m	struct:ct_data_s	typeref:union:ct_data_s::__anon2
-fdopen	external/zlib/zutil.h	/^#      define fdopen(/;"	d
-fdopen	external/zlib/zutil.h	/^#    define fdopen(/;"	d
-fdopen	external/zlib/zutil.h	/^#  define fdopen(/;"	d
-fill_window	external/zlib/deflate.c	/^local void fill_window(s)$/;"	f
-find_option	tool/cli/npk_cli.cpp	/^bool find_option( const char* option, int* pos )$/;"	f
-finish_done	external/zlib/deflate.c	/^    finish_done     \/* finish done, accept no more input or output *\/$/;"	e	enum:__anon1	file:
-finish_started	external/zlib/deflate.c	/^    finish_started, \/* finish started, need only more output at next deflate *\/$/;"	e	enum:__anon1	file:
-fixedtables	external/zlib/infback.c	/^local void fixedtables(state)$/;"	f
-fixedtables	external/zlib/inflate.c	/^local void fixedtables(state)$/;"	f
-flag	tool/cli/npk_cli.cpp	/^void flag()$/;"	f
-flag_	include/npk_dev.h	/^	NPK_FLAG			flag_;				\/* Composite of EntityFlag. ( see npk_base.h ) *\/$/;"	m	struct:NPK_tagENTITYINFO
-flag_	include/npk_dev.h	/^	NPK_FLAG			flag_;				\/* Composite of EntityFlag. ( see npk_base.h ) *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
-flag_tfp	tool/cli/npk_cli.cpp	/^bool flag_tfp( NPK_ENTITY entity )$/;"	f
-flags	external/zlib/inflate.h	/^    int flags;                  \/* gzip header method and flags (0 if zlib) *\/$/;"	m	struct:inflate_state
-flush_pending	external/zlib/deflate.c	/^local void flush_pending(strm)$/;"	f
-forceoverwrite	tool/cli/npk_cli.cpp	/^bool forceoverwrite = false;$/;"	v
-forceupdate	tool/cli/npk_cli.cpp	/^bool forceupdate = false;$/;"	v
-free_func	external/zlib/zconf.h	/^#  define free_func /;"	d
-free_func	external/zlib/zlib.h	/^typedef void   (*free_func)  OF((voidpf opaque, voidpf address));$/;"	t
-freq	external/zlib/deflate.h	/^        ush  freq;       \/* frequency count *\/$/;"	m	union:ct_data_s::__anon2
-func	external/zlib/deflate.c	/^   compress_func func;$/;"	m	struct:config_s	file:
-g_callbackSize	src/npk.c	/^NPK_SIZE		g_callbackSize;$/;"	v
-g_callbackfp	src/npk.c	/^NPK_CALLBACK	g_callbackfp;$/;"	v
-g_gluetime	src/npk_dev.c	/^NPK_TIME	g_gluetime;$/;"	v
-g_npkError	src/npk.c	/^NPK_API int		g_npkError = 0;	\/* this variable has no multi-thread safety *\/$/;"	v
-g_useCriticalSection	src/npk.c	/^int				g_useCriticalSection = 0;$/;"	v
-g_use_gluetime	src/npk_dev.c	/^bool		g_use_gluetime;$/;"	v
-gen_bitlen	external/zlib/trees.c	/^local void gen_bitlen(s, desc)$/;"	f
-gen_codes	external/zlib/trees.c	/^local void gen_codes (tree, max_code, bl_count)$/;"	f
-gen_trees_header	external/zlib/trees.c	/^void gen_trees_header()$/;"	f
-get_crc_table	external/zlib/crc32.c	/^const unsigned long FAR * ZEXPORT get_crc_table()$/;"	f
-get_crc_table	external/zlib/zconf.h	/^#  define get_crc_table /;"	d
-get_forceoverwrite	tool/cli/npk_cli.cpp	/^void get_forceoverwrite()$/;"	f
-get_gluetime	tool/cli/npk_cli.cpp	/^void get_gluetime()$/;"	f
-get_human_readable	tool/cli/npk_cli.cpp	/^void get_human_readable()$/;"	f
-get_ignorelist	tool/cli/npk_cli.cpp	/^void get_ignorelist()$/;"	f
-get_just_create	tool/cli/npk_cli.cpp	/^void get_just_create()$/;"	f
-get_key	tool/cli/npk_cli.cpp	/^void get_key()$/;"	f
-get_norecursive	tool/cli/npk_cli.cpp	/^void get_norecursive()$/;"	f
-get_output	tool/cli/npk_cli.cpp	/^void get_output()$/;"	f
-get_sync_options	tool/cli/npk_cli.cpp	/^void get_sync_options()$/;"	f
-get_verbose	tool/cli/npk_cli.cpp	/^void get_verbose()$/;"	f
-get_withlist	tool/cli/npk_cli.cpp	/^void get_withlist()$/;"	f
-gf2_matrix_square	external/zlib/crc32.c	/^local void gf2_matrix_square(square, mat)$/;"	f
-gf2_matrix_times	external/zlib/crc32.c	/^local unsigned long gf2_matrix_times(mat, vec)$/;"	f
-good_length	external/zlib/deflate.c	/^   ush good_length; \/* reduce lazy search above this match length *\/$/;"	m	struct:config_s	file:
-good_match	external/zlib/deflate.h	/^    uInt good_match;$/;"	m	struct:internal_state
-gzFile	external/zlib/zconf.h	/^#  define gzFile /;"	d
-gzFile	external/zlib/zlib.h	/^typedef voidp gzFile;       \/* opaque gzip file descriptor *\/$/;"	t
-gz_error	external/zlib/zconf.h	/^#  define gz_error /;"	d
-gz_header	external/zlib/zconf.h	/^#  define gz_header /;"	d
-gz_header	external/zlib/zlib.h	/^} gz_header;$/;"	t	typeref:struct:gz_header_s
-gz_header_s	external/zlib/zconf.h	/^#  define gz_header_s /;"	d
-gz_header_s	external/zlib/zlib.h	/^typedef struct gz_header_s {$/;"	s
-gz_headerp	external/zlib/zconf.h	/^#  define gz_headerp /;"	d
-gz_headerp	external/zlib/zlib.h	/^typedef gz_header FAR *gz_headerp;$/;"	t
-gz_intmax	external/zlib/zconf.h	/^#  define gz_intmax /;"	d
-gz_strwinerror	external/zlib/zconf.h	/^#  define gz_strwinerror /;"	d
-gzbuffer	external/zlib/zconf.h	/^#  define gzbuffer /;"	d
-gzclearerr	external/zlib/zconf.h	/^#  define gzclearerr /;"	d
-gzclose	external/zlib/zconf.h	/^#  define gzclose /;"	d
-gzclose_r	external/zlib/zconf.h	/^#  define gzclose_r /;"	d
-gzclose_w	external/zlib/zconf.h	/^#  define gzclose_w /;"	d
-gzdirect	external/zlib/zconf.h	/^#  define gzdirect /;"	d
-gzdopen	external/zlib/zconf.h	/^#  define gzdopen /;"	d
-gzeof	external/zlib/zconf.h	/^#  define gzeof /;"	d
-gzerror	external/zlib/zconf.h	/^#  define gzerror /;"	d
-gzflush	external/zlib/zconf.h	/^#  define gzflush /;"	d
-gzgetc	external/zlib/zconf.h	/^#  define gzgetc /;"	d
-gzgets	external/zlib/zconf.h	/^#  define gzgets /;"	d
-gzhead	external/zlib/deflate.h	/^    gz_headerp  gzhead;  \/* gzip header information to write *\/$/;"	m	struct:internal_state
-gzindex	external/zlib/deflate.h	/^    uInt   gzindex;      \/* where in extra, name, or comment *\/$/;"	m	struct:internal_state
-gzoffset	external/zlib/zconf.h	/^#  define gzoffset /;"	d
-gzoffset	external/zlib/zlib.h	/^#  define gzoffset /;"	d
-gzoffset64	external/zlib/zconf.h	/^#  define gzoffset64 /;"	d
-gzopen	external/zlib/zconf.h	/^#  define gzopen /;"	d
-gzopen	external/zlib/zlib.h	/^#  define gzopen /;"	d
-gzopen64	external/zlib/zconf.h	/^#  define gzopen64 /;"	d
-gzprintf	external/zlib/zconf.h	/^#  define gzprintf /;"	d
-gzputc	external/zlib/zconf.h	/^#  define gzputc /;"	d
-gzputs	external/zlib/zconf.h	/^#  define gzputs /;"	d
-gzread	external/zlib/zconf.h	/^#  define gzread /;"	d
-gzrewind	external/zlib/zconf.h	/^#  define gzrewind /;"	d
-gzseek	external/zlib/zconf.h	/^#  define gzseek /;"	d
-gzseek	external/zlib/zlib.h	/^#  define gzseek /;"	d
-gzseek64	external/zlib/zconf.h	/^#  define gzseek64 /;"	d
-gzsetparams	external/zlib/zconf.h	/^#  define gzsetparams /;"	d
-gztell	external/zlib/zconf.h	/^#  define gztell /;"	d
-gztell	external/zlib/zlib.h	/^#  define gztell /;"	d
-gztell64	external/zlib/zconf.h	/^#  define gztell64 /;"	d
-gzungetc	external/zlib/zconf.h	/^#  define gzungetc /;"	d
-gzwrite	external/zlib/zconf.h	/^#  define gzwrite /;"	d
-handle	tool/cli/helper_dirent.c	/^    long                handle; \/* -1 for failed rewind *\/$/;"	m	struct:DIR	file:
-handle_	include/npk_dev.h	/^	NPK_HANDLE			handle_;			\/* File handle. *\/$/;"	m	struct:NPK_tagPACKAGEBODY
-has_wildcard_pattern	tool/cli/npk_cli.cpp	/^bool has_wildcard_pattern( const char* str )$/;"	f
-hash_bits	external/zlib/deflate.h	/^    uInt  hash_bits;      \/* log2(hash_size) *\/$/;"	m	struct:internal_state
-hash_mask	external/zlib/deflate.h	/^    uInt  hash_mask;      \/* hash_size-1 *\/$/;"	m	struct:internal_state
-hash_shift	external/zlib/deflate.h	/^    uInt  hash_shift;$/;"	m	struct:internal_state
-hash_size	external/zlib/deflate.h	/^    uInt  hash_size;      \/* number of elements in hash table *\/$/;"	m	struct:internal_state
-have	external/zlib/inflate.h	/^    unsigned have;              \/* number of code lengths in lens[] *\/$/;"	m	struct:inflate_state
-havedict	external/zlib/inflate.h	/^    int havedict;               \/* true if dictionary provided *\/$/;"	m	struct:inflate_state
-hcrc	external/zlib/zlib.h	/^    int     hcrc;       \/* true if there was or will be a header crc *\/$/;"	m	struct:gz_header_s
-head	external/zlib/deflate.h	/^    Posf *head; \/* Heads of the hash chains or NIL. *\/$/;"	m	struct:internal_state
-head	external/zlib/inflate.h	/^    gz_headerp head;            \/* where to save gzip header information *\/$/;"	m	struct:inflate_state
-heap	external/zlib/deflate.h	/^    int heap[2*L_CODES+1];      \/* heap used to build the Huffman trees *\/$/;"	m	struct:internal_state
-heap_len	external/zlib/deflate.h	/^    int heap_len;               \/* number of elements in the heap *\/$/;"	m	struct:internal_state
-heap_max	external/zlib/deflate.h	/^    int heap_max;               \/* element of largest frequency *\/$/;"	m	struct:internal_state
-help	tool/cli/npk_cli.cpp	/^void help()$/;"	f
-high_water	external/zlib/deflate.h	/^    ulg high_water;$/;"	m	struct:internal_state
-hold	external/zlib/inflate.h	/^    unsigned long hold;         \/* input bit accumulator *\/$/;"	m	struct:inflate_state
-human_readable	tool/cli/npk_cli.cpp	/^bool human_readable = false;$/;"	v
-ignorelist	tool/cli/npk_cli.cpp	/^STRLIST ignorelist;$/;"	v
-in_func	external/zlib/zconf.h	/^#  define in_func /;"	d
-in_func	external/zlib/zlib.h	/^typedef unsigned (*in_func) OF((void FAR *, unsigned char FAR * FAR *));$/;"	t
-inflate	external/zlib/inflate.c	/^int ZEXPORT inflate(strm, flush)$/;"	f
-inflate	external/zlib/zconf.h	/^#  define inflate /;"	d
-inflateBack	external/zlib/infback.c	/^int ZEXPORT inflateBack(strm, in, in_desc, out, out_desc)$/;"	f
-inflateBack	external/zlib/zconf.h	/^#  define inflateBack /;"	d
-inflateBackEnd	external/zlib/infback.c	/^int ZEXPORT inflateBackEnd(strm)$/;"	f
-inflateBackEnd	external/zlib/zconf.h	/^#  define inflateBackEnd /;"	d
-inflateBackInit	external/zlib/zlib.h	/^#define inflateBackInit(/;"	d
-inflateBackInit_	external/zlib/infback.c	/^int ZEXPORT inflateBackInit_(strm, windowBits, window, version, stream_size)$/;"	f
-inflateBackInit_	external/zlib/zconf.h	/^#  define inflateBackInit_ /;"	d
-inflateCopy	external/zlib/inflate.c	/^int ZEXPORT inflateCopy(dest, source)$/;"	f
-inflateCopy	external/zlib/zconf.h	/^#  define inflateCopy /;"	d
-inflateEnd	external/zlib/inflate.c	/^int ZEXPORT inflateEnd(strm)$/;"	f
-inflateEnd	external/zlib/zconf.h	/^#  define inflateEnd /;"	d
-inflateGetHeader	external/zlib/inflate.c	/^int ZEXPORT inflateGetHeader(strm, head)$/;"	f
-inflateGetHeader	external/zlib/zconf.h	/^#  define inflateGetHeader /;"	d
-inflateInit	external/zlib/zlib.h	/^#define inflateInit(/;"	d
-inflateInit2	external/zlib/zlib.h	/^#define inflateInit2(/;"	d
-inflateInit2_	external/zlib/inflate.c	/^int ZEXPORT inflateInit2_(strm, windowBits, version, stream_size)$/;"	f
-inflateInit2_	external/zlib/zconf.h	/^#  define inflateInit2_ /;"	d
-inflateInit_	external/zlib/inflate.c	/^int ZEXPORT inflateInit_(strm, version, stream_size)$/;"	f
-inflateInit_	external/zlib/zconf.h	/^#  define inflateInit_ /;"	d
-inflateMark	external/zlib/inflate.c	/^long ZEXPORT inflateMark(strm)$/;"	f
-inflateMark	external/zlib/zconf.h	/^#  define inflateMark /;"	d
-inflatePrime	external/zlib/inflate.c	/^int ZEXPORT inflatePrime(strm, bits, value)$/;"	f
-inflatePrime	external/zlib/zconf.h	/^#  define inflatePrime /;"	d
-inflateReset	external/zlib/inflate.c	/^int ZEXPORT inflateReset(strm)$/;"	f
-inflateReset	external/zlib/zconf.h	/^#  define inflateReset /;"	d
-inflateReset2	external/zlib/inflate.c	/^int ZEXPORT inflateReset2(strm, windowBits)$/;"	f
-inflateReset2	external/zlib/zconf.h	/^#  define inflateReset2 /;"	d
-inflateSetDictionary	external/zlib/inflate.c	/^int ZEXPORT inflateSetDictionary(strm, dictionary, dictLength)$/;"	f
-inflateSetDictionary	external/zlib/zconf.h	/^#  define inflateSetDictionary /;"	d
-inflateSync	external/zlib/inflate.c	/^int ZEXPORT inflateSync(strm)$/;"	f
-inflateSync	external/zlib/zconf.h	/^#  define inflateSync /;"	d
-inflateSyncPoint	external/zlib/inflate.c	/^int ZEXPORT inflateSyncPoint(strm)$/;"	f
-inflateSyncPoint	external/zlib/zconf.h	/^#  define inflateSyncPoint /;"	d
-inflateUndermine	external/zlib/inflate.c	/^int ZEXPORT inflateUndermine(strm, subvert)$/;"	f
-inflateUndermine	external/zlib/zconf.h	/^#  define inflateUndermine /;"	d
-inflate_copyright	external/zlib/inftrees.c	/^const char inflate_copyright[] =$/;"	v
-inflate_copyright	external/zlib/zconf.h	/^#  define inflate_copyright /;"	d
-inflate_fast	external/zlib/inffast.c	/^void ZLIB_INTERNAL inflate_fast(strm, start)$/;"	f
-inflate_fast	external/zlib/zconf.h	/^#  define inflate_fast /;"	d
-inflate_mode	external/zlib/inflate.h	/^} inflate_mode;$/;"	t	typeref:enum:__anon4
-inflate_state	external/zlib/inflate.h	/^struct inflate_state {$/;"	s
-inflate_table	external/zlib/inftrees.c	/^int ZLIB_INTERNAL inflate_table(type, lens, codes, table, bits, work)$/;"	f
-inflate_table	external/zlib/zconf.h	/^#  define inflate_table /;"	d
-info	tool/cli/helper_dirent.c	/^    struct _finddata_t  info;$/;"	m	struct:DIR	typeref:struct:DIR::_finddata_t	file:
-info	tool/cli/npk_cli.cpp	/^void info()$/;"	f
-info_	include/npk_dev.h	/^	NPK_ENTITYINFO		info_;$/;"	m	struct:NPK_tagENTITYBODY
-info_	include/npk_dev.h	/^	NPK_PACKAGEINFO		info_;$/;"	m	struct:NPK_tagPACKAGEBODY
-init_block	external/zlib/trees.c	/^local void init_block(s)$/;"	f
-ins_h	external/zlib/deflate.h	/^    uInt  ins_h;          \/* hash index of string to be inserted *\/$/;"	m	struct:internal_state
-internal_state	external/zlib/deflate.h	/^typedef struct internal_state {$/;"	s
-internal_state	external/zlib/zconf.h	/^#  define internal_state /;"	d
-internal_state	external/zlib/zlib.h	/^    struct internal_state {int dummy;};$/;"	s
-internal_state	external/zlib/zutil.c	/^struct internal_state      {int dummy;}; \/* for buggy compilers *\/$/;"	s	file:
-intf	external/zlib/zconf.h	/^#  define intf /;"	d
-intf	external/zlib/zconf.h	/^typedef int   FAR intf;$/;"	t
-justcreate	tool/cli/npk_cli.cpp	/^bool justcreate = false;$/;"	v
-k	tool/cli/npk_cli.cpp	/^NPK_TEAKEY k[4] = { 0, 0, 0, 0 };$/;"	v
-l_buf	external/zlib/deflate.h	/^    uchf *l_buf;          \/* buffer for literals or lengths *\/$/;"	m	struct:internal_state
-l_desc	external/zlib/deflate.h	/^    struct tree_desc_s l_desc;               \/* desc. for literal tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::tree_desc_s
-last	external/zlib/inflate.h	/^    int last;                   \/* true if processing last block *\/$/;"	m	struct:inflate_state
-last_eob_len	external/zlib/deflate.h	/^    int last_eob_len;   \/* bit length of EOB code for last block *\/$/;"	m	struct:internal_state
-last_flush	external/zlib/deflate.h	/^    int   last_flush;    \/* value of flush param for previous deflate call *\/$/;"	m	struct:internal_state
-last_lit	external/zlib/deflate.h	/^    uInt last_lit;      \/* running index in l_buf *\/$/;"	m	struct:internal_state
-len	external/zlib/deflate.h	/^        ush  len;        \/* length of bit string *\/$/;"	m	union:ct_data_s::__anon3
-lenbits	external/zlib/inflate.h	/^    unsigned lenbits;           \/* index bits for lencode *\/$/;"	m	struct:inflate_state
-lencode	external/zlib/inflate.h	/^    code const FAR *lencode;    \/* starting table for length\/literal codes *\/$/;"	m	struct:inflate_state
-lenfix	external/zlib/inffixed.h	/^    static const code lenfix[512] = {$/;"	v
-length	external/zlib/inflate.h	/^    unsigned length;            \/* literal or length of data to copy *\/$/;"	m	struct:inflate_state
-lens	external/zlib/inflate.h	/^    unsigned short lens[320];   \/* temporary storage for code lengths *\/$/;"	m	struct:inflate_state
-level	external/zlib/deflate.h	/^    int level;    \/* compression level (1..9) *\/$/;"	m	struct:internal_state
-listinfo	tool/cli/npk_cli.cpp	/^void listinfo()$/;"	f
-listinfo_tfp	tool/cli/npk_cli.cpp	/^bool listinfo_tfp( NPK_ENTITY entity )$/;"	f
-lit_bufsize	external/zlib/deflate.h	/^    uInt  lit_bufsize;$/;"	m	struct:internal_state
-lm_init	external/zlib/deflate.c	/^local void lm_init (s)$/;"	f
-local	external/zlib/adler32.c	/^#define local /;"	d	file:
-local	external/zlib/crc32.c	/^#define local /;"	d	file:
-local	external/zlib/zutil.h	/^#  define local /;"	d
-localname_	include/npk_dev.h	/^	NPK_STR				localname_;			\/* Local Foldername + FileName. *\/$/;"	m	struct:NPK_tagENTITYBODY
-longest_match	external/zlib/deflate.c	/^local uInt longest_match(s, cur_match)$/;"	f
-lookahead	external/zlib/deflate.h	/^    uInt lookahead;              \/* number of valid bytes ahead in window *\/$/;"	m	struct:internal_state
-main	tool/cli/npk_cli.cpp	/^int main( int _c, char* _v[] )$/;"	f
-main	tool/gui/npk_gui.cpp	/^void main()$/;"	f
-make_crc_table	external/zlib/crc32.c	/^local void make_crc_table()$/;"	f
-makefixed	external/zlib/inflate.c	/^void makefixed()$/;"	f
-match_available	external/zlib/deflate.h	/^    int match_available;         \/* set if previous match exists *\/$/;"	m	struct:internal_state
-match_length	external/zlib/deflate.h	/^    uInt match_length;           \/* length of best match *\/$/;"	m	struct:internal_state
-match_start	external/zlib/deflate.h	/^    uInt match_start;            \/* start of matching string *\/$/;"	m	struct:internal_state
-matches	external/zlib/deflate.h	/^    uInt matches;       \/* number of string matches in current block *\/$/;"	m	struct:internal_state
-max_chain	external/zlib/deflate.c	/^   ush max_chain;$/;"	m	struct:config_s	file:
-max_chain_length	external/zlib/deflate.h	/^    uInt max_chain_length;$/;"	m	struct:internal_state
-max_code	external/zlib/deflate.h	/^    int     max_code;            \/* largest code with non zero frequency *\/$/;"	m	struct:tree_desc_s
-max_insert_length	external/zlib/deflate.h	/^#   define max_insert_length /;"	d
-max_lazy	external/zlib/deflate.c	/^   ush max_lazy;    \/* do not perform lazy search above this match length *\/$/;"	m	struct:config_s	file:
-max_lazy_match	external/zlib/deflate.h	/^    uInt max_lazy_match;$/;"	m	struct:internal_state
-max_length	external/zlib/trees.c	/^    int     max_length;          \/* max bit length for the codes *\/$/;"	m	struct:static_tree_desc_s	file:
-method	external/zlib/deflate.h	/^    Byte  method;        \/* STORED (for zip only) or DEFLATED *\/$/;"	m	struct:internal_state
-mkdirr	tool/cli/helper_mkdirr.hpp	/^static void mkdirr(const char *dir) {$/;"	f
-mode	external/zlib/inflate.h	/^    inflate_mode mode;          \/* current inflate mode *\/$/;"	m	struct:inflate_state
-modified	tool/cli/npk_cli.cpp	/^bool modified = false;$/;"	v
-modified_	include/npk_dev.h	/^	NPK_64BIT			modified_;			\/* For old-npk-style 64bit FILETIME *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
-modified_	include/npk_dev.h	/^	NPK_TIME			modified_;			\/* Last modified date of entity - 32bit time_t *\/$/;"	m	struct:NPK_tagENTITYINFO
-modified_	include/npk_dev.h	/^	NPK_TIME			modified_;			\/* Last modified date of package - 32bit time_t *\/$/;"	m	struct:NPK_tagPACKAGEINFO_V23
-modified_	include/npk_dev.h	/^	NPK_TIME			modified_;$/;"	m	struct:NPK_tagPACKAGEBODY
-msg	external/zlib/zlib.h	/^    char     *msg;      \/* last error message, NULL if no error *\/$/;"	m	struct:z_stream_s
-n	tool/cli/npk_cli.cpp	/^int					n = 0;	\/\/ current argc number$/;"	v
-name	external/zlib/zlib.h	/^    Bytef   *name;      \/* pointer to zero-terminated file name or Z_NULL *\/$/;"	m	struct:gz_header_s
-name	tool/cli/helper_dirent.c	/^    char                *name;  \/* null-terminated char string *\/$/;"	m	struct:DIR	file:
-nameLength_	include/npk_dev.h	/^ 	NPK_NAMESIZE		nameLength_;		\/* Length of Foldername + FileName. *\/$/;"	m	struct:NPK_tagENTITYINFO
-nameLength_	include/npk_dev.h	/^ 	NPK_NAMESIZE		nameLength_;		\/* Length of Foldername + FileName. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
-name_	include/npk_dev.h	/^	NPK_STR				name_;				\/* Foldername + FileName. *\/$/;"	m	struct:NPK_tagENTITYBODY
-name_max	external/zlib/zlib.h	/^    uInt    name_max;   \/* space at name (only when reading header) *\/$/;"	m	struct:gz_header_s
-ncode	external/zlib/inflate.h	/^    unsigned ncode;             \/* number of code length code lengths *\/$/;"	m	struct:inflate_state
-ndist	external/zlib/inflate.h	/^    unsigned ndist;             \/* number of distance code lengths *\/$/;"	m	struct:inflate_state
-need_more	external/zlib/deflate.c	/^    need_more,      \/* block not completed, need more input or more output *\/$/;"	e	enum:__anon1	file:
-new_ptr	external/zlib/zutil.c	/^    voidpf new_ptr;$/;"	m	struct:ptr_table_s	file:
-newflag_	include/npk_dev.h	/^	NPK_FLAG			newflag_;			\/* New entity flags *\/$/;"	m	struct:NPK_tagENTITYBODY
-next	external/zlib/inflate.h	/^    code FAR *next;             \/* next available space in codes[] *\/$/;"	m	struct:inflate_state
-nextInBucket_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	nextInBucket_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
-next_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	next_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
-next_in	external/zlib/zlib.h	/^    Bytef    *next_in;  \/* next input byte *\/$/;"	m	struct:z_stream_s
-next_out	external/zlib/zlib.h	/^    Bytef    *next_out; \/* next output byte should be put there *\/$/;"	m	struct:z_stream_s
-next_ptr	external/zlib/zutil.c	/^local int next_ptr = 0;$/;"	v
-nice_length	external/zlib/deflate.c	/^   ush nice_length; \/* quit search above this match length *\/$/;"	m	struct:config_s	file:
-nice_match	external/zlib/deflate.h	/^    int nice_match; \/* Stop searching when current match exceeds this *\/$/;"	m	struct:internal_state
-nlen	external/zlib/inflate.h	/^    unsigned nlen;              \/* number of length code lengths *\/$/;"	m	struct:inflate_state
-norecursive	tool/cli/npk_cli.cpp	/^bool norecursive = false;$/;"	v
-npk_alloc_copy_string	src/npk_common.c	/^NPK_RESULT npk_alloc_copy_string( NPK_STR* dst, NPK_CSTR src )$/;"	f
-npk_case	tests/npk_case.cpp	/^int npk_case( int argc, char * argv [] )$/;"	f
-npk_close	src/npk_common.c	/^NPK_RESULT npk_close( NPK_HANDLE handle )$/;"	f
-npk_disable_callback	src/npk.c	/^void npk_disable_callback()$/;"	f
-npk_disable_criticalsection	src/npk.c	/^void npk_disable_criticalsection()$/;"	f
-npk_disable_gluetime	src/npk_dev.c	/^void npk_disable_gluetime()$/;"	f
-npk_durability	tests/npk_durability.cpp	/^int npk_durability( int argc, char * argv [] )$/;"	f
-npk_enable_callback	src/npk.c	/^void npk_enable_callback( NPK_CALLBACK cb, NPK_SIZE cb_size )$/;"	f
-npk_enable_criticalsection	src/npk.c	/^void npk_enable_criticalsection()$/;"	f
-npk_enable_gluetime	src/npk_dev.c	/^void npk_enable_gluetime( NPK_TIME time )$/;"	f
-npk_entity_add_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_add_flag( NPK_ENTITY entity, NPK_FLAG flag )$/;"	f
-npk_entity_alloc	src/npk_common.c	/^NPK_RESULT npk_entity_alloc( NPK_ENTITY* lpEntity )$/;"	f
-npk_entity_export	src/npk_dev.c	/^NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceoverwrite )$/;"	f
-npk_entity_get_current_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_get_current_flag( NPK_ENTITY entity, NPK_FLAG* flag )$/;"	f
-npk_entity_get_name	src/npk.c	/^NPK_CSTR npk_entity_get_name( NPK_ENTITY entity )$/;"	f
-npk_entity_get_new_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_get_new_flag( NPK_ENTITY entity, NPK_FLAG* flag )$/;"	f
-npk_entity_get_size	src/npk.c	/^NPK_SIZE npk_entity_get_size( NPK_ENTITY entity )$/;"	f
-npk_entity_init	src/npk_common.c	/^NPK_RESULT npk_entity_init( NPK_ENTITY entity )$/;"	f
-npk_entity_next	src/npk.c	/^NPK_ENTITY npk_entity_next( NPK_ENTITY entity )$/;"	f
-npk_entity_read	src/npk.c	/^bool npk_entity_read( NPK_ENTITY entity, void* buf )$/;"	f
-npk_entity_read_partial	src/npk.c	/^bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK_SIZE size )$/;"	f
-npk_entity_set_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_set_flag( NPK_ENTITY entity, NPK_FLAG flag )$/;"	f
-npk_entity_sub_flag	src/npk_dev.c	/^NPK_RESULT npk_entity_sub_flag( NPK_ENTITY entity, NPK_FLAG flag )$/;"	f
-npk_entity_write	src/npk_dev.c	/^NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )$/;"	f
-npk_error	src/npk_common.c	/^NPK_RESULT npk_error( NPK_RESULT res )$/;"	f
-npk_error_to_str	src/npk_common.c	/^NPK_STR npk_error_to_str( NPK_RESULT res )$/;"	f
-npk_export	tests/npk_export.cpp	/^int npk_export( int argc, char * argv [] )$/;"	f
-npk_filetime_to_unixtime	src/npk_common.c	/^void npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt )$/;"	f
-npk_flush	src/npk_dev.c	/^NPK_RESULT npk_flush( NPK_HANDLE handle )$/;"	f
-npk_get_bucket	src/npk_common.c	/^NPK_HASHKEY npk_get_bucket( NPK_CSTR name )$/;"	f
-npk_get_filetime	src/npk_dev.c	/^NPK_RESULT npk_get_filetime( NPK_CSTR filename, NPK_TIME* pft )$/;"	f
-npk_hash	tests/npk_hash.cpp	/^int npk_hash( int argc, char * argv [] )$/;"	f
-npk_log	src/npk_dev.c	/^void npk_log( NPK_CSTR format, ... )$/;"	f
-npk_open	src/npk_common.c	/^NPK_RESULT npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist )$/;"	f
-npk_open	tests/npk_open.cpp	/^int npk_open( int argc, char * argv [] )$/;"	f
-npk_package_add_entity	src/npk_common.c	/^NPK_RESULT npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity )$/;"	f
-npk_package_add_file	src/npk_dev.c	/^NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CSTR entityname, NPK_ENTITY* lpEntity )$/;"	f
-npk_package_alloc	src/npk_common.c	/^NPK_RESULT npk_package_alloc( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )$/;"	f
-npk_package_clear	src/npk_dev.c	/^NPK_RESULT npk_package_clear( NPK_PACKAGE package )$/;"	f
-npk_package_close	src/npk.c	/^bool npk_package_close( NPK_PACKAGE package )$/;"	f
-npk_package_get_entity	src/npk.c	/^NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )$/;"	f
-npk_package_get_first_entity	src/npk.c	/^NPK_ENTITY npk_package_get_first_entity( NPK_PACKAGE package )$/;"	f
-npk_package_init	src/npk_common.c	/^NPK_RESULT npk_package_init( NPK_PACKAGE package )$/;"	f
-npk_package_open	src/npk.c	/^NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )$/;"	f
-npk_package_open_with_fd	src/npk.c	/^NPK_PACKAGE	npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] )$/;"	f
-npk_package_remove_all_entity	src/npk_common.c	/^NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )$/;"	f
-npk_package_remove_entity	src/npk_dev.c	/^NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )$/;"	f
-npk_package_save	src/npk_dev.c	/^NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceoverwrite )$/;"	f
-npk_read	src/npk_common.c	/^NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,$/;"	f
-npk_read_encrypt	src/npk_common.c	/^NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_SIZE size,$/;"	f
-npk_read_entity	tests/npk_read_entity.cpp	/^int npk_read_entity( int argc, char * argv [] )$/;"	f
-npk_seek	src/npk_common.c	/^long npk_seek( NPK_HANDLE handle, long offset, int origin )$/;"	f
-npk_set_filetime	src/npk_dev.c	/^NPK_RESULT npk_set_filetime( NPK_CSTR filename, const NPK_TIME pft )$/;"	f
-npk_tell	src/npk_dev.c	/^long npk_tell( NPK_HANDLE handle )$/;"	f
-npk_using_fd	tests/npk_using_fd.cpp	/^int npk_using_fd( int argc, char * argv [] )$/;"	f
-npk_write	src/npk_dev.c	/^NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,$/;"	f
-npk_write	tests/npk_write.cpp	/^int npk_write( int argc, char * argv [] )$/;"	f
-npk_write_encrypt	src/npk_dev.c	/^NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_SIZE size,$/;"	f
-offset	external/zlib/inflate.h	/^    unsigned offset;            \/* distance back to copy string from *\/$/;"	m	struct:inflate_state
-offsetJump_	include/npk_dev.h	/^	long				offsetJump_;$/;"	m	struct:NPK_tagPACKAGEBODY
-offset_	include/npk_dev.h	/^	NPK_SIZE			offset_;			\/* Data position. *\/$/;"	m	struct:NPK_tagENTITYINFO
-offset_	include/npk_dev.h	/^	NPK_SIZE			offset_;			\/* Data position. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
-op	external/zlib/inftrees.h	/^    unsigned char op;           \/* operation, extra bits, table bits *\/$/;"	m	struct:__anon5
-opaque	external/zlib/zlib.h	/^    voidpf     opaque;  \/* private data object passed to zalloc and zfree *\/$/;"	m	struct:z_stream_s
-opendir	tool/cli/helper_dirent.c	/^DIR *opendir(const char *name)$/;"	f
-opt_len	external/zlib/deflate.h	/^    ulg opt_len;        \/* bit length of current block with optimal trees *\/$/;"	m	struct:internal_state
-org_ptr	external/zlib/zutil.c	/^    voidpf org_ptr;$/;"	m	struct:ptr_table_s	file:
-originalSize_	include/npk_dev.h	/^	NPK_SIZE			originalSize_;		\/* Original size. *\/$/;"	m	struct:NPK_tagENTITYINFO
-originalSize_	include/npk_dev.h	/^	NPK_SIZE			originalSize_;		\/* Original size. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
-os	external/zlib/zlib.h	/^    int     os;         \/* operating system *\/$/;"	m	struct:gz_header_s
-out_func	external/zlib/zconf.h	/^#  define out_func /;"	d
-out_func	external/zlib/zlib.h	/^typedef int (*out_func) OF((void FAR *, unsigned char FAR *, unsigned));$/;"	t
-output	tool/cli/npk_cli.cpp	/^char* output = NULL;$/;"	v
-owner_	include/npk_dev.h	/^	NPK_PACKAGE			owner_;$/;"	m	struct:NPK_tagENTITYBODY
-pEntityHead_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityHead_;$/;"	m	struct:NPK_tagBUCKET
-pEntityHead_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityHead_;$/;"	m	struct:NPK_tagPACKAGEBODY
-pEntityLatest_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityLatest_;$/;"	m	struct:NPK_tagPACKAGEBODY
-pEntityTail_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityTail_;$/;"	m	struct:NPK_tagBUCKET
-pEntityTail_	include/npk_dev.h	/^	NPK_LPENTITYBODY	pEntityTail_;$/;"	m	struct:NPK_tagPACKAGEBODY
-package	tool/cli/npk_cli.cpp	/^NPK_PACKAGE package = NULL;$/;"	v
-pending	external/zlib/deflate.h	/^    uInt   pending;      \/* nb of bytes in the pending buffer *\/$/;"	m	struct:internal_state
-pending_buf	external/zlib/deflate.h	/^    Bytef *pending_buf;  \/* output still pending *\/$/;"	m	struct:internal_state
-pending_buf_size	external/zlib/deflate.h	/^    ulg   pending_buf_size; \/* size of pending_buf *\/$/;"	m	struct:internal_state
-pending_out	external/zlib/deflate.h	/^    Bytef *pending_out;  \/* next pending byte to output to the stream *\/$/;"	m	struct:internal_state
-pqdownheap	external/zlib/trees.c	/^local void pqdownheap(s, tree, k)$/;"	f
-pqremove	external/zlib/trees.c	/^#define pqremove(/;"	d	file:
-prev	external/zlib/deflate.h	/^    Posf *prev;$/;"	m	struct:internal_state
-prevInBucket_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	prevInBucket_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
-prev_	include/npk_dev.h	/^	struct NPK_tagENTITYBODY*	prev_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
-prev_length	external/zlib/deflate.h	/^    uInt prev_length;$/;"	m	struct:internal_state
-prev_match	external/zlib/deflate.h	/^    IPos prev_match;             \/* previous match *\/$/;"	m	struct:internal_state
-ptr_table	external/zlib/zutil.c	/^} ptr_table;$/;"	t	typeref:struct:ptr_table_s	file:
-ptr_table_s	external/zlib/zutil.c	/^typedef struct ptr_table_s {$/;"	s	file:
-ptrdiff_t	external/zlib/zutil.h	/^       typedef int ptrdiff_t;$/;"	t
-putShortMSB	external/zlib/deflate.c	/^local void putShortMSB (s, b)$/;"	f
-put_byte	external/zlib/deflate.h	/^#define put_byte(/;"	d
-put_short	external/zlib/trees.c	/^#define put_short(/;"	d	file:
-read_buf	external/zlib/deflate.c	/^local int read_buf(strm, buf, size)$/;"	f
-readable_size	tool/cli/npk_cli.cpp	/^const int		readable_size[readable_size_count] = { 1024*1024*1024, 1024*1024, 1024 };$/;"	v
-readable_size_count	tool/cli/npk_cli.cpp	/^const int		readable_size_count = 3;$/;"	v
-readable_unit	tool/cli/npk_cli.cpp	/^const char*		readable_unit[readable_size_count] = { "GB", "MB", "KB" };$/;"	v
-readdir	tool/cli/helper_dirent.c	/^struct dirent *readdir(DIR *dir)$/;"	f
-reserved	external/zlib/zlib.h	/^    uLong   reserved;   \/* reserved for future use *\/$/;"	m	struct:z_stream_s
-reserved_	include/npk_dev.h	/^	NPK_BYTE			reserved_[4];		\/* Reserved for 64bit-time_t *\/$/;"	m	struct:NPK_tagENTITYINFO
-result	tool/cli/helper_dirent.c	/^    struct dirent       result; \/* d_name null iff first time *\/$/;"	m	struct:DIR	typeref:struct:DIR::dirent	file:
-rewinddir	tool/cli/helper_dirent.c	/^void rewinddir(DIR *dir)$/;"	f
-sane	external/zlib/inflate.h	/^    int sane;                   \/* if false, allow invalid distance too far *\/$/;"	m	struct:inflate_state
-scan_tree	external/zlib/trees.c	/^local void scan_tree (s, tree, max_code)$/;"	f
-send_all_trees	external/zlib/trees.c	/^local void send_all_trees(s, lcodes, dcodes, blcodes)$/;"	f
-send_bits	external/zlib/trees.c	/^#define send_bits(/;"	d	file:
-send_bits	external/zlib/trees.c	/^local void send_bits(s, value, length)$/;"	f
-send_code	external/zlib/trees.c	/^#  define send_code(/;"	d	file:
-send_tree	external/zlib/trees.c	/^local void send_tree (s, tree, max_code)$/;"	f
-signature_	include/npk_dev.h	/^	NPK_CHAR			signature_[4];		\/* NPAK *\/$/;"	m	struct:NPK_tagPACKAGEINFO
-size_	include/npk_dev.h	/^	NPK_SIZE			size_;				\/* Data size. *\/$/;"	m	struct:NPK_tagENTITYINFO
-size_	include/npk_dev.h	/^	NPK_SIZE			size_;				\/* Data size. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
-smaller	external/zlib/trees.c	/^#define smaller(/;"	d	file:
-stat_desc	external/zlib/deflate.h	/^    static_tree_desc *stat_desc; \/* the corresponding static tree *\/$/;"	m	struct:tree_desc_s
-state	external/zlib/zlib.h	/^    struct internal_state FAR *state; \/* not visible by applications *\/$/;"	m	struct:z_stream_s	typeref:struct:z_stream_s::FAR
-static_bl_desc	external/zlib/trees.c	/^local static_tree_desc  static_bl_desc =$/;"	v
-static_d_desc	external/zlib/trees.c	/^local static_tree_desc  static_d_desc =$/;"	v
-static_dtree	external/zlib/trees.c	/^local ct_data static_dtree[D_CODES];$/;"	v
-static_dtree	external/zlib/trees.h	/^local const ct_data static_dtree[D_CODES] = {$/;"	v
-static_l_desc	external/zlib/trees.c	/^local static_tree_desc  static_l_desc =$/;"	v
-static_len	external/zlib/deflate.h	/^    ulg static_len;     \/* bit length of current block with static trees *\/$/;"	m	struct:internal_state
-static_ltree	external/zlib/trees.c	/^local ct_data static_ltree[L_CODES+2];$/;"	v
-static_ltree	external/zlib/trees.h	/^local const ct_data static_ltree[L_CODES+2] = {$/;"	v
-static_tree	external/zlib/trees.c	/^    const ct_data *static_tree;  \/* static tree or NULL *\/$/;"	m	struct:static_tree_desc_s	file:
-static_tree_desc	external/zlib/deflate.h	/^typedef struct static_tree_desc_s  static_tree_desc;$/;"	t	typeref:struct:static_tree_desc_s
-static_tree_desc_s	external/zlib/deflate.c	/^struct static_tree_desc_s {int dummy;}; \/* for buggy compilers *\/$/;"	s	file:
-static_tree_desc_s	external/zlib/trees.c	/^struct static_tree_desc_s {$/;"	s	file:
-status	external/zlib/deflate.h	/^    int   status;        \/* as the name implies *\/$/;"	m	struct:internal_state
-strategy	external/zlib/deflate.h	/^    int strategy; \/* favor or force Huffman coding*\/$/;"	m	struct:internal_state
-stricmp	src/npk.c	/^	#define stricmp /;"	d	file:
-strm	external/zlib/deflate.h	/^    z_streamp strm;      \/* pointer back to this zlib stream *\/$/;"	m	struct:internal_state
-strnicmp	src/npk.c	/^	#define strnicmp /;"	d	file:
-strnicmp	tool/cli/npk_cli.cpp	/^	#define strnicmp /;"	d	file:
-strstart	external/zlib/deflate.h	/^    uInt strstart;               \/* start of string to insert *\/$/;"	m	struct:internal_state
-sync_and_add	tool/cli/npk_cli.cpp	/^void sync_and_add( bool sd, bool force, const char* basepath, const char* path )$/;"	f
-sync_only_in_package	tool/cli/npk_cli.cpp	/^void sync_only_in_package( bool sd, bool force, const char* path )$/;"	f
-sync_package	tool/cli/npk_cli.cpp	/^void sync_package()$/;"	f
-sync_result	tool/cli/npk_cli.cpp	/^unsigned int	sync_result[4] = { 0, 0, 0, 0 };	\/\/ pass, delete, update, add$/;"	v
-syncadd	tool/cli/npk_cli.cpp	/^bool syncadd = false;$/;"	v
-syncdelete	tool/cli/npk_cli.cpp	/^bool syncdelete = false;$/;"	v
-syncsearch	external/zlib/inflate.c	/^local unsigned syncsearch(have, buf, len)$/;"	f
-table	external/zlib/zutil.c	/^local ptr_table table[MAX_PTR];$/;"	v
-tea_decode	external/tea/tea.c	/^void tea_decode(int* v,int* k)$/;"	f
-tea_decode_buffer	external/tea/tea.c	/^void tea_decode_buffer(char* in_buffer, unsigned int in_size, int* key)$/;"	f
-tea_encode	external/tea/tea.c	/^void tea_encode(int* v, int* k)$/;"	f
-tea_encode_buffer	external/tea/tea.c	/^void tea_encode_buffer(char* in_buffer, unsigned int in_size, int* key)$/;"	f
-teakey_	include/npk_dev.h	/^	NPK_TEAKEY			teakey_[4];$/;"	m	struct:NPK_tagPACKAGEBODY
-text	external/zlib/zlib.h	/^    int     text;       \/* true if compressed data believed to be text *\/$/;"	m	struct:gz_header_s
-time	external/zlib/zlib.h	/^    uLong   time;       \/* modification time *\/$/;"	m	struct:gz_header_s
-timeToString	tool/cli/helper_timetostring.hpp	/^char* timeToString(const time_t& tt) {$/;"	f
-title	tool/cli/npk_cli.cpp	/^void title()$/;"	f
-toolversion	tool/cli/npk_cli.cpp	/^#define toolversion /;"	d	file:
-total	external/zlib/inflate.h	/^    unsigned long total;        \/* protected copy of output count *\/$/;"	m	struct:inflate_state
-total_in	external/zlib/zlib.h	/^    uLong    total_in;  \/* total nb of input bytes read so far *\/$/;"	m	struct:z_stream_s
-total_out	external/zlib/zlib.h	/^    uLong    total_out; \/* total nb of bytes output so far *\/$/;"	m	struct:z_stream_s
-tr_static_init	external/zlib/trees.c	/^local void tr_static_init()$/;"	f
-traverse_local	tool/cli/npk_cli.cpp	/^int traverse_local( const char* basepath, const char* path, LOCAL_TFP fp, NPK_CSTR pattern )$/;"	f
-traverse_package	tool/cli/npk_cli.cpp	/^int traverse_package( PACKAGE_TFP fp, NPK_CSTR pattern )$/;"	f
-tree_desc	external/zlib/deflate.h	/^} FAR tree_desc;$/;"	t	typeref:struct:tree_desc_s
-tree_desc_s	external/zlib/deflate.h	/^typedef struct tree_desc_s {$/;"	s
-true	include/npk_conf.h	/^	#define true /;"	d
-u4	external/zlib/crc32.c	/^           typedef unsigned short u4;$/;"	t	file:
-u4	external/zlib/crc32.c	/^         typedef unsigned long u4;$/;"	t	file:
-u4	external/zlib/crc32.c	/^       typedef unsigned int u4;$/;"	t	file:
-uInt	external/zlib/zconf.h	/^#  define uInt /;"	d
-uInt	external/zlib/zconf.h	/^typedef unsigned int   uInt;  \/* 16 bits or more *\/$/;"	t
-uIntf	external/zlib/zconf.h	/^#  define uIntf /;"	d
-uIntf	external/zlib/zconf.h	/^typedef uInt  FAR uIntf;$/;"	t
-uLong	external/zlib/zconf.h	/^#  define uLong /;"	d
-uLong	external/zlib/zconf.h	/^typedef unsigned long  uLong; \/* 32 bits or more *\/$/;"	t
-uLongf	external/zlib/zconf.h	/^#  define uLongf /;"	d
-uLongf	external/zlib/zconf.h	/^typedef uLong FAR uLongf;$/;"	t
-uch	external/zlib/zutil.h	/^typedef unsigned char  uch;$/;"	t
-uchf	external/zlib/zutil.h	/^typedef uch FAR uchf;$/;"	t
-ulg	external/zlib/zutil.h	/^typedef unsigned long  ulg;$/;"	t
-uncompress	external/zlib/uncompr.c	/^int ZEXPORT uncompress (dest, destLen, source, sourceLen)$/;"	f
-uncompress	external/zlib/zconf.h	/^#  define uncompress /;"	d
-updatewindow	external/zlib/inflate.c	/^local int updatewindow(strm, out)$/;"	f
-ush	external/zlib/zutil.h	/^typedef unsigned short ush;$/;"	t
-ushf	external/zlib/zutil.h	/^typedef ush FAR ushf;$/;"	t
-usingFdopen_	include/npk_dev.h	/^	bool				usingFdopen_;$/;"	m	struct:NPK_tagPACKAGEBODY
-usingHashmap_	include/npk_dev.h	/^	bool				usingHashmap_;$/;"	m	struct:NPK_tagPACKAGEBODY
-v	tool/cli/npk_cli.cpp	/^char				**v;	\/\/ argv$/;"	v
-val	external/zlib/inftrees.h	/^    unsigned short val;         \/* offset in table or code value *\/$/;"	m	struct:__anon5
-valid_name	tool/cli/npk_cli.cpp	/^bool valid_name( NPK_CSTR name, NPK_CSTR pattern )$/;"	f
-verbose	external/zlib/zutil.c	/^#    define verbose /;"	d	file:
-verbose	tool/cli/npk_cli.cpp	/^bool verbose = false;$/;"	v
-version	tool/cli/npk_cli.cpp	/^void version()$/;"	f
-version_	include/npk_dev.h	/^	int					version_;			\/* Package version. *\/$/;"	m	struct:NPK_tagPACKAGEINFO
-voidp	external/zlib/zconf.h	/^   typedef Byte       *voidp;$/;"	t
-voidp	external/zlib/zconf.h	/^   typedef void       *voidp;$/;"	t
-voidp	external/zlib/zconf.h	/^#  define voidp /;"	d
-voidpc	external/zlib/zconf.h	/^   typedef Byte const *voidpc;$/;"	t
-voidpc	external/zlib/zconf.h	/^   typedef void const *voidpc;$/;"	t
-voidpc	external/zlib/zconf.h	/^#  define voidpc /;"	d
-voidpf	external/zlib/zconf.h	/^   typedef Byte FAR   *voidpf;$/;"	t
-voidpf	external/zlib/zconf.h	/^   typedef void FAR   *voidpf;$/;"	t
-voidpf	external/zlib/zconf.h	/^#  define voidpf /;"	d
-vsnprintf	external/zlib/zutil.h	/^#         define vsnprintf /;"	d
-w_bits	external/zlib/deflate.h	/^    uInt  w_bits;        \/* log2(w_size)  (8..16) *\/$/;"	m	struct:internal_state
-w_mask	external/zlib/deflate.h	/^    uInt  w_mask;        \/* w_size - 1 *\/$/;"	m	struct:internal_state
-w_size	external/zlib/deflate.h	/^    uInt  w_size;        \/* LZ77 window size (32K by default) *\/$/;"	m	struct:internal_state
-was	external/zlib/inflate.h	/^    unsigned was;               \/* initial length of match *\/$/;"	m	struct:inflate_state
-wbits	external/zlib/inflate.h	/^    unsigned wbits;             \/* log base 2 of requested window size *\/$/;"	m	struct:inflate_state
-whave	external/zlib/inflate.h	/^    unsigned whave;             \/* valid bytes in the window *\/$/;"	m	struct:inflate_state
-window	external/zlib/deflate.h	/^    Bytef *window;$/;"	m	struct:internal_state
-window	external/zlib/inflate.h	/^    unsigned char FAR *window;  \/* allocated sliding window, if needed *\/$/;"	m	struct:inflate_state
-window_size	external/zlib/deflate.h	/^    ulg window_size;$/;"	m	struct:internal_state
-withlist	tool/cli/npk_cli.cpp	/^STRLIST withlist;$/;"	v
-wnext	external/zlib/inflate.h	/^    unsigned wnext;             \/* window write index *\/$/;"	m	struct:inflate_state
-work	external/zlib/inflate.h	/^    unsigned short work[288];   \/* work area for code table building *\/$/;"	m	struct:inflate_state
-wrap	external/zlib/deflate.h	/^    int   wrap;          \/* bit 0 true for zlib, bit 1 true for gzip *\/$/;"	m	struct:internal_state
-wrap	external/zlib/inflate.h	/^    int wrap;                   \/* bit 0 true for zlib, bit 1 true for gzip *\/$/;"	m	struct:inflate_state
-write_table	external/zlib/crc32.c	/^local void write_table(out, table)$/;"	f
-wsize	external/zlib/inflate.h	/^    unsigned wsize;             \/* window size or zero if not using window *\/$/;"	m	struct:inflate_state
-xflags	external/zlib/zlib.h	/^    int     xflags;     \/* extra flags (not used when writing a gzip file) *\/$/;"	m	struct:gz_header_s
-zError	external/zlib/zconf.h	/^#  define zError /;"	d
-zError	external/zlib/zutil.c	/^const char * ZEXPORT zError(err)$/;"	f
-z_errmsg	external/zlib/zutil.c	/^const char * const z_errmsg[10] = {$/;"	v
-z_error	external/zlib/zutil.c	/^void ZLIB_INTERNAL z_error (m)$/;"	f
-z_off64_t	external/zlib/zconf.h	/^#  define z_off64_t /;"	d
-z_off_t	external/zlib/zconf.h	/^#  define z_off_t /;"	d
-z_stream	external/zlib/zlib.h	/^} z_stream;$/;"	t	typeref:struct:z_stream_s
-z_stream_s	external/zlib/zlib.h	/^typedef struct z_stream_s {$/;"	s
-z_streamp	external/zlib/zlib.h	/^typedef z_stream FAR *z_streamp;$/;"	t
-z_verbose	external/zlib/zutil.c	/^int ZLIB_INTERNAL z_verbose = verbose;$/;"	v
-zalloc	external/zlib/zlib.h	/^    alloc_func zalloc;  \/* used to allocate the internal state *\/$/;"	m	struct:z_stream_s
-zcalloc	external/zlib/zconf.h	/^#  define zcalloc /;"	d
-zcalloc	external/zlib/zutil.c	/^voidpf ZLIB_INTERNAL zcalloc (opaque, items, size)$/;"	f
-zcalloc	external/zlib/zutil.c	/^voidpf ZLIB_INTERNAL zcalloc (voidpf opaque, uInt items, uInt size)$/;"	f
-zcalloc	external/zlib/zutil.c	/^voidpf ZLIB_INTERNAL zcalloc (voidpf opaque, unsigned items, unsigned size)$/;"	f
-zcfree	external/zlib/zconf.h	/^#  define zcfree /;"	d
-zcfree	external/zlib/zutil.c	/^void ZLIB_INTERNAL zcfree (opaque, ptr)$/;"	f
-zcfree	external/zlib/zutil.c	/^void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)$/;"	f
-zfree	external/zlib/zlib.h	/^    free_func  zfree;   \/* used to free the internal state *\/$/;"	m	struct:z_stream_s
-zlibCompileFlags	external/zlib/zconf.h	/^#  define zlibCompileFlags /;"	d
-zlibCompileFlags	external/zlib/zutil.c	/^uLong ZEXPORT zlibCompileFlags()$/;"	f
-zlibVersion	external/zlib/zconf.h	/^#  define zlibVersion /;"	d
-zlibVersion	external/zlib/zutil.c	/^const char * ZEXPORT zlibVersion()$/;"	f
-zlib_version	external/zlib/zlib.h	/^#define zlib_version /;"	d
-zmemcmp	external/zlib/zutil.c	/^int ZLIB_INTERNAL zmemcmp(s1, s2, len)$/;"	f
-zmemcmp	external/zlib/zutil.h	/^#    define zmemcmp /;"	d
-zmemcpy	external/zlib/zutil.c	/^void ZLIB_INTERNAL zmemcpy(dest, source, len)$/;"	f
-zmemcpy	external/zlib/zutil.h	/^#    define zmemcpy /;"	d
-zmemzero	external/zlib/zutil.c	/^void ZLIB_INTERNAL zmemzero(dest, len)$/;"	f
-zmemzero	external/zlib/zutil.h	/^#    define zmemzero(/;"	d
+Assert	libnpk/external/zlib/zutil.h	/^#  define Assert(/;"	d
+BAD	libnpk/external/zlib/inflate.h	/^    BAD,        \/* got a data error -- remain here until reset *\/$/;"	e	enum:__anon4
+BASE	libnpk/external/zlib/adler32.c	/^#define BASE /;"	d	file:
+BITS	libnpk/external/zlib/infback.c	/^#define BITS(/;"	d	file:
+BITS	libnpk/external/zlib/inflate.c	/^#define BITS(/;"	d	file:
+BL_CODES	libnpk/external/zlib/deflate.h	/^#define BL_CODES /;"	d
+BUILDFIXED	libnpk/external/zlib/inflate.c	/^#    define BUILDFIXED$/;"	d	file:
+BUSY_STATE	libnpk/external/zlib/deflate.h	/^#define BUSY_STATE /;"	d
+BYFOUR	libnpk/external/zlib/crc32.c	/^#          undef BYFOUR /;"	d	file:
+BYFOUR	libnpk/external/zlib/crc32.c	/^#    define BYFOUR$/;"	d	file:
+BYTEBITS	libnpk/external/zlib/infback.c	/^#define BYTEBITS(/;"	d	file:
+BYTEBITS	libnpk/external/zlib/inflate.c	/^#define BYTEBITS(/;"	d	file:
+Buf_size	libnpk/external/zlib/trees.c	/^#define Buf_size /;"	d	file:
+Byte	libnpk/external/zlib/zconf.h	/^#  define Byte /;"	d
+Byte	libnpk/external/zlib/zconf.h	/^typedef unsigned char  Byte;  \/* 8 bits *\/$/;"	t
+Bytef	libnpk/external/zlib/zconf.h	/^   typedef Byte  FAR Bytef;$/;"	t
+Bytef	libnpk/external/zlib/zconf.h	/^#  define Bytef /;"	d
+CASE_SENSITIVE	npk/cli/npk_cli.cpp	/^    #define CASE_SENSITIVE /;"	d	file:
+CHECK	libnpk/external/zlib/inflate.h	/^    CHECK,      \/* i: waiting for 32-bit check value *\/$/;"	e	enum:__anon4
+CHECK	libnpk/tests/testutil.h	/^#define CHECK(/;"	d
+CHECK	npk/cli/tests/testutil.h	/^#define CHECK(/;"	d
+CHECK_CLOSE	libnpk/tests/testutil.h	/^#define CHECK_CLOSE(/;"	d
+CHECK_CLOSE	npk/cli/tests/testutil.h	/^#define CHECK_CLOSE(/;"	d
+CHECK_EQUAL	libnpk/tests/testutil.h	/^#define CHECK_EQUAL(/;"	d
+CHECK_EQUAL	npk/cli/tests/testutil.h	/^#define CHECK_EQUAL(/;"	d
+CHECK_EQUAL_STR	libnpk/tests/testutil.h	/^#define CHECK_EQUAL_STR(/;"	d
+CHECK_EQUAL_STR	npk/cli/tests/testutil.h	/^#define CHECK_EQUAL_STR(/;"	d
+CHECK_EQUAL_STR_WITH_FILE	libnpk/tests/testutil.h	/^static void CHECK_EQUAL_STR_WITH_FILE( const char* src, const char* filename )$/;"	f
+CHECK_EQUAL_STR_WITH_FILE	npk/cli/tests/testutil.h	/^static void CHECK_EQUAL_STR_WITH_FILE( const char* src, const char* filename )$/;"	f
+CLEAR_HASH	libnpk/external/zlib/deflate.c	/^#define CLEAR_HASH(/;"	d	file:
+CODELENS	libnpk/external/zlib/inflate.h	/^        CODELENS,   \/* i: waiting for length\/lit and distance code lengths *\/$/;"	e	enum:__anon4
+CODES	libnpk/external/zlib/inftrees.h	/^    CODES,$/;"	e	enum:__anon6
+COMMENT	libnpk/external/zlib/inflate.h	/^    COMMENT,    \/* i: waiting for end of comment (gzip) *\/$/;"	e	enum:__anon4
+COMMENT_STATE	libnpk/external/zlib/deflate.h	/^#define COMMENT_STATE /;"	d
+COPY	libnpk/external/zlib/inflate.h	/^        COPY,       \/* i\/o: waiting for input or output to copy stored block *\/$/;"	e	enum:__anon4
+COPY_	libnpk/external/zlib/inflate.h	/^        COPY_,      \/* i\/o: same as COPY below, but only first time in *\/$/;"	e	enum:__anon4
+CRC2	libnpk/external/zlib/inflate.c	/^#  define CRC2(/;"	d	file:
+CRC4	libnpk/external/zlib/inflate.c	/^#  define CRC4(/;"	d	file:
+Code	libnpk/external/zlib/deflate.h	/^#define Code /;"	d
+DEFLATE_H	libnpk/external/zlib/deflate.h	/^#define DEFLATE_H$/;"	d
+DEF_MEM_LEVEL	libnpk/external/zlib/zutil.h	/^#  define DEF_MEM_LEVEL /;"	d
+DEF_WBITS	libnpk/external/zlib/zutil.h	/^#  define DEF_WBITS /;"	d
+DICT	libnpk/external/zlib/inflate.h	/^    DICT,       \/* waiting for inflateSetDictionary() call *\/$/;"	e	enum:__anon4
+DICTID	libnpk/external/zlib/inflate.h	/^    DICTID,     \/* i: waiting for dictionary check value *\/$/;"	e	enum:__anon4
+DIR	npk/cli/helper_dirent.c	/^struct DIR$/;"	s	file:
+DIR	npk/cli/helper_dirent.h	/^typedef struct DIR DIR;$/;"	t	typeref:struct:DIR
+DIRENT_INCLUDED	npk/cli/helper_dirent.h	/^#define DIRENT_INCLUDED$/;"	d
+DIST	libnpk/external/zlib/inflate.h	/^            DIST,       \/* i: waiting for distance code *\/$/;"	e	enum:__anon4
+DISTEXT	libnpk/external/zlib/inflate.h	/^            DISTEXT,    \/* i: waiting for distance extra bits *\/$/;"	e	enum:__anon4
+DISTS	libnpk/external/zlib/inftrees.h	/^    DISTS$/;"	e	enum:__anon6
+DIST_CODE_LEN	libnpk/external/zlib/trees.c	/^#define DIST_CODE_LEN /;"	d	file:
+DO1	libnpk/external/zlib/adler32.c	/^#define DO1(/;"	d	file:
+DO1	libnpk/external/zlib/crc32.c	/^#define DO1 /;"	d	file:
+DO16	libnpk/external/zlib/adler32.c	/^#define DO16(/;"	d	file:
+DO2	libnpk/external/zlib/adler32.c	/^#define DO2(/;"	d	file:
+DO4	libnpk/external/zlib/adler32.c	/^#define DO4(/;"	d	file:
+DO8	libnpk/external/zlib/adler32.c	/^#define DO8(/;"	d	file:
+DO8	libnpk/external/zlib/crc32.c	/^#define DO8 /;"	d	file:
+DOBIG32	libnpk/external/zlib/crc32.c	/^#define DOBIG32 /;"	d	file:
+DOBIG4	libnpk/external/zlib/crc32.c	/^#define DOBIG4 /;"	d	file:
+DOLIT32	libnpk/external/zlib/crc32.c	/^#define DOLIT32 /;"	d	file:
+DOLIT4	libnpk/external/zlib/crc32.c	/^#define DOLIT4 /;"	d	file:
+DONE	libnpk/external/zlib/inflate.h	/^    DONE,       \/* finished check, done -- remain here until reset *\/$/;"	e	enum:__anon4
+DROPBITS	libnpk/external/zlib/infback.c	/^#define DROPBITS(/;"	d	file:
+DROPBITS	libnpk/external/zlib/inflate.c	/^#define DROPBITS(/;"	d	file:
+DYNAMIC_CRC_TABLE	libnpk/external/zlib/crc32.c	/^#    define DYNAMIC_CRC_TABLE$/;"	d	file:
+DYN_TREES	libnpk/external/zlib/zutil.h	/^#define DYN_TREES /;"	d
+D_CODES	libnpk/external/zlib/deflate.h	/^#define D_CODES /;"	d
+Dad	libnpk/external/zlib/deflate.h	/^#define Dad /;"	d
+ELI	npk/cli/npk_cli.cpp	/^typedef list<NPK_ENTITY>::iterator ELI;$/;"	t	file:
+END_BLOCK	libnpk/external/zlib/trees.c	/^#define END_BLOCK /;"	d	file:
+ENOUGH	libnpk/external/zlib/inftrees.h	/^#define ENOUGH /;"	d
+ENOUGH_DISTS	libnpk/external/zlib/inftrees.h	/^#define ENOUGH_DISTS /;"	d
+ENOUGH_LENS	libnpk/external/zlib/inftrees.h	/^#define ENOUGH_LENS /;"	d
+ENTITYLIST	npk/cli/npk_cli.cpp	/^typedef list<NPK_ENTITY> ENTITYLIST;$/;"	t	file:
+EQUAL	libnpk/external/zlib/deflate.c	/^#define EQUAL /;"	d	file:
+ERR_MSG	libnpk/external/zlib/zutil.h	/^#define ERR_MSG(/;"	d
+ERR_RETURN	libnpk/external/zlib/zutil.h	/^#define ERR_RETURN(/;"	d
+EXLEN	libnpk/external/zlib/inflate.h	/^    EXLEN,      \/* i: waiting for extra length (gzip) *\/$/;"	e	enum:__anon4
+EXTRA	libnpk/external/zlib/inflate.h	/^    EXTRA,      \/* i: waiting for extra bytes (gzip) *\/$/;"	e	enum:__anon4
+EXTRA_STATE	libnpk/external/zlib/deflate.h	/^#define EXTRA_STATE /;"	d
+FAR	libnpk/external/zlib/zconf.h	/^#      define FAR /;"	d
+FAR	libnpk/external/zlib/zconf.h	/^#      undef FAR$/;"	d
+FAR	libnpk/external/zlib/zconf.h	/^#  define FAR$/;"	d
+FINISH_STATE	libnpk/external/zlib/deflate.h	/^#define FINISH_STATE /;"	d
+FLAGS	libnpk/external/zlib/inflate.h	/^    FLAGS,      \/* i: waiting for method and flags (gzip) *\/$/;"	e	enum:__anon4
+FLUSH_BLOCK	libnpk/external/zlib/deflate.c	/^#define FLUSH_BLOCK(/;"	d	file:
+FLUSH_BLOCK_ONLY	libnpk/external/zlib/deflate.c	/^#define FLUSH_BLOCK_ONLY(/;"	d	file:
+F_OPEN	libnpk/external/zlib/zutil.h	/^#  define F_OPEN(/;"	d
+Freq	libnpk/external/zlib/deflate.h	/^#define Freq /;"	d
+GF2_DIM	libnpk/external/zlib/crc32.c	/^#define GF2_DIM /;"	d	file:
+GUNZIP	libnpk/external/zlib/inflate.h	/^#  define GUNZIP$/;"	d
+GZIP	libnpk/external/zlib/deflate.h	/^#  define GZIP$/;"	d
+HAVE_MEMCPY	libnpk/external/zlib/zutil.h	/^#  define HAVE_MEMCPY$/;"	d
+HAVE_VSNPRINTF	libnpk/external/zlib/zutil.h	/^#    define HAVE_VSNPRINTF$/;"	d
+HCRC	libnpk/external/zlib/inflate.h	/^    HCRC,       \/* i: waiting for header crc (gzip) *\/$/;"	e	enum:__anon4
+HCRC_STATE	libnpk/external/zlib/deflate.h	/^#define HCRC_STATE /;"	d
+HEAD	libnpk/external/zlib/inflate.h	/^    HEAD,       \/* i: waiting for magic header *\/$/;"	e	enum:__anon4
+HEAP_SIZE	libnpk/external/zlib/deflate.h	/^#define HEAP_SIZE /;"	d
+ID_About	npk/gui/npk_gui.cpp	/^	ID_About,$/;"	e	enum:__anon7	file:
+ID_Quit	npk/gui/npk_gui.cpp	/^	ID_Quit = 1,$/;"	e	enum:__anon7	file:
+INITBITS	libnpk/external/zlib/infback.c	/^#define INITBITS(/;"	d	file:
+INITBITS	libnpk/external/zlib/inflate.c	/^#define INITBITS(/;"	d	file:
+INIT_STATE	libnpk/external/zlib/deflate.h	/^#define INIT_STATE /;"	d
+INSERT_STRING	libnpk/external/zlib/deflate.c	/^#define INSERT_STRING(/;"	d	file:
+IPos	libnpk/external/zlib/deflate.h	/^typedef unsigned IPos;$/;"	t
+LEN	libnpk/external/zlib/inflate.h	/^            LEN,        \/* i: waiting for length\/lit\/eob code *\/$/;"	e	enum:__anon4
+LENEXT	libnpk/external/zlib/inflate.h	/^            LENEXT,     \/* i: waiting for length extra bits *\/$/;"	e	enum:__anon4
+LENGTH	libnpk/external/zlib/inflate.h	/^    LENGTH,     \/* i: waiting for 32-bit length (gzip) *\/$/;"	e	enum:__anon4
+LENGTH_CODES	libnpk/external/zlib/deflate.h	/^#define LENGTH_CODES /;"	d
+LENLENS	libnpk/external/zlib/inflate.h	/^        LENLENS,    \/* i: waiting for code length code lengths *\/$/;"	e	enum:__anon4
+LENS	libnpk/external/zlib/inftrees.h	/^    LENS,$/;"	e	enum:__anon6
+LEN_	libnpk/external/zlib/inflate.h	/^            LEN_,       \/* i: same as LEN below, but only first time in *\/$/;"	e	enum:__anon4
+LIT	libnpk/external/zlib/inflate.h	/^            LIT,        \/* o: waiting for output space to write literal *\/$/;"	e	enum:__anon4
+LITERALS	libnpk/external/zlib/deflate.h	/^#define LITERALS /;"	d
+LOAD	libnpk/external/zlib/infback.c	/^#define LOAD(/;"	d	file:
+LOAD	libnpk/external/zlib/inflate.c	/^#define LOAD(/;"	d	file:
+LOCAL_TFP	npk/cli/npk_cli.cpp	/^typedef bool( *LOCAL_TFP )( NPK_CSTR fullpath, NPK_CSTR filename );$/;"	t	file:
+L_CODES	libnpk/external/zlib/deflate.h	/^#define L_CODES /;"	d
+Len	libnpk/external/zlib/deflate.h	/^#define Len /;"	d
+MATCH	libnpk/external/zlib/inflate.h	/^            MATCH,      \/* o: waiting for output space to copy string *\/$/;"	e	enum:__anon4
+MAXBITS	libnpk/external/zlib/inftrees.c	/^#define MAXBITS /;"	d	file:
+MAXSEG_64K	libnpk/external/zlib/zconf.h	/^#  define MAXSEG_64K$/;"	d
+MAX_BITS	libnpk/external/zlib/deflate.h	/^#define MAX_BITS /;"	d
+MAX_BL_BITS	libnpk/external/zlib/trees.c	/^#define MAX_BL_BITS /;"	d	file:
+MAX_DIST	libnpk/external/zlib/deflate.h	/^#define MAX_DIST(/;"	d
+MAX_MATCH	libnpk/external/zlib/zutil.h	/^#define MAX_MATCH /;"	d
+MAX_MEM_LEVEL	libnpk/external/zlib/zconf.h	/^#    define MAX_MEM_LEVEL /;"	d
+MAX_PTR	libnpk/external/zlib/zutil.c	/^#define MAX_PTR /;"	d	file:
+MAX_WBITS	libnpk/external/zlib/zconf.h	/^#  define MAX_WBITS /;"	d
+MEM	libnpk/external/zlib/inflate.h	/^    MEM,        \/* got an inflate() memory error -- remain here until reset *\/$/;"	e	enum:__anon4
+MIN_LOOKAHEAD	libnpk/external/zlib/deflate.h	/^#define MIN_LOOKAHEAD /;"	d
+MIN_MATCH	libnpk/external/zlib/zutil.h	/^#define MIN_MATCH /;"	d
+MOD	libnpk/external/zlib/adler32.c	/^#  define MOD(/;"	d	file:
+MOD4	libnpk/external/zlib/adler32.c	/^#  define MOD4(/;"	d	file:
+MSDOS	libnpk/external/zlib/zconf.h	/^#  define MSDOS$/;"	d
+MY_ZCALLOC	libnpk/external/zlib/zutil.c	/^#  define MY_ZCALLOC$/;"	d	file:
+MyApp	npk/gui/npk_gui.cpp	/^class MyApp: public wxApp$/;"	c	file:
+MyFrame	npk/gui/npk_gui.cpp	/^MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)$/;"	f	class:MyFrame
+MyFrame	npk/gui/npk_gui.cpp	/^class MyFrame: public wxFrame$/;"	c	file:
+NAME	libnpk/external/zlib/inflate.h	/^    NAME,       \/* i: waiting for end of file name (gzip) *\/$/;"	e	enum:__anon4
+NAME_STATE	libnpk/external/zlib/deflate.h	/^#define NAME_STATE /;"	d
+NEEDBITS	libnpk/external/zlib/infback.c	/^#define NEEDBITS(/;"	d	file:
+NEEDBITS	libnpk/external/zlib/inflate.c	/^#define NEEDBITS(/;"	d	file:
+NIL	libnpk/external/zlib/deflate.c	/^#define NIL /;"	d	file:
+NMAX	libnpk/external/zlib/adler32.c	/^#define NMAX /;"	d	file:
+NO_DUMMY_DECL	libnpk/external/zlib/zconf.h	/^#  define NO_DUMMY_DECL$/;"	d
+NO_MEMCPY	libnpk/external/zlib/zutil.h	/^#  define NO_MEMCPY$/;"	d
+NO_vsnprintf	libnpk/external/zlib/zconf.h	/^#  define NO_vsnprintf$/;"	d
+NO_vsnprintf	libnpk/external/zlib/zutil.h	/^#    define NO_vsnprintf$/;"	d
+NO_vsnprintf	libnpk/external/zlib/zutil.h	/^#  define NO_vsnprintf$/;"	d
+NPK_64BIT	libnpk/include/npk_base.h	/^typedef unsigned long long              NPK_64BIT;$/;"	t
+NPK_ACCESSTYPE_READ	libnpk/include/npk_base.h	/^#define NPK_ACCESSTYPE_READ /;"	d
+NPK_ACCESSTYPE_WRITE	libnpk/include/npk_base.h	/^#define NPK_ACCESSTYPE_WRITE /;"	d
+NPK_API	libnpk/include/npk_conf.h	/^            #define NPK_API /;"	d
+NPK_API	libnpk/include/npk_conf.h	/^        #define NPK_API$/;"	d
+NPK_API	libnpk/include/npk_conf.h	/^    #define NPK_API$/;"	d
+NPK_BUCKET	libnpk/include/npk_dev.h	/^} NPK_BUCKET, *NPK_LPBUCKET;$/;"	t	typeref:struct:NPK_tagBUCKET
+NPK_BYTE	libnpk/include/npk_base.h	/^typedef char                            NPK_BYTE;$/;"	t
+NPK_CALLBACK	libnpk/include/npk_base.h	/^typedef int( *NPK_CALLBACK )(   int accessType,$/;"	t
+NPK_CHAR	libnpk/include/npk_base.h	/^typedef char                            NPK_CHAR;$/;"	t
+NPK_CSTR	libnpk/include/npk_base.h	/^typedef const NPK_CHAR*                 NPK_CSTR;$/;"	t
+NPK_DEV_API	libnpk/include/npk_conf.h	/^                #define NPK_DEV_API /;"	d
+NPK_DEV_API	libnpk/include/npk_conf.h	/^                #define NPK_DEV_API$/;"	d
+NPK_DEV_API	libnpk/include/npk_conf.h	/^        #define NPK_DEV_API$/;"	d
+NPK_DEV_API	libnpk/include/npk_conf.h	/^    #define NPK_DEV_API$/;"	d
+NPK_ENTITY	libnpk/include/npk_base.h	/^typedef void*                           NPK_ENTITY;$/;"	t
+NPK_ENTITYBODY	libnpk/include/npk_dev.h	/^} NPK_ENTITYBODY, *NPK_LPENTITYBODY;$/;"	t	typeref:struct:NPK_tagENTITYBODY
+NPK_ENTITYINFO	libnpk/include/npk_dev.h	/^} NPK_ENTITYINFO, *NPK_LPENTITYINFO;$/;"	t	typeref:struct:NPK_tagENTITYINFO
+NPK_ENTITYINFO_V21	libnpk/include/npk_dev.h	/^} NPK_ENTITYINFO_V21, *NPK_LPENTITYINFO_V21;$/;"	t	typeref:struct:NPK_tagENTITYINFO_V21
+NPK_ENTITY_COMPRESS	libnpk/include/npk_base.h	/^#define NPK_ENTITY_COMPRESS /;"	d
+NPK_ENTITY_ENCRYPT	libnpk/include/npk_base.h	/^#define NPK_ENTITY_ENCRYPT /;"	d
+NPK_ENTITY_INHERIT	libnpk/include/npk_base.h	/^#define NPK_ENTITY_INHERIT /;"	d
+NPK_ENTITY_NULL	libnpk/include/npk_base.h	/^#define NPK_ENTITY_NULL /;"	d
+NPK_ENTITY_REVERSE	libnpk/include/npk_base.h	/^#define NPK_ENTITY_REVERSE /;"	d
+NPK_ENTITY_TEXTFILE	libnpk/include/npk_base.h	/^#define NPK_ENTITY_TEXTFILE /;"	d
+NPK_ERROR	libnpk/include/npk_error.h	/^#define NPK_ERROR /;"	d
+NPK_ERROR_AlreadyAllocated	libnpk/include/npk_error.h	/^#define NPK_ERROR_AlreadyAllocated /;"	d
+NPK_ERROR_CancelByCallback	libnpk/include/npk_error.h	/^#define NPK_ERROR_CancelByCallback /;"	d
+NPK_ERROR_CannotCopyToItself	libnpk/include/npk_error.h	/^#define NPK_ERROR_CannotCopyToItself /;"	d
+NPK_ERROR_CannotCreateFile	libnpk/include/npk_error.h	/^#define NPK_ERROR_CannotCreateFile /;"	d
+NPK_ERROR_CannotFindEntity	libnpk/include/npk_error.h	/^#define NPK_ERROR_CannotFindEntity /;"	d
+NPK_ERROR_CannotFindPackage	libnpk/include/npk_error.h	/^#define NPK_ERROR_CannotFindPackage /;"	d
+NPK_ERROR_CantReadCompressOrEncryptEntityByPartial	libnpk/include/npk_error.h	/^#define NPK_ERROR_CantReadCompressOrEncryptEntityByPartial /;"	d
+NPK_ERROR_EntityIsNotInThePackage	libnpk/include/npk_error.h	/^#define NPK_ERROR_EntityIsNotInThePackage /;"	d
+NPK_ERROR_EntityIsNull	libnpk/include/npk_error.h	/^#define NPK_ERROR_EntityIsNull /;"	d
+NPK_ERROR_FailToDecompress	libnpk/include/npk_error.h	/^#define NPK_ERROR_FailToDecompress /;"	d
+NPK_ERROR_FailToGetFiletime	libnpk/include/npk_error.h	/^#define NPK_ERROR_FailToGetFiletime /;"	d
+NPK_ERROR_FailToSetFiletime	libnpk/include/npk_error.h	/^#define NPK_ERROR_FailToSetFiletime /;"	d
+NPK_ERROR_FileAlreadyExists	libnpk/include/npk_error.h	/^#define NPK_ERROR_FileAlreadyExists /;"	d
+NPK_ERROR_FileNotFound	libnpk/include/npk_error.h	/^#define NPK_ERROR_FileNotFound /;"	d
+NPK_ERROR_FileOpenError	libnpk/include/npk_error.h	/^#define NPK_ERROR_FileOpenError /;"	d
+NPK_ERROR_FileReadError	libnpk/include/npk_error.h	/^#define NPK_ERROR_FileReadError /;"	d
+NPK_ERROR_FileSaveError	libnpk/include/npk_error.h	/^#define NPK_ERROR_FileSaveError /;"	d
+NPK_ERROR_InvalidTeaKey	libnpk/include/npk_error.h	/^#define NPK_ERROR_InvalidTeaKey /;"	d
+NPK_ERROR_NeedSpecifiedTeaKey	libnpk/include/npk_error.h	/^#define NPK_ERROR_NeedSpecifiedTeaKey /;"	d
+NPK_ERROR_NoEntityInPackage	libnpk/include/npk_error.h	/^#define NPK_ERROR_NoEntityInPackage /;"	d
+NPK_ERROR_NonAllocatedBuffer	libnpk/include/npk_error.h	/^#define NPK_ERROR_NonAllocatedBuffer /;"	d
+NPK_ERROR_NonStaticPackage	libnpk/include/npk_error.h	/^#define NPK_ERROR_NonStaticPackage /;"	d
+NPK_ERROR_NotEnoughDiscSpace	libnpk/include/npk_error.h	/^#define NPK_ERROR_NotEnoughDiscSpace /;"	d
+NPK_ERROR_NotEnoughMemory	libnpk/include/npk_error.h	/^#define NPK_ERROR_NotEnoughMemory /;"	d
+NPK_ERROR_NotOpenedPackage	libnpk/include/npk_error.h	/^#define NPK_ERROR_NotOpenedPackage /;"	d
+NPK_ERROR_NotSupportedVersion	libnpk/include/npk_error.h	/^#define NPK_ERROR_NotSupportedVersion /;"	d
+NPK_ERROR_NotValidEntity	libnpk/include/npk_error.h	/^#define NPK_ERROR_NotValidEntity /;"	d
+NPK_ERROR_NotValidFileName	libnpk/include/npk_error.h	/^#define NPK_ERROR_NotValidFileName /;"	d
+NPK_ERROR_NotValidPackage	libnpk/include/npk_error.h	/^#define NPK_ERROR_NotValidPackage /;"	d
+NPK_ERROR_NullPointerBuffer	libnpk/include/npk_error.h	/^#define NPK_ERROR_NullPointerBuffer /;"	d
+NPK_ERROR_OpenedPackage	libnpk/include/npk_error.h	/^#define NPK_ERROR_OpenedPackage /;"	d
+NPK_ERROR_PackageHasNoName	libnpk/include/npk_error.h	/^#define NPK_ERROR_PackageHasNoName /;"	d
+NPK_ERROR_PackageHasNoVersion	libnpk/include/npk_error.h	/^#define NPK_ERROR_PackageHasNoVersion /;"	d
+NPK_ERROR_PackageIsNull	libnpk/include/npk_error.h	/^#define NPK_ERROR_PackageIsNull /;"	d
+NPK_ERROR_PermissionDenied	libnpk/include/npk_error.h	/^#define NPK_ERROR_PermissionDenied /;"	d
+NPK_ERROR_ReadOnlyFile	libnpk/include/npk_error.h	/^#define NPK_ERROR_ReadOnlyFile /;"	d
+NPK_ERROR_SameEntityExist	libnpk/include/npk_error.h	/^#define NPK_ERROR_SameEntityExist /;"	d
+NPK_ERROR_SamePackageExist	libnpk/include/npk_error.h	/^#define NPK_ERROR_SamePackageExist /;"	d
+NPK_ERROR_SourceStringisNull	libnpk/include/npk_error.h	/^#define NPK_ERROR_SourceStringisNull /;"	d
+NPK_ERROR_ZeroFileSize	libnpk/include/npk_error.h	/^#define NPK_ERROR_ZeroFileSize /;"	d
+NPK_FLAG	libnpk/include/npk_base.h	/^typedef unsigned int                    NPK_FLAG;$/;"	t
+NPK_HANDLE	libnpk/include/npk_base.h	/^typedef int                             NPK_HANDLE;$/;"	t
+NPK_HASHKEY	libnpk/include/npk_base.h	/^typedef unsigned int                    NPK_HASHKEY;$/;"	t
+NPK_HASH_BUCKETS	libnpk/include/npk_base.h	/^#define NPK_HASH_BUCKETS /;"	d
+NPK_LPBUCKET	libnpk/include/npk_dev.h	/^} NPK_BUCKET, *NPK_LPBUCKET;$/;"	t	typeref:struct:NPK_tagBUCKET
+NPK_LPENTITYBODY	libnpk/include/npk_dev.h	/^} NPK_ENTITYBODY, *NPK_LPENTITYBODY;$/;"	t	typeref:struct:NPK_tagENTITYBODY
+NPK_LPENTITYINFO	libnpk/include/npk_dev.h	/^} NPK_ENTITYINFO, *NPK_LPENTITYINFO;$/;"	t	typeref:struct:NPK_tagENTITYINFO
+NPK_LPENTITYINFO_V21	libnpk/include/npk_dev.h	/^} NPK_ENTITYINFO_V21, *NPK_LPENTITYINFO_V21;$/;"	t	typeref:struct:NPK_tagENTITYINFO_V21
+NPK_LPPACKAGEBODY	libnpk/include/npk_dev.h	/^} NPK_PACKAGEBODY, *NPK_LPPACKAGEBODY;$/;"	t	typeref:struct:NPK_tagPACKAGEBODY
+NPK_LPPACKAGEINFO	libnpk/include/npk_dev.h	/^} NPK_PACKAGEINFO, *NPK_LPPACKAGEINFO;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO
+NPK_LPPACKAGEINFO_V23	libnpk/include/npk_dev.h	/^} NPK_PACKAGEINFO_V23, *NPK_LPPACKAGEINFO_V23;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO_V23
+NPK_MAXFOLDERNFILENAME	libnpk/include/npk_base.h	/^#define NPK_MAXFOLDERNFILENAME /;"	d
+NPK_MIN_SIZE_ZIPABLE	libnpk/include/npk_base.h	/^#define NPK_MIN_SIZE_ZIPABLE /;"	d
+NPK_NAMESIZE	libnpk/include/npk_base.h	/^typedef unsigned short                  NPK_NAMESIZE;$/;"	t
+NPK_OLD_SIGNATURE	libnpk/include/npk_base.h	/^#define NPK_OLD_SIGNATURE /;"	d
+NPK_PACKAGE	libnpk/include/npk_base.h	/^typedef void*                           NPK_PACKAGE;$/;"	t
+NPK_PACKAGEBODY	libnpk/include/npk_dev.h	/^} NPK_PACKAGEBODY, *NPK_LPPACKAGEBODY;$/;"	t	typeref:struct:NPK_tagPACKAGEBODY
+NPK_PACKAGEINFO	libnpk/include/npk_dev.h	/^} NPK_PACKAGEINFO, *NPK_LPPACKAGEINFO;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO
+NPK_PACKAGEINFO_V23	libnpk/include/npk_dev.h	/^} NPK_PACKAGEINFO_V23, *NPK_LPPACKAGEINFO_V23;$/;"	t	typeref:struct:NPK_tagPACKAGEINFO_V23
+NPK_PLATFORM_BSD	libnpk/include/npk_conf.h	/^    #define NPK_PLATFORM_BSD$/;"	d
+NPK_PLATFORM_LINUX	libnpk/include/npk_conf.h	/^    #define NPK_PLATFORM_LINUX$/;"	d
+NPK_PLATFORM_MACOS	libnpk/include/npk_conf.h	/^    #define NPK_PLATFORM_MACOS$/;"	d
+NPK_PLATFORM_NAME	libnpk/include/npk_conf.h	/^    #define NPK_PLATFORM_NAME /;"	d
+NPK_PLATFORM_WINDOWS	libnpk/include/npk_conf.h	/^    #define NPK_PLATFORM_WINDOWS$/;"	d
+NPK_PROCESSTYPE_ENTITY	libnpk/include/npk_base.h	/^#define NPK_PROCESSTYPE_ENTITY /;"	d
+NPK_PROCESSTYPE_ENTITYHEADER	libnpk/include/npk_base.h	/^#define NPK_PROCESSTYPE_ENTITYHEADER /;"	d
+NPK_PROCESSTYPE_FILE	libnpk/include/npk_base.h	/^#define NPK_PROCESSTYPE_FILE /;"	d
+NPK_PROCESSTYPE_PACKAGE	libnpk/include/npk_base.h	/^#define NPK_PROCESSTYPE_PACKAGE /;"	d
+NPK_PROCESSTYPE_PACKAGEHEADER	libnpk/include/npk_base.h	/^#define NPK_PROCESSTYPE_PACKAGEHEADER /;"	d
+NPK_RESULT	libnpk/include/npk_base.h	/^typedef int                             NPK_RESULT;$/;"	t
+NPK_SAFE_FREE	libnpk/include/npk_dev.h	/^#define NPK_SAFE_FREE(/;"	d
+NPK_SIGNATURE	libnpk/include/npk_base.h	/^#define NPK_SIGNATURE /;"	d
+NPK_SIGNATURE_LENGTH	libnpk/include/npk_base.h	/^#define NPK_SIGNATURE_LENGTH /;"	d
+NPK_SIZE	libnpk/include/npk_base.h	/^typedef int                             NPK_SIZE;$/;"	t
+NPK_STR	libnpk/include/npk_base.h	/^typedef NPK_CHAR*                       NPK_STR;$/;"	t
+NPK_SUCCESS	libnpk/include/npk_error.h	/^#define NPK_SUCCESS /;"	d
+NPK_TEAKEY	libnpk/include/npk_base.h	/^typedef int                             NPK_TEAKEY;$/;"	t
+NPK_TIME	libnpk/include/npk_base.h	/^typedef int                             NPK_TIME;$/;"	t
+NPK_VERSION_CURRENT	libnpk/include/npk_base.h	/^#define NPK_VERSION_CURRENT /;"	d
+NPK_VERSION_PACKAGETIMESTAMP	libnpk/include/npk_base.h	/^#define NPK_VERSION_PACKAGETIMESTAMP /;"	d
+NPK_VERSION_REFACTORING	libnpk/include/npk_base.h	/^#define NPK_VERSION_REFACTORING /;"	d
+NPK_VERSION_SINGLEPACKHEADER	libnpk/include/npk_base.h	/^#define NPK_VERSION_SINGLEPACKHEADER /;"	d
+NPK_VERSION_UNIXTIMESUPPORT	libnpk/include/npk_base.h	/^#define NPK_VERSION_UNIXTIMESUPPORT /;"	d
+NPK_tagBUCKET	libnpk/include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagBUCKET$/;"	s
+NPK_tagENTITYBODY	libnpk/include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagENTITYBODY$/;"	s
+NPK_tagENTITYINFO	libnpk/include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagENTITYINFO$/;"	s
+NPK_tagENTITYINFO_V21	libnpk/include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagENTITYINFO_V21$/;"	s
+NPK_tagPACKAGEBODY	libnpk/include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagPACKAGEBODY$/;"	s
+NPK_tagPACKAGEINFO	libnpk/include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagPACKAGEINFO$/;"	s
+NPK_tagPACKAGEINFO_V23	libnpk/include/npk_dev.h	/^typedef struct NPK_DEV_API NPK_tagPACKAGEINFO_V23$/;"	s
+OF	libnpk/external/zlib/zconf.h	/^#    define OF(/;"	d
+OFF	libnpk/external/zlib/inffast.c	/^#  define OFF /;"	d	file:
+OS	libnpk/external/zlib/inflate.h	/^    OS,         \/* i: waiting for extra flags and operating system (gzip) *\/$/;"	e	enum:__anon4
+OS2	libnpk/external/zlib/zconf.h	/^#  define OS2$/;"	d
+OS_CODE	libnpk/external/zlib/zutil.h	/^#    define OS_CODE /;"	d
+OS_CODE	libnpk/external/zlib/zutil.h	/^#  define OS_CODE /;"	d
+O_BINARY	libnpk/include/npk_conf.h	/^#define O_BINARY /;"	d
+O_BINARY	libnpk/tests/testutil.h	/^#define O_BINARY /;"	d
+O_BINARY	npk/cli/tests/testutil.h	/^#define O_BINARY /;"	d
+OnInit	npk/gui/npk_gui.cpp	/^bool MyApp::OnInit()$/;"	f	class:MyApp
+PACKAGE_TFP	npk/cli/npk_cli.cpp	/^typedef bool( *PACKAGE_TFP )( NPK_ENTITY entity );$/;"	t	file:
+PATH_SEPARATOR	npk/cli/npk_cli.cpp	/^    #define PATH_SEPARATOR /;"	d	file:
+PRESET_DICT	libnpk/external/zlib/zutil.h	/^#define PRESET_DICT /;"	d
+PULL	libnpk/external/zlib/infback.c	/^#define PULL(/;"	d	file:
+PULLBYTE	libnpk/external/zlib/infback.c	/^#define PULLBYTE(/;"	d	file:
+PULLBYTE	libnpk/external/zlib/inflate.c	/^#define PULLBYTE(/;"	d	file:
+PUP	libnpk/external/zlib/inffast.c	/^#  define PUP(/;"	d	file:
+Pos	libnpk/external/zlib/deflate.h	/^typedef ush Pos;$/;"	t
+Posf	libnpk/external/zlib/deflate.h	/^typedef Pos FAR Posf;$/;"	t
+REPZ_11_138	libnpk/external/zlib/trees.c	/^#define REPZ_11_138 /;"	d	file:
+REPZ_3_10	libnpk/external/zlib/trees.c	/^#define REPZ_3_10 /;"	d	file:
+REP_3_6	libnpk/external/zlib/trees.c	/^#define REP_3_6 /;"	d	file:
+RESTORE	libnpk/external/zlib/infback.c	/^#define RESTORE(/;"	d	file:
+RESTORE	libnpk/external/zlib/inflate.c	/^#define RESTORE(/;"	d	file:
+REV	libnpk/external/zlib/crc32.c	/^#  define REV(/;"	d	file:
+REVERSE	libnpk/external/zlib/inflate.c	/^#define REVERSE(/;"	d	file:
+ROOM	libnpk/external/zlib/infback.c	/^#define ROOM(/;"	d	file:
+SEEK_CUR	libnpk/external/zlib/zconf.h	/^#  define SEEK_CUR /;"	d
+SEEK_END	libnpk/external/zlib/zconf.h	/^#  define SEEK_END /;"	d
+SEEK_SET	libnpk/external/zlib/zconf.h	/^#  define SEEK_SET /;"	d
+SEPARATOR	libnpk/external/zlib/trees.c	/^#  define SEPARATOR(/;"	d	file:
+SLI	npk/cli/npk_cli.cpp	/^typedef list<string>::iterator SLI;$/;"	t	file:
+SMALLEST	libnpk/external/zlib/trees.c	/^#define SMALLEST /;"	d	file:
+SMALL_MEDIUM	libnpk/external/zlib/zconf.h	/^#    define SMALL_MEDIUM$/;"	d
+STATIC_TREES	libnpk/external/zlib/zutil.h	/^#define STATIC_TREES /;"	d
+STDC	libnpk/external/zlib/zconf.h	/^#    define STDC$/;"	d
+STDC	libnpk/external/zlib/zconf.h	/^#  define STDC$/;"	d
+STDC99	libnpk/external/zlib/zconf.h	/^#      define STDC99$/;"	d
+STORED	libnpk/external/zlib/inflate.h	/^        STORED,     \/* i: waiting for stored size (length and complement) *\/$/;"	e	enum:__anon4
+STORED_BLOCK	libnpk/external/zlib/zutil.h	/^#define STORED_BLOCK /;"	d
+STRLIST	npk/cli/npk_cli.cpp	/^typedef list<string> STRLIST;$/;"	t	file:
+SYNC	libnpk/external/zlib/inflate.h	/^    SYNC        \/* looking for synchronization bytes to restart inflate() *\/$/;"	e	enum:__anon4
+SYS16BIT	libnpk/external/zlib/zconf.h	/^#      define SYS16BIT$/;"	d
+TABLE	libnpk/external/zlib/inflate.h	/^        TABLE,      \/* i: waiting for dynamic block table lengths *\/$/;"	e	enum:__anon4
+TBLS	libnpk/external/zlib/crc32.c	/^#  define TBLS /;"	d	file:
+TIME	libnpk/external/zlib/inflate.h	/^    TIME,       \/* i: waiting for modification time (gzip) *\/$/;"	e	enum:__anon4
+TOO_FAR	libnpk/external/zlib/deflate.c	/^#  define TOO_FAR /;"	d	file:
+TRY_FREE	libnpk/external/zlib/zutil.h	/^#define TRY_FREE(/;"	d
+TYPE	libnpk/external/zlib/inflate.h	/^        TYPE,       \/* i: waiting for type bits, including last-flag bit *\/$/;"	e	enum:__anon4
+TYPEDO	libnpk/external/zlib/inflate.h	/^        TYPEDO,     \/* i: same, but skip check to exit inflate on new block *\/$/;"	e	enum:__anon4
+Trace	libnpk/external/zlib/zutil.h	/^#  define Trace(/;"	d
+Tracec	libnpk/external/zlib/zutil.h	/^#  define Tracec(/;"	d
+Tracecv	libnpk/external/zlib/zutil.h	/^#  define Tracecv(/;"	d
+Tracev	libnpk/external/zlib/zutil.h	/^#  define Tracev(/;"	d
+Tracevv	libnpk/external/zlib/zutil.h	/^#  define Tracevv(/;"	d
+UNALIGNED_OK	libnpk/external/zlib/zconf.h	/^#  define UNALIGNED_OK$/;"	d
+UPDATE	libnpk/external/zlib/inflate.c	/^#  define UPDATE(/;"	d	file:
+UPDATE_HASH	libnpk/external/zlib/deflate.c	/^#define UPDATE_HASH(/;"	d	file:
+V	npk/cli/npk_cli.cpp	/^#define V(/;"	d	file:
+WIN32	libnpk/external/zlib/zconf.h	/^#    define WIN32$/;"	d
+WINDOWS	libnpk/external/zlib/zconf.h	/^#  define WINDOWS$/;"	d
+WIN_INIT	libnpk/external/zlib/deflate.h	/^#define WIN_INIT /;"	d
+WXUNUSED	npk/gui/npk_gui.cpp	/^void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))$/;"	f	class:MyFrame
+WXUNUSED	npk/gui/npk_gui.cpp	/^void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))$/;"	f	class:MyFrame
+ZALLOC	libnpk/external/zlib/zutil.h	/^#define ZALLOC(/;"	d
+ZCONF_H	libnpk/external/zlib/zconf.h	/^#define ZCONF_H$/;"	d
+ZEXPORT	libnpk/external/zlib/zconf.h	/^#      define ZEXPORT /;"	d
+ZEXPORT	libnpk/external/zlib/zconf.h	/^#    define ZEXPORT /;"	d
+ZEXPORT	libnpk/external/zlib/zconf.h	/^#  define ZEXPORT$/;"	d
+ZEXPORTVA	libnpk/external/zlib/zconf.h	/^#      define ZEXPORTVA /;"	d
+ZEXPORTVA	libnpk/external/zlib/zconf.h	/^#  define ZEXPORTVA$/;"	d
+ZEXTERN	libnpk/external/zlib/zconf.h	/^#        define ZEXTERN /;"	d
+ZEXTERN	libnpk/external/zlib/zconf.h	/^#  define ZEXTERN /;"	d
+ZFREE	libnpk/external/zlib/zutil.h	/^#define ZFREE(/;"	d
+ZLIB_H	libnpk/external/zlib/zlib.h	/^#define ZLIB_H$/;"	d
+ZLIB_INTERNAL	libnpk/external/zlib/compress.c	/^#define ZLIB_INTERNAL$/;"	d	file:
+ZLIB_INTERNAL	libnpk/external/zlib/uncompr.c	/^#define ZLIB_INTERNAL$/;"	d	file:
+ZLIB_INTERNAL	libnpk/external/zlib/zutil.h	/^#  define ZLIB_INTERNAL /;"	d
+ZLIB_INTERNAL	libnpk/external/zlib/zutil.h	/^#  define ZLIB_INTERNAL$/;"	d
+ZLIB_VERNUM	libnpk/external/zlib/zlib.h	/^#define ZLIB_VERNUM /;"	d
+ZLIB_VERSION	libnpk/external/zlib/zlib.h	/^#define ZLIB_VERSION /;"	d
+ZLIB_VER_MAJOR	libnpk/external/zlib/zlib.h	/^#define ZLIB_VER_MAJOR /;"	d
+ZLIB_VER_MINOR	libnpk/external/zlib/zlib.h	/^#define ZLIB_VER_MINOR /;"	d
+ZLIB_VER_REVISION	libnpk/external/zlib/zlib.h	/^#define ZLIB_VER_REVISION /;"	d
+ZLIB_VER_SUBREVISION	libnpk/external/zlib/zlib.h	/^#define ZLIB_VER_SUBREVISION /;"	d
+ZUTIL_H	libnpk/external/zlib/zutil.h	/^#define ZUTIL_H$/;"	d
+Z_ASCII	libnpk/external/zlib/zlib.h	/^#define Z_ASCII /;"	d
+Z_BEST_COMPRESSION	libnpk/external/zlib/zlib.h	/^#define Z_BEST_COMPRESSION /;"	d
+Z_BEST_SPEED	libnpk/external/zlib/zlib.h	/^#define Z_BEST_SPEED /;"	d
+Z_BINARY	libnpk/external/zlib/zlib.h	/^#define Z_BINARY /;"	d
+Z_BLOCK	libnpk/external/zlib/zlib.h	/^#define Z_BLOCK /;"	d
+Z_BUF_ERROR	libnpk/external/zlib/zlib.h	/^#define Z_BUF_ERROR /;"	d
+Z_DATA_ERROR	libnpk/external/zlib/zlib.h	/^#define Z_DATA_ERROR /;"	d
+Z_DEFAULT_COMPRESSION	libnpk/external/zlib/zlib.h	/^#define Z_DEFAULT_COMPRESSION /;"	d
+Z_DEFAULT_STRATEGY	libnpk/external/zlib/zlib.h	/^#define Z_DEFAULT_STRATEGY /;"	d
+Z_DEFLATED	libnpk/external/zlib/zlib.h	/^#define Z_DEFLATED /;"	d
+Z_ERRNO	libnpk/external/zlib/zlib.h	/^#define Z_ERRNO /;"	d
+Z_FILTERED	libnpk/external/zlib/zlib.h	/^#define Z_FILTERED /;"	d
+Z_FINISH	libnpk/external/zlib/zlib.h	/^#define Z_FINISH /;"	d
+Z_FIXED	libnpk/external/zlib/zlib.h	/^#define Z_FIXED /;"	d
+Z_FULL_FLUSH	libnpk/external/zlib/zlib.h	/^#define Z_FULL_FLUSH /;"	d
+Z_HAVE_UNISTD_H	libnpk/external/zlib/zconf.h	/^#  define Z_HAVE_UNISTD_H$/;"	d
+Z_HUFFMAN_ONLY	libnpk/external/zlib/zlib.h	/^#define Z_HUFFMAN_ONLY /;"	d
+Z_MEM_ERROR	libnpk/external/zlib/zlib.h	/^#define Z_MEM_ERROR /;"	d
+Z_NEED_DICT	libnpk/external/zlib/zlib.h	/^#define Z_NEED_DICT /;"	d
+Z_NO_COMPRESSION	libnpk/external/zlib/zlib.h	/^#define Z_NO_COMPRESSION /;"	d
+Z_NO_FLUSH	libnpk/external/zlib/zlib.h	/^#define Z_NO_FLUSH /;"	d
+Z_NULL	libnpk/external/zlib/zlib.h	/^#define Z_NULL /;"	d
+Z_OK	libnpk/external/zlib/zlib.h	/^#define Z_OK /;"	d
+Z_PARTIAL_FLUSH	libnpk/external/zlib/zlib.h	/^#define Z_PARTIAL_FLUSH /;"	d
+Z_RLE	libnpk/external/zlib/zlib.h	/^#define Z_RLE /;"	d
+Z_STREAM_END	libnpk/external/zlib/zlib.h	/^#define Z_STREAM_END /;"	d
+Z_STREAM_ERROR	libnpk/external/zlib/zlib.h	/^#define Z_STREAM_ERROR /;"	d
+Z_SYNC_FLUSH	libnpk/external/zlib/zlib.h	/^#define Z_SYNC_FLUSH /;"	d
+Z_TEXT	libnpk/external/zlib/zlib.h	/^#define Z_TEXT /;"	d
+Z_TREES	libnpk/external/zlib/zlib.h	/^#define Z_TREES /;"	d
+Z_UNKNOWN	libnpk/external/zlib/zlib.h	/^#define Z_UNKNOWN /;"	d
+Z_VERSION_ERROR	libnpk/external/zlib/zlib.h	/^#define Z_VERSION_ERROR /;"	d
+_HR_	npk/cli/npk_cli.cpp	/^const char      _HR_[] = "-------------------------------------------------------------------------------\\n";$/;"	v
+_LARGEFILE64_SOURCE	libnpk/external/zlib/zconf.h	/^#  undef _LARGEFILE64_SOURCE$/;"	d
+_NPK_BASE_H_	libnpk/include/npk_base.h	/^#define _NPK_BASE_H_$/;"	d
+_NPK_DEF_H_	libnpk/include/npk_conf.h	/^#define _NPK_DEF_H_$/;"	d
+_NPK_DEV_H_	libnpk/include/npk_dev.h	/^#define _NPK_DEV_H_$/;"	d
+_NPK_ERROR_H_	libnpk/include/npk_error.h	/^#define _NPK_ERROR_H_$/;"	d
+_NPK_H_	libnpk/include/npk.h	/^#define _NPK_H_$/;"	d
+_PTRDIFF_T_DEFINED	libnpk/external/zlib/zutil.h	/^#      define _PTRDIFF_T_DEFINED$/;"	d
+__TESTUTIL_H__	libnpk/tests/testutil.h	/^#define __TESTUTIL_H__$/;"	d
+__TESTUTIL_H__	npk/cli/tests/testutil.h	/^#define __TESTUTIL_H__$/;"	d
+__npk_package_add_entity	libnpk/src/npk_common.c	/^NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, bool check )$/;"	f
+__npk_package_open	libnpk/src/npk.c	/^NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, long filesize, NPK_TEAKEY teakey[4] )$/;"	f
+_dist_code	libnpk/external/zlib/trees.c	/^uch _dist_code[DIST_CODE_LEN];$/;"	v
+_dist_code	libnpk/external/zlib/trees.h	/^const uch ZLIB_INTERNAL _dist_code[DIST_CODE_LEN] = {$/;"	v
+_dist_code	libnpk/external/zlib/zconf.h	/^#  define _dist_code /;"	d
+_halloc	libnpk/external/zlib/zutil.c	/^#  define _halloc /;"	d	file:
+_hfree	libnpk/external/zlib/zutil.c	/^#  define _hfree /;"	d	file:
+_length_code	libnpk/external/zlib/trees.c	/^uch _length_code[MAX_MATCH-MIN_MATCH+1];$/;"	v
+_length_code	libnpk/external/zlib/trees.h	/^const uch ZLIB_INTERNAL _length_code[MAX_MATCH-MIN_MATCH+1]= {$/;"	v
+_length_code	libnpk/external/zlib/zconf.h	/^#  define _length_code /;"	d
+_tr_align	libnpk/external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_align(s)$/;"	f
+_tr_align	libnpk/external/zlib/zconf.h	/^#  define _tr_align /;"	d
+_tr_flush_block	libnpk/external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_flush_block(s, buf, stored_len, last)$/;"	f
+_tr_flush_block	libnpk/external/zlib/zconf.h	/^#  define _tr_flush_block /;"	d
+_tr_init	libnpk/external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_init(s)$/;"	f
+_tr_init	libnpk/external/zlib/zconf.h	/^#  define _tr_init /;"	d
+_tr_stored_block	libnpk/external/zlib/trees.c	/^void ZLIB_INTERNAL _tr_stored_block(s, buf, stored_len, last)$/;"	f
+_tr_stored_block	libnpk/external/zlib/zconf.h	/^#  define _tr_stored_block /;"	d
+_tr_tally	libnpk/external/zlib/trees.c	/^int ZLIB_INTERNAL _tr_tally (s, dist, lc)$/;"	f
+_tr_tally	libnpk/external/zlib/zconf.h	/^#  define _tr_tally /;"	d
+_tr_tally_dist	libnpk/external/zlib/deflate.h	/^# define _tr_tally_dist(/;"	d
+_tr_tally_lit	libnpk/external/zlib/deflate.h	/^# define _tr_tally_lit(/;"	d
+add	npk/cli/npk_cli.cpp	/^void add()$/;"	f
+add_tfp	npk/cli/npk_cli.cpp	/^bool add_tfp( NPK_CSTR fullpath, NPK_CSTR filename )$/;"	f
+adler	libnpk/external/zlib/zlib.h	/^    uLong   adler;      \/* adler32 value of the uncompressed data *\/$/;"	m	struct:z_stream_s
+adler32	libnpk/external/zlib/adler32.c	/^uLong ZEXPORT adler32(adler, buf, len)$/;"	f
+adler32	libnpk/external/zlib/zconf.h	/^#  define adler32 /;"	d
+adler32_combine	libnpk/external/zlib/adler32.c	/^uLong ZEXPORT adler32_combine(adler1, adler2, len2)$/;"	f
+adler32_combine	libnpk/external/zlib/zconf.h	/^#  define adler32_combine /;"	d
+adler32_combine	libnpk/external/zlib/zlib.h	/^#  define adler32_combine /;"	d
+adler32_combine64	libnpk/external/zlib/adler32.c	/^uLong ZEXPORT adler32_combine64(adler1, adler2, len2)$/;"	f
+adler32_combine64	libnpk/external/zlib/zconf.h	/^#  define adler32_combine64 /;"	d
+adler32_combine_	libnpk/external/zlib/adler32.c	/^local uLong adler32_combine_(adler1, adler2, len2)$/;"	f
+alloc_func	libnpk/external/zlib/zconf.h	/^#  define alloc_func /;"	d
+alloc_func	libnpk/external/zlib/zlib.h	/^typedef voidpf (*alloc_func) OF((voidpf opaque, uInt items, uInt size));$/;"	t
+avail_in	libnpk/external/zlib/zlib.h	/^    uInt     avail_in;  \/* number of bytes available at next_in *\/$/;"	m	struct:z_stream_s
+avail_out	libnpk/external/zlib/zlib.h	/^    uInt     avail_out; \/* remaining free space at next_out *\/$/;"	m	struct:z_stream_s
+b_strcmp	npk/cli/helper_bstrcmp.h	/^bool b_strcmp( const char* s, const char* d, bool casesensitive = true )$/;"	f
+b_strcmp_path_delimited	npk/cli/helper_bstrcmp.h	/^bool b_strcmp_path_delimited( const char* s, const char* d, char delimiter, bool casesensitive = true )$/;"	f
+b_strncmp	npk/cli/helper_bstrcmp.h	/^bool b_strncmp( const char* s, const char* d, size_t dlength, bool casesensitive = true )$/;"	f
+back	libnpk/external/zlib/inflate.h	/^    int back;                   \/* bits back of last unprocessed length\/lit *\/$/;"	m	struct:inflate_state
+bad_syntax	npk/cli/npk_cli.cpp	/^void bad_syntax()$/;"	f
+base_dist	libnpk/external/zlib/trees.c	/^local int base_dist[D_CODES];$/;"	v
+base_dist	libnpk/external/zlib/trees.h	/^local const int base_dist[D_CODES] = {$/;"	v
+base_length	libnpk/external/zlib/trees.c	/^local int base_length[LENGTH_CODES];$/;"	v
+base_length	libnpk/external/zlib/trees.h	/^local const int base_length[LENGTH_CODES] = {$/;"	v
+baseversion	npk/cli/npk_cli.cpp	/^#define baseversion /;"	d	file:
+basic_help	npk/cli/npk_cli.cpp	/^void basic_help()$/;"	f
+bi_buf	libnpk/external/zlib/deflate.h	/^    ush bi_buf;$/;"	m	struct:internal_state
+bi_flush	libnpk/external/zlib/trees.c	/^local void bi_flush(s)$/;"	f
+bi_reverse	libnpk/external/zlib/trees.c	/^local unsigned bi_reverse(code, len)$/;"	f
+bi_valid	libnpk/external/zlib/deflate.h	/^    int bi_valid;$/;"	m	struct:internal_state
+bi_windup	libnpk/external/zlib/trees.c	/^local void bi_windup(s)$/;"	f
+bits	libnpk/external/zlib/inflate.h	/^    unsigned bits;              \/* number of bits in "in" *\/$/;"	m	struct:inflate_state
+bits	libnpk/external/zlib/inftrees.h	/^    unsigned char bits;         \/* bits in this part of the code *\/$/;"	m	struct:__anon5
+bits_sent	libnpk/external/zlib/deflate.h	/^    ulg bits_sent;      \/* bit length of compressed data sent mod 2^32 *\/$/;"	m	struct:internal_state
+bl_count	libnpk/external/zlib/deflate.h	/^    ush bl_count[MAX_BITS+1];$/;"	m	struct:internal_state
+bl_desc	libnpk/external/zlib/deflate.h	/^    struct tree_desc_s bl_desc;              \/* desc. for bit length tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::tree_desc_s
+bl_order	libnpk/external/zlib/trees.c	/^local const uch bl_order[BL_CODES]$/;"	v
+bl_tree	libnpk/external/zlib/deflate.h	/^    struct ct_data_s bl_tree[2*BL_CODES+1];  \/* Huffman tree for bit lengths *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::ct_data_s
+block_done	libnpk/external/zlib/deflate.c	/^    block_done,     \/* block flush performed *\/$/;"	e	enum:__anon1	file:
+block_start	libnpk/external/zlib/deflate.h	/^    long block_start;$/;"	m	struct:internal_state
+block_state	libnpk/external/zlib/deflate.c	/^} block_state;$/;"	t	typeref:enum:__anon1	file:
+bool	libnpk/include/npk_conf.h	/^    #define bool /;"	d
+bucket_	libnpk/include/npk_dev.h	/^    NPK_LPBUCKET        bucket_[NPK_HASH_BUCKETS];$/;"	m	struct:NPK_tagPACKAGEBODY
+build_bl_tree	libnpk/external/zlib/trees.c	/^local int build_bl_tree(s)$/;"	f
+build_tree	libnpk/external/zlib/trees.c	/^local void build_tree(s, desc)$/;"	f
+c	npk/cli/npk_cli.cpp	/^int                 c;      \/\/ argc$/;"	v
+charf	libnpk/external/zlib/zconf.h	/^#  define charf /;"	d
+charf	libnpk/external/zlib/zconf.h	/^typedef char  FAR charf;$/;"	t
+check	libnpk/external/zlib/inflate.h	/^    unsigned long check;        \/* protected copy of check value *\/$/;"	m	struct:inflate_state
+check_match	libnpk/external/zlib/deflate.c	/^#  define check_match(/;"	d	file:
+check_match	libnpk/external/zlib/deflate.c	/^local void check_match(s, start, match, length)$/;"	f
+closedir	npk/cli/helper_dirent.c	/^int closedir(DIR *dir)$/;"	f
+code	libnpk/external/zlib/deflate.h	/^        ush  code;       \/* bit string *\/$/;"	m	union:ct_data_s::__anon2
+code	libnpk/external/zlib/inftrees.h	/^} code;$/;"	t	typeref:struct:__anon5
+codes	libnpk/external/zlib/inflate.h	/^    code codes[ENOUGH];         \/* space for code tables *\/$/;"	m	struct:inflate_state
+codetype	libnpk/external/zlib/inftrees.h	/^} codetype;$/;"	t	typeref:enum:__anon6
+comm_max	libnpk/external/zlib/zlib.h	/^    uInt    comm_max;   \/* space at comment (only when reading header) *\/$/;"	m	struct:gz_header_s
+comment	libnpk/external/zlib/zlib.h	/^    Bytef   *comment;   \/* pointer to zero-terminated comment or Z_NULL *\/$/;"	m	struct:gz_header_s
+commify	npk/cli/helper_commify.hpp	/^void commify(double val, char *buf, int round, int comma = 3)$/;"	f
+compress	libnpk/external/zlib/compress.c	/^int ZEXPORT compress (dest, destLen, source, sourceLen)$/;"	f
+compress	libnpk/external/zlib/zconf.h	/^#  define compress /;"	d
+compress2	libnpk/external/zlib/compress.c	/^int ZEXPORT compress2 (dest, destLen, source, sourceLen, level)$/;"	f
+compress2	libnpk/external/zlib/zconf.h	/^#  define compress2 /;"	d
+compressBound	libnpk/external/zlib/compress.c	/^uLong ZEXPORT compressBound (sourceLen)$/;"	f
+compressBound	libnpk/external/zlib/zconf.h	/^#  define compressBound /;"	d
+compress_block	libnpk/external/zlib/trees.c	/^local void compress_block(s, ltree, dtree)$/;"	f
+compress_func	libnpk/external/zlib/deflate.c	/^typedef block_state (*compress_func) OF((deflate_state *s, int flush));$/;"	t	file:
+compressed_len	libnpk/external/zlib/deflate.h	/^    ulg compressed_len; \/* total bit length of compressed file mod 2^32 *\/$/;"	m	struct:internal_state
+config	libnpk/external/zlib/deflate.c	/^} config;$/;"	t	typeref:struct:config_s	file:
+config_s	libnpk/external/zlib/deflate.c	/^typedef struct config_s {$/;"	s	file:
+configuration_table	libnpk/external/zlib/deflate.c	/^local const config configuration_table[10] = {$/;"	v
+configuration_table	libnpk/external/zlib/deflate.c	/^local const config configuration_table[2] = {$/;"	v
+const	libnpk/external/zlib/zconf.h	/^#    define const /;"	d
+copy_block	libnpk/external/zlib/trees.c	/^local void copy_block(s, buf, len, header)$/;"	f
+crc32	libnpk/external/zlib/crc32.c	/^unsigned long ZEXPORT crc32(crc, buf, len)$/;"	f
+crc32	libnpk/external/zlib/zconf.h	/^#  define crc32 /;"	d
+crc32_big	libnpk/external/zlib/crc32.c	/^local unsigned long crc32_big(crc, buf, len)$/;"	f
+crc32_combine	libnpk/external/zlib/crc32.c	/^uLong ZEXPORT crc32_combine(crc1, crc2, len2)$/;"	f
+crc32_combine	libnpk/external/zlib/zconf.h	/^#  define crc32_combine /;"	d
+crc32_combine	libnpk/external/zlib/zlib.h	/^#  define crc32_combine /;"	d
+crc32_combine64	libnpk/external/zlib/crc32.c	/^uLong ZEXPORT crc32_combine64(crc1, crc2, len2)$/;"	f
+crc32_combine64	libnpk/external/zlib/zconf.h	/^#  define crc32_combine64 /;"	d
+crc32_combine_	libnpk/external/zlib/crc32.c	/^local uLong crc32_combine_(crc1, crc2, len2)$/;"	f
+crc32_little	libnpk/external/zlib/crc32.c	/^local unsigned long crc32_little(crc, buf, len)$/;"	f
+crc_table	libnpk/external/zlib/crc32.c	/^local unsigned long FAR crc_table[TBLS][256];$/;"	v
+crc_table	libnpk/external/zlib/crc32.h	/^local const unsigned long FAR crc_table[TBLS][256] =$/;"	v
+crc_table_empty	libnpk/external/zlib/crc32.c	/^local volatile int crc_table_empty = 1;$/;"	v
+create	npk/cli/npk_cli.cpp	/^void create()$/;"	f
+cs_	libnpk/include/npk_dev.h	/^    CRITICAL_SECTION    cs_;$/;"	m	struct:NPK_tagPACKAGEBODY
+ct_data	libnpk/external/zlib/deflate.h	/^} FAR ct_data;$/;"	t	typeref:struct:ct_data_s
+ct_data_s	libnpk/external/zlib/deflate.h	/^typedef struct ct_data_s {$/;"	s
+currentflag	npk/cli/npk_cli.cpp	/^NPK_FLAG currentflag;$/;"	v
+d_buf	libnpk/external/zlib/deflate.h	/^    ushf *d_buf;$/;"	m	struct:internal_state
+d_code	libnpk/external/zlib/deflate.h	/^#define d_code(/;"	d
+d_desc	libnpk/external/zlib/deflate.h	/^    struct tree_desc_s d_desc;               \/* desc. for distance tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::tree_desc_s
+d_name	npk/cli/helper_dirent.h	/^    char *d_name;$/;"	m	struct:dirent
+dad	libnpk/external/zlib/deflate.h	/^        ush  dad;        \/* father node in Huffman tree *\/$/;"	m	union:ct_data_s::__anon3
+data_type	libnpk/external/zlib/zlib.h	/^    int     data_type;  \/* best guess about the data type: binary or text *\/$/;"	m	struct:z_stream_s
+deflate	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflate (strm, flush)$/;"	f
+deflate	libnpk/external/zlib/zconf.h	/^#  define deflate /;"	d
+deflateBound	libnpk/external/zlib/deflate.c	/^uLong ZEXPORT deflateBound(strm, sourceLen)$/;"	f
+deflateBound	libnpk/external/zlib/zconf.h	/^#  define deflateBound /;"	d
+deflateCopy	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflateCopy (dest, source)$/;"	f
+deflateCopy	libnpk/external/zlib/zconf.h	/^#  define deflateCopy /;"	d
+deflateEnd	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflateEnd (strm)$/;"	f
+deflateEnd	libnpk/external/zlib/zconf.h	/^#  define deflateEnd /;"	d
+deflateInit	libnpk/external/zlib/zlib.h	/^#define deflateInit(/;"	d
+deflateInit2	libnpk/external/zlib/zlib.h	/^#define deflateInit2(/;"	d
+deflateInit2_	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflateInit2_(strm, level, method, windowBits, memLevel, strategy,$/;"	f
+deflateInit2_	libnpk/external/zlib/zconf.h	/^#  define deflateInit2_ /;"	d
+deflateInit_	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflateInit_(strm, level, version, stream_size)$/;"	f
+deflateInit_	libnpk/external/zlib/zconf.h	/^#  define deflateInit_ /;"	d
+deflateParams	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflateParams(strm, level, strategy)$/;"	f
+deflateParams	libnpk/external/zlib/zconf.h	/^#  define deflateParams /;"	d
+deflatePrime	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflatePrime (strm, bits, value)$/;"	f
+deflatePrime	libnpk/external/zlib/zconf.h	/^#  define deflatePrime /;"	d
+deflateReset	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflateReset (strm)$/;"	f
+deflateReset	libnpk/external/zlib/zconf.h	/^#  define deflateReset /;"	d
+deflateSetDictionary	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)$/;"	f
+deflateSetDictionary	libnpk/external/zlib/zconf.h	/^#  define deflateSetDictionary /;"	d
+deflateSetHeader	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflateSetHeader (strm, head)$/;"	f
+deflateSetHeader	libnpk/external/zlib/zconf.h	/^#  define deflateSetHeader /;"	d
+deflateTune	libnpk/external/zlib/deflate.c	/^int ZEXPORT deflateTune(strm, good_length, max_lazy, nice_length, max_chain)$/;"	f
+deflateTune	libnpk/external/zlib/zconf.h	/^#  define deflateTune /;"	d
+deflate_copyright	libnpk/external/zlib/deflate.c	/^const char deflate_copyright[] =$/;"	v
+deflate_copyright	libnpk/external/zlib/zconf.h	/^#  define deflate_copyright /;"	d
+deflate_fast	libnpk/external/zlib/deflate.c	/^local block_state deflate_fast(s, flush)$/;"	f
+deflate_huff	libnpk/external/zlib/deflate.c	/^local block_state deflate_huff(s, flush)$/;"	f
+deflate_rle	libnpk/external/zlib/deflate.c	/^local block_state deflate_rle(s, flush)$/;"	f
+deflate_slow	libnpk/external/zlib/deflate.c	/^local block_state deflate_slow(s, flush)$/;"	f
+deflate_state	libnpk/external/zlib/deflate.h	/^} FAR deflate_state;$/;"	t	typeref:struct:internal_state
+deflate_stored	libnpk/external/zlib/deflate.c	/^local block_state deflate_stored(s, flush)$/;"	f
+del	npk/cli/npk_cli.cpp	/^void del()$/;"	f
+del_tfp	npk/cli/npk_cli.cpp	/^bool del_tfp( NPK_ENTITY entity )$/;"	f
+depth	libnpk/external/zlib/deflate.h	/^    uch depth[2*L_CODES+1];$/;"	m	struct:internal_state
+detect_data_type	libnpk/external/zlib/trees.c	/^local int detect_data_type(s)$/;"	f
+diff	npk/cli/npk_cli.cpp	/^void diff()$/;"	f
+dirent	npk/cli/helper_dirent.h	/^struct dirent$/;"	s
+distbits	libnpk/external/zlib/inflate.h	/^    unsigned distbits;          \/* index bits for distcode *\/$/;"	m	struct:inflate_state
+distcode	libnpk/external/zlib/inflate.h	/^    code const FAR *distcode;   \/* starting table for distance codes *\/$/;"	m	struct:inflate_state
+distfix	libnpk/external/zlib/inffixed.h	/^    static const code distfix[32] = {$/;"	v
+dl	libnpk/external/zlib/deflate.h	/^    } dl;$/;"	m	struct:ct_data_s	typeref:union:ct_data_s::__anon3
+dmax	libnpk/external/zlib/inflate.h	/^    unsigned dmax;              \/* zlib header max distance (INFLATE_STRICT) *\/$/;"	m	struct:inflate_state
+done	libnpk/external/zlib/zlib.h	/^    int     done;       \/* true when done reading gzip header (not used$/;"	m	struct:gz_header_s
+dummy	libnpk/external/zlib/deflate.c	/^struct static_tree_desc_s {int dummy;}; \/* for buggy compilers *\/$/;"	m	struct:static_tree_desc_s	file:
+dummy	libnpk/external/zlib/zlib.h	/^    struct internal_state {int dummy;};$/;"	m	struct:internal_state
+dummy	libnpk/external/zlib/zutil.c	/^struct internal_state      {int dummy;}; \/* for buggy compilers *\/$/;"	m	struct:internal_state	file:
+dyn_dtree	libnpk/external/zlib/deflate.h	/^    struct ct_data_s dyn_dtree[2*D_CODES+1]; \/* distance tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::ct_data_s
+dyn_ltree	libnpk/external/zlib/deflate.h	/^    struct ct_data_s dyn_ltree[HEAP_SIZE];   \/* literal and length tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::ct_data_s
+dyn_tree	libnpk/external/zlib/deflate.h	/^    ct_data *dyn_tree;           \/* the dynamic tree *\/$/;"	m	struct:tree_desc_s
+elems	libnpk/external/zlib/trees.c	/^    int     elems;               \/* max number of elements in the tree *\/$/;"	m	struct:static_tree_desc_s	file:
+entity	npk/cli/npk_cli.cpp	/^NPK_ENTITY entity = NULL;$/;"	v
+entityCount_	libnpk/include/npk_dev.h	/^    NPK_SIZE            entityCount_;       \/* Quantity of entities. *\/$/;"	m	struct:NPK_tagPACKAGEINFO
+entityDataOffset_	libnpk/include/npk_dev.h	/^    NPK_SIZE            entityDataOffset_;  \/* Entities' data offset. *\/$/;"	m	struct:NPK_tagPACKAGEINFO
+entityInfoOffset_	libnpk/include/npk_dev.h	/^    NPK_SIZE            entityInfoOffset_;  \/* Entities' information offset. *\/$/;"	m	struct:NPK_tagPACKAGEINFO
+errno	libnpk/external/zlib/zutil.c	/^    int errno = 0;$/;"	v
+error_n_exit	npk/cli/npk_cli.cpp	/^void error_n_exit()$/;"	f
+expt	npk/cli/npk_cli.cpp	/^void expt()$/;"	f
+expt_tfp	npk/cli/npk_cli.cpp	/^bool expt_tfp( NPK_ENTITY entity )$/;"	f
+expt_with_dir_check	npk/cli/npk_cli.cpp	/^NPK_RESULT expt_with_dir_check( NPK_ENTITY entity, const char* filename )$/;"	f
+extra	libnpk/external/zlib/inflate.h	/^    unsigned extra;             \/* extra bits needed *\/$/;"	m	struct:inflate_state
+extra	libnpk/external/zlib/zlib.h	/^    Bytef   *extra;     \/* pointer to extra field or Z_NULL if none *\/$/;"	m	struct:gz_header_s
+extra_base	libnpk/external/zlib/trees.c	/^    int     extra_base;          \/* base index for extra_bits *\/$/;"	m	struct:static_tree_desc_s	file:
+extra_bits	libnpk/external/zlib/trees.c	/^    const intf *extra_bits;      \/* extra bits for each code or NULL *\/$/;"	m	struct:static_tree_desc_s	file:
+extra_blbits	libnpk/external/zlib/trees.c	/^local const int extra_blbits[BL_CODES]\/* extra bits for each bit length code *\/$/;"	v
+extra_dbits	libnpk/external/zlib/trees.c	/^local const int extra_dbits[D_CODES] \/* extra bits for each distance code *\/$/;"	v
+extra_lbits	libnpk/external/zlib/trees.c	/^local const int extra_lbits[LENGTH_CODES] \/* extra bits for each length code *\/$/;"	v
+extra_len	libnpk/external/zlib/zlib.h	/^    uInt    extra_len;  \/* extra field length (valid if extra != Z_NULL) *\/$/;"	m	struct:gz_header_s
+extra_max	libnpk/external/zlib/zlib.h	/^    uInt    extra_max;  \/* space at extra (only when reading header) *\/$/;"	m	struct:gz_header_s
+false	libnpk/include/npk_conf.h	/^    #define false /;"	d
+fc	libnpk/external/zlib/deflate.h	/^    } fc;$/;"	m	struct:ct_data_s	typeref:union:ct_data_s::__anon2
+fdopen	libnpk/external/zlib/zutil.h	/^#      define fdopen(/;"	d
+fdopen	libnpk/external/zlib/zutil.h	/^#    define fdopen(/;"	d
+fdopen	libnpk/external/zlib/zutil.h	/^#  define fdopen(/;"	d
+fill_window	libnpk/external/zlib/deflate.c	/^local void fill_window(s)$/;"	f
+find_option	npk/cli/npk_cli.cpp	/^bool find_option( const char* option, int* pos )$/;"	f
+finish_done	libnpk/external/zlib/deflate.c	/^    finish_done     \/* finish done, accept no more input or output *\/$/;"	e	enum:__anon1	file:
+finish_started	libnpk/external/zlib/deflate.c	/^    finish_started, \/* finish started, need only more output at next deflate *\/$/;"	e	enum:__anon1	file:
+fixedtables	libnpk/external/zlib/infback.c	/^local void fixedtables(state)$/;"	f
+fixedtables	libnpk/external/zlib/inflate.c	/^local void fixedtables(state)$/;"	f
+flag	npk/cli/npk_cli.cpp	/^void flag()$/;"	f
+flag_	libnpk/include/npk_dev.h	/^    NPK_FLAG            flag_;              \/* Composite of EntityFlag. ( see npk_base.h ) *\/$/;"	m	struct:NPK_tagENTITYINFO
+flag_	libnpk/include/npk_dev.h	/^    NPK_FLAG            flag_;              \/* Composite of EntityFlag. ( see npk_base.h ) *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
+flag_tfp	npk/cli/npk_cli.cpp	/^bool flag_tfp( NPK_ENTITY entity )$/;"	f
+flags	libnpk/external/zlib/inflate.h	/^    int flags;                  \/* gzip header method and flags (0 if zlib) *\/$/;"	m	struct:inflate_state
+flush_pending	libnpk/external/zlib/deflate.c	/^local void flush_pending(strm)$/;"	f
+forceoverwrite	npk/cli/npk_cli.cpp	/^bool forceoverwrite = false;$/;"	v
+forceupdate	npk/cli/npk_cli.cpp	/^bool forceupdate = false;$/;"	v
+free_func	libnpk/external/zlib/zconf.h	/^#  define free_func /;"	d
+free_func	libnpk/external/zlib/zlib.h	/^typedef void   (*free_func)  OF((voidpf opaque, voidpf address));$/;"	t
+freq	libnpk/external/zlib/deflate.h	/^        ush  freq;       \/* frequency count *\/$/;"	m	union:ct_data_s::__anon2
+func	libnpk/external/zlib/deflate.c	/^   compress_func func;$/;"	m	struct:config_s	file:
+g_callbackSize	libnpk/src/npk.c	/^NPK_SIZE        g_callbackSize;$/;"	v
+g_callbackfp	libnpk/src/npk.c	/^NPK_CALLBACK    g_callbackfp;$/;"	v
+g_gluetime	libnpk/src/npk_dev.c	/^NPK_TIME    g_gluetime;$/;"	v
+g_npkError	libnpk/src/npk.c	/^NPK_API int     g_npkError = 0; \/* this variable has no multi-thread safety *\/$/;"	v
+g_useCriticalSection	libnpk/src/npk.c	/^int             g_useCriticalSection = 0;$/;"	v
+g_use_gluetime	libnpk/src/npk_dev.c	/^bool        g_use_gluetime;$/;"	v
+gen_bitlen	libnpk/external/zlib/trees.c	/^local void gen_bitlen(s, desc)$/;"	f
+gen_codes	libnpk/external/zlib/trees.c	/^local void gen_codes (tree, max_code, bl_count)$/;"	f
+gen_trees_header	libnpk/external/zlib/trees.c	/^void gen_trees_header()$/;"	f
+get_crc_table	libnpk/external/zlib/crc32.c	/^const unsigned long FAR * ZEXPORT get_crc_table()$/;"	f
+get_crc_table	libnpk/external/zlib/zconf.h	/^#  define get_crc_table /;"	d
+get_forceoverwrite	npk/cli/npk_cli.cpp	/^void get_forceoverwrite()$/;"	f
+get_gluetime	npk/cli/npk_cli.cpp	/^void get_gluetime()$/;"	f
+get_human_readable	npk/cli/npk_cli.cpp	/^void get_human_readable()$/;"	f
+get_ignorelist	npk/cli/npk_cli.cpp	/^void get_ignorelist()$/;"	f
+get_just_create	npk/cli/npk_cli.cpp	/^void get_just_create()$/;"	f
+get_key	npk/cli/npk_cli.cpp	/^void get_key()$/;"	f
+get_norecursive	npk/cli/npk_cli.cpp	/^void get_norecursive()$/;"	f
+get_output	npk/cli/npk_cli.cpp	/^void get_output()$/;"	f
+get_sync_options	npk/cli/npk_cli.cpp	/^void get_sync_options()$/;"	f
+get_verbose	npk/cli/npk_cli.cpp	/^void get_verbose()$/;"	f
+get_withlist	npk/cli/npk_cli.cpp	/^void get_withlist()$/;"	f
+gf2_matrix_square	libnpk/external/zlib/crc32.c	/^local void gf2_matrix_square(square, mat)$/;"	f
+gf2_matrix_times	libnpk/external/zlib/crc32.c	/^local unsigned long gf2_matrix_times(mat, vec)$/;"	f
+good_length	libnpk/external/zlib/deflate.c	/^   ush good_length; \/* reduce lazy search above this match length *\/$/;"	m	struct:config_s	file:
+good_match	libnpk/external/zlib/deflate.h	/^    uInt good_match;$/;"	m	struct:internal_state
+gzFile	libnpk/external/zlib/zconf.h	/^#  define gzFile /;"	d
+gzFile	libnpk/external/zlib/zlib.h	/^typedef voidp gzFile;       \/* opaque gzip file descriptor *\/$/;"	t
+gz_error	libnpk/external/zlib/zconf.h	/^#  define gz_error /;"	d
+gz_header	libnpk/external/zlib/zconf.h	/^#  define gz_header /;"	d
+gz_header	libnpk/external/zlib/zlib.h	/^} gz_header;$/;"	t	typeref:struct:gz_header_s
+gz_header_s	libnpk/external/zlib/zconf.h	/^#  define gz_header_s /;"	d
+gz_header_s	libnpk/external/zlib/zlib.h	/^typedef struct gz_header_s {$/;"	s
+gz_headerp	libnpk/external/zlib/zconf.h	/^#  define gz_headerp /;"	d
+gz_headerp	libnpk/external/zlib/zlib.h	/^typedef gz_header FAR *gz_headerp;$/;"	t
+gz_intmax	libnpk/external/zlib/zconf.h	/^#  define gz_intmax /;"	d
+gz_strwinerror	libnpk/external/zlib/zconf.h	/^#  define gz_strwinerror /;"	d
+gzbuffer	libnpk/external/zlib/zconf.h	/^#  define gzbuffer /;"	d
+gzclearerr	libnpk/external/zlib/zconf.h	/^#  define gzclearerr /;"	d
+gzclose	libnpk/external/zlib/zconf.h	/^#  define gzclose /;"	d
+gzclose_r	libnpk/external/zlib/zconf.h	/^#  define gzclose_r /;"	d
+gzclose_w	libnpk/external/zlib/zconf.h	/^#  define gzclose_w /;"	d
+gzdirect	libnpk/external/zlib/zconf.h	/^#  define gzdirect /;"	d
+gzdopen	libnpk/external/zlib/zconf.h	/^#  define gzdopen /;"	d
+gzeof	libnpk/external/zlib/zconf.h	/^#  define gzeof /;"	d
+gzerror	libnpk/external/zlib/zconf.h	/^#  define gzerror /;"	d
+gzflush	libnpk/external/zlib/zconf.h	/^#  define gzflush /;"	d
+gzgetc	libnpk/external/zlib/zconf.h	/^#  define gzgetc /;"	d
+gzgets	libnpk/external/zlib/zconf.h	/^#  define gzgets /;"	d
+gzhead	libnpk/external/zlib/deflate.h	/^    gz_headerp  gzhead;  \/* gzip header information to write *\/$/;"	m	struct:internal_state
+gzindex	libnpk/external/zlib/deflate.h	/^    uInt   gzindex;      \/* where in extra, name, or comment *\/$/;"	m	struct:internal_state
+gzoffset	libnpk/external/zlib/zconf.h	/^#  define gzoffset /;"	d
+gzoffset	libnpk/external/zlib/zlib.h	/^#  define gzoffset /;"	d
+gzoffset64	libnpk/external/zlib/zconf.h	/^#  define gzoffset64 /;"	d
+gzopen	libnpk/external/zlib/zconf.h	/^#  define gzopen /;"	d
+gzopen	libnpk/external/zlib/zlib.h	/^#  define gzopen /;"	d
+gzopen64	libnpk/external/zlib/zconf.h	/^#  define gzopen64 /;"	d
+gzprintf	libnpk/external/zlib/zconf.h	/^#  define gzprintf /;"	d
+gzputc	libnpk/external/zlib/zconf.h	/^#  define gzputc /;"	d
+gzputs	libnpk/external/zlib/zconf.h	/^#  define gzputs /;"	d
+gzread	libnpk/external/zlib/zconf.h	/^#  define gzread /;"	d
+gzrewind	libnpk/external/zlib/zconf.h	/^#  define gzrewind /;"	d
+gzseek	libnpk/external/zlib/zconf.h	/^#  define gzseek /;"	d
+gzseek	libnpk/external/zlib/zlib.h	/^#  define gzseek /;"	d
+gzseek64	libnpk/external/zlib/zconf.h	/^#  define gzseek64 /;"	d
+gzsetparams	libnpk/external/zlib/zconf.h	/^#  define gzsetparams /;"	d
+gztell	libnpk/external/zlib/zconf.h	/^#  define gztell /;"	d
+gztell	libnpk/external/zlib/zlib.h	/^#  define gztell /;"	d
+gztell64	libnpk/external/zlib/zconf.h	/^#  define gztell64 /;"	d
+gzungetc	libnpk/external/zlib/zconf.h	/^#  define gzungetc /;"	d
+gzwrite	libnpk/external/zlib/zconf.h	/^#  define gzwrite /;"	d
+handle	npk/cli/helper_dirent.c	/^    long                handle; \/* -1 for failed rewind *\/$/;"	m	struct:DIR	file:
+handle_	libnpk/include/npk_dev.h	/^    NPK_HANDLE          handle_;            \/* File handle. *\/$/;"	m	struct:NPK_tagPACKAGEBODY
+has_wildcard_pattern	npk/cli/npk_cli.cpp	/^bool has_wildcard_pattern( const char* str )$/;"	f
+hash_bits	libnpk/external/zlib/deflate.h	/^    uInt  hash_bits;      \/* log2(hash_size) *\/$/;"	m	struct:internal_state
+hash_mask	libnpk/external/zlib/deflate.h	/^    uInt  hash_mask;      \/* hash_size-1 *\/$/;"	m	struct:internal_state
+hash_shift	libnpk/external/zlib/deflate.h	/^    uInt  hash_shift;$/;"	m	struct:internal_state
+hash_size	libnpk/external/zlib/deflate.h	/^    uInt  hash_size;      \/* number of elements in hash table *\/$/;"	m	struct:internal_state
+have	libnpk/external/zlib/inflate.h	/^    unsigned have;              \/* number of code lengths in lens[] *\/$/;"	m	struct:inflate_state
+havedict	libnpk/external/zlib/inflate.h	/^    int havedict;               \/* true if dictionary provided *\/$/;"	m	struct:inflate_state
+hcrc	libnpk/external/zlib/zlib.h	/^    int     hcrc;       \/* true if there was or will be a header crc *\/$/;"	m	struct:gz_header_s
+head	libnpk/external/zlib/deflate.h	/^    Posf *head; \/* Heads of the hash chains or NIL. *\/$/;"	m	struct:internal_state
+head	libnpk/external/zlib/inflate.h	/^    gz_headerp head;            \/* where to save gzip header information *\/$/;"	m	struct:inflate_state
+heap	libnpk/external/zlib/deflate.h	/^    int heap[2*L_CODES+1];      \/* heap used to build the Huffman trees *\/$/;"	m	struct:internal_state
+heap_len	libnpk/external/zlib/deflate.h	/^    int heap_len;               \/* number of elements in the heap *\/$/;"	m	struct:internal_state
+heap_max	libnpk/external/zlib/deflate.h	/^    int heap_max;               \/* element of largest frequency *\/$/;"	m	struct:internal_state
+help	npk/cli/npk_cli.cpp	/^void help()$/;"	f
+high_water	libnpk/external/zlib/deflate.h	/^    ulg high_water;$/;"	m	struct:internal_state
+hold	libnpk/external/zlib/inflate.h	/^    unsigned long hold;         \/* input bit accumulator *\/$/;"	m	struct:inflate_state
+human_readable	npk/cli/npk_cli.cpp	/^bool human_readable = false;$/;"	v
+ignorelist	npk/cli/npk_cli.cpp	/^STRLIST ignorelist;$/;"	v
+in_func	libnpk/external/zlib/zconf.h	/^#  define in_func /;"	d
+in_func	libnpk/external/zlib/zlib.h	/^typedef unsigned (*in_func) OF((void FAR *, unsigned char FAR * FAR *));$/;"	t
+inflate	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflate(strm, flush)$/;"	f
+inflate	libnpk/external/zlib/zconf.h	/^#  define inflate /;"	d
+inflateBack	libnpk/external/zlib/infback.c	/^int ZEXPORT inflateBack(strm, in, in_desc, out, out_desc)$/;"	f
+inflateBack	libnpk/external/zlib/zconf.h	/^#  define inflateBack /;"	d
+inflateBackEnd	libnpk/external/zlib/infback.c	/^int ZEXPORT inflateBackEnd(strm)$/;"	f
+inflateBackEnd	libnpk/external/zlib/zconf.h	/^#  define inflateBackEnd /;"	d
+inflateBackInit	libnpk/external/zlib/zlib.h	/^#define inflateBackInit(/;"	d
+inflateBackInit_	libnpk/external/zlib/infback.c	/^int ZEXPORT inflateBackInit_(strm, windowBits, window, version, stream_size)$/;"	f
+inflateBackInit_	libnpk/external/zlib/zconf.h	/^#  define inflateBackInit_ /;"	d
+inflateCopy	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateCopy(dest, source)$/;"	f
+inflateCopy	libnpk/external/zlib/zconf.h	/^#  define inflateCopy /;"	d
+inflateEnd	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateEnd(strm)$/;"	f
+inflateEnd	libnpk/external/zlib/zconf.h	/^#  define inflateEnd /;"	d
+inflateGetHeader	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateGetHeader(strm, head)$/;"	f
+inflateGetHeader	libnpk/external/zlib/zconf.h	/^#  define inflateGetHeader /;"	d
+inflateInit	libnpk/external/zlib/zlib.h	/^#define inflateInit(/;"	d
+inflateInit2	libnpk/external/zlib/zlib.h	/^#define inflateInit2(/;"	d
+inflateInit2_	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateInit2_(strm, windowBits, version, stream_size)$/;"	f
+inflateInit2_	libnpk/external/zlib/zconf.h	/^#  define inflateInit2_ /;"	d
+inflateInit_	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateInit_(strm, version, stream_size)$/;"	f
+inflateInit_	libnpk/external/zlib/zconf.h	/^#  define inflateInit_ /;"	d
+inflateMark	libnpk/external/zlib/inflate.c	/^long ZEXPORT inflateMark(strm)$/;"	f
+inflateMark	libnpk/external/zlib/zconf.h	/^#  define inflateMark /;"	d
+inflatePrime	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflatePrime(strm, bits, value)$/;"	f
+inflatePrime	libnpk/external/zlib/zconf.h	/^#  define inflatePrime /;"	d
+inflateReset	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateReset(strm)$/;"	f
+inflateReset	libnpk/external/zlib/zconf.h	/^#  define inflateReset /;"	d
+inflateReset2	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateReset2(strm, windowBits)$/;"	f
+inflateReset2	libnpk/external/zlib/zconf.h	/^#  define inflateReset2 /;"	d
+inflateSetDictionary	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateSetDictionary(strm, dictionary, dictLength)$/;"	f
+inflateSetDictionary	libnpk/external/zlib/zconf.h	/^#  define inflateSetDictionary /;"	d
+inflateSync	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateSync(strm)$/;"	f
+inflateSync	libnpk/external/zlib/zconf.h	/^#  define inflateSync /;"	d
+inflateSyncPoint	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateSyncPoint(strm)$/;"	f
+inflateSyncPoint	libnpk/external/zlib/zconf.h	/^#  define inflateSyncPoint /;"	d
+inflateUndermine	libnpk/external/zlib/inflate.c	/^int ZEXPORT inflateUndermine(strm, subvert)$/;"	f
+inflateUndermine	libnpk/external/zlib/zconf.h	/^#  define inflateUndermine /;"	d
+inflate_copyright	libnpk/external/zlib/inftrees.c	/^const char inflate_copyright[] =$/;"	v
+inflate_copyright	libnpk/external/zlib/zconf.h	/^#  define inflate_copyright /;"	d
+inflate_fast	libnpk/external/zlib/inffast.c	/^void ZLIB_INTERNAL inflate_fast(strm, start)$/;"	f
+inflate_fast	libnpk/external/zlib/zconf.h	/^#  define inflate_fast /;"	d
+inflate_mode	libnpk/external/zlib/inflate.h	/^} inflate_mode;$/;"	t	typeref:enum:__anon4
+inflate_state	libnpk/external/zlib/inflate.h	/^struct inflate_state {$/;"	s
+inflate_table	libnpk/external/zlib/inftrees.c	/^int ZLIB_INTERNAL inflate_table(type, lens, codes, table, bits, work)$/;"	f
+inflate_table	libnpk/external/zlib/zconf.h	/^#  define inflate_table /;"	d
+info	npk/cli/helper_dirent.c	/^    struct _finddata_t  info;$/;"	m	struct:DIR	typeref:struct:DIR::_finddata_t	file:
+info	npk/cli/npk_cli.cpp	/^void info()$/;"	f
+info_	libnpk/include/npk_dev.h	/^    NPK_ENTITYINFO      info_;$/;"	m	struct:NPK_tagENTITYBODY
+info_	libnpk/include/npk_dev.h	/^    NPK_PACKAGEINFO     info_;$/;"	m	struct:NPK_tagPACKAGEBODY
+init_block	libnpk/external/zlib/trees.c	/^local void init_block(s)$/;"	f
+ins_h	libnpk/external/zlib/deflate.h	/^    uInt  ins_h;          \/* hash index of string to be inserted *\/$/;"	m	struct:internal_state
+internal_state	libnpk/external/zlib/deflate.h	/^typedef struct internal_state {$/;"	s
+internal_state	libnpk/external/zlib/zconf.h	/^#  define internal_state /;"	d
+internal_state	libnpk/external/zlib/zlib.h	/^    struct internal_state {int dummy;};$/;"	s
+internal_state	libnpk/external/zlib/zutil.c	/^struct internal_state      {int dummy;}; \/* for buggy compilers *\/$/;"	s	file:
+intf	libnpk/external/zlib/zconf.h	/^#  define intf /;"	d
+intf	libnpk/external/zlib/zconf.h	/^typedef int   FAR intf;$/;"	t
+justcreate	npk/cli/npk_cli.cpp	/^bool justcreate = false;$/;"	v
+k	npk/cli/npk_cli.cpp	/^NPK_TEAKEY k[4] = { 0, 0, 0, 0 };$/;"	v
+l_buf	libnpk/external/zlib/deflate.h	/^    uchf *l_buf;          \/* buffer for literals or lengths *\/$/;"	m	struct:internal_state
+l_desc	libnpk/external/zlib/deflate.h	/^    struct tree_desc_s l_desc;               \/* desc. for literal tree *\/$/;"	m	struct:internal_state	typeref:struct:internal_state::tree_desc_s
+last	libnpk/external/zlib/inflate.h	/^    int last;                   \/* true if processing last block *\/$/;"	m	struct:inflate_state
+last_eob_len	libnpk/external/zlib/deflate.h	/^    int last_eob_len;   \/* bit length of EOB code for last block *\/$/;"	m	struct:internal_state
+last_flush	libnpk/external/zlib/deflate.h	/^    int   last_flush;    \/* value of flush param for previous deflate call *\/$/;"	m	struct:internal_state
+last_lit	libnpk/external/zlib/deflate.h	/^    uInt last_lit;      \/* running index in l_buf *\/$/;"	m	struct:internal_state
+len	libnpk/external/zlib/deflate.h	/^        ush  len;        \/* length of bit string *\/$/;"	m	union:ct_data_s::__anon3
+lenbits	libnpk/external/zlib/inflate.h	/^    unsigned lenbits;           \/* index bits for lencode *\/$/;"	m	struct:inflate_state
+lencode	libnpk/external/zlib/inflate.h	/^    code const FAR *lencode;    \/* starting table for length\/literal codes *\/$/;"	m	struct:inflate_state
+lenfix	libnpk/external/zlib/inffixed.h	/^    static const code lenfix[512] = {$/;"	v
+length	libnpk/external/zlib/inflate.h	/^    unsigned length;            \/* literal or length of data to copy *\/$/;"	m	struct:inflate_state
+lens	libnpk/external/zlib/inflate.h	/^    unsigned short lens[320];   \/* temporary storage for code lengths *\/$/;"	m	struct:inflate_state
+level	libnpk/external/zlib/deflate.h	/^    int level;    \/* compression level (1..9) *\/$/;"	m	struct:internal_state
+libnpk_case	libnpk/tests/libnpk_case.cpp	/^int libnpk_case( int argc, char * argv [] )$/;"	f
+libnpk_durability	libnpk/tests/libnpk_durability.cpp	/^int libnpk_durability( int argc, char * argv [] )$/;"	f
+libnpk_export	libnpk/tests/libnpk_export.cpp	/^int libnpk_export( int argc, char * argv [] )$/;"	f
+libnpk_hash	libnpk/tests/libnpk_hash.cpp	/^int libnpk_hash( int argc, char * argv [] )$/;"	f
+libnpk_open	libnpk/tests/libnpk_open.cpp	/^int libnpk_open( int argc, char * argv [] )$/;"	f
+libnpk_read_entity	libnpk/tests/libnpk_read_entity.cpp	/^int libnpk_read_entity( int argc, char * argv [] )$/;"	f
+libnpk_using_fd	libnpk/tests/libnpk_using_fd.cpp	/^int libnpk_using_fd( int argc, char * argv [] )$/;"	f
+libnpk_write	libnpk/tests/libnpk_write.cpp	/^int libnpk_write( int argc, char * argv [] )$/;"	f
+listinfo	npk/cli/npk_cli.cpp	/^void listinfo()$/;"	f
+listinfo_tfp	npk/cli/npk_cli.cpp	/^bool listinfo_tfp( NPK_ENTITY entity )$/;"	f
+lit_bufsize	libnpk/external/zlib/deflate.h	/^    uInt  lit_bufsize;$/;"	m	struct:internal_state
+lm_init	libnpk/external/zlib/deflate.c	/^local void lm_init (s)$/;"	f
+local	libnpk/external/zlib/adler32.c	/^#define local /;"	d	file:
+local	libnpk/external/zlib/crc32.c	/^#define local /;"	d	file:
+local	libnpk/external/zlib/zutil.h	/^#  define local /;"	d
+localname_	libnpk/include/npk_dev.h	/^    NPK_STR             localname_;         \/* Local Foldername + FileName. *\/$/;"	m	struct:NPK_tagENTITYBODY
+longest_match	libnpk/external/zlib/deflate.c	/^local uInt longest_match(s, cur_match)$/;"	f
+lookahead	libnpk/external/zlib/deflate.h	/^    uInt lookahead;              \/* number of valid bytes ahead in window *\/$/;"	m	struct:internal_state
+main	npk/cli/npk_cli.cpp	/^int main( int _c, char* _v[] )$/;"	f
+main	npk/gui/npk_gui.cpp	/^void main()$/;"	f
+make_crc_table	libnpk/external/zlib/crc32.c	/^local void make_crc_table()$/;"	f
+makefixed	libnpk/external/zlib/inflate.c	/^void makefixed()$/;"	f
+match_available	libnpk/external/zlib/deflate.h	/^    int match_available;         \/* set if previous match exists *\/$/;"	m	struct:internal_state
+match_length	libnpk/external/zlib/deflate.h	/^    uInt match_length;           \/* length of best match *\/$/;"	m	struct:internal_state
+match_start	libnpk/external/zlib/deflate.h	/^    uInt match_start;            \/* start of matching string *\/$/;"	m	struct:internal_state
+matches	libnpk/external/zlib/deflate.h	/^    uInt matches;       \/* number of string matches in current block *\/$/;"	m	struct:internal_state
+max_chain	libnpk/external/zlib/deflate.c	/^   ush max_chain;$/;"	m	struct:config_s	file:
+max_chain_length	libnpk/external/zlib/deflate.h	/^    uInt max_chain_length;$/;"	m	struct:internal_state
+max_code	libnpk/external/zlib/deflate.h	/^    int     max_code;            \/* largest code with non zero frequency *\/$/;"	m	struct:tree_desc_s
+max_insert_length	libnpk/external/zlib/deflate.h	/^#   define max_insert_length /;"	d
+max_lazy	libnpk/external/zlib/deflate.c	/^   ush max_lazy;    \/* do not perform lazy search above this match length *\/$/;"	m	struct:config_s	file:
+max_lazy_match	libnpk/external/zlib/deflate.h	/^    uInt max_lazy_match;$/;"	m	struct:internal_state
+max_length	libnpk/external/zlib/trees.c	/^    int     max_length;          \/* max bit length for the codes *\/$/;"	m	struct:static_tree_desc_s	file:
+method	libnpk/external/zlib/deflate.h	/^    Byte  method;        \/* STORED (for zip only) or DEFLATED *\/$/;"	m	struct:internal_state
+mkdirr	npk/cli/helper_mkdirr.hpp	/^static void mkdirr(const char *dir) {$/;"	f
+mode	libnpk/external/zlib/inflate.h	/^    inflate_mode mode;          \/* current inflate mode *\/$/;"	m	struct:inflate_state
+modified	npk/cli/npk_cli.cpp	/^bool modified = false;$/;"	v
+modified_	libnpk/include/npk_dev.h	/^    NPK_64BIT           modified_;          \/* For old-npk-style 64bit FILETIME *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
+modified_	libnpk/include/npk_dev.h	/^    NPK_TIME            modified_;          \/* Last modified date of entity - 32bit time_t *\/$/;"	m	struct:NPK_tagENTITYINFO
+modified_	libnpk/include/npk_dev.h	/^    NPK_TIME            modified_;          \/* Last modified date of package - 32bit time_t *\/$/;"	m	struct:NPK_tagPACKAGEINFO_V23
+modified_	libnpk/include/npk_dev.h	/^    NPK_TIME            modified_;$/;"	m	struct:NPK_tagPACKAGEBODY
+msg	libnpk/external/zlib/zlib.h	/^    char     *msg;      \/* last error message, NULL if no error *\/$/;"	m	struct:z_stream_s
+n	npk/cli/npk_cli.cpp	/^int                 n = 0;  \/\/ current argc number$/;"	v
+name	libnpk/external/zlib/zlib.h	/^    Bytef   *name;      \/* pointer to zero-terminated file name or Z_NULL *\/$/;"	m	struct:gz_header_s
+name	npk/cli/helper_dirent.c	/^    char                *name;  \/* null-terminated char string *\/$/;"	m	struct:DIR	file:
+nameLength_	libnpk/include/npk_dev.h	/^    NPK_NAMESIZE        nameLength_;        \/* Length of Foldername + FileName. *\/$/;"	m	struct:NPK_tagENTITYINFO
+nameLength_	libnpk/include/npk_dev.h	/^    NPK_NAMESIZE        nameLength_;        \/* Length of Foldername + FileName. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
+name_	libnpk/include/npk_dev.h	/^    NPK_STR             name_;              \/* Foldername + FileName. *\/$/;"	m	struct:NPK_tagENTITYBODY
+name_max	libnpk/external/zlib/zlib.h	/^    uInt    name_max;   \/* space at name (only when reading header) *\/$/;"	m	struct:gz_header_s
+ncode	libnpk/external/zlib/inflate.h	/^    unsigned ncode;             \/* number of code length code lengths *\/$/;"	m	struct:inflate_state
+ndist	libnpk/external/zlib/inflate.h	/^    unsigned ndist;             \/* number of distance code lengths *\/$/;"	m	struct:inflate_state
+need_more	libnpk/external/zlib/deflate.c	/^    need_more,      \/* block not completed, need more input or more output *\/$/;"	e	enum:__anon1	file:
+new_ptr	libnpk/external/zlib/zutil.c	/^    voidpf new_ptr;$/;"	m	struct:ptr_table_s	file:
+newflag_	libnpk/include/npk_dev.h	/^    NPK_FLAG            newflag_;           \/* New entity flags *\/$/;"	m	struct:NPK_tagENTITYBODY
+next	libnpk/external/zlib/inflate.h	/^    code FAR *next;             \/* next available space in codes[] *\/$/;"	m	struct:inflate_state
+nextInBucket_	libnpk/include/npk_dev.h	/^    struct NPK_tagENTITYBODY*   nextInBucket_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
+next_	libnpk/include/npk_dev.h	/^    struct NPK_tagENTITYBODY*   next_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
+next_in	libnpk/external/zlib/zlib.h	/^    Bytef    *next_in;  \/* next input byte *\/$/;"	m	struct:z_stream_s
+next_out	libnpk/external/zlib/zlib.h	/^    Bytef    *next_out; \/* next output byte should be put there *\/$/;"	m	struct:z_stream_s
+next_ptr	libnpk/external/zlib/zutil.c	/^local int next_ptr = 0;$/;"	v
+nice_length	libnpk/external/zlib/deflate.c	/^   ush nice_length; \/* quit search above this match length *\/$/;"	m	struct:config_s	file:
+nice_match	libnpk/external/zlib/deflate.h	/^    int nice_match; \/* Stop searching when current match exceeds this *\/$/;"	m	struct:internal_state
+nlen	libnpk/external/zlib/inflate.h	/^    unsigned nlen;              \/* number of length code lengths *\/$/;"	m	struct:inflate_state
+norecursive	npk/cli/npk_cli.cpp	/^bool norecursive = false;$/;"	v
+npk_add	npk/cli/tests/npk_add.cpp	/^int npk_add( int argc, char * argv [] )$/;"	f
+npk_alloc_copy_string	libnpk/src/npk_common.c	/^NPK_RESULT npk_alloc_copy_string( NPK_STR* dst, NPK_CSTR src )$/;"	f
+npk_close	libnpk/src/npk_common.c	/^NPK_RESULT npk_close( NPK_HANDLE handle )$/;"	f
+npk_create	npk/cli/tests/npk_create.cpp	/^int npk_create( int argc, char * argv [] )$/;"	f
+npk_disable_callback	libnpk/src/npk.c	/^void npk_disable_callback()$/;"	f
+npk_disable_criticalsection	libnpk/src/npk.c	/^void npk_disable_criticalsection()$/;"	f
+npk_disable_gluetime	libnpk/src/npk_dev.c	/^void npk_disable_gluetime()$/;"	f
+npk_enable_callback	libnpk/src/npk.c	/^void npk_enable_callback( NPK_CALLBACK cb, NPK_SIZE cb_size )$/;"	f
+npk_enable_criticalsection	libnpk/src/npk.c	/^void npk_enable_criticalsection()$/;"	f
+npk_enable_gluetime	libnpk/src/npk_dev.c	/^void npk_enable_gluetime( NPK_TIME time )$/;"	f
+npk_entity_add_flag	libnpk/src/npk_dev.c	/^NPK_RESULT npk_entity_add_flag( NPK_ENTITY entity, NPK_FLAG flag )$/;"	f
+npk_entity_alloc	libnpk/src/npk_common.c	/^NPK_RESULT npk_entity_alloc( NPK_ENTITY* lpEntity )$/;"	f
+npk_entity_export	libnpk/src/npk_dev.c	/^NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceoverwrite )$/;"	f
+npk_entity_get_current_flag	libnpk/src/npk_dev.c	/^NPK_RESULT npk_entity_get_current_flag( NPK_ENTITY entity, NPK_FLAG* flag )$/;"	f
+npk_entity_get_name	libnpk/src/npk.c	/^NPK_CSTR npk_entity_get_name( NPK_ENTITY entity )$/;"	f
+npk_entity_get_new_flag	libnpk/src/npk_dev.c	/^NPK_RESULT npk_entity_get_new_flag( NPK_ENTITY entity, NPK_FLAG* flag )$/;"	f
+npk_entity_get_size	libnpk/src/npk.c	/^NPK_SIZE npk_entity_get_size( NPK_ENTITY entity )$/;"	f
+npk_entity_init	libnpk/src/npk_common.c	/^NPK_RESULT npk_entity_init( NPK_ENTITY entity )$/;"	f
+npk_entity_next	libnpk/src/npk.c	/^NPK_ENTITY npk_entity_next( NPK_ENTITY entity )$/;"	f
+npk_entity_read	libnpk/src/npk.c	/^bool npk_entity_read( NPK_ENTITY entity, void* buf )$/;"	f
+npk_entity_read_partial	libnpk/src/npk.c	/^bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK_SIZE size )$/;"	f
+npk_entity_set_flag	libnpk/src/npk_dev.c	/^NPK_RESULT npk_entity_set_flag( NPK_ENTITY entity, NPK_FLAG flag )$/;"	f
+npk_entity_sub_flag	libnpk/src/npk_dev.c	/^NPK_RESULT npk_entity_sub_flag( NPK_ENTITY entity, NPK_FLAG flag )$/;"	f
+npk_entity_write	libnpk/src/npk_dev.c	/^NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )$/;"	f
+npk_error	libnpk/src/npk_common.c	/^NPK_RESULT npk_error( NPK_RESULT res )$/;"	f
+npk_error_to_str	libnpk/src/npk_common.c	/^NPK_STR npk_error_to_str( NPK_RESULT res )$/;"	f
+npk_filetime_to_unixtime	libnpk/src/npk_common.c	/^void npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt )$/;"	f
+npk_flush	libnpk/src/npk_dev.c	/^NPK_RESULT npk_flush( NPK_HANDLE handle )$/;"	f
+npk_get_bucket	libnpk/src/npk_common.c	/^NPK_HASHKEY npk_get_bucket( NPK_CSTR name )$/;"	f
+npk_get_filetime	libnpk/src/npk_dev.c	/^NPK_RESULT npk_get_filetime( NPK_CSTR filename, NPK_TIME* pft )$/;"	f
+npk_log	libnpk/src/npk_dev.c	/^void npk_log( NPK_CSTR format, ... )$/;"	f
+npk_open	libnpk/src/npk_common.c	/^NPK_RESULT npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist )$/;"	f
+npk_package_add_entity	libnpk/src/npk_common.c	/^NPK_RESULT npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity )$/;"	f
+npk_package_add_file	libnpk/src/npk_dev.c	/^NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CSTR entityname, NPK_ENTITY* lpEntity )$/;"	f
+npk_package_alloc	libnpk/src/npk_common.c	/^NPK_RESULT npk_package_alloc( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )$/;"	f
+npk_package_clear	libnpk/src/npk_dev.c	/^NPK_RESULT npk_package_clear( NPK_PACKAGE package )$/;"	f
+npk_package_close	libnpk/src/npk.c	/^bool npk_package_close( NPK_PACKAGE package )$/;"	f
+npk_package_get_entity	libnpk/src/npk.c	/^NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )$/;"	f
+npk_package_get_first_entity	libnpk/src/npk.c	/^NPK_ENTITY npk_package_get_first_entity( NPK_PACKAGE package )$/;"	f
+npk_package_init	libnpk/src/npk_common.c	/^NPK_RESULT npk_package_init( NPK_PACKAGE package )$/;"	f
+npk_package_open	libnpk/src/npk.c	/^NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )$/;"	f
+npk_package_open_with_fd	libnpk/src/npk.c	/^NPK_PACKAGE npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] )$/;"	f
+npk_package_remove_all_entity	libnpk/src/npk_common.c	/^NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )$/;"	f
+npk_package_remove_entity	libnpk/src/npk_dev.c	/^NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )$/;"	f
+npk_package_save	libnpk/src/npk_dev.c	/^NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceoverwrite )$/;"	f
+npk_read	libnpk/src/npk_common.c	/^NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,$/;"	f
+npk_read_encrypt	libnpk/src/npk_common.c	/^NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_SIZE size,$/;"	f
+npk_seek	libnpk/src/npk_common.c	/^long npk_seek( NPK_HANDLE handle, long offset, int origin )$/;"	f
+npk_set_filetime	libnpk/src/npk_dev.c	/^NPK_RESULT npk_set_filetime( NPK_CSTR filename, const NPK_TIME pft )$/;"	f
+npk_tell	libnpk/src/npk_dev.c	/^long npk_tell( NPK_HANDLE handle )$/;"	f
+npk_write	libnpk/src/npk_dev.c	/^NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,$/;"	f
+npk_write_encrypt	libnpk/src/npk_dev.c	/^NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_SIZE size,$/;"	f
+offset	libnpk/external/zlib/inflate.h	/^    unsigned offset;            \/* distance back to copy string from *\/$/;"	m	struct:inflate_state
+offsetJump_	libnpk/include/npk_dev.h	/^    long                offsetJump_;$/;"	m	struct:NPK_tagPACKAGEBODY
+offset_	libnpk/include/npk_dev.h	/^    NPK_SIZE            offset_;            \/* Data position. *\/$/;"	m	struct:NPK_tagENTITYINFO
+offset_	libnpk/include/npk_dev.h	/^    NPK_SIZE            offset_;            \/* Data position. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
+op	libnpk/external/zlib/inftrees.h	/^    unsigned char op;           \/* operation, extra bits, table bits *\/$/;"	m	struct:__anon5
+opaque	libnpk/external/zlib/zlib.h	/^    voidpf     opaque;  \/* private data object passed to zalloc and zfree *\/$/;"	m	struct:z_stream_s
+opendir	npk/cli/helper_dirent.c	/^DIR *opendir(const char *name)$/;"	f
+opt_len	libnpk/external/zlib/deflate.h	/^    ulg opt_len;        \/* bit length of current block with optimal trees *\/$/;"	m	struct:internal_state
+org_ptr	libnpk/external/zlib/zutil.c	/^    voidpf org_ptr;$/;"	m	struct:ptr_table_s	file:
+originalSize_	libnpk/include/npk_dev.h	/^    NPK_SIZE            originalSize_;      \/* Original size. *\/$/;"	m	struct:NPK_tagENTITYINFO
+originalSize_	libnpk/include/npk_dev.h	/^    NPK_SIZE            originalSize_;      \/* Original size. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
+os	libnpk/external/zlib/zlib.h	/^    int     os;         \/* operating system *\/$/;"	m	struct:gz_header_s
+out_func	libnpk/external/zlib/zconf.h	/^#  define out_func /;"	d
+out_func	libnpk/external/zlib/zlib.h	/^typedef int (*out_func) OF((void FAR *, unsigned char FAR *, unsigned));$/;"	t
+output	npk/cli/npk_cli.cpp	/^char* output = NULL;$/;"	v
+owner_	libnpk/include/npk_dev.h	/^    NPK_PACKAGE         owner_;$/;"	m	struct:NPK_tagENTITYBODY
+pEntityHead_	libnpk/include/npk_dev.h	/^    NPK_LPENTITYBODY    pEntityHead_;$/;"	m	struct:NPK_tagBUCKET
+pEntityHead_	libnpk/include/npk_dev.h	/^    NPK_LPENTITYBODY    pEntityHead_;$/;"	m	struct:NPK_tagPACKAGEBODY
+pEntityLatest_	libnpk/include/npk_dev.h	/^    NPK_LPENTITYBODY    pEntityLatest_;$/;"	m	struct:NPK_tagPACKAGEBODY
+pEntityTail_	libnpk/include/npk_dev.h	/^    NPK_LPENTITYBODY    pEntityTail_;$/;"	m	struct:NPK_tagBUCKET
+pEntityTail_	libnpk/include/npk_dev.h	/^    NPK_LPENTITYBODY    pEntityTail_;$/;"	m	struct:NPK_tagPACKAGEBODY
+package	npk/cli/npk_cli.cpp	/^NPK_PACKAGE package = NULL;$/;"	v
+pending	libnpk/external/zlib/deflate.h	/^    uInt   pending;      \/* nb of bytes in the pending buffer *\/$/;"	m	struct:internal_state
+pending_buf	libnpk/external/zlib/deflate.h	/^    Bytef *pending_buf;  \/* output still pending *\/$/;"	m	struct:internal_state
+pending_buf_size	libnpk/external/zlib/deflate.h	/^    ulg   pending_buf_size; \/* size of pending_buf *\/$/;"	m	struct:internal_state
+pending_out	libnpk/external/zlib/deflate.h	/^    Bytef *pending_out;  \/* next pending byte to output to the stream *\/$/;"	m	struct:internal_state
+pqdownheap	libnpk/external/zlib/trees.c	/^local void pqdownheap(s, tree, k)$/;"	f
+pqremove	libnpk/external/zlib/trees.c	/^#define pqremove(/;"	d	file:
+prev	libnpk/external/zlib/deflate.h	/^    Posf *prev;$/;"	m	struct:internal_state
+prevInBucket_	libnpk/include/npk_dev.h	/^    struct NPK_tagENTITYBODY*   prevInBucket_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
+prev_	libnpk/include/npk_dev.h	/^    struct NPK_tagENTITYBODY*   prev_;$/;"	m	struct:NPK_tagENTITYBODY	typeref:struct:NPK_tagENTITYBODY::NPK_tagENTITYBODY
+prev_length	libnpk/external/zlib/deflate.h	/^    uInt prev_length;$/;"	m	struct:internal_state
+prev_match	libnpk/external/zlib/deflate.h	/^    IPos prev_match;             \/* previous match *\/$/;"	m	struct:internal_state
+ptr_table	libnpk/external/zlib/zutil.c	/^} ptr_table;$/;"	t	typeref:struct:ptr_table_s	file:
+ptr_table_s	libnpk/external/zlib/zutil.c	/^typedef struct ptr_table_s {$/;"	s	file:
+ptrdiff_t	libnpk/external/zlib/zutil.h	/^       typedef int ptrdiff_t;$/;"	t
+putShortMSB	libnpk/external/zlib/deflate.c	/^local void putShortMSB (s, b)$/;"	f
+put_byte	libnpk/external/zlib/deflate.h	/^#define put_byte(/;"	d
+put_short	libnpk/external/zlib/trees.c	/^#define put_short(/;"	d	file:
+read_buf	libnpk/external/zlib/deflate.c	/^local int read_buf(strm, buf, size)$/;"	f
+readable_size	npk/cli/npk_cli.cpp	/^const int       readable_size[readable_size_count] = { 1024*1024*1024, 1024*1024, 1024 };$/;"	v
+readable_size_count	npk/cli/npk_cli.cpp	/^const int       readable_size_count = 3;$/;"	v
+readable_unit	npk/cli/npk_cli.cpp	/^const char*     readable_unit[readable_size_count] = { "GB", "MB", "KB" };$/;"	v
+readdir	npk/cli/helper_dirent.c	/^struct dirent *readdir(DIR *dir)$/;"	f
+reserved	libnpk/external/zlib/zlib.h	/^    uLong   reserved;   \/* reserved for future use *\/$/;"	m	struct:z_stream_s
+reserved_	libnpk/include/npk_dev.h	/^    NPK_BYTE            reserved_[4];       \/* Reserved for 64bit-time_t *\/$/;"	m	struct:NPK_tagENTITYINFO
+result	npk/cli/helper_dirent.c	/^    struct dirent       result; \/* d_name null iff first time *\/$/;"	m	struct:DIR	typeref:struct:DIR::dirent	file:
+rewinddir	npk/cli/helper_dirent.c	/^void rewinddir(DIR *dir)$/;"	f
+sane	libnpk/external/zlib/inflate.h	/^    int sane;                   \/* if false, allow invalid distance too far *\/$/;"	m	struct:inflate_state
+scan_tree	libnpk/external/zlib/trees.c	/^local void scan_tree (s, tree, max_code)$/;"	f
+send_all_trees	libnpk/external/zlib/trees.c	/^local void send_all_trees(s, lcodes, dcodes, blcodes)$/;"	f
+send_bits	libnpk/external/zlib/trees.c	/^#define send_bits(/;"	d	file:
+send_bits	libnpk/external/zlib/trees.c	/^local void send_bits(s, value, length)$/;"	f
+send_code	libnpk/external/zlib/trees.c	/^#  define send_code(/;"	d	file:
+send_tree	libnpk/external/zlib/trees.c	/^local void send_tree (s, tree, max_code)$/;"	f
+signature_	libnpk/include/npk_dev.h	/^    NPK_CHAR            signature_[4];      \/* NPAK *\/$/;"	m	struct:NPK_tagPACKAGEINFO
+size_	libnpk/include/npk_dev.h	/^    NPK_SIZE            size_;              \/* Data size. *\/$/;"	m	struct:NPK_tagENTITYINFO
+size_	libnpk/include/npk_dev.h	/^    NPK_SIZE            size_;              \/* Data size. *\/$/;"	m	struct:NPK_tagENTITYINFO_V21
+smaller	libnpk/external/zlib/trees.c	/^#define smaller(/;"	d	file:
+stat_desc	libnpk/external/zlib/deflate.h	/^    static_tree_desc *stat_desc; \/* the corresponding static tree *\/$/;"	m	struct:tree_desc_s
+state	libnpk/external/zlib/zlib.h	/^    struct internal_state FAR *state; \/* not visible by applications *\/$/;"	m	struct:z_stream_s	typeref:struct:z_stream_s::FAR
+static_bl_desc	libnpk/external/zlib/trees.c	/^local static_tree_desc  static_bl_desc =$/;"	v
+static_d_desc	libnpk/external/zlib/trees.c	/^local static_tree_desc  static_d_desc =$/;"	v
+static_dtree	libnpk/external/zlib/trees.c	/^local ct_data static_dtree[D_CODES];$/;"	v
+static_dtree	libnpk/external/zlib/trees.h	/^local const ct_data static_dtree[D_CODES] = {$/;"	v
+static_l_desc	libnpk/external/zlib/trees.c	/^local static_tree_desc  static_l_desc =$/;"	v
+static_len	libnpk/external/zlib/deflate.h	/^    ulg static_len;     \/* bit length of current block with static trees *\/$/;"	m	struct:internal_state
+static_ltree	libnpk/external/zlib/trees.c	/^local ct_data static_ltree[L_CODES+2];$/;"	v
+static_ltree	libnpk/external/zlib/trees.h	/^local const ct_data static_ltree[L_CODES+2] = {$/;"	v
+static_tree	libnpk/external/zlib/trees.c	/^    const ct_data *static_tree;  \/* static tree or NULL *\/$/;"	m	struct:static_tree_desc_s	file:
+static_tree_desc	libnpk/external/zlib/deflate.h	/^typedef struct static_tree_desc_s  static_tree_desc;$/;"	t	typeref:struct:static_tree_desc_s
+static_tree_desc_s	libnpk/external/zlib/deflate.c	/^struct static_tree_desc_s {int dummy;}; \/* for buggy compilers *\/$/;"	s	file:
+static_tree_desc_s	libnpk/external/zlib/trees.c	/^struct static_tree_desc_s {$/;"	s	file:
+status	libnpk/external/zlib/deflate.h	/^    int   status;        \/* as the name implies *\/$/;"	m	struct:internal_state
+strategy	libnpk/external/zlib/deflate.h	/^    int strategy; \/* favor or force Huffman coding*\/$/;"	m	struct:internal_state
+stricmp	libnpk/src/npk.c	/^    #define stricmp /;"	d	file:
+strm	libnpk/external/zlib/deflate.h	/^    z_streamp strm;      \/* pointer back to this zlib stream *\/$/;"	m	struct:internal_state
+strnicmp	libnpk/src/npk.c	/^    #define strnicmp /;"	d	file:
+strnicmp	npk/cli/npk_cli.cpp	/^    #define strnicmp /;"	d	file:
+strstart	libnpk/external/zlib/deflate.h	/^    uInt strstart;               \/* start of string to insert *\/$/;"	m	struct:internal_state
+sync_and_add	npk/cli/npk_cli.cpp	/^void sync_and_add( bool sd, bool force, const char* basepath, const char* path )$/;"	f
+sync_only_in_package	npk/cli/npk_cli.cpp	/^void sync_only_in_package( bool sd, bool force, const char* path )$/;"	f
+sync_package	npk/cli/npk_cli.cpp	/^void sync_package()$/;"	f
+sync_result	npk/cli/npk_cli.cpp	/^unsigned int    sync_result[4] = { 0, 0, 0, 0 };    \/\/ pass, delete, update, add$/;"	v
+syncadd	npk/cli/npk_cli.cpp	/^bool syncadd = false;$/;"	v
+syncdelete	npk/cli/npk_cli.cpp	/^bool syncdelete = false;$/;"	v
+syncsearch	libnpk/external/zlib/inflate.c	/^local unsigned syncsearch(have, buf, len)$/;"	f
+table	libnpk/external/zlib/zutil.c	/^local ptr_table table[MAX_PTR];$/;"	v
+tea_decode	libnpk/external/tea/tea.c	/^void tea_decode(int* v,int* k)$/;"	f
+tea_decode_buffer	libnpk/external/tea/tea.c	/^void tea_decode_buffer(char* in_buffer, unsigned int in_size, int* key)$/;"	f
+tea_encode	libnpk/external/tea/tea.c	/^void tea_encode(int* v, int* k)$/;"	f
+tea_encode_buffer	libnpk/external/tea/tea.c	/^void tea_encode_buffer(char* in_buffer, unsigned int in_size, int* key)$/;"	f
+teakey_	libnpk/include/npk_dev.h	/^    NPK_TEAKEY          teakey_[4];$/;"	m	struct:NPK_tagPACKAGEBODY
+text	libnpk/external/zlib/zlib.h	/^    int     text;       \/* true if compressed data believed to be text *\/$/;"	m	struct:gz_header_s
+time	libnpk/external/zlib/zlib.h	/^    uLong   time;       \/* modification time *\/$/;"	m	struct:gz_header_s
+timeToString	npk/cli/helper_timetostring.hpp	/^char* timeToString(const time_t& tt) {$/;"	f
+title	npk/cli/npk_cli.cpp	/^void title()$/;"	f
+toolversion	npk/cli/npk_cli.cpp	/^#define toolversion /;"	d	file:
+total	libnpk/external/zlib/inflate.h	/^    unsigned long total;        \/* protected copy of output count *\/$/;"	m	struct:inflate_state
+total_in	libnpk/external/zlib/zlib.h	/^    uLong    total_in;  \/* total nb of input bytes read so far *\/$/;"	m	struct:z_stream_s
+total_out	libnpk/external/zlib/zlib.h	/^    uLong    total_out; \/* total nb of bytes output so far *\/$/;"	m	struct:z_stream_s
+tr_static_init	libnpk/external/zlib/trees.c	/^local void tr_static_init()$/;"	f
+traverse_local	npk/cli/npk_cli.cpp	/^int traverse_local( const char* basepath, const char* path, LOCAL_TFP fp, NPK_CSTR pattern )$/;"	f
+traverse_package	npk/cli/npk_cli.cpp	/^int traverse_package( PACKAGE_TFP fp, NPK_CSTR pattern )$/;"	f
+tree_desc	libnpk/external/zlib/deflate.h	/^} FAR tree_desc;$/;"	t	typeref:struct:tree_desc_s
+tree_desc_s	libnpk/external/zlib/deflate.h	/^typedef struct tree_desc_s {$/;"	s
+true	libnpk/include/npk_conf.h	/^    #define true /;"	d
+u4	libnpk/external/zlib/crc32.c	/^           typedef unsigned short u4;$/;"	t	file:
+u4	libnpk/external/zlib/crc32.c	/^         typedef unsigned long u4;$/;"	t	file:
+u4	libnpk/external/zlib/crc32.c	/^       typedef unsigned int u4;$/;"	t	file:
+uInt	libnpk/external/zlib/zconf.h	/^#  define uInt /;"	d
+uInt	libnpk/external/zlib/zconf.h	/^typedef unsigned int   uInt;  \/* 16 bits or more *\/$/;"	t
+uIntf	libnpk/external/zlib/zconf.h	/^#  define uIntf /;"	d
+uIntf	libnpk/external/zlib/zconf.h	/^typedef uInt  FAR uIntf;$/;"	t
+uLong	libnpk/external/zlib/zconf.h	/^#  define uLong /;"	d
+uLong	libnpk/external/zlib/zconf.h	/^typedef unsigned long  uLong; \/* 32 bits or more *\/$/;"	t
+uLongf	libnpk/external/zlib/zconf.h	/^#  define uLongf /;"	d
+uLongf	libnpk/external/zlib/zconf.h	/^typedef uLong FAR uLongf;$/;"	t
+uch	libnpk/external/zlib/zutil.h	/^typedef unsigned char  uch;$/;"	t
+uchf	libnpk/external/zlib/zutil.h	/^typedef uch FAR uchf;$/;"	t
+ulg	libnpk/external/zlib/zutil.h	/^typedef unsigned long  ulg;$/;"	t
+uncompress	libnpk/external/zlib/uncompr.c	/^int ZEXPORT uncompress (dest, destLen, source, sourceLen)$/;"	f
+uncompress	libnpk/external/zlib/zconf.h	/^#  define uncompress /;"	d
+updatewindow	libnpk/external/zlib/inflate.c	/^local int updatewindow(strm, out)$/;"	f
+ush	libnpk/external/zlib/zutil.h	/^typedef unsigned short ush;$/;"	t
+ushf	libnpk/external/zlib/zutil.h	/^typedef ush FAR ushf;$/;"	t
+usingFdopen_	libnpk/include/npk_dev.h	/^    bool                usingFdopen_;$/;"	m	struct:NPK_tagPACKAGEBODY
+usingHashmap_	libnpk/include/npk_dev.h	/^    bool                usingHashmap_;$/;"	m	struct:NPK_tagPACKAGEBODY
+v	npk/cli/npk_cli.cpp	/^char                **v;    \/\/ argv$/;"	v
+val	libnpk/external/zlib/inftrees.h	/^    unsigned short val;         \/* offset in table or code value *\/$/;"	m	struct:__anon5
+valid_name	npk/cli/npk_cli.cpp	/^bool valid_name( NPK_CSTR name, NPK_CSTR pattern )$/;"	f
+verbose	libnpk/external/zlib/zutil.c	/^#    define verbose /;"	d	file:
+verbose	npk/cli/npk_cli.cpp	/^bool verbose = false;$/;"	v
+version	npk/cli/npk_cli.cpp	/^void version()$/;"	f
+version_	libnpk/include/npk_dev.h	/^    int                 version_;           \/* Package version. *\/$/;"	m	struct:NPK_tagPACKAGEINFO
+voidp	libnpk/external/zlib/zconf.h	/^   typedef Byte       *voidp;$/;"	t
+voidp	libnpk/external/zlib/zconf.h	/^   typedef void       *voidp;$/;"	t
+voidp	libnpk/external/zlib/zconf.h	/^#  define voidp /;"	d
+voidpc	libnpk/external/zlib/zconf.h	/^   typedef Byte const *voidpc;$/;"	t
+voidpc	libnpk/external/zlib/zconf.h	/^   typedef void const *voidpc;$/;"	t
+voidpc	libnpk/external/zlib/zconf.h	/^#  define voidpc /;"	d
+voidpf	libnpk/external/zlib/zconf.h	/^   typedef Byte FAR   *voidpf;$/;"	t
+voidpf	libnpk/external/zlib/zconf.h	/^   typedef void FAR   *voidpf;$/;"	t
+voidpf	libnpk/external/zlib/zconf.h	/^#  define voidpf /;"	d
+vsnprintf	libnpk/external/zlib/zutil.h	/^#         define vsnprintf /;"	d
+w_bits	libnpk/external/zlib/deflate.h	/^    uInt  w_bits;        \/* log2(w_size)  (8..16) *\/$/;"	m	struct:internal_state
+w_mask	libnpk/external/zlib/deflate.h	/^    uInt  w_mask;        \/* w_size - 1 *\/$/;"	m	struct:internal_state
+w_size	libnpk/external/zlib/deflate.h	/^    uInt  w_size;        \/* LZ77 window size (32K by default) *\/$/;"	m	struct:internal_state
+was	libnpk/external/zlib/inflate.h	/^    unsigned was;               \/* initial length of match *\/$/;"	m	struct:inflate_state
+wbits	libnpk/external/zlib/inflate.h	/^    unsigned wbits;             \/* log base 2 of requested window size *\/$/;"	m	struct:inflate_state
+whave	libnpk/external/zlib/inflate.h	/^    unsigned whave;             \/* valid bytes in the window *\/$/;"	m	struct:inflate_state
+window	libnpk/external/zlib/deflate.h	/^    Bytef *window;$/;"	m	struct:internal_state
+window	libnpk/external/zlib/inflate.h	/^    unsigned char FAR *window;  \/* allocated sliding window, if needed *\/$/;"	m	struct:inflate_state
+window_size	libnpk/external/zlib/deflate.h	/^    ulg window_size;$/;"	m	struct:internal_state
+withlist	npk/cli/npk_cli.cpp	/^STRLIST withlist;$/;"	v
+wnext	libnpk/external/zlib/inflate.h	/^    unsigned wnext;             \/* window write index *\/$/;"	m	struct:inflate_state
+work	libnpk/external/zlib/inflate.h	/^    unsigned short work[288];   \/* work area for code table building *\/$/;"	m	struct:inflate_state
+wrap	libnpk/external/zlib/deflate.h	/^    int   wrap;          \/* bit 0 true for zlib, bit 1 true for gzip *\/$/;"	m	struct:internal_state
+wrap	libnpk/external/zlib/inflate.h	/^    int wrap;                   \/* bit 0 true for zlib, bit 1 true for gzip *\/$/;"	m	struct:inflate_state
+write_table	libnpk/external/zlib/crc32.c	/^local void write_table(out, table)$/;"	f
+wsize	libnpk/external/zlib/inflate.h	/^    unsigned wsize;             \/* window size or zero if not using window *\/$/;"	m	struct:inflate_state
+xflags	libnpk/external/zlib/zlib.h	/^    int     xflags;     \/* extra flags (not used when writing a gzip file) *\/$/;"	m	struct:gz_header_s
+zError	libnpk/external/zlib/zconf.h	/^#  define zError /;"	d
+zError	libnpk/external/zlib/zutil.c	/^const char * ZEXPORT zError(err)$/;"	f
+z_errmsg	libnpk/external/zlib/zutil.c	/^const char * const z_errmsg[10] = {$/;"	v
+z_error	libnpk/external/zlib/zutil.c	/^void ZLIB_INTERNAL z_error (m)$/;"	f
+z_off64_t	libnpk/external/zlib/zconf.h	/^#  define z_off64_t /;"	d
+z_off_t	libnpk/external/zlib/zconf.h	/^#  define z_off_t /;"	d
+z_stream	libnpk/external/zlib/zlib.h	/^} z_stream;$/;"	t	typeref:struct:z_stream_s
+z_stream_s	libnpk/external/zlib/zlib.h	/^typedef struct z_stream_s {$/;"	s
+z_streamp	libnpk/external/zlib/zlib.h	/^typedef z_stream FAR *z_streamp;$/;"	t
+z_verbose	libnpk/external/zlib/zutil.c	/^int ZLIB_INTERNAL z_verbose = verbose;$/;"	v
+zalloc	libnpk/external/zlib/zlib.h	/^    alloc_func zalloc;  \/* used to allocate the internal state *\/$/;"	m	struct:z_stream_s
+zcalloc	libnpk/external/zlib/zconf.h	/^#  define zcalloc /;"	d
+zcalloc	libnpk/external/zlib/zutil.c	/^voidpf ZLIB_INTERNAL zcalloc (opaque, items, size)$/;"	f
+zcalloc	libnpk/external/zlib/zutil.c	/^voidpf ZLIB_INTERNAL zcalloc (voidpf opaque, uInt items, uInt size)$/;"	f
+zcalloc	libnpk/external/zlib/zutil.c	/^voidpf ZLIB_INTERNAL zcalloc (voidpf opaque, unsigned items, unsigned size)$/;"	f
+zcfree	libnpk/external/zlib/zconf.h	/^#  define zcfree /;"	d
+zcfree	libnpk/external/zlib/zutil.c	/^void ZLIB_INTERNAL zcfree (opaque, ptr)$/;"	f
+zcfree	libnpk/external/zlib/zutil.c	/^void ZLIB_INTERNAL zcfree (voidpf opaque, voidpf ptr)$/;"	f
+zfree	libnpk/external/zlib/zlib.h	/^    free_func  zfree;   \/* used to free the internal state *\/$/;"	m	struct:z_stream_s
+zlibCompileFlags	libnpk/external/zlib/zconf.h	/^#  define zlibCompileFlags /;"	d
+zlibCompileFlags	libnpk/external/zlib/zutil.c	/^uLong ZEXPORT zlibCompileFlags()$/;"	f
+zlibVersion	libnpk/external/zlib/zconf.h	/^#  define zlibVersion /;"	d
+zlibVersion	libnpk/external/zlib/zutil.c	/^const char * ZEXPORT zlibVersion()$/;"	f
+zlib_version	libnpk/external/zlib/zlib.h	/^#define zlib_version /;"	d
+zmemcmp	libnpk/external/zlib/zutil.c	/^int ZLIB_INTERNAL zmemcmp(s1, s2, len)$/;"	f
+zmemcmp	libnpk/external/zlib/zutil.h	/^#    define zmemcmp /;"	d
+zmemcpy	libnpk/external/zlib/zutil.c	/^void ZLIB_INTERNAL zmemcpy(dest, source, len)$/;"	f
+zmemcpy	libnpk/external/zlib/zutil.h	/^#    define zmemcpy /;"	d
+zmemzero	libnpk/external/zlib/zutil.c	/^void ZLIB_INTERNAL zmemzero(dest, len)$/;"	f
+zmemzero	libnpk/external/zlib/zutil.h	/^#    define zmemzero(/;"	d
