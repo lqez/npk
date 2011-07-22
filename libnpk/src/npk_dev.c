@@ -335,7 +335,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
         {
             if( size >= NPK_MIN_SIZE_ZIPABLE )
             {
-                NPK_SIZE compressedSize = (NPK_SIZE)(sizeof(char) * size * 1.1 + 12); // margin rules from zlib/compress.c
+                unsigned long compressedSize = (unsigned long)(sizeof(char) * size * 1.1 + 12); // margin rules from zlib/compress.c
                 buf_for_zlib = malloc( compressedSize );
 #ifdef Z_PREFIX
                 z_res = z_compress( (Bytef*)buf_for_zlib, (z_uLong*)&compressedSize, (const Bytef*)buf, (z_uLong)size );
