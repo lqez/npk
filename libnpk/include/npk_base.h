@@ -22,7 +22,7 @@ typedef int                             NPK_TEAKEY;
 typedef char                            NPK_CHAR;
 typedef const NPK_CHAR*                 NPK_CSTR;
 typedef NPK_CHAR*                       NPK_STR;
-typedef int                             NPK_SIZE;
+typedef unsigned int                    NPK_SIZE;
 typedef unsigned short                  NPK_NAMESIZE;
 typedef char                            NPK_BYTE;
 typedef unsigned long long              NPK_64BIT;

@@ -54,7 +54,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.73"
+#define toolversion "1.74"
 #define baseversion "v24"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
@@ -1071,13 +1071,16 @@ void flag()
             if( !entity )
                 error_n_exit();
 
-            NPK_FLAG currentFlag = NPK_ENTITY_NULL;
+            NPK_FLAG currentEntityFlag = NPK_ENTITY_NULL;
 
-            if( npk_entity_get_current_flag( entity, &flag ) != NPK_SUCCESS )
+            if( npk_entity_get_current_flag( entity, &currentEntityFlag ) != NPK_SUCCESS )
                 error_n_exit();
 
-            if( currentFlag != flag )
+            if( currentEntityFlag != flag )
             {
+                NPK_ENTITYBODY* eb = (NPK_ENTITYBODY*)entity;
+                if( verbose )
+                    cout << "    " << eb->name_ << "\n";
                 if( npk_entity_set_flag( entity, flag ) != NPK_SUCCESS )
                     error_n_exit();
                 ++count;
@@ -1426,15 +1429,8 @@ void sync_only_in_package( bool sd, bool force, const char* path )
 
         if( ignorable )
         {
-            if( sd )
-            {
-                status = 1;
-            }
-            else
-            {
-                eb = eb->next_;
-                continue;
-            }
+            eb = eb->next_;
+            continue;
         }
 
         if ( status == 0 )

@@ -261,7 +261,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 
     void*               buf = NULL;
     void*               buf_for_zlib = NULL;
-    NPK_SIZE            compressedSize, size, endpos, startpos;
+    NPK_SIZE            size, endpos, startpos;
     int                 filehandle;
     int                 z_res;
 
@@ -335,8 +335,8 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
         {
             if( size >= NPK_MIN_SIZE_ZIPABLE )
             {
-                compressedSize = size;
-                buf_for_zlib = malloc( sizeof(char) * size + 2048); // 2K for margin
+                NPK_SIZE compressedSize = (NPK_SIZE)(sizeof(char) * size * 1.1 + 12); // margin rules from zlib/compress.c
+                buf_for_zlib = malloc( compressedSize );
 #ifdef Z_PREFIX
                 z_res = z_compress( (Bytef*)buf_for_zlib, (z_uLong*)&compressedSize, (const Bytef*)buf, (z_uLong)size );
 #else
@@ -347,7 +347,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
                     free( buf );
                     buf = buf_for_zlib;
                     buf_for_zlib = NULL;
-                    size = (unsigned int)compressedSize;
+                    size = compressedSize;
                 }
                 else    // not suitable to compress
                 {
