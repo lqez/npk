@@ -3,8 +3,8 @@
 
 int npk_01_add( int argc, char * argv [] )
 {
-    system( "../npk test.npk -create --f --k 1:2:3:4" );
-    system( "../npk test.npk -add sample.txt --k 1:2:3:4" );
+    CMD( "../npk test.npk -create --f --k 1:2:3:4" );
+    CMD( "../npk test.npk -add sample.txt --k 1:2:3:4" );
 
     int teakey[4] = {1,2,3,4};
     NPK_PACKAGE pack = npk_package_open( "test.npk", teakey );

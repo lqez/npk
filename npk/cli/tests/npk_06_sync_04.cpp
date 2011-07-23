@@ -4,13 +4,13 @@
 
 int npk_06_sync_04( int argc, char * argv [] )
 {
-    system( "mkdir sync_test_04" );
-    system( "mkdir sync_test_04/nested" );
-    system( "cp sample2.txt sync_test_04/add1.txt" );
-    system( "cp sample2.txt sync_test_04/add2.test" );
-    system( "cp sample2.txt sync_test_04/nested/add3.tmp" );
+    CMD( "mkdir sync_test_04" );
+    CMD( "mkdir sync_test_04/nested" );
+    CP( "sample2.txt sync_test_04/add1.txt" );
+    CP( "sample2.txt sync_test_04/add2.test" );
+    CP( "sample2.txt sync_test_04/nested/add3.tmp" );
 
-    system( "../npk test.npk -create -sync sync_test_04 --sa -flag '*.txt@C' 'add2*@E' '*add3.tmp@C@E' --v --f --k 1:2:3:4" );
+    CMD( "../npk test.npk -create -sync sync_test_04 --sa -flag \"*.txt@C\" \"add2*@E\" \"*add3.tmp@C@E\" --v --f --k 1:2:3:4" );
 
     int teakey[4] = {1,2,3,4};
     NPK_PACKAGE pack = npk_package_open( "test.npk", teakey );

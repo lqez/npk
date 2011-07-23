@@ -58,11 +58,11 @@ typedef list<string>::iterator SLI;
 #define baseversion "v24"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
-const char      _HR_[] = "-------------------------------------------------------------------------------\n";
-const int       readable_size_count = 3;
-const int       readable_size[readable_size_count] = { 1024*1024*1024, 1024*1024, 1024 };
-const char*     readable_unit[readable_size_count] = { "GB", "MB", "KB" };
-unsigned int    sync_result[4] = { 0, 0, 0, 0 };    // pass, delete, update, add
+const char          _HR_[] = "-------------------------------------------------------------------------------\n";
+const int           readable_size_count = 3;
+const unsigned int  readable_size[readable_size_count] = { 1024*1024*1024, 1024*1024, 1024 };
+const char*         readable_unit[readable_size_count] = { "GB", "MB", "KB" };
+unsigned int        sync_result[4] = { 0, 0, 0, 0 };    // pass, delete, update, add
 
 int                 n = 0;  // current argc number
 int                 c;      // argc

@@ -3,15 +3,15 @@
 
 int npk_06_sync_03( int argc, char * argv [] )
 {
-    system( "../npk test.npk -create -add sample.txt@remain.txt sample.txt@update.txt sample.txt@notupdate.tmp sample.txt@notdelete.tmp --f --k 1:2:3:4" );
-    system( "mkdir sync_test_03" );
-    system( "cp sample.txt sync_test_03/add.txt" );
-    system( "cp sample.txt sync_test_03/notadd.tmp" );
-    system( "cp sample.txt sync_test_03/remain.txt" );
-    system( "cp sample2.txt sync_test_03/update.txt" );
-    system( "cp sample2.txt sync_test_03/notupdate.tmp" );
+    CMD( "../npk test.npk -create -add sample.txt@remain.txt sample.txt@update.txt sample.txt@notupdate.tmp sample.txt@notdelete.tmp --f --k 1:2:3:4" );
+    CMD( "mkdir sync_test_03" );
+    CP( "sample.txt sync_test_03/add.txt" );
+    CP( "sample.txt sync_test_03/notadd.tmp" );
+    CP( "sample.txt sync_test_03/remain.txt" );
+    CP( "sample2.txt sync_test_03/update.txt" );
+    CP( "sample2.txt sync_test_03/notupdate.tmp" );
 
-    system( "../npk test.npk -sync sync_test_03 --sa --sd --ig *.tmp --k 1:2:3:4" );
+    CMD( "../npk test.npk -sync sync_test_03 --sa --sd --ig *.tmp --k 1:2:3:4" );
 
     int teakey[4] = {1,2,3,4};
     NPK_PACKAGE pack = npk_package_open( "test.npk", teakey );

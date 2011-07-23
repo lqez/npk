@@ -3,9 +3,9 @@
 
 int npk_03_flag( int argc, char * argv [] )
 {
-    system( "../npk test.npk -create --f --k 1:2:3:4" );
-    system( "../npk test.npk -add sample.txt sample.txt@zip.txt  sample.txt@tea.txt sample.txt@zipntea.txt --k 1:2:3:4" );
-    system( "../npk test.npk -flag zip.txt@C tea.txt@E zipntea.txt@C@E --k 1:2:3:4" );
+    CMD( "../npk test.npk -create --f --k 1:2:3:4" );
+    CMD( "../npk test.npk -add sample.txt sample.txt@zip.txt  sample.txt@tea.txt sample.txt@zipntea.txt --k 1:2:3:4" );
+    CMD( "../npk test.npk -flag zip.txt@C tea.txt@E zipntea.txt@C@E --k 1:2:3:4" );
 
     int teakey[4] = {1,2,3,4};
     NPK_PACKAGE pack = npk_package_open( "test.npk", teakey );
