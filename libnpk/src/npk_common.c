@@ -478,14 +478,14 @@ NPK_HASHKEY npk_get_bucket( NPK_CSTR name )
 
 NPK_RESULT npk_prepare_entityname( NPK_CSTR src, NPK_STR dst, size_t dstLen )
 {
-	size_t i;
-	size_t l = strlen(src);
-	if( l >= dstLen )
-		return npk_error( NPK_ERROR_NotValidEntityName );
+    size_t i;
+    size_t l = strlen(src);
+    if( l >= dstLen )
+        return npk_error( NPK_ERROR_NotValidEntityName );
 
-	for( i = 0 ; i < l; ++i )
-		if( src[i] == '\\' ) dst[i] = '/'; else dst[i] = src[i];
-	dst[i] = '\0';
+    for( i = 0 ; i < l; ++i )
+        if( src[i] == '\\' ) dst[i] = '/'; else dst[i] = src[i];
+    dst[i] = '\0';
 
-	return NPK_SUCCESS;
+    return NPK_SUCCESS;
 }

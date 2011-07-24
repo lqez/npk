@@ -330,7 +330,7 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
     NPK_ENTITYBODY* eb = NULL;
     NPK_PACKAGEBODY* pb = package;
     NPK_BUCKET* bucket = NULL;
-	NPK_CHAR buf[512];
+    NPK_CHAR buf[512];
 
     if( !package )
     {
@@ -338,8 +338,8 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
         return NULL;
     }
 
-	if( NPK_SUCCESS != npk_prepare_entityname( entityname, buf, 512 ) )
-		return NULL;
+    if( NPK_SUCCESS != npk_prepare_entityname( entityname, buf, 512 ) )
+        return NULL;
 
     if( pb->usingHashmap_ )
     {

@@ -24,35 +24,35 @@
     {if(!(x)) { printf("Assertion Failed : %s, %d\n",__FILE__,__LINE__); \
     __debugbreak(); }}
 #define CMD(x) \
-	{ \
-		char buf[512]; \
-		strcpy( buf, x ); \
-		size_t l = strlen(buf); \
-		for( size_t i = 0; i < l; ++i ) \
-			if( buf[i] == '/' ) buf[i] = '\\'; \
-		system(buf); \
-	}
+    { \
+        char buf[512]; \
+        strcpy( buf, x ); \
+        size_t l = strlen(buf); \
+        for( size_t i = 0; i < l; ++i ) \
+            if( buf[i] == '/' ) buf[i] = '\\'; \
+        system(buf); \
+    }
 #define CP(x) \
-	{ \
-		char buf[512]; \
-		sprintf( buf, "copy %s", x ); \
-		size_t l = strlen(buf); \
-		for( size_t i = 0; i < l; ++i ) \
-			if( buf[i] == '/' ) buf[i] = '\\'; \
-		system(buf); \
-	}
+    { \
+        char buf[512]; \
+        sprintf( buf, "copy %s", x ); \
+        size_t l = strlen(buf); \
+        for( size_t i = 0; i < l; ++i ) \
+            if( buf[i] == '/' ) buf[i] = '\\'; \
+        system(buf); \
+    }
 #else
 #define CHECK(x) \
     {if(!(x)) { printf("Assertion Failed : %s, %d\n",__FILE__,__LINE__); \
         __asm__("int $0x03");}}
 #define CMD(x) \
-	system(x);
+    system(x);
 #define CP(x) \
-	{ \
-		char buf[512]; \
-		sprintf( buf, "cp %s", x ); \
-		CMD(buf); \
-	}
+    { \
+        char buf[512]; \
+        sprintf( buf, "cp %s", x ); \
+        CMD(buf); \
+    }
 #endif
 
 #define CHECK_CLOSE( M_A, M_B, M_EPSILON ) \

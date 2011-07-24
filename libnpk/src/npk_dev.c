@@ -588,7 +588,7 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
     NPK_ENTITYBODY* eb;
     NPK_CSTR __entityname;
     NPK_RESULT res;
-	NPK_CHAR namebuf[512];
+    NPK_CHAR namebuf[512];
 
     if( ( res = npk_entity_alloc( (NPK_ENTITY*)&eb ) ) != NPK_SUCCESS )
         return res;
@@ -607,8 +607,8 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
     else
         __entityname = entityname;
 
-	if( ( res = npk_prepare_entityname( __entityname, namebuf, 512) ) != NPK_SUCCESS )
-		goto npk_package_add_file_return_with_error;
+    if( ( res = npk_prepare_entityname( __entityname, namebuf, 512) ) != NPK_SUCCESS )
+        goto npk_package_add_file_return_with_error;
 
     if( ( res = npk_get_filetime( filename, &eb->info_.modified_ ) ) != NPK_SUCCESS )
         goto npk_package_add_file_return_with_error;
