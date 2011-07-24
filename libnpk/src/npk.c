@@ -330,12 +330,16 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
     NPK_ENTITYBODY* eb = NULL;
     NPK_PACKAGEBODY* pb = package;
     NPK_BUCKET* bucket = NULL;
+	NPK_CHAR buf[512];
 
     if( !package )
     {
         npk_error( NPK_ERROR_PackageIsNull );
         return NULL;
     }
+
+	if( NPK_SUCCESS != npk_prepare_entityname( entityname, buf, 512 ) )
+		return NULL;
 
     if( pb->usingHashmap_ )
     {
@@ -346,9 +350,9 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
             while( eb != NULL )
             {
 #ifdef NPK_CASESENSITIVE
-                if( strcmp( eb->name_, entityname ) == 0 )
+                if( strcmp( eb->name_, buf ) == 0 )
 #else
-                if( stricmp( eb->name_, entityname ) == 0 )
+                if( stricmp( eb->name_, buf ) == 0 )
 #endif
                 {
                     pb->pEntityLatest_ = eb;

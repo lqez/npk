@@ -28,7 +28,7 @@
 		char buf[512]; \
 		strcpy( buf, x ); \
 		size_t l = strlen(buf); \
-		for( size_t i = 0 ; i < l; ++i ) \
+		for( size_t i = 0; i < l; ++i ) \
 			if( buf[i] == '/' ) buf[i] = '\\'; \
 		system(buf); \
 	}
@@ -37,7 +37,7 @@
 		char buf[512]; \
 		sprintf( buf, "copy %s", x ); \
 		size_t l = strlen(buf); \
-		for( size_t i = 0 ; i < l; ++i ) \
+		for( size_t i = 0; i < l; ++i ) \
 			if( buf[i] == '/' ) buf[i] = '\\'; \
 		system(buf); \
 	}

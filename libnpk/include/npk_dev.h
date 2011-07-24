@@ -113,6 +113,7 @@ NPK_DEV_API void        npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt )
 NPK_DEV_API void        npk_enable_gluetime( NPK_TIME time );
 NPK_DEV_API void        npk_disable_gluetime();
 NPK_DEV_API NPK_HASHKEY npk_get_bucket( NPK_CSTR name );
+NPK_DEV_API NPK_RESULT  npk_prepare_entityname( NPK_CSTR src, NPK_STR dst, size_t dstLen );
 
 /* File I/O Functions */
 NPK_DEV_API NPK_RESULT  npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist );

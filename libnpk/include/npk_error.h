@@ -33,6 +33,7 @@
 #define NPK_ERROR_SameEntityExist                           -15
 #define NPK_ERROR_FailToSetFiletime                         -17
 #define NPK_ERROR_NotValidEntity                            -18
+#define NPK_ERROR_NotValidEntityName						-20
 #define NPK_ERROR_OpenedPackage                             -25
 #define NPK_ERROR_NotOpenedPackage                          -26
 #define NPK_ERROR_SamePackageExist                          -27
