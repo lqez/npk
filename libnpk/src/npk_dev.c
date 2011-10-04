@@ -551,8 +551,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
         return res;
 
     // version 23, Write the package timestamp for other applications
-    // TODO:reveal the return type of 'time' function on 64bit mac os
-    time( (time_t*)&header_v23.modified_ );
+    header_v23.modified_ = (NPK_TIME)time(NULL);
 
     if( ( res = npk_write( savefilehandle,
                     &header_v23,
