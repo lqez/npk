@@ -108,7 +108,8 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
                                 g_callbackfp,
                                 NPK_PROCESSTYPE_ENTITYHEADER,
                                 g_callbackSize,
-                                filename );
+                                filename,
+                                pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS );
         if( res != NPK_SUCCESS ) return res;
 
         pos = entityheaderbuf;
@@ -169,7 +170,8 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
                                         g_callbackfp,
                                         NPK_PROCESSTYPE_ENTITYHEADER,
                                         g_callbackSize,
-                                        filename );
+                                        filename,
+                                        false );
                 if( res != NPK_SUCCESS )
                     goto __npk_package_open_return_res_with_free;
 
@@ -189,7 +191,8 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
                                         g_callbackfp,
                                         NPK_PROCESSTYPE_ENTITYHEADER,
                                         g_callbackSize,
-                                        filename );
+                                        filename,
+                                        false );
                 if( res != NPK_SUCCESS )
                     goto __npk_package_open_return_res_with_free;
             }
@@ -208,7 +211,8 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
                                     g_callbackfp,
                                     NPK_PROCESSTYPE_ENTITYHEADER,
                                     g_callbackSize,
-                                    filename );
+                                    filename,
+                                    false );
             if( res != NPK_SUCCESS )
                 goto __npk_package_open_return_res_with_free;
 
@@ -452,7 +456,7 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
 
     // Decode before uncompress, after v21
     if( ( eb->info_.flag_ & NPK_ENTITY_ENCRYPT ) && ( eb->info_.flag_ & NPK_ENTITY_REVERSE ) )
-        tea_decode_buffer((char*)(*lplpTarget), eb->info_.size_, pb->teakey_);
+        tea_decode_buffer((char*)(*lplpTarget), eb->info_.size_, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
 
     if( eb->info_.flag_ & NPK_ENTITY_COMPRESS )
     {
@@ -485,7 +489,7 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
 
     // Decode after uncompress, before v21
     if( ( eb->info_.flag_ & NPK_ENTITY_ENCRYPT ) && !( eb->info_.flag_ & NPK_ENTITY_REVERSE ) )
-        tea_decode_buffer((char*)(*lplpTarget), eb->info_.originalSize_, pb->teakey_);
+        tea_decode_buffer((char*)(*lplpTarget), eb->info_.originalSize_, pb->teakey_, false);
 
     return true;
 

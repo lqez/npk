@@ -41,13 +41,14 @@ typedef int                             NPK_TIME;
 #define NPK_VERSION_UNIXTIMESUPPORT     22
 #define NPK_VERSION_PACKAGETIMESTAMP    23
 #define NPK_VERSION_SINGLEPACKHEADER    24
-#define NPK_VERSION_CURRENT             NPK_VERSION_SINGLEPACKHEADER
+#define NPK_VERSION_ENCRYPTREMAINS      25
+#define NPK_VERSION_CURRENT             NPK_VERSION_ENCRYPTREMAINS
 
 // Entity Flag
 #define NPK_ENTITY_NULL                 0
 #define NPK_ENTITY_TEXTFILE             0x00000001  // NOT USED
-#define NPK_ENTITY_ENCRYPT              0x00000100  // Encrypted.
-#define NPK_ENTITY_COMPRESS             0x00001000  // Zip-compressed.
+#define NPK_ENTITY_ENCRYPT              0x00000100  // Encrypted by TEA
+#define NPK_ENTITY_COMPRESS             0x00001000  // Compressed by zlib
 #define NPK_ENTITY_REVERSE              0x00100000  // Encryption & Compression order.(0=E->C,1=C->E)
 #define NPK_ENTITY_INHERIT              0xF0000000
 

@@ -55,7 +55,7 @@ typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
 #define toolversion "1.74"
-#define baseversion "v24"
+#define baseversion "v25"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
 const char          _HR_[] = "-------------------------------------------------------------------------------\n";
@@ -258,7 +258,7 @@ void title()
 void version()
 {
     cout << "npk command-line client, version " << toolversion << ".\n"
-        << "Based on libnpk version " << baseversion << ".\n\n"
+        << "Based on libnpk, npk format " << baseversion << ".\n\n"
         << "Copyright (C) 2009-2011 Park Hyun woo(ez.amiryo@gmail.com)\n";
 }
 

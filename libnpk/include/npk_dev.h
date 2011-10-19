@@ -127,9 +127,11 @@ NPK_DEV_API NPK_RESULT  npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
 NPK_DEV_API NPK_RESULT  npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
                                 NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier );
 NPK_DEV_API NPK_RESULT  npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_SIZE size,
-                                NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier );
+                                NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
+                                bool cipherRemains );
 NPK_DEV_API NPK_RESULT  npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_SIZE size,
-                                NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier );
+                                NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
+                                bool cipherRemains );
 
 /* Entity Functions */
 NPK_DEV_API NPK_RESULT  npk_entity_alloc( NPK_ENTITY* lpEntity );
@@ -139,13 +141,13 @@ NPK_DEV_API NPK_RESULT  npk_entity_get_new_flag( NPK_ENTITY entity, NPK_FLAG* fl
 NPK_DEV_API NPK_RESULT  npk_entity_set_flag( NPK_ENTITY entity, NPK_FLAG flag );
 NPK_DEV_API NPK_RESULT  npk_entity_add_flag( NPK_ENTITY entity, NPK_FLAG flag );
 NPK_DEV_API NPK_RESULT  npk_entity_sub_flag( NPK_ENTITY entity, NPK_FLAG flag );
-NPK_DEV_API NPK_RESULT  npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle );
-NPK_DEV_API NPK_RESULT  npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceoverwrite );
+NPK_DEV_API NPK_RESULT  npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle, bool forceProcessing );
+NPK_DEV_API NPK_RESULT  npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceOverwrite );
 
 /* Package Functions */
 NPK_DEV_API NPK_RESULT  npk_package_alloc( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] );
 NPK_DEV_API NPK_RESULT  npk_package_init( NPK_PACKAGE package );
-NPK_DEV_API NPK_RESULT  npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceoverwrite );
+NPK_DEV_API NPK_RESULT  npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceOverwrite );
 NPK_DEV_API NPK_RESULT  npk_package_clear( NPK_PACKAGE package );
 NPK_DEV_API NPK_RESULT  npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CSTR entityname, NPK_ENTITY* lpEntity );
 NPK_DEV_API NPK_RESULT  npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity );

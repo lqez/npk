@@ -186,7 +186,8 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
 }
 
 NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_SIZE size,
-                        NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier )
+                        NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
+                        bool cipherRemains )
 {
     NPK_RESULT res;
     void* bufferforencode = malloc( sizeof(char) * size );
@@ -195,7 +196,7 @@ NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* bu
         return npk_error( NPK_ERROR_NotEnoughMemory );
 
     memcpy( bufferforencode, buf, sizeof(char) * size );
-    tea_encode_buffer( (NPK_STR)bufferforencode, size, key );
+    tea_encode_buffer( (NPK_STR)bufferforencode, size, key, cipherRemains );
 
     res = npk_write( handle, bufferforencode, size, cb, cbprocesstype, cbsize, cbidentifier );
     free( bufferforencode );
@@ -252,7 +253,7 @@ NPK_RESULT npk_entity_sub_flag( NPK_ENTITY entity, NPK_FLAG flag )
     return NPK_SUCCESS;
 }
 
-NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
+NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle, bool forceProcessing )
 {
     NPK_PACKAGEBODY*    pb;
     NPK_ENTITYBODY*     eb = entity;
@@ -301,7 +302,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
     }
     else
     {
-        if( eb->newflag_ != eb->info_.flag_ )
+        if( eb->newflag_ != eb->info_.flag_ || forceProcessing )
         {   // read entity and write
             size = eb->info_.originalSize_;
             buf = malloc( size );
@@ -329,7 +330,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
     {
         // Encode before compress, before v21
         if( ( eb->newflag_ & NPK_ENTITY_ENCRYPT ) && !( eb->newflag_ & NPK_ENTITY_REVERSE ) )
-            tea_encode_buffer((char*)buf, (int)size, pb->teakey_ );
+            tea_encode_buffer((char*)buf, (int)size, pb->teakey_, false );
 
         if( eb->newflag_ & NPK_ENTITY_COMPRESS )
         {
@@ -359,7 +360,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle )
 
         // Encode after compress, after v21
         if( ( eb->newflag_ & NPK_ENTITY_ENCRYPT ) && ( eb->newflag_ & NPK_ENTITY_REVERSE ) )
-            tea_encode_buffer((char*)buf, (int)size, pb->teakey_ );
+            tea_encode_buffer((char*)buf, (int)size, pb->teakey_, (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS) );
     }
 
     eb->info_.size_ = size;
@@ -385,7 +386,7 @@ npk_entity_write_return_with_free:
     return res;
 }
 
-NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceoverwrite )
+NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceOverwrite )
 {
     void* buf;
     NPK_HANDLE handle;
@@ -404,7 +405,7 @@ NPK_RESULT npk_entity_export( NPK_ENTITY entity, NPK_CSTR filename, bool forceov
 
     if( ( res = npk_open( &handle, filename, true, true ) ) != NPK_SUCCESS )
     {
-        if( !forceoverwrite )
+        if( !forceOverwrite )
             return res;
     
         if( ( res = npk_open( &handle, filename, true, false ) ) != NPK_SUCCESS )
@@ -445,11 +446,12 @@ NPK_RESULT npk_package_clear( NPK_PACKAGE package )
     return NPK_SUCCESS;
 }
 
-NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceoverwrite )
+NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceOverwrite )
 {
     NPK_PACKAGEBODY*    pb = package;
     NPK_ENTITYBODY*     eb = NULL;
     NPK_RESULT          res;
+    bool                bVersionUp = false;
     bool                bUseTemporaryFile = false;
     NPK_SIZE            len;
     int                 savecount = 0;
@@ -474,7 +476,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
         if( res != NPK_ERROR_FileAlreadyExists )
             return res;
 
-        if( !forceoverwrite )
+        if( !forceOverwrite )
             return res;
 
         len = (NPK_SIZE)strlen( filename );
@@ -492,7 +494,8 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
     }
 
     strncpy( pb->info_.signature_, NPK_SIGNATURE, sizeof(NPK_CHAR)*4 );
-    pb->info_.version_ = NPK_VERSION_CURRENT;
+    if( pb->info_.version_ != NPK_VERSION_CURRENT )
+        bVersionUp = true;
     pb->info_.entityDataOffset_ = sizeof(NPK_PACKAGEINFO)
                                 + sizeof(NPK_PACKAGEINFO_V23);
 
@@ -505,7 +508,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
             if( (g_callbackfp)( NPK_ACCESSTYPE_WRITE, NPK_PROCESSTYPE_PACKAGE, filename, savecount, pb->info_.entityCount_ ) == false )
                 return( npk_error( NPK_ERROR_CancelByCallback ) );
 
-        npk_entity_write( eb, savefilehandle );
+        npk_entity_write( eb, savefilehandle, bVersionUp );
         ++savecount;
         eb = eb->next_;
     }
@@ -536,10 +539,13 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceo
                             g_callbackfp,
                             NPK_PROCESSTYPE_ENTITYHEADER,
                             g_callbackSize,
-                            savefilename ) ) != NPK_SUCCESS )
+                            savefilename,
+                            (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS)
+                            ) ) != NPK_SUCCESS )
         return res;
     NPK_SAFE_FREE( buf );
 
+    pb->info_.version_ = NPK_VERSION_CURRENT;
     npk_seek( savefilehandle, 0, SEEK_SET );
     if( ( res = npk_write( savefilehandle,
                     &pb->info_,

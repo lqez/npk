@@ -52,6 +52,7 @@
 #define NPK_ERROR_FileAlreadyExists                         -46
 #define NPK_ERROR_NoEntityInPackage                         -47
 #define NPK_ERROR_InvalidTeaKey                             -50
+#define NPK_ERROR_EntityNotReady                            -51
 #define NPK_ERROR_NotEnoughMemory                           -100
 #define NPK_ERROR_NotEnoughDiscSpace                        -101
 #define NPK_ERROR_CannotFindPackage                         -103

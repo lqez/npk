@@ -259,12 +259,13 @@ NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
 }
 
 NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_SIZE size,
-                        NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier )
+                        NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
+                        bool cipherRemains )
 {
     NPK_RESULT res = npk_read( handle, buf, size, cb, cbprocesstype, cbsize, cbidentifier );
 
     if( res == NPK_SUCCESS )
-        tea_decode_buffer( (NPK_STR)buf, size, key );
+        tea_decode_buffer( (NPK_STR)buf, size, key, cipherRemains );
 
     return res;
 }

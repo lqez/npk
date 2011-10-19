@@ -13,13 +13,22 @@ void tea_encode(int* v, int* k)
 	v[0]=y ; v[1]=z ;
 }
 
-void tea_encode_buffer(char* in_buffer, unsigned int in_size, int* key)
+void tea_encode_byte(char* v, int* k, int p)
+{
+	char y[] = "NpK!TeA";
+    *v = *v^y[p]^(char)(k[p%4]%0xFF);
+}
+
+void tea_encode_buffer(char* in_buffer, unsigned int in_size, int* key, int cipherRemains)
 {
 	char *p;
 	unsigned int remain = in_size % 8;
 	unsigned int align_size = in_size - remain;
 	for (p = in_buffer; p < in_buffer + align_size; p += 8)
 		tea_encode( (int*)p, key);
+    if( remain > 0 && cipherRemains )
+        for (p = in_buffer + align_size; p < in_buffer + in_size; p += 1)
+            tea_encode_byte( p, key, --remain );
 }
 #endif
 
@@ -37,11 +46,20 @@ void tea_decode(int* v,int* k)
 	v[0]=y ; v[1]=z ;
 }
 
-void tea_decode_buffer(char* in_buffer, unsigned int in_size, int* key)
+void tea_decode_byte(char* v, int* k, int p)
+{
+	char y[] = "NpK!TeA";
+    *v = *v^(char)(k[p%4]%0xFF)^y[p];
+}
+
+void tea_decode_buffer(char* in_buffer, unsigned int in_size, int* key, int cipherRemains)
 {
 	char *p;
 	unsigned int remain = in_size % 8;
 	unsigned int align_size = in_size - remain;
 	for (p = in_buffer; p < in_buffer + align_size; p += 8)
 		tea_decode( (int*)p, key);
+    if( remain > 0 && cipherRemains )
+        for (p = in_buffer + align_size; p < in_buffer + in_size; p += 1)
+            tea_decode_byte( p, key, --remain );
 }
