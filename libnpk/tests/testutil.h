@@ -35,6 +35,8 @@
     CHECK( M_A == M_B )
 #define CHECK_EQUAL_STR( M_A, M_B ) \
     CHECK( strcmp((M_A), (M_B)) == 0 )
+#define CHECK_EQUAL_STR_SIZE( M_A, M_B, S ) \
+    CHECK( strncmp((M_A), (M_B), (S)) == 0 )
 
 static void CHECK_EQUAL_STR_WITH_FILE( const char* src, const char* filename )
 {
@@ -58,7 +60,28 @@ static void CHECK_EQUAL_STR_WITH_FILE( const char* src, const char* filename )
 
     CHECK_EQUAL( size, read( h, buf, size ) );
 
-    CHECK_EQUAL_STR( buf, buf );
+    CHECK_EQUAL_STR( src, buf );
+
+    free( buf );
+    close( h );
+}
+
+static void CHECK_EQUAL_STR_WITH_FILE_PARTIAL( const char* src, const char* filename, size_t offset, size_t size )
+{
+    int     h;
+    char*   buf;
+    
+    h = open( filename, O_RDONLY | O_BINARY );
+    CHECK( h >= 0 );
+
+    lseek( h, offset, SEEK_SET );
+
+    buf = (char*)malloc( size+1 );
+    CHECK( buf != NULL );
+
+    CHECK_EQUAL( size, read( h, buf, size ) );
+
+    CHECK_EQUAL_STR_SIZE( src, buf, size );
 
     free( buf );
     close( h );

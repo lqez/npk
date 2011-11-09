@@ -3,6 +3,7 @@ include_directories( ../include )
 set( ITEMS
     libnpk_open.cpp
     libnpk_read_entity.cpp
+    libnpk_read_entity_partial.cpp
     libnpk_case.cpp
     libnpk_using_fd.cpp
 )

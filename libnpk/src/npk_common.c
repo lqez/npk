@@ -103,8 +103,10 @@ NPK_STR npk_error_to_str( NPK_RESULT res )
         return "ERROR: Package pointer is null.";
     case NPK_ERROR_EntityIsNotInThePackage:
         return "ERROR: Entity is not in the package.";
-    case NPK_ERROR_CantReadCompressOrEncryptEntityByPartial:
-        return "ERROR: Cannot read compressed or encrypted entity partially.";
+    case NPK_ERROR_CantReadCompressedEntityByPartial:
+        return "ERROR: Cannot read compressed entity partially.";
+    case NPK_ERROR_ReadingEncryptedEntityByPartialShouldBeAligned :
+        return "ERROR: Offset and size must be aligned by 8 bytes.";
     case NPK_ERROR_FileAlreadyExists:
         return "ERROR: File already exists.";
     case NPK_ERROR_NoEntityInPackage:

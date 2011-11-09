@@ -510,10 +510,19 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
         return false;
     }
 
-    if( eb->info_.flag_ & ( NPK_ENTITY_COMPRESS | NPK_ENTITY_ENCRYPT ) )
+    if( eb->info_.flag_ & NPK_ENTITY_COMPRESS )
     {
-        npk_error( NPK_ERROR_CantReadCompressOrEncryptEntityByPartial );
+        npk_error( NPK_ERROR_CantReadCompressedEntityByPartial );
         return false;
+    }
+
+    if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT )
+    {
+        if( ( offset % 8 != 0 ) || ( ( size % 8 != 0 ) && ( offset + size != eb->info_.size_ ) ) )
+        {
+            npk_error( NPK_ERROR_ReadingEncryptedEntityByPartialShouldBeAligned );
+            return false;
+        }
     }
 
     pb = eb->owner_;
@@ -530,6 +539,11 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
                     NPK_PROCESSTYPE_ENTITY,
                     g_callbackSize,
                     eb->name_ );
+
+    // Decode before uncompress, after v21
+    if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT )
+        tea_decode_buffer(buf, size, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
+
 #ifdef NPK_PLATFORM_WINDOWS
     if( g_useCriticalSection )
         LeaveCriticalSection( &pb->cs_ );
