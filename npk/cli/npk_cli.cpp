@@ -1044,18 +1044,18 @@ void flag()
             flagchar++;
             if( ( strnicmp( flagchar, "C", 1 ) == 0 )
              || ( strnicmp( flagchar, "COMPRESS", 8 ) == 0 ) )
-                flag |= NPK_ENTITY_COMPRESS;
+                flag |= NPK_ENTITY_COMPRESS_ZLIB;
             else if( ( strnicmp( flagchar, "E", 1 ) == 0 )
              || ( strnicmp( flagchar, "ENCRYPT", 7 ) == 0 ) )
-                flag |= NPK_ENTITY_ENCRYPT;
+                flag |= NPK_ENTITY_ENCRYPT_TEA;
         }
 
         if( verbose )
         {
             cout << "changing " << entityname;
-            if( flag & NPK_ENTITY_COMPRESS )
+            if( flag & NPK_ENTITY_COMPRESS_ZLIB )
                 cout << " -compress";
-            if( flag & NPK_ENTITY_ENCRYPT )
+            if( flag & NPK_ENTITY_ENCRYPT_TEA )
                 cout << " -encrypt";
             cout << "\n";
         }
@@ -1104,8 +1104,8 @@ bool listinfo_tfp( NPK_ENTITY entity )
     if( eb->info_.size_ == 0 )
     {
         printf( "    <not stored yet>    %c%c   ---------- -------- %s\n",
-            (eb->newflag_ & NPK_ENTITY_COMPRESS)?'C':' ',
-            (eb->newflag_ & NPK_ENTITY_ENCRYPT)?'E':' ',
+            (eb->newflag_ & NPK_ENTITY_COMPRESS_ZLIB)?'C':' ',
+            (eb->newflag_ & NPK_ENTITY_ENCRYPT_TEA)?'E':' ',
             eb->name_ );
     }
     else
@@ -1138,8 +1138,8 @@ bool listinfo_tfp( NPK_ENTITY entity )
         printf( "%11s %11s %c%c   %17s %s\n",
             size1,
             size2,
-            (eb->info_.flag_ & NPK_ENTITY_COMPRESS)?'C':' ',
-            (eb->info_.flag_ & NPK_ENTITY_ENCRYPT)?'E':' ',
+            (eb->info_.flag_ & NPK_ENTITY_COMPRESS_ZLIB)?'C':' ',
+            (eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA)?'E':' ',
             timeToString( eb->info_.modified_ ),
             eb->name_ );
     }

@@ -13,11 +13,11 @@ int libnpk_write( int argc, char * argv [] )
     CHECK( NPK_SUCCESS == npk_package_alloc( &pack, teakey ) );
     CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "sample.txt", &entity ) );
     CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "zip.txt", &entity ) );
-    CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_COMPRESS ) );
+    CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_COMPRESS_ZLIB ) );
     CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "tea.txt", &entity ) );
-    CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_ENCRYPT ) );
+    CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_ENCRYPT_TEA ) );
     CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", "zipntea.txt", &entity ) );
-    CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_COMPRESS | NPK_ENTITY_ENCRYPT | NPK_ENTITY_REVERSE ) );
+    CHECK( NPK_SUCCESS == npk_entity_set_flag( entity, NPK_ENTITY_COMPRESS_ZLIB | NPK_ENTITY_ENCRYPT_TEA | NPK_ENTITY_REVERSE ) );
     CHECK( NPK_SUCCESS == npk_package_save( pack, "foo.npk", true ) );
 
     npk_package_close( pack );

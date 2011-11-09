@@ -426,7 +426,7 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
         return false;
     }
 
-    if( eb->info_.flag_ & NPK_ENTITY_COMPRESS )
+    if( eb->info_.flag_ & ( NPK_ENTITY_COMPRESS_ZLIB | NPK_ENTITY_COMPRESS_BZIP2 ) )
     {
         lpDecompressBuffer = malloc( sizeof(char) * eb->info_.size_ );
         lplpTarget = &lpDecompressBuffer;
@@ -455,10 +455,13 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
         goto npk_entity_read_return_null_with_free;
 
     // Decode before uncompress, after v21
-    if( ( eb->info_.flag_ & NPK_ENTITY_ENCRYPT ) && ( eb->info_.flag_ & NPK_ENTITY_REVERSE ) )
+    if( ( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA ) && ( eb->info_.flag_ & NPK_ENTITY_REVERSE ) )
         tea_decode_buffer((char*)(*lplpTarget), eb->info_.size_, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
 
-    if( eb->info_.flag_ & NPK_ENTITY_COMPRESS )
+    if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_XXTEA )
+        tea_decode_buffer((char*)(*lplpTarget), eb->info_.size_, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
+
+    if( eb->info_.flag_ & NPK_ENTITY_COMPRESS_ZLIB )
     {
         uncompLen = eb->info_.originalSize_;
 
@@ -488,7 +491,7 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
     }
 
     // Decode after uncompress, before v21
-    if( ( eb->info_.flag_ & NPK_ENTITY_ENCRYPT ) && !( eb->info_.flag_ & NPK_ENTITY_REVERSE ) )
+    if( ( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA ) && !( eb->info_.flag_ & NPK_ENTITY_REVERSE ) )
         tea_decode_buffer((char*)(*lplpTarget), eb->info_.originalSize_, pb->teakey_, false);
 
     return true;
@@ -510,13 +513,13 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
         return false;
     }
 
-    if( eb->info_.flag_ & NPK_ENTITY_COMPRESS )
+    if( eb->info_.flag_ & ( NPK_ENTITY_COMPRESS_ZLIB | NPK_ENTITY_COMPRESS_BZIP2 ) )
     {
         npk_error( NPK_ERROR_CantReadCompressedEntityByPartial );
         return false;
     }
 
-    if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT )
+    if( eb->info_.flag_ & ( NPK_ENTITY_ENCRYPT_TEA | NPK_ENTITY_ENCRYPT_XXTEA ) )
     {
         if( ( offset % 8 != 0 ) || ( ( size % 8 != 0 ) && ( offset + size != eb->info_.size_ ) ) )
         {
@@ -540,8 +543,7 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
                     g_callbackSize,
                     eb->name_ );
 
-    // Decode before uncompress, after v21
-    if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT )
+    if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA )
         tea_decode_buffer(buf, size, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
 
 #ifdef NPK_PLATFORM_WINDOWS

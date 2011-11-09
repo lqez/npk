@@ -23,7 +23,7 @@ int libnpk_read_entity_partial( int argc, char * argv [] )
         NPK_FLAG flag;
         npk_entity_get_current_flag( entity, &flag );
 
-        if( flag & NPK_ENTITY_ENCRYPT )
+        if( flag & ( NPK_ENTITY_ENCRYPT_TEA | NPK_ENTITY_ENCRYPT_XXTEA ) )
         {
             // offset must be aligned by 8 bytes
             CHECK( (!npk_entity_read_partial( entity, buf, 9, 32 )) );

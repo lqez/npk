@@ -329,10 +329,10 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle, bool forcePro
     if( !skipProcessing )
     {
         // Encode before compress, before v21
-        if( ( eb->newflag_ & NPK_ENTITY_ENCRYPT ) && !( eb->newflag_ & NPK_ENTITY_REVERSE ) )
+        if( ( eb->newflag_ & NPK_ENTITY_ENCRYPT_TEA ) && !( eb->newflag_ & NPK_ENTITY_REVERSE ) )
             tea_encode_buffer((char*)buf, (int)size, pb->teakey_, false );
 
-        if( eb->newflag_ & NPK_ENTITY_COMPRESS )
+        if( eb->newflag_ & NPK_ENTITY_COMPRESS_ZLIB )
         {
             if( size >= NPK_MIN_SIZE_ZIPABLE )
             {
@@ -353,13 +353,13 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle, bool forcePro
                 else    // not suitable to compress
                 {
                     free( buf_for_zlib );
-                    eb->newflag_ &= !NPK_ENTITY_COMPRESS;
+                    eb->newflag_ &= !NPK_ENTITY_COMPRESS_ZLIB;
                 }
             }
         }
 
         // Encode after compress, after v21
-        if( ( eb->newflag_ & NPK_ENTITY_ENCRYPT ) && ( eb->newflag_ & NPK_ENTITY_REVERSE ) )
+        if( ( eb->newflag_ & NPK_ENTITY_ENCRYPT_TEA ) && ( eb->newflag_ & NPK_ENTITY_REVERSE ) )
             tea_encode_buffer((char*)buf, (int)size, pb->teakey_, (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS) );
     }
 

@@ -1,9 +1,11 @@
 include_directories( ./external/tea )
+include_directories( ./external/xxtea )
 include_directories( ./external/zlib )
 include_directories( ./include )
 
 set( TEA_SRCS
     ./external/tea/tea.c
+    ./external/xxtea/xxtea.c
 )
 
 set( ZLIB_UNCOMP_SRCS

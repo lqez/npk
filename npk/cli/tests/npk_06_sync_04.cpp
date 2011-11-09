@@ -23,17 +23,17 @@ int npk_06_sync_04( int argc, char * argv [] )
     entity = npk_package_get_entity( pack, "add1.txt" );
     CHECK( entity != NULL );
     npk_entity_get_current_flag( entity, &flag );
-    CHECK( flag & ( NPK_ENTITY_COMPRESS ) ) 
+    CHECK( flag & ( NPK_ENTITY_COMPRESS_ZLIB ) ) 
 
     entity = npk_package_get_entity( pack, "add2.test" );
     CHECK( entity != NULL );
     npk_entity_get_current_flag( entity, &flag );
-    CHECK( flag & ( NPK_ENTITY_ENCRYPT ) ) 
+    CHECK( flag & ( NPK_ENTITY_ENCRYPT_TEA ) ) 
 
     entity = npk_package_get_entity( pack, "nested/add3.tmp" );
     CHECK( entity != NULL );
     npk_entity_get_current_flag( entity, &flag );
-    CHECK( flag & ( NPK_ENTITY_ENCRYPT | NPK_ENTITY_COMPRESS ) ) 
+    CHECK( flag & ( NPK_ENTITY_ENCRYPT_TEA | NPK_ENTITY_COMPRESS_ZLIB ) ) 
 
     npk_package_close( pack );
 
