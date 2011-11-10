@@ -28,6 +28,7 @@
 #endif
 
 #include "../external/tea/tea.h"
+#include "../external/xxtea/xxtea.h"
 #include "../external/zlib/zlib.h"
 
 
@@ -262,12 +263,18 @@ NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
 
 NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_SIZE size,
                         NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
-                        bool cipherRemains )
+                        bool cipherRemains, bool useXXTEA )
 {
     NPK_RESULT res = npk_read( handle, buf, size, cb, cbprocesstype, cbsize, cbidentifier );
+    size_t i;
 
     if( res == NPK_SUCCESS )
-        tea_decode_buffer( (NPK_STR)buf, size, key, cipherRemains );
+    {
+        if( useXXTEA )
+            xxtea_decode_buffer( (NPK_STR)buf, size, key, cipherRemains );
+        else
+            tea_decode_buffer( (NPK_STR)buf, size, key, cipherRemains );
+    }
 
     return res;
 }

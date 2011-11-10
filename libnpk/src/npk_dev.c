@@ -28,6 +28,7 @@
 #endif
 
 #include "../external/tea/tea.h"
+#include "../external/xxtea/xxtea.h"
 #include "../external/zlib/zlib.h"
 
 
@@ -187,16 +188,20 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
 
 NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_SIZE size,
                         NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
-                        bool cipherRemains )
+                        bool cipherRemains, bool useXXTEA )
 {
     NPK_RESULT res;
     void* bufferforencode = malloc( sizeof(char) * size );
+    size_t i ;
 
     if( !bufferforencode )
         return npk_error( NPK_ERROR_NotEnoughMemory );
 
     memcpy( bufferforencode, buf, sizeof(char) * size );
-    tea_encode_buffer( (NPK_STR)bufferforencode, size, key, cipherRemains );
+    if( useXXTEA )
+        xxtea_encode_buffer( (NPK_STR)bufferforencode, size, key, cipherRemains );
+    else
+        tea_encode_buffer( (NPK_STR)bufferforencode, size, key, cipherRemains );
 
     res = npk_write( handle, bufferforencode, size, cb, cbprocesstype, cbsize, cbidentifier );
     free( bufferforencode );
@@ -361,6 +366,9 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle, bool forcePro
         // Encode after compress, after v21
         if( ( eb->newflag_ & NPK_ENTITY_ENCRYPT_TEA ) && ( eb->newflag_ & NPK_ENTITY_REVERSE ) )
             tea_encode_buffer((char*)buf, (int)size, pb->teakey_, (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS) );
+
+        if( eb->newflag_ & NPK_ENTITY_ENCRYPT_XXTEA )
+            xxtea_encode_buffer((char*)buf, (int)size, pb->teakey_, (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS) );
     }
 
     eb->info_.size_ = size;
@@ -540,7 +548,8 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
                             NPK_PROCESSTYPE_ENTITYHEADER,
                             g_callbackSize,
                             savefilename,
-                            (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS)
+                            (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS),
+                            (NPK_VERSION_CURRENT >= NPK_VERSION_USEXXTEAONHEADER)
                             ) ) != NPK_SUCCESS )
         return res;
     NPK_SAFE_FREE( buf );

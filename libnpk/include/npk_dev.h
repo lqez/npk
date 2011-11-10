@@ -128,10 +128,10 @@ NPK_DEV_API NPK_RESULT  npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE 
                                 NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier );
 NPK_DEV_API NPK_RESULT  npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_SIZE size,
                                 NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
-                                bool cipherRemains );
+                                bool cipherRemains, bool useXXTEA );
 NPK_DEV_API NPK_RESULT  npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_SIZE size,
                                 NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
-                                bool cipherRemains );
+                                bool cipherRemains, bool useXXTEA );
 
 /* Entity Functions */
 NPK_DEV_API NPK_RESULT  npk_entity_alloc( NPK_ENTITY* lpEntity );

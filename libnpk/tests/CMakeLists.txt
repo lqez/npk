@@ -12,6 +12,7 @@ if( DEV_MODE )
     set( ITEMS
         ${ITEMS}
         libnpk_write.cpp
+        libnpk_xxtea.cpp
         libnpk_durability.cpp
         libnpk_export.cpp
         libnpk_hash.cpp
