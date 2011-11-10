@@ -54,8 +54,8 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.74"
-#define baseversion "v25"
+#define toolversion "1.76"
+#define baseversion "v26"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
 const char          _HR_[] = "-------------------------------------------------------------------------------\n";
@@ -377,7 +377,9 @@ void help()
                 << "\n"
                 << "flags:\n"
                 << "    COMPRESS [C] : compress entity with zlib\n"
+                << "    BZIP2    [B] : compress entity with bzip2\n"
                 << "    ENCRYPT  [E] : encrypt entity with tea\n"
+                << "    XXTEA    [X] : encrypt entity with xxtea\n"
                 << "\n"
                 << "example:\n"
                 << "    npk foo.npk -flag *.jpg@ENCRYPT\n"
@@ -1048,15 +1050,25 @@ void flag()
             else if( ( strnicmp( flagchar, "E", 1 ) == 0 )
              || ( strnicmp( flagchar, "ENCRYPT", 7 ) == 0 ) )
                 flag |= NPK_ENTITY_ENCRYPT_TEA;
+            else if( ( strnicmp( flagchar, "B", 1 ) == 0 )
+             || ( strnicmp( flagchar, "BZIP", 4 ) == 0 ) )
+                flag |= NPK_ENTITY_COMPRESS_BZIP2;
+            else if( ( strnicmp( flagchar, "X", 1 ) == 0 )
+             || ( strnicmp( flagchar, "XXTEA", 5 ) == 0 ) )
+                flag |= NPK_ENTITY_ENCRYPT_XXTEA;
         }
 
         if( verbose )
         {
             cout << "changing " << entityname;
             if( flag & NPK_ENTITY_COMPRESS_ZLIB )
-                cout << " -compress";
+                cout << " -compress by zlib";
             if( flag & NPK_ENTITY_ENCRYPT_TEA )
-                cout << " -encrypt";
+                cout << " -encrypt by tea";
+            if( flag & NPK_ENTITY_COMPRESS_BZIP2 )
+                cout << " -compress by bzip2";
+            if( flag & NPK_ENTITY_ENCRYPT_XXTEA )
+                cout << " -encrypt by xxtea";
             cout << "\n";
         }
 
@@ -1103,9 +1115,11 @@ bool listinfo_tfp( NPK_ENTITY entity )
 
     if( eb->info_.size_ == 0 )
     {
-        printf( "    <not stored yet>    %c%c   ---------- -------- %s\n",
+        printf( "    <not stored yet>    %c%c%c%c ---------- -------- %s\n",
             (eb->newflag_ & NPK_ENTITY_COMPRESS_ZLIB)?'C':' ',
             (eb->newflag_ & NPK_ENTITY_ENCRYPT_TEA)?'E':' ',
+            (eb->newflag_ & NPK_ENTITY_COMPRESS_BZIP2)?'B':' ',
+            (eb->newflag_ & NPK_ENTITY_ENCRYPT_XXTEA)?'X':' ',
             eb->name_ );
     }
     else
@@ -1135,11 +1149,13 @@ bool listinfo_tfp( NPK_ENTITY entity )
             commify( eb->info_.originalSize_, size2, 0 );
         }
 
-        printf( "%11s %11s %c%c   %17s %s\n",
+        printf( "%11s %11s %c%c%c%c %17s %s\n",
             size1,
             size2,
             (eb->info_.flag_ & NPK_ENTITY_COMPRESS_ZLIB)?'C':' ',
             (eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA)?'E':' ',
+            (eb->info_.flag_ & NPK_ENTITY_COMPRESS_BZIP2)?'B':' ',
+            (eb->info_.flag_ & NPK_ENTITY_ENCRYPT_XXTEA)?'X':' ',
             timeToString( eb->info_.modified_ ),
             eb->name_ );
     }

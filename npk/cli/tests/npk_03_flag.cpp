@@ -4,17 +4,17 @@
 int npk_03_flag( int argc, char * argv [] )
 {
     CMD( "../npk test.npk -create --f --k 1:2:3:4" );
-    CMD( "../npk test.npk -add sample.txt sample.txt@zip.txt  sample.txt@tea.txt sample.txt@zipntea.txt --k 1:2:3:4" );
-    CMD( "../npk test.npk -flag zip.txt@C tea.txt@E zipntea.txt@C@E --k 1:2:3:4" );
+    CMD( "../npk test.npk -add sample.txt sample.txt@zip.txt sample.txt@tea.txt sample.txt@zipntea.txt sample.txt@xxtea.txt sample.txt@zipnxxtea.txt --k 1:2:3:4" );
+    CMD( "../npk test.npk -flag zip.txt@C tea.txt@E zipntea.txt@C@E xxtea.txt@X zipnxxtea.txt@C@X --k 1:2:3:4" );
 
     int teakey[4] = {1,2,3,4};
     NPK_PACKAGE pack = npk_package_open( "test.npk", teakey );
 
     CHECK( pack != NULL );
 
-    std::string entityNames[4] = { "sample.txt", "zip.txt", "tea.txt", "zipntea.txt" };
+    std::string entityNames[6] = { "sample.txt", "zip.txt", "tea.txt", "zipntea.txt", "xxtea.txt", "zipnxxtea.txt" };
 
-    for( int i = 0; i < 4; ++i )
+    for( int i = 0; i < 6; ++i )
     {
         NPK_ENTITY entity = npk_package_get_entity( pack, entityNames[i].c_str() );
         CHECK( entity != NULL );
