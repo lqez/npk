@@ -43,7 +43,8 @@ typedef int                             NPK_TIME;
 #define NPK_VERSION_SINGLEPACKHEADER    24
 #define NPK_VERSION_ENCRYPTREMAINS      25
 #define NPK_VERSION_USEXXTEAONHEADER    26
-#define NPK_VERSION_CURRENT             NPK_VERSION_USEXXTEAONHEADER
+#define NPK_VERSION_STREAMABLE          27
+#define NPK_VERSION_CURRENT             NPK_VERSION_STREAMABLE
 
 // Entity Flag
 #define NPK_ENTITY_NULL                 0

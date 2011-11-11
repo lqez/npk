@@ -504,9 +504,21 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
     strncpy( pb->info_.signature_, NPK_SIGNATURE, sizeof(NPK_CHAR)*4 );
     if( pb->info_.version_ != NPK_VERSION_CURRENT )
         bVersionUp = true;
-    pb->info_.entityDataOffset_ = sizeof(NPK_PACKAGEINFO)
+
+    pb->info_.entityInfoOffset_ = sizeof(NPK_PACKAGEINFO)
                                 + sizeof(NPK_PACKAGEINFO_V23);
 
+    // version 27, precalculate entity information header length 
+    eb = pb->pEntityHead_;
+    len = 0;
+    while( eb != NULL )
+    {
+        len += sizeof(NPK_ENTITYINFO);
+        len += sizeof(NPK_CHAR)*eb->info_.nameLength_;
+        eb = eb->next_;
+    }
+
+    pb->info_.entityDataOffset_ = pb->info_.entityInfoOffset_ + len;
     npk_seek( savefilehandle, (long)pb->info_.entityDataOffset_, SEEK_SET );
 
     eb = pb->pEntityHead_;
@@ -521,10 +533,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
         eb = eb->next_;
     }
 
-    pb->info_.entityInfoOffset_ = npk_tell( savefilehandle );
     pb->info_.entityCount_ = savecount;
-
-    eb = pb->pEntityHead_;
 
     // version 24, Take single encryption to whole entity headers
     buf = malloc( (sizeof(NPK_ENTITYINFO)+260)*savecount ); // 260 = MAX_PATH on windows, isn't it enough?
@@ -532,6 +541,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
         return( npk_error( NPK_ERROR_NotEnoughMemory ) );
     buf_pos = buf;
 
+    eb = pb->pEntityHead_;
     while( eb != NULL )
     {
         memcpy( buf_pos, &eb->info_, sizeof(NPK_ENTITYINFO) );
@@ -540,6 +550,8 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
         buf_pos += sizeof(NPK_CHAR)*eb->info_.nameLength_;
         eb = eb->next_;
     }
+
+    npk_seek( savefilehandle, (long)pb->info_.entityInfoOffset_, SEEK_SET );
     if( ( res = npk_write_encrypt( pb->teakey_,
                             savefilehandle,
                             buf,

@@ -90,16 +90,19 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
 
     if( pb->info_.version_ >= NPK_VERSION_SINGLEPACKHEADER )
     {
-        if( filesize == 0 )
-            filesize = npk_seek( pb->handle_, 0, SEEK_END );
-        entityheadersize = filesize - (long)pb->info_.entityInfoOffset_;
-        npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_+pb->offsetJump_, SEEK_SET );
+        if( pb->info_.version_ >= NPK_VERSION_STREAMABLE )
+            entityheadersize = (long)pb->info_.entityDataOffset_ - (long)pb->info_.entityInfoOffset_;
+        else
+        {
+            if( filesize == 0 )
+                filesize = npk_seek( pb->handle_, 0, SEEK_END );
+            entityheadersize = filesize - (long)pb->info_.entityInfoOffset_;
+            npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_+pb->offsetJump_, SEEK_SET );
+        }
 
         entityheaderbuf = malloc( entityheadersize );
         if( !entityheaderbuf )
-        {
             return( npk_error( NPK_ERROR_NotEnoughMemory ) );
-        }
 
         res = npk_read_encrypt( teakey,
                                 pb->handle_,
@@ -128,11 +131,12 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
             memcpy( &eb->info_, pos, sizeof(NPK_ENTITYINFO) );
             pos += sizeof(NPK_ENTITYINFO);
 
-            if( eb->info_.offset_ >= pb->info_.entityInfoOffset_ )
-            {
-                res = npk_error( NPK_ERROR_InvalidTeaKey );
-                goto __npk_package_open_return_res_with_free;
-            }
+            if( pb->info_.version_ < NPK_VERSION_STREAMABLE )
+                if( eb->info_.offset_ >= pb->info_.entityInfoOffset_ )
+                {
+                    res = npk_error( NPK_ERROR_InvalidTeaKey );
+                    goto __npk_package_open_return_res_with_free;
+                }
 
             eb->newflag_ = eb->info_.flag_;
             eb->name_ = malloc( sizeof(NPK_CHAR)*(eb->info_.nameLength_+1) );

@@ -55,9 +55,9 @@ typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
 #define toolversion "1.76"
-#define baseversion "v26"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
+char                baseversion[16];
 const char          _HR_[] = "-------------------------------------------------------------------------------\n";
 const int           readable_size_count = 3;
 const unsigned int  readable_size[readable_size_count] = { 1024*1024*1024, 1024*1024, 1024 };
@@ -139,6 +139,8 @@ int main( int _c, char* _v[] )
 #else
     tzset();
 #endif
+
+    sprintf( baseversion, "v%d", NPK_VERSION_CURRENT );
 
     c = _c;
     v = _v;
