@@ -60,7 +60,7 @@ static void CHECK_EQUAL_STR_WITH_FILE( const char* src, const char* filename )
 
     CHECK_EQUAL( size, read( h, buf, size ) );
 
-    CHECK_EQUAL_STR( src, buf );
+    CHECK_EQUAL_STR_SIZE( buf, src, size );
 
     free( buf );
     close( h );

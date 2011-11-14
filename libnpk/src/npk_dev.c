@@ -192,7 +192,6 @@ NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* bu
 {
     NPK_RESULT res;
     void* bufferforencode = malloc( sizeof(char) * size );
-    size_t i ;
 
     if( !bufferforencode )
         return npk_error( NPK_ERROR_NotEnoughMemory );

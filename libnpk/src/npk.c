@@ -18,6 +18,7 @@
 #include <string.h>
 #endif
 #include "../external/tea/tea.h"
+#include "../external/xxtea/xxtea.h"
 #include "../external/zlib/zlib.h"
 
 
@@ -457,7 +458,7 @@ bool npk_entity_is_ready( NPK_ENTITY entity )
 
     pb = eb->owner_;
     res = fstat( pb->handle_, &buf );
-    if( pb->offsetJump_ + eb->info_.offset_ + eb->info_.size_ <= buf.st_size )
+    if( pb->offsetJump_ + (long)(eb->info_.offset_ + eb->info_.size_ <= buf.st_size) )
         return true;
 
     return false;

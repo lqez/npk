@@ -1,4 +1,5 @@
 #include "testutil.h"
+#include <sys/stat.h>
 #include <npk.h>
 #include <npk_dev.h>
 
