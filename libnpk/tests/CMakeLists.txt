@@ -6,6 +6,7 @@ set( ITEMS
     libnpk_read_entity_partial.cpp
     libnpk_case.cpp
     libnpk_using_fd.cpp
+    libnpk_streamable.cpp
 )
 
 if( DEV_MODE )

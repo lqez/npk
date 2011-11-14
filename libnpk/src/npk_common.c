@@ -266,7 +266,6 @@ NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_
                         bool cipherRemains, bool useXXTEA )
 {
     NPK_RESULT res = npk_read( handle, buf, size, cb, cbprocesstype, cbsize, cbidentifier );
-    size_t i;
 
     if( res == NPK_SUCCESS )
     {

@@ -26,6 +26,9 @@ NPK_API NPK_ENTITY  npk_package_get_entity      ( NPK_PACKAGE package, NPK_CSTR 
 NPK_API NPK_ENTITY  npk_package_get_first_entity( NPK_PACKAGE package );
 NPK_API NPK_CSTR    npk_entity_get_name         ( NPK_ENTITY entity );
 NPK_API NPK_SIZE    npk_entity_get_size         ( NPK_ENTITY entity );
+NPK_API NPK_SIZE    npk_entity_get_packed_size  ( NPK_ENTITY entity );
+NPK_API NPK_SIZE    npk_entity_get_offset       ( NPK_ENTITY entity );
+NPK_API bool        npk_entity_is_ready         ( NPK_ENTITY entity );
 NPK_API NPK_ENTITY  npk_entity_next             ( NPK_ENTITY entity );
 NPK_API bool        npk_entity_read             ( NPK_ENTITY entity, void* buf );
 NPK_API bool        npk_entity_read_partial     ( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK_SIZE size );

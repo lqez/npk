@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <memory.h>
 #include <time.h>
+#include <sys/stat.h>
 #include "npk.h"
 #include "npk_dev.h"
 #ifdef NPK_PLATFORM_MACOS 
@@ -408,6 +409,28 @@ NPK_SIZE npk_entity_get_size( NPK_ENTITY entity )
     return eb->info_.originalSize_;
 }
 
+NPK_SIZE npk_entity_get_packed_size( NPK_ENTITY entity )
+{
+    NPK_ENTITYBODY* eb = entity;
+    if( !entity )
+    {
+        npk_error( NPK_ERROR_EntityIsNull );
+        return 0;
+    }
+    return eb->info_.size_;
+}
+
+NPK_SIZE npk_entity_get_offset( NPK_ENTITY entity )
+{
+    NPK_ENTITYBODY* eb = entity;
+    if( !entity )
+    {
+        npk_error( NPK_ERROR_EntityIsNull );
+        return 0;
+    }
+    return eb->info_.offset_;
+}
+
 NPK_CSTR npk_entity_get_name( NPK_ENTITY entity )
 {
     NPK_ENTITYBODY* eb = entity;
@@ -417,6 +440,27 @@ NPK_CSTR npk_entity_get_name( NPK_ENTITY entity )
         return 0;
     }
     return eb->name_;
+}
+
+bool npk_entity_is_ready( NPK_ENTITY entity )
+{
+    NPK_ENTITYBODY* eb = entity;
+    NPK_PACKAGEBODY* pb = NULL;
+    int res;
+    struct stat buf;
+
+    if( !entity )
+    {
+        npk_error( NPK_ERROR_EntityIsNull );
+        return false;
+    }
+
+    pb = eb->owner_;
+    res = fstat( pb->handle_, &buf );
+    if( pb->offsetJump_ + eb->info_.offset_ + eb->info_.size_ <= buf.st_size )
+        return true;
+
+    return false;
 }
 
 bool npk_entity_read( NPK_ENTITY entity, void* buf )
