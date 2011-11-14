@@ -20,6 +20,7 @@ extern "C" {
 extern NPK_API int g_npkError;
 
 NPK_API NPK_PACKAGE npk_package_open            ( NPK_CSTR filename, NPK_TEAKEY teakey[4] );
+NPK_API bool        npk_package_is_ready        ( NPK_PACKAGE package );
 NPK_API NPK_PACKAGE npk_package_open_with_fd    ( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] );
 NPK_API bool        npk_package_close           ( NPK_PACKAGE package );
 NPK_API NPK_ENTITY  npk_package_get_entity      ( NPK_PACKAGE package, NPK_CSTR entityname );

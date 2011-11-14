@@ -246,6 +246,28 @@ __npk_package_open_return_res_with_free:
     return res;
 }
 
+bool npk_package_is_ready( NPK_PACKAGE package )
+{
+    NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
+    int res;
+    struct stat buf;
+
+    if( !package )
+    {
+        npk_error( NPK_ERROR_PackageIsNull );
+        return false;
+    }
+
+    // only STREAMABLE package can answer this request
+    if( pb->info_.version_ < NPK_VERSION_STREAMABLE )
+        return false;
+
+    res = fstat( pb->handle_, &buf );
+    if( (long)(pb->offsetJump_ + pb->info_.entityDataOffset_) <= buf.st_size )
+        return true;
+
+    return false;
+}
 
 NPK_PACKAGE npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] )
 {
@@ -458,7 +480,7 @@ bool npk_entity_is_ready( NPK_ENTITY entity )
 
     pb = eb->owner_;
     res = fstat( pb->handle_, &buf );
-    if( pb->offsetJump_ + (long)(eb->info_.offset_ + eb->info_.size_ <= buf.st_size) )
+    if( (long)( pb->offsetJump_ + eb->info_.offset_ + eb->info_.size_ ) <= buf.st_size )
         return true;
 
     return false;

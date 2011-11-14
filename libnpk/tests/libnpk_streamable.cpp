@@ -56,20 +56,23 @@ int libnpk_streamable( int argc, char * argv [] )
         }
         else
         {
-            NPK_ENTITY entity = npk_package_get_entity( pack, entityNames[i].c_str() );
-            CHECK( entity != NULL );
-
-            NPK_SIZE size = npk_entity_get_size( entity );
-            if( npk_entity_is_ready( entity ) )
+            if( npk_package_is_ready( pack ) )
             {
-                printf( "   entity %s ready.\n", entityNames[i].c_str() );
-                void* buf = malloc( size );
+                NPK_ENTITY entity = npk_package_get_entity( pack, entityNames[i].c_str() );
+                CHECK( entity != NULL );
 
-                CHECK( npk_entity_read( entity, buf ) );
-                CHECK_EQUAL_STR_WITH_FILE( (const char*)buf, "sample.txt" );
+                NPK_SIZE size = npk_entity_get_size( entity );
+                if( npk_entity_is_ready( entity ) )
+                {
+                    printf( "   entity %s ready.\n", entityNames[i].c_str() );
+                    void* buf = malloc( size );
 
-                free( buf );
-                ++i;
+                    CHECK( npk_entity_read( entity, buf ) );
+                    CHECK_EQUAL_STR_WITH_FILE( (const char*)buf, "sample.txt" );
+
+                    free( buf );
+                    ++i;
+                }
             }
         }
     }
