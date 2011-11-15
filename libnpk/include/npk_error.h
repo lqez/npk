@@ -53,7 +53,8 @@
 #define NPK_ERROR_NoEntityInPackage                              -47
 #define NPK_ERROR_ReadingEncryptedEntityByPartialShouldBeAligned -48
 #define NPK_ERROR_InvalidTeaKey                                  -50
-#define NPK_ERROR_EntityNotReady                                 -51
+#define NPK_ERROR_EntityIsNotReady                               -51
+#define NPK_ERROR_PackageIsNotReady                              -52
 #define NPK_ERROR_NotEnoughMemory                                -100
 #define NPK_ERROR_NotEnoughDiscSpace                             -101
 #define NPK_ERROR_CannotFindPackage                              -103

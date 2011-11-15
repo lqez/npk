@@ -114,6 +114,10 @@ NPK_STR npk_error_to_str( NPK_RESULT res )
         return "ERROR: No entity in the package.";
     case NPK_ERROR_InvalidTeaKey:
         return "ERROR: Invalid tea key.";
+    case NPK_ERROR_EntityIsNotReady:
+        return "ERROR: Entity is not ready.";
+    case NPK_ERROR_PackageIsNotReady:
+        return "ERROR: Package is not ready.";
     case NPK_ERROR_SourceStringisNull:
         return "ERROR: Cannot copy string. Source pointer is null.";
     case NPK_ERROR_CannotCopyToItself:

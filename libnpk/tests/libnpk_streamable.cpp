@@ -39,7 +39,7 @@ int libnpk_streamable( int argc, char * argv [] )
 
     while( offset < filesize )
     {
-        size_t r = rand()%64;
+        size_t r = rand()%16;
         if( r + offset > filesize )
             r = filesize - offset;
 
@@ -56,23 +56,20 @@ int libnpk_streamable( int argc, char * argv [] )
         }
         else
         {
-            if( npk_package_is_ready( pack ) )
+            NPK_ENTITY entity = npk_package_get_entity( pack, entityNames[i].c_str() );
+            CHECK( entity != NULL );
+
+            NPK_SIZE size = npk_entity_get_size( entity );
+            if( npk_entity_is_ready( entity ) )
             {
-                NPK_ENTITY entity = npk_package_get_entity( pack, entityNames[i].c_str() );
-                CHECK( entity != NULL );
+                printf( "   entity %s ready.\n", entityNames[i].c_str() );
+                void* buf = malloc( size );
 
-                NPK_SIZE size = npk_entity_get_size( entity );
-                if( npk_entity_is_ready( entity ) )
-                {
-                    printf( "   entity %s ready.\n", entityNames[i].c_str() );
-                    void* buf = malloc( size );
+                CHECK( npk_entity_read( entity, buf ) );
+                CHECK_EQUAL_STR_WITH_FILE( (const char*)buf, "sample.txt" );
 
-                    CHECK( npk_entity_read( entity, buf ) );
-                    CHECK_EQUAL_STR_WITH_FILE( (const char*)buf, "sample.txt" );
-
-                    free( buf );
-                    ++i;
-                }
+                free( buf );
+                ++i;
             }
         }
     }

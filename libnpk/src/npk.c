@@ -46,6 +46,15 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
     long                entityheadersize = 0;
     NPK_RESULT          res;
 
+    if( filesize == 0 )
+    {
+        filesize = npk_seek( pb->handle_, 0, SEEK_END );
+        npk_seek( pb->handle_, 0, SEEK_SET );
+    }
+
+    if( filesize < sizeof(NPK_PACKAGEINFO) )
+        return( npk_error( NPK_ERROR_PackageIsNotReady ) );
+
     // Read common header
     res = npk_read( pb->handle_,
                     (void*)&pb->info_,
@@ -93,11 +102,13 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
     if( pb->info_.version_ >= NPK_VERSION_SINGLEPACKHEADER )
     {
         if( pb->info_.version_ >= NPK_VERSION_STREAMABLE )
+        {
+            if( filesize < pb->info_.entityDataOffset_ )
+                return( npk_error( NPK_ERROR_PackageIsNotReady ) );
             entityheadersize = (long)pb->info_.entityDataOffset_ - (long)pb->info_.entityInfoOffset_;
+        }
         else
         {
-            if( filesize == 0 )
-                filesize = npk_seek( pb->handle_, 0, SEEK_END );
             entityheadersize = filesize - (long)pb->info_.entityInfoOffset_;
             npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_+pb->offsetJump_, SEEK_SET );
         }
@@ -244,29 +255,6 @@ __npk_package_open_return_res_with_free:
 
     NPK_SAFE_FREE( eb );
     return res;
-}
-
-bool npk_package_is_ready( NPK_PACKAGE package )
-{
-    NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
-    int res;
-    struct stat buf;
-
-    if( !package )
-    {
-        npk_error( NPK_ERROR_PackageIsNull );
-        return false;
-    }
-
-    // only STREAMABLE package can answer this request
-    if( pb->info_.version_ < NPK_VERSION_STREAMABLE )
-        return false;
-
-    res = fstat( pb->handle_, &buf );
-    if( (long)(pb->offsetJump_ + pb->info_.entityDataOffset_) <= buf.st_size )
-        return true;
-
-    return false;
 }
 
 NPK_PACKAGE npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] )
