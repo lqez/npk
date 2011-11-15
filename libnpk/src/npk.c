@@ -103,7 +103,7 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
     {
         if( pb->info_.version_ >= NPK_VERSION_STREAMABLE )
         {
-            if( filesize < pb->info_.entityDataOffset_ )
+            if( filesize < (long)pb->info_.entityDataOffset_ )
                 return( npk_error( NPK_ERROR_PackageIsNotReady ) );
             entityheadersize = (long)pb->info_.entityDataOffset_ - (long)pb->info_.entityInfoOffset_;
         }

@@ -5,7 +5,7 @@
 #ifdef NPK_DEV
 void xxtea_encode(int* v, int* k)
 {
-    int n = 2;
+    unsigned int n = 2;
     unsigned int y, z, sum;
     unsigned int p, rounds, e;
     rounds = 6 + 52/n;
@@ -44,7 +44,7 @@ void xxtea_encode_buffer(char* in_buffer, unsigned int in_size, int* key, int ci
 
 void xxtea_decode(int* v,int* k)
 {
-    int n = 2;
+    unsigned int n = 2;
     unsigned int y, z, sum;
     unsigned int p, rounds, e;
     rounds = 6 + 52/n;
