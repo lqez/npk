@@ -24,11 +24,11 @@ int libnpk_streamable( int argc, char * argv [] )
     npk_package_close( pack );
 
     // simulate download
-    int rh = open( "foo.npk", O_RDONLY );
+    int rh = open( "foo.npk", O_RDONLY | O_BINARY );
     size_t filesize = npk_seek( rh, 0, SEEK_END );
     npk_seek( rh, 0, SEEK_SET );
 
-    int wh = open( "foo_2.npk", O_CREAT | O_RDWR | O_TRUNC, S_IREAD | S_IWRITE );
+    int wh = open( "foo_2.npk", O_CREAT | O_RDWR | O_TRUNC | O_BINARY, S_IREAD | S_IWRITE );
 
     // validation
     std::string entityNames[4] = { "sample.txt", "tea.txt", "xxtea.txt", "zip.txt" };
