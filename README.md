@@ -13,7 +13,7 @@ npk is a simple file packager, called 'en-pack'.
         - and iOS via C API and binding for Objective-C.
         - and Android via JNI
     - Pack multiple files into a package.
-    - Package information secured by tea algorithm
+    - Package information secured by TEA / XXTEA algorithm
     - Support file compression and encryption.
 
 npk consists of below items.
