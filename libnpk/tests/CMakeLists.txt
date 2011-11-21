@@ -17,6 +17,7 @@ if( DEV_MODE )
         libnpk_durability.cpp
         libnpk_export.cpp
         libnpk_hash.cpp
+        libnpk_remove.cpp
     )
 endif( DEV_MODE )
 
