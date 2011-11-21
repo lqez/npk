@@ -107,6 +107,7 @@ void del();
 void diff();
 void expt();
 void flag();
+void sort();
 void listinfo();
 void sync_package();
 void sync_and_add( bool sd, bool force, const char* basepath, const char* path );
@@ -211,6 +212,8 @@ int main( int _c, char* _v[] )
                     expt();
                 else if(V(n,"-flag"))
                     flag();
+                else if(V(n,"-sort"))
+                    sort();
                 else if(V(n,"-list")||V(n,"-info"))
                     listinfo();
                 else if(V(n,"-sync")||V(n,"-update"))
@@ -286,6 +289,7 @@ void help()
             << "    -diff\n"
             << "    -export\n"
             << "    -flag\n"
+            << "    -sort\n"
             << "    -list\n"
             << "    -sync\n"
             << "\n"
@@ -296,9 +300,9 @@ void help()
     {
         if(V(2,"add") || V(2,"-add") || V(2,"insert") || V(2,"-insert") )
         {
-            cout << "add/insert: add files into the package as entities.\n"
+            cout << "add/insert: Add files into the package as entities.\n"
                 << "usage: npk <package> -add <FILE1[@ENTITY]> [FILE2] ...\n"
-                << "       you can use wildcard pattern on filename.\n"
+                << "       You can use wildcard pattern on filename.\n"
                 << "\n"
                 << "example:\n"
                 << "    npk foo.npk -add *.jpg\n"
@@ -306,44 +310,44 @@ void help()
                 << "    npk foo.npk -add bar.jpg qoo.jpg --k 1:2:3:4\n"
                 << "\n"
                 << "options:\n"
-                << "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
-                << "    --v [--verbose]      : print working information.\n"
-                << "    --g [--gluetime] ARG : use ARG as gluetime. ARG is UNIX timestamp(epoch).\n"
-                << "    --o [--output] ARG   : save package as new file named ARG.\n"
-                << "    --f [--force]        : force overwrite old package file.\n"
-                << "    --jc [--justcreate]  : create new package automatically if not exist.\n";
+                << "    --k [--teakey] ARG   : Use ARG as key for TEA/XXTEA. default key is 0:0:0:0.\n"
+                << "    --v [--verbose]      : Print working information.\n"
+                << "    --g [--gluetime] ARG : Use ARG as gluetime. ARG is UNIX timestamp(epoch).\n"
+                << "    --o [--output] ARG   : Save package as new file named ARG.\n"
+                << "    --f [--force]        : Force overwrite old package file.\n"
+                << "    --jc [--justcreate]  : Create new package automatically if not exist.\n";
         }
         else if(V(2,"create") || V(2,"-create") )
         {
-            cout << "create: create a new npk package.\n"
+            cout << "create: Create a new npk package.\n"
                 << "usage: npk <package> -create\n"
                 << "\n"
                 << "example:\n"
                 << "    npk foo.npk -create\n"
                 << "\n"
                 << "options:\n"
-                << "    --v [--verbose] : print working information.\n"
-                << "    --f [--force]   : force overwrite old package file.\n";
+                << "    --v [--verbose] : Print working information.\n"
+                << "    --f [--force]   : Force overwrite old package file.\n";
         }
         else if(V(2,"delete") || V(2,"-delete") || V(2,"remove") || V(2,"-remove") )
         {
-            cout << "delete/remove: delete entities from the package.\n"
+            cout << "delete/remove: Delete entities from the package.\n"
                 << "usage: npk <package> -delete <ENTITY1> [ENTITY2] ...\n"
-                << "       you can use wildcard pattern on ENTITY name.\n"
+                << "       You can use wildcard pattern on ENTITY name.\n"
                 << "\n"
                 << "example:\n"
                 << "    npk foo.npk -delete *.jpg\n"
                 << "    npk foo.npk -delete bar.jpg qoo.jpg --k 1:2:3:4\n"
                 << "\n"
                 << "options:\n"
-                << "    --k [--teakey] ARG : use ARG as TEAKEY. default key is 0:0:0:0.\n"
-                << "    --v [--verbose]    : print working information.\n"
-                << "    --o [--output] ARG : save package as new file named ARG.\n"
-                << "    --f [--force]      : force overwrite old package file.\n";
+                << "    --k [--teakey] ARG : Use ARG as key for TEA/XXTEA. default key is 0:0:0:0.\n"
+                << "    --v [--verbose]    : Print working information.\n"
+                << "    --o [--output] ARG : Save package as new file named ARG.\n"
+                << "    --f [--force]      : Force overwrite old package file.\n";
         }
         else if(V(2,"diff") || V(2,"-diff") )
         {
-            cout << "diff: show differences between the package and local path.\n"
+            cout << "diff: Show differences between the package and local path.\n"
                 << "usage: npk <package> -diff <PATH>\n"
                 << "\n"
                 << "example:\n"
@@ -351,15 +355,15 @@ void help()
                 << "    npk foo.npk -diff d:\\foo --k 1:2:3:4\n"
                 << "\n"
                 << "options:\n"
-                << "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
-                << "    --v [--verbose]      : print working information.\n";
+                << "    --k [--teakey] ARG : Use ARG as key for TEA/XXTEA. default key is 0:0:0:0.\n"
+                << "    --v [--verbose]    : Print working information.\n";
         }
         else if(V(2,"export") || V(2,"-export") )
         {
-            cout << "export: export entities into local files from the package.\n"
+            cout << "export: Export entities into local files from the package.\n"
                 << "usage: npk <package> -export <ENTITY1[@FILE]> [ENTITY2] ...\n"
-                << "       you can use wildcard pattern on ENTITY name.\n"
-                << "note: if entity name contains directory, \n"
+                << "       You can use wildcard pattern on ENTITY name.\n"
+                << "note: If entity name contains directory, \n"
                 << "      npk will create subdirectories automatically.\n"
                 << "\n"
                 << "example:\n"
@@ -368,20 +372,20 @@ void help()
                 << "    npk foo.npk -export bar.jpg qoo.jpg --k 1:2:3:4\n"
                 << "\n"
                 << "options:\n"
-                << "    --k [--teakey] ARG   : use ARG as TEAKEY. default key is 0:0:0:0.\n"
-                << "    --v [--verbose]      : print working information.\n"
-                << "    --f [--force]        : force overwrite old file.\n";
+                << "    --k [--teakey] ARG : Use ARG as key for TEA/XXTEA. default key is 0:0:0:0.\n"
+                << "    --v [--verbose]    : Print working information.\n"
+                << "    --f [--force]      : Force overwrite old file.\n";
         }
         else if(V(2,"flag") || V(2,"-flag") )
         {
-            cout << "flag: set flag(property) of entity in the package.\n"
+            cout << "flag: Set flag(property) of entity in the package.\n"
                 << "usage: npk <package> -flag <ENTITY1[@FLAG1][@FLAG2]...> [ENTITY2] ...\n"
                 << "\n"
                 << "flags:\n"
-                << "    COMPRESS [C] : compress entity with zlib\n"
-                << "    BZIP2    [B] : compress entity with bzip2\n"
-                << "    ENCRYPT  [E] : encrypt entity with tea\n"
-                << "    XXTEA    [X] : encrypt entity with xxtea\n"
+                << "    COMPRESS [C] : Compress entity with zlib\n"
+                << "    BZIP2    [B] : Compress entity with bzip2\n"
+                << "    ENCRYPT  [E] : Encrypt entity with tea\n"
+                << "    XXTEA    [X] : Encrypt entity with xxtea\n"
                 << "\n"
                 << "example:\n"
                 << "    npk foo.npk -flag *.jpg@ENCRYPT\n"
@@ -389,14 +393,35 @@ void help()
                 << "    npk foo.npk -flag bar.jpg --k 1:2:3:4   /* to remove flag */\n"
                 << "\n"
                 << "options:\n"
-                << "    --k [--teakey] ARG : use ARG as TEAKEY. default key is 0:0:0:0.\n"
-                << "    --v [--verbose]    : print working information.\n"
-                << "    --o [--output] ARG : save package as new file named ARG.\n"
-                << "    --f [--force]      : force overwrite old package file.\n";
+                << "    --k [--teakey] ARG : Use ARG as key for TEA/XXTEA. default key is 0:0:0:0.\n"
+                << "    --v [--verbose]    : Print working information.\n"
+                << "    --o [--output] ARG : Save package as new file named ARG.\n"
+                << "    --f [--force]      : Force overwrite old package file.\n";
+        }
+        else if(V(2,"sort") || V(2,"-sort") )
+        {
+            cout << "sort: Sort entities by rules\n"
+                << "usage: npk <package> -sort <ENTITY1[@ORDER]> [RULE2] ...\n"
+                << "       You can use wildcard pattern on filename.\n"
+                << "note: Rules are applied in order. Remain entities are shipped by no order\n"
+                << "\n"
+                << "order:\n"
+                << "    ASC  [A] : Sort entities by ascending order\n"
+                << "    DESC [D] : Sort entities by descending order\n"
+                << "\n"
+                << "example:\n"
+                << "    npk foo.npk -sort *@A\n"
+                << "    npk foo.npk -flag *.xml *.thumbnail.*@ASC *@ASC --v\n"
+                << "\n"
+                << "options:\n"
+                << "    --k [--teakey] ARG : Use ARG as key for TEA/XXTEA. default key is 0:0:0:0.\n"
+                << "    --v [--verbose]    : Print working information.\n"
+                << "    --o [--output] ARG : Save package as new file named ARG.\n"
+                << "    --f [--force]      : Force overwrite old package file.\n";
         }
         else if(V(2,"list") || V(2,"-list") || V(2,"info") || V(2,"-info") )
         {
-            cout << "list/info: show package information and entity list.\n"
+            cout << "list/info: Show package information and entity list.\n"
                 << "usage: npk <package> -list [PATTERN]\n"
                 << "\n"
                 << "example:\n"
@@ -404,13 +429,13 @@ void help()
                 << "    npk foo.npk -list *.jpg --k 1:2:3:4\n"
                 << "\n"
                 << "options:\n"
-                << "    --k [--teakey] ARG     : use ARG as TEAKEY. default key is 0:0:0:0.\n"
-                << "    --v [--verbose]        : print working information.\n"
-                << "    --h [--human-readable] : support enhanced readability.\n";
+                << "    --k [--teakey] ARG     : Use ARG as key for TEA/XXTEA. default key is 0:0:0:0.\n"
+                << "    --v [--verbose]        : Print working information.\n"
+                << "    --h [--human-readable] : Support enhanced readability.\n";
         }
         else if( V(2,"sync") || V(2,"-sync") || V(2,"update") || V(2,"-update") )
         {
-            cout << "sync/update: synchronize the package with local files.\n"
+            cout << "sync/update: Synchronize the package with local files.\n"
                 << "usage: npk <package> -sync <PATH>\n"
                 << "\n"
                 << "example:\n"
@@ -419,19 +444,19 @@ void help()
                 << "    npk foo.npk -sync c:\\product\\release --sa --ig *.tmp *.pdb\n"
                 << "\n"
                 << "options:\n"
-                << "    --k [--teakey] ARG     : use ARG as TEAKEY. default key is 0:0:0:0.\n"
-                << "    --v [--verbose]        : print working information.\n"
-                << "    --g [--gluetime] ARG   : use ARG as gluetime. ARG is UNIX timestamp(epoch).\n"
-                << "    --o [--output] ARG     : save package as new file named ARG.\n"
-                << "    --f [--force]          : force overwrite old package file.\n"
-                << "    --jc [--justcreate]    : create new package automatically if not exist.\n"
-                << "    --nr [--norecursive]   : do not sync child directories.\n"
-                << "    --fu [--forceupdate]   : force update with older local files.\n"
-                << "    --sa [--syncadd]       : add new local files into the package.\n"
-                << "    --sd [--syncdelete]    : delete entities that not exist in local disk.\n"
-                << "    --wo [--withonly] ARGS : sync ARGS only(wildcard pattern).\n"
-                << "    --ig [--ignore] ARGS   : do not sync ARGS(wildcard pattern).\n"
-                << "                             you can use --wo and --ig at same time,\n"
+                << "    --k [--teakey] ARG     : Use ARG as key for TEA/XXTEA. default key is 0:0:0:0.\n"
+                << "    --v [--verbose]        : Print working information.\n"
+                << "    --g [--gluetime] ARG   : Use ARG as gluetime. ARG is UNIX timestamp(epoch).\n"
+                << "    --o [--output] ARG     : Save package as new file named ARG.\n"
+                << "    --f [--force]          : Force overwrite old package file.\n"
+                << "    --jc [--justcreate]    : Create new package automatically if not exist.\n"
+                << "    --nr [--norecursive]   : Do not sync child directories.\n"
+                << "    --fu [--forceupdate]   : Force update with older local files.\n"
+                << "    --sa [--syncadd]       : Add new local files into the package.\n"
+                << "    --sd [--syncdelete]    : Delete entities that not exist in local disk.\n"
+                << "    --wo [--withonly] ARGS : Sync ARGS only(wildcard pattern).\n"
+                << "    --ig [--ignore] ARGS   : Do not sync ARGS(wildcard pattern).\n"
+                << "                             You can use --wo and --ig at same time,\n"
                 << "                             but --wo ARGS will be ignored by --ig ARGS.\n";
         }
     }
