@@ -632,7 +632,7 @@ NPK_RESULT npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CST
     else
         __entityname = entityname;
 
-    if( ( res = npk_prepare_entityname( __entityname, namebuf, 512) ) != NPK_SUCCESS )
+    if( ( res = npk_prepare_entityname( __entityname, namebuf, 512 ) ) != NPK_SUCCESS )
         goto npk_package_add_file_return_with_error;
 
     if( ( res = npk_get_filetime( filename, &eb->info_.modified_ ) ) != NPK_SUCCESS )
@@ -663,6 +663,7 @@ NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )
 {
     NPK_ENTITYBODY* eb = entity;
     NPK_PACKAGEBODY* pb = package;
+    NPK_BUCKET* bucket = NULL;
 
     if( !entity )
         return npk_error( NPK_ERROR_EntityIsNull );
@@ -671,15 +672,27 @@ NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )
     if( eb->owner_ != package )
         return npk_error( NPK_ERROR_EntityIsNotInThePackage );
 
+    bucket = pb->bucket_[npk_get_bucket(eb->name_)];
+
     if( eb->prev_ )
         eb->prev_->next_ = eb->next_;
     if( eb->next_ )
         eb->next_->prev_ = eb->prev_;
 
+    if( eb->prevInBucket_ )
+        eb->prevInBucket_->nextInBucket_ = eb->nextInBucket_;
+    if( eb->nextInBucket_ )
+        eb->nextInBucket_->prevInBucket_ = eb->prevInBucket_;
+
     if( eb == pb->pEntityHead_ )
         pb->pEntityHead_ = eb->next_;
     if( eb == pb->pEntityTail_ )
         pb->pEntityTail_ = eb->prev_;
+
+    if( eb == bucket->pEntityHead_ )
+        bucket->pEntityHead_ = eb->nextInBucket_;
+    if( eb == bucket->pEntityTail_ )
+        bucket->pEntityTail_ = eb->prevInBucket_;
 
     pb->pEntityLatest_ = eb->next_;
     --pb->info_.entityCount_;
@@ -687,6 +700,39 @@ NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )
     NPK_SAFE_FREE( eb->name_ );
     NPK_SAFE_FREE( eb->localname_ );
     NPK_SAFE_FREE( eb );
+
+    return NPK_SUCCESS;
+}
+
+NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )
+{
+    NPK_ENTITYBODY* eb = NULL;
+    NPK_PACKAGEBODY* pb = package;
+    int i = 0;
+
+    if( !package )
+        return npk_error( NPK_ERROR_PackageIsNull );
+
+    while( pb->pEntityHead_ != NULL )
+    {
+        eb = pb->pEntityHead_;
+        pb->pEntityHead_ = pb->pEntityHead_->next_;
+        NPK_SAFE_FREE( eb->name_ );
+        NPK_SAFE_FREE( eb->localname_ );
+        NPK_SAFE_FREE( eb );
+    }
+
+    for( i = 0; i < NPK_HASH_BUCKETS; ++i )
+    {
+        pb->bucket_[i]->pEntityHead_ = NULL;
+        pb->bucket_[i]->pEntityTail_ = NULL;
+    }
+
+    pb->usingHashmap_ = false;
+    pb->pEntityHead_ = NULL;
+    pb->pEntityTail_ = NULL;
+    pb->pEntityLatest_ = NULL;
+    pb->info_.entityCount_ = 0;
 
     return NPK_SUCCESS;
 }

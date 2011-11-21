@@ -450,30 +450,6 @@ NPK_RESULT npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity )
     return __npk_package_add_entity( package, entity, true );
 }
 
-NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )
-{
-    NPK_ENTITYBODY* eb = NULL;
-    NPK_PACKAGEBODY* pb = package;
-
-    if( !package )
-        return npk_error( NPK_ERROR_PackageIsNull );
-
-    while( pb->pEntityHead_ != NULL )
-    {
-        eb = pb->pEntityHead_;
-        pb->pEntityHead_ = pb->pEntityHead_->next_;
-        NPK_SAFE_FREE( eb->name_ );
-        NPK_SAFE_FREE( eb->localname_ );
-        NPK_SAFE_FREE( eb );
-    }
-    pb->info_.entityCount_ = 0;
-    pb->pEntityHead_ = NULL;
-    pb->pEntityTail_ = NULL;
-    pb->pEntityLatest_ = NULL;
-
-    return NPK_SUCCESS;
-}
-
 /* adler32 algorithm from http://en.wikipedia.org/wiki/Adler-32 */
 NPK_HASHKEY npk_get_bucket( NPK_CSTR name )
 {
