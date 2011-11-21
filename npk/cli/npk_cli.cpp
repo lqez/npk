@@ -35,6 +35,7 @@
     #include <string.h>
     #define PATH_SEPARATOR '/'
     #define strnicmp strncasecmp
+    #define stricmp strcasecmp
 #endif
 
 #if defined( NPK_CASESENSITIVE )
@@ -80,6 +81,7 @@ bool syncdelete = false;
 bool forceupdate = false;
 bool justcreate = false;
 
+ENTITYLIST* currentList;
 NPK_FLAG currentflag;
 STRLIST withlist;
 STRLIST ignorelist;
@@ -403,10 +405,10 @@ void help()
             cout << "sort: Sort entities by rules\n"
                 << "usage: npk <package> -sort <ENTITY1[@ORDER]> [RULE2] ...\n"
                 << "       You can use wildcard pattern on filename.\n"
-                << "note: Rules are applied in order. Remain entities are shipped by no order\n"
+                << "note: Rules are applied in order. Remain entities are shipped by ascending order.\n"
                 << "\n"
                 << "order:\n"
-                << "    ASC  [A] : Sort entities by ascending order\n"
+                << "    ASC  [A] : Sort entities by ascending order (default)\n"
                 << "    DESC [D] : Sort entities by descending order\n"
                 << "\n"
                 << "example:\n"
@@ -1029,6 +1031,119 @@ void expt()
 
     if( verbose )
         cout << count << " file(s) exported.\n";
+}
+
+bool compare_for_entity_sort( NPK_ENTITY a, NPK_ENTITY b )
+{
+    return ( -1 == stricmp( ((NPK_ENTITYBODY*)a)->name_, ((NPK_ENTITYBODY*)b)->name_ ));
+}
+
+bool compare_for_entity_sort_desc( NPK_ENTITY a, NPK_ENTITY b )
+{
+    return ( -1 == stricmp( ((NPK_ENTITYBODY*)b)->name_, ((NPK_ENTITYBODY*)a)->name_ ));
+}
+
+bool sort_tfp( NPK_ENTITY entity )
+{
+    npk_package_detach_entity( package, entity );
+    currentList->push_back(entity);
+    return true;
+}
+
+void sort()
+{
+    NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
+
+    int count = 0;
+    int remain = 0;
+    int l = 0;
+    ENTITYLIST el[256];
+    bool ascending[256];
+
+    while( n < c )
+    {
+        ++n;
+        if( n >= c )
+            break;
+        if( v[n][0] == '-' )
+            break;
+
+        int ccount = 0;
+        char entityname[512];
+        strcpy( entityname, v[n] );
+        char *orderchar = NULL;
+
+        ascending[l] = true;
+        currentList = &el[l];
+        orderchar = entityname;
+
+        while( ( orderchar = strchr( orderchar, '@' ) ) )
+        {
+            *orderchar = '\0';
+            orderchar++;
+            if( ( strnicmp( orderchar, "D", 1 ) == 0 )
+             || ( strnicmp( orderchar, "DESC", 4 ) == 0 ) )
+                ascending[l] = false;
+        }
+
+        if( has_wildcard_pattern( v[n] ) )
+        {
+            ccount = traverse_package( sort_tfp, entityname );
+        }
+        else
+        {
+            el[l].push_back( entity );
+            ccount = 1;
+        }
+
+        if( verbose )
+        {
+            cout << "sorting " << entityname;
+            if( ascending[l] )
+                cout << " by ascending order\n\t" << ccount << " entity(s).\n";
+            else
+                cout << " by descending order\n\t" << ccount << " entity(s).\n";
+        }
+        count += ccount;
+        ++l;
+    }
+
+    // get remain entities
+    NPK_ENTITYBODY* eb = pb->pEntityHead_;
+    while( eb )
+    {
+        el[l].push_back( (NPK_ENTITY)eb );
+        eb = eb->next_;
+        ++remain;
+    }
+
+    if( verbose )
+    {
+        cout << count << " entity(s) were sorted and packed first, and\n";
+        cout << remain << " entity(s) were shipped by ascending order.\n";
+    }
+
+    if( count > 0 )
+    {
+        npk_package_detach_all_entity(package );
+
+        for( int i = 0; i <= l; ++i )
+        {
+            if( ascending[i] )
+                el[i].sort( compare_for_entity_sort );
+            else
+                el[i].sort( compare_for_entity_sort_desc );
+
+            ELI iter = el[i].begin();
+            while( iter != el[i].end() )
+            {
+                npk_package_add_entity( package, *iter );
+                eb = (NPK_ENTITYBODY*)*iter;
+                ++iter;
+            }
+        }
+        modified = true;
+    }
 }
 
 bool flag_tfp( NPK_ENTITY entity )

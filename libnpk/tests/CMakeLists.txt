@@ -6,7 +6,6 @@ set( ITEMS
     libnpk_read_entity_partial.cpp
     libnpk_case.cpp
     libnpk_using_fd.cpp
-    libnpk_streamable.cpp
 )
 
 if( DEV_MODE )
@@ -18,6 +17,7 @@ if( DEV_MODE )
         libnpk_export.cpp
         libnpk_hash.cpp
         libnpk_remove.cpp
+        libnpk_streamable.cpp
     )
 endif( DEV_MODE )
 

@@ -61,6 +61,8 @@
     CHECK( M_A == M_B )
 #define CHECK_EQUAL_STR( M_A, M_B ) \
     CHECK( strcmp((M_A), (M_B)) == 0 )
+#define CHECK_EQUAL_STR_SIZE( M_A, M_B, S ) \
+    CHECK( strncmp((M_A), (M_B), (S)) == 0 )
 
 static void CHECK_EQUAL_STR_WITH_FILE( const char* src, const char* filename )
 {
@@ -84,7 +86,7 @@ static void CHECK_EQUAL_STR_WITH_FILE( const char* src, const char* filename )
 
     CHECK_EQUAL( size, read( h, buf, size ) );
 
-    CHECK_EQUAL_STR( buf, buf );
+    CHECK_EQUAL_STR_SIZE( buf, src, size );
 
     free( buf );
     close( h );

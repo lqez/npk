@@ -207,16 +207,6 @@ NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* bu
     return res;
 }
 
-NPK_RESULT npk_entity_get_current_flag( NPK_ENTITY entity, NPK_FLAG* flag )
-{
-    NPK_ENTITYBODY* eb = entity;
-    if( !eb )
-        return npk_error( NPK_ERROR_EntityIsNull );
-
-    *flag = eb->info_.flag_;
-    return NPK_SUCCESS;
-}
-
 NPK_RESULT npk_entity_get_new_flag( NPK_ENTITY entity, NPK_FLAG* flag )
 {
     NPK_ENTITYBODY* eb = entity;
@@ -659,7 +649,7 @@ npk_package_add_file_return_with_error:
     return res;
 }
 
-NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )
+NPK_RESULT __npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity, bool deepRemove )
 {
     NPK_ENTITYBODY* eb = entity;
     NPK_PACKAGEBODY* pb = package;
@@ -697,45 +687,37 @@ NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )
     pb->pEntityLatest_ = eb->next_;
     --pb->info_.entityCount_;
 
-    NPK_SAFE_FREE( eb->name_ );
-    NPK_SAFE_FREE( eb->localname_ );
-    NPK_SAFE_FREE( eb );
-
-    return NPK_SUCCESS;
-}
-
-NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )
-{
-    NPK_ENTITYBODY* eb = NULL;
-    NPK_PACKAGEBODY* pb = package;
-    int i = 0;
-
-    if( !package )
-        return npk_error( NPK_ERROR_PackageIsNull );
-
-    while( pb->pEntityHead_ != NULL )
+    if( deepRemove )
     {
-        eb = pb->pEntityHead_;
-        pb->pEntityHead_ = pb->pEntityHead_->next_;
         NPK_SAFE_FREE( eb->name_ );
         NPK_SAFE_FREE( eb->localname_ );
         NPK_SAFE_FREE( eb );
     }
-
-    for( i = 0; i < NPK_HASH_BUCKETS; ++i )
+    else
     {
-        pb->bucket_[i]->pEntityHead_ = NULL;
-        pb->bucket_[i]->pEntityTail_ = NULL;
+        eb->next_ = NULL;
+        eb->prev_ = NULL;
+        eb->nextInBucket_ = NULL;
+        eb->prevInBucket_ = NULL;
     }
-
-    pb->usingHashmap_ = false;
-    pb->pEntityHead_ = NULL;
-    pb->pEntityTail_ = NULL;
-    pb->pEntityLatest_ = NULL;
-    pb->info_.entityCount_ = 0;
 
     return NPK_SUCCESS;
 }
 
+NPK_RESULT npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity )
+{
+    return __npk_package_remove_entity( package, entity, true );
+}
+
+NPK_RESULT npk_package_detach_entity( NPK_PACKAGE package, NPK_ENTITY entity )
+{
+    return __npk_package_remove_entity( package, entity, false );
+}
+
+NPK_RESULT __npk_package_remove_all_entity( NPK_PACKAGE package, bool deepRemove );
+NPK_RESULT npk_package_detach_all_entity( NPK_PACKAGE package )
+{
+    return __npk_package_remove_all_entity( package, false );
+}
 #endif /* NPK_DEV */
 

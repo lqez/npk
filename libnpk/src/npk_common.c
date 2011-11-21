@@ -478,3 +478,67 @@ NPK_RESULT npk_prepare_entityname( NPK_CSTR src, NPK_STR dst, size_t dstLen )
 
     return NPK_SUCCESS;
 }
+
+NPK_RESULT __npk_package_remove_all_entity( NPK_PACKAGE package, bool deepRemove )
+{
+    NPK_ENTITYBODY* eb = NULL;
+    NPK_PACKAGEBODY* pb = package;
+    int i = 0;
+
+    if( !package )
+        return npk_error( NPK_ERROR_PackageIsNull );
+
+    if( deepRemove )
+    {
+        while( pb->pEntityHead_ != NULL )
+        {
+            eb = pb->pEntityHead_;
+            pb->pEntityHead_ = pb->pEntityHead_->next_;
+            NPK_SAFE_FREE( eb->name_ );
+            NPK_SAFE_FREE( eb->localname_ );
+            NPK_SAFE_FREE( eb );
+        }
+    }
+    else
+    {
+        while( pb->pEntityHead_ != NULL )
+        {
+            eb = pb->pEntityHead_;
+            pb->pEntityHead_ = pb->pEntityHead_->next_;
+            eb->next_ = NULL;
+            eb->prev_ = NULL;
+            eb->nextInBucket_ = NULL;
+            eb->prevInBucket_ = NULL;
+        }
+    }
+
+    for( i = 0; i < NPK_HASH_BUCKETS; ++i )
+    {
+        pb->bucket_[i]->pEntityHead_ = NULL;
+        pb->bucket_[i]->pEntityTail_ = NULL;
+    }
+
+    pb->usingHashmap_ = false;
+    pb->pEntityHead_ = NULL;
+    pb->pEntityTail_ = NULL;
+    pb->pEntityLatest_ = NULL;
+    pb->info_.entityCount_ = 0;
+
+    return NPK_SUCCESS;
+}
+
+NPK_RESULT npk_package_remove_all_entity( NPK_PACKAGE package )
+{
+    return __npk_package_remove_all_entity( package, true );
+}
+
+NPK_RESULT npk_entity_get_current_flag( NPK_ENTITY entity, NPK_FLAG* flag )
+{
+    NPK_ENTITYBODY* eb = entity;
+    if( !eb )
+        return npk_error( NPK_ERROR_EntityIsNull );
+
+    *flag = eb->info_.flag_;
+    return NPK_SUCCESS;
+}
+

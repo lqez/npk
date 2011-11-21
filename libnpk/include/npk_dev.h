@@ -152,7 +152,9 @@ NPK_DEV_API NPK_RESULT  npk_package_clear( NPK_PACKAGE package );
 NPK_DEV_API NPK_RESULT  npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CSTR entityname, NPK_ENTITY* lpEntity );
 NPK_DEV_API NPK_RESULT  npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity );
 NPK_DEV_API NPK_RESULT  npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity );
+NPK_DEV_API NPK_RESULT  npk_package_detach_entity( NPK_PACKAGE package, NPK_ENTITY entity );
 NPK_DEV_API NPK_RESULT  npk_package_remove_all_entity( NPK_PACKAGE package );
+NPK_DEV_API NPK_RESULT  npk_package_detach_all_entity( NPK_PACKAGE package );
 
 #ifdef __cplusplus
 }
