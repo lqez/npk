@@ -55,7 +55,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.76"
+#define toolversion "1.8"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
 char                baseversion[16];
