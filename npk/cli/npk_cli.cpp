@@ -1110,6 +1110,7 @@ void sort()
 
     // get remain entities
     NPK_ENTITYBODY* eb = pb->pEntityHead_;
+    ascending[l] = true;
     while( eb )
     {
         el[l].push_back( (NPK_ENTITY)eb );
