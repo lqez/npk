@@ -550,7 +550,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
                             g_callbackSize,
                             savefilename,
                             (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS),
-                            false //(NPK_VERSION_CURRENT >= NPK_VERSION_USEXXTEAONHEADER)
+                            (NPK_VERSION_CURRENT >= NPK_VERSION_USEXXTEAONHEADER)
                             ) ) != NPK_SUCCESS )
         return res;
     NPK_SAFE_FREE( buf );
