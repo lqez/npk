@@ -126,7 +126,7 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
                                 g_callbackSize,
                                 filename,
                                 pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS,
-                                pb->info_.version_ >= NPK_VERSION_USEXXTEAONHEADER
+                                false//pb->info_.version_ >= NPK_VERSION_USEXXTEAONHEADER
                                 );
         if( res != NPK_SUCCESS ) return res;
 
