@@ -27,17 +27,17 @@ void xxtea_encode(int* v, int* k)
 
 void xxtea_encode_byte(char* v, int* k, int p)
 {
-	char y[] = "XtEaNpK";
+    char y[] = "XtEaNpK";
     *v = *v^y[p]^(char)(k[p%4]%0xFF);
 }
 
 void xxtea_encode_buffer(char* in_buffer, unsigned int in_size, int* key, int cipherRemains)
 {
-	char *p;
-	unsigned int remain = in_size % 8;
-	unsigned int align_size = in_size - remain;
-	for (p = in_buffer; p < in_buffer + align_size; p += 8)
-		xxtea_encode( (int*)p, key);
+    char *p;
+    unsigned int remain = in_size % 8;
+    unsigned int align_size = in_size - remain;
+    for (p = in_buffer; p < in_buffer + align_size; p += 8)
+        xxtea_encode( (int*)p, key);
     if( remain > 0 && cipherRemains )
         for (p = in_buffer + align_size; p < in_buffer + in_size; p += 1)
             xxtea_encode_byte( p, key, --remain );
@@ -60,23 +60,23 @@ void xxtea_decode(int* v,int* k)
         }
         z = v[n-1];
         y = v[0] -= MX;
-		sum -= DELTA;
+        sum -= DELTA;
     }
 }
 
 void xxtea_decode_byte(char* v, int* k, int p)
 {
-	char y[] = "XtEaNpK";
+    char y[] = "XtEaNpK";
     *v = *v^(char)(k[p%4]%0xFF)^y[p];
 }
 
 void xxtea_decode_buffer(char* in_buffer, unsigned int in_size, int* key, int cipherRemains)
 {
-	char *p;
-	unsigned int remain = in_size % 8;
-	unsigned int align_size = in_size - remain;
-	for (p = in_buffer; p < in_buffer + align_size; p += 8)
-		xxtea_decode( (int*)p, key);
+    char *p;
+    unsigned int remain = in_size % 8;
+    unsigned int align_size = in_size - remain;
+    for (p = in_buffer; p < in_buffer + align_size; p += 8)
+        xxtea_decode( (int*)p, key);
     if( remain > 0 && cipherRemains )
         for (p = in_buffer + align_size; p < in_buffer + in_size; p += 1)
             xxtea_decode_byte( p, key, --remain );
