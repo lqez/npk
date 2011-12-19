@@ -1,4 +1,6 @@
 #include <stddef.h>
+#include <stdio.h>
+
 #define DELTA 0x9e3779b9
 #define MX (((z>>5^y<<2) + (y>>3^z<<4)) ^ ((sum^y) + (k[(p&3)^e] ^ z)))
 
@@ -50,7 +52,7 @@ void xxtea_decode(int* v,int* k)
     rounds = 6 + 52/n;
     sum = rounds*DELTA;
     y = v[0];
-    do {
+    while (sum != 0) {
         e = (sum >> 2) & 3;
         for (p=n-1; p>0; p--) {
             z = v[p-1];
@@ -58,7 +60,8 @@ void xxtea_decode(int* v,int* k)
         }
         z = v[n-1];
         y = v[0] -= MX;
-    } while ((sum -= DELTA) != 0);
+		sum -= DELTA;
+    }
 }
 
 void xxtea_decode_byte(char* v, int* k, int p)
