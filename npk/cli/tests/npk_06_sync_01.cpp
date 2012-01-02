@@ -3,13 +3,13 @@
 
 int npk_06_sync_01( int argc, char * argv [] )
 {
-    CMD( "../npk test.npk -create -add sample.txt@remain.txt sample.txt@update.txt sample.txt@notdelete.txt --f --k 1:2:3:4" );
-    CMD( "mkdir sync_test_01" );
-    CP( "sample.txt sync_test_01/notadd.txt" );
-    CP( "sample.txt sync_test_01/remain.txt" );
-    CP( "sample2.txt sync_test_01/update.txt" );
+    CMD( "../npk test.npk -create -add sample.txt@remain.txt sample.txt@update.txt sample.txt@notdelete.txt --v --f --k 1:2:3:4" );
+	CMD( "mkdir sync_test_01" );
+    CP( "sample.txt", "sync_test_01/notadd.txt" );
+    CP( "sample.txt", "sync_test_01/remain.txt" );
+    CP( "sample2.txt", "sync_test_01/update.txt" );
 
-    CMD( "../npk test.npk -sync sync_test_01 --k 1:2:3:4" );
+    CMD( "../npk test.npk -sync sync_test_01 --v --k 1:2:3:4" );
 
     int teakey[4] = {1,2,3,4};
     NPK_PACKAGE pack = npk_package_open( "test.npk", teakey );

@@ -5,11 +5,11 @@ int npk_06_sync_03( int argc, char * argv [] )
 {
     CMD( "../npk test.npk -create -add sample.txt@remain.txt sample.txt@update.txt sample.txt@notupdate.tmp sample.txt@notdelete.tmp --f --k 1:2:3:4" );
     CMD( "mkdir sync_test_03" );
-    CP( "sample.txt sync_test_03/add.txt" );
-    CP( "sample.txt sync_test_03/notadd.tmp" );
-    CP( "sample.txt sync_test_03/remain.txt" );
-    CP( "sample2.txt sync_test_03/update.txt" );
-    CP( "sample2.txt sync_test_03/notupdate.tmp" );
+    CP( "sample.txt", "sync_test_03/add.txt" );
+    CP( "sample.txt", "sync_test_03/notadd.tmp" );
+    CP( "sample.txt", "sync_test_03/remain.txt" );
+    CP( "sample2.txt", "sync_test_03/update.txt" );
+    CP( "sample2.txt", "sync_test_03/notupdate.tmp" );
 
     CMD( "../npk test.npk -sync sync_test_03 --sa --sd --ig *.tmp --k 1:2:3:4" );
 

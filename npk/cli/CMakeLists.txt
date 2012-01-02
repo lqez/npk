@@ -18,6 +18,13 @@ else( WIN32 )
         )
 endif( WIN32 )
 
+if( MSVC_IDE )
+	foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
+		string( TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG )
+		set( CMAKE_RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "./" )
+	endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
+endif( MSVC_IDE )
+
 add_executable( npk ${SRCS} )
 target_link_libraries( npk libnpk )
 

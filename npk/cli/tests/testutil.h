@@ -4,8 +4,10 @@
 
 #include <iostream>
 #include <fcntl.h>
+#include <stdio.h>
 #if defined( WIN32 )
 #include <io.h>
+#include <sys/utime.h>
 #pragma warning ( disable : 4819 )
 #pragma warning ( disable : 4996 )
 #else
@@ -32,14 +34,17 @@
             if( buf[i] == '/' ) buf[i] = '\\'; \
         system(buf); \
     }
-#define CP(x) \
+#define CP(x,y) \
     { \
         char buf[512]; \
-        sprintf( buf, "copy %s", x ); \
+        sprintf( buf, "copy %s %s %%Y", x, y ); \
         size_t l = strlen(buf); \
-        for( size_t i = 0; i < l; ++i ) \
+        for( size_t i = 0; i < l; ++i ) { \
             if( buf[i] == '/' ) buf[i] = '\\'; \
+            if( buf[i] == '%' ) buf[i] = '/'; \
+		} \
         system(buf); \
+		_utime(y, NULL); \
     }
 #else
 #define CHECK(x) \
@@ -47,12 +52,19 @@
         __asm__("int $0x03");}}
 #define CMD(x) \
     system(x);
-#define CP(x) \
+#define CP(x,y) \
     { \
         char buf[512]; \
-        sprintf( buf, "cp %s", x ); \
+        sprintf( buf, "cp %s %s", x, y ); \
         CMD(buf); \
     }
+#endif
+
+#ifdef WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#define Sleep(x) usleep((x)*1000)
 #endif
 
 #define CHECK_CLOSE( M_A, M_B, M_EPSILON ) \
