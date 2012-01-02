@@ -458,7 +458,13 @@ NPK_HASHKEY npk_get_bucket( NPK_CSTR name )
 
     while( *name )
     {
-        a = (a + *name) % MOD_ADLER;
+#ifndef NPK_CASESENSITIVE
+        if( *name >= 'A' && *name <= 'Z' )
+            a = (a + (*name+32)) % MOD_ADLER;
+        else
+#endif
+            a = (a + *name) % MOD_ADLER;
+
         b = (b + a) % MOD_ADLER;
         ++name;
     }

@@ -15,10 +15,11 @@ int libnpk_hash( int argc, char * argv [] )
 	int teakey[4] = {1,2,3,4};
 	CHECK( NPK_SUCCESS == npk_package_alloc( &pack, teakey ) );
 	char entityname[items][100];
+    char ventityname[100];
 
 	for( int t = 0; t < items; ++t )
 	{
-		sprintf( entityname[t], "%c%c%c%c_%d.txt", rand()%26+65, rand()%26+65, rand()%26+65, rand()%26+65, t );
+		sprintf( entityname[t], "%c%c%c%c_%d.TXT", rand()%26+65, rand()%26+65, rand()%26+65, rand()%26+65, t );
 		CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", entityname[t], &entity ) );
 	}
 	CHECK( NPK_SUCCESS == npk_package_save( pack, "foo_hash.npk", true ) );
@@ -28,6 +29,22 @@ int libnpk_hash( int argc, char * argv [] )
 	CHECK( pack = npk_package_open( "foo_hash.npk", teakey ) );
 	for( int t = items-1; t >= 0; --t )
 	{
+        strcpy( ventityname, entityname[t] );
+        char*v = ventityname;
+        while( *v )
+        {
+            if( *v >= 'A' && *v <= 'Z' )
+                *v = *v + 32;
+            ++v;
+        }
+
+#ifdef NPK_CASESENSITIVE
+		entity = npk_package_get_entity( pack, ventityname );
+		CHECK( entity == NULL );
+#else
+		entity = npk_package_get_entity( pack, ventityname );
+		CHECK( entity != NULL );
+#endif
 		entity = npk_package_get_entity( pack, entityname[t] );
 		CHECK( entity != NULL );
 	}
