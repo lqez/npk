@@ -4,6 +4,11 @@ if( CASE_SESITIVE )
     add_definitions( -DNPK_CASESENSITIVE )
 endif( CASE_SESITIVE )
 
+if( USE_NPK_PREFIX )
+    add_definitions( -DNPK_PREFIX )
+    add_definitions( -DNPK_PREFIX_NAME=${NPK_PREFIX} )
+endif( USE_NPK_PREFIX )
+
 if( WIN32 )
     set( SRCS
         npk_cli.cpp

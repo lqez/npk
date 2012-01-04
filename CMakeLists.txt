@@ -13,6 +13,14 @@ set( USE_ZLIB_PREFIX OFF
     CACHE BOOL "Turn on to use zlib's Z_PREFIX option (to prevent collision of function names)."
     )
 
+set( USE_NPK_PREFIX OFF
+    CACHE BOOL "Turn on to prevent collision of npk function names while linking."
+    )
+
+set( NPK_PREFIX NPK__
+    CACHE STRING "Prefix for function names. (this will be used when you turn USE_NPK_PREFIX on)"
+    )
+
 set( DEV_MODE OFF
     CACHE BOOL "Build developer version library. Turn on if you want to build npk cli/gui tools."
     )

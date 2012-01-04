@@ -47,6 +47,11 @@ if( USE_ZLIB_PREFIX )
     add_definitions( -DZ_PREFIX )
 endif( USE_ZLIB_PREFIX )
 
+if( USE_NPK_PREFIX )
+    add_definitions( -DNPK_PREFIX )
+    add_definitions( -DNPK_PREFIX_NAME=${NPK_PREFIX} )
+endif( USE_NPK_PREFIX )
+
 if( CASE_SESITIVE )
     add_definitions( -DNPK_CASESENSITIVE )
 endif( CASE_SESITIVE )

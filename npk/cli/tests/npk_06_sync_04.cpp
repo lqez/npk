@@ -8,7 +8,7 @@ int npk_06_sync_04( int argc, char * argv [] )
     CMD( "mkdir sync_test_04/nested" );
     CP( "sample2.txt", "sync_test_04/add1.txt" );
     CP( "sample2.txt", "sync_test_04/add2.test" );
-    CP( "sample2.", "txt sync_test_04/nested/add3.tmp" );
+    CP( "sample2.txt", "sync_test_04/nested/add3.tmp" );
 
     CMD( "../npk test.npk -create -sync sync_test_04 --sa -flag \"*.txt@C\" \"add2*@E\" \"*add3.tmp@C@E\" --v --f --k 1:2:3:4" );
 
