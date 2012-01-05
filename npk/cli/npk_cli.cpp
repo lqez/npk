@@ -55,7 +55,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.8"
+#define toolversion "1.81"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
 char                baseversion[16];
@@ -413,7 +413,7 @@ void help()
                 << "\n"
                 << "example:\n"
                 << "    npk foo.npk -sort *@A\n"
-                << "    npk foo.npk -flag *.xml *.thumbnail.*@ASC *@ASC --v\n"
+                << "    npk foo.npk -sort *.xml *.thumbnail.*@ASC *@ASC --v\n"
                 << "\n"
                 << "options:\n"
                 << "    --k [--teakey] ARG : Use ARG as key for TEA/XXTEA. default key is 0:0:0:0.\n"
@@ -1035,12 +1035,12 @@ void expt()
 
 bool compare_for_entity_sort( NPK_ENTITY a, NPK_ENTITY b )
 {
-    return ( -1 == stricmp( ((NPK_ENTITYBODY*)a)->name_, ((NPK_ENTITYBODY*)b)->name_ ));
+    return ( 0 > stricmp( ((NPK_ENTITYBODY*)a)->name_, ((NPK_ENTITYBODY*)b)->name_ ));
 }
 
 bool compare_for_entity_sort_desc( NPK_ENTITY a, NPK_ENTITY b )
 {
-    return ( -1 == stricmp( ((NPK_ENTITYBODY*)b)->name_, ((NPK_ENTITYBODY*)a)->name_ ));
+    return ( 0 > stricmp( ((NPK_ENTITYBODY*)b)->name_, ((NPK_ENTITYBODY*)a)->name_ ));
 }
 
 bool sort_tfp( NPK_ENTITY entity )
