@@ -368,7 +368,7 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
 
     if( pb->usingHashmap_ )
     {
-        bucket = pb->bucket_[npk_get_bucket(entityname)];
+        bucket = pb->bucket_[npk_get_bucket(buf)];
         if( bucket != NULL )
         {
             eb = bucket->pEntityHead_;
@@ -393,9 +393,9 @@ NPK_ENTITY npk_package_get_entity( NPK_PACKAGE package, NPK_CSTR entityname )
         while( eb != NULL )
         {
 #ifdef NPK_CASESENSITIVE
-            if( strcmp( eb->name_, entityname ) == 0 )
+            if( strcmp( eb->name_, buf ) == 0 )
 #else
-            if( stricmp( eb->name_, entityname ) == 0 )
+            if( stricmp( eb->name_, buf ) == 0 )
 #endif
             {
                 pb->pEntityLatest_ = eb;

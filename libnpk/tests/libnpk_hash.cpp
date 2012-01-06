@@ -19,7 +19,7 @@ int libnpk_hash( int argc, char * argv [] )
 
 	for( int t = 0; t < items; ++t )
 	{
-		sprintf( entityname[t], "%c%c%c%c_%d.TXT", rand()%26+65, rand()%26+65, rand()%26+65, rand()%26+65, t );
+		sprintf( entityname[t], "a\\b/%c%c%c%c_%d.TXT", rand()%26+65, rand()%26+65, rand()%26+65, rand()%26+65, t );
 		CHECK( NPK_SUCCESS == npk_package_add_file( pack, "sample.txt", entityname[t], &entity ) );
 	}
 	CHECK( NPK_SUCCESS == npk_package_save( pack, "foo_hash.npk", true ) );
