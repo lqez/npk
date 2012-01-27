@@ -283,10 +283,8 @@ NPK_PACKAGE npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long s
 
 npk_package_open_return_null_with_free:
     if( pb )
-        if( pb->handle_ > 0 )
-            npk_close( pb->handle_ );
+        npk_package_close( pb );
 
-    NPK_SAFE_FREE( pb );
     return NULL;
 }
 
@@ -313,10 +311,8 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )
 
 npk_package_open_return_null_with_free:
     if( pb )
-        if( pb->handle_ > 0 )
-            npk_close( pb->handle_ );
+        npk_package_close( pb );
 
-    NPK_SAFE_FREE( pb );
     return NULL;
 }
 
