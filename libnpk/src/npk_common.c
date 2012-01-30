@@ -197,7 +197,7 @@ NPK_RESULT npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bchec
 
 NPK_RESULT npk_close( NPK_HANDLE handle )
 {
-    if( handle != 0 )
+    if( handle > 0 )
         close( handle );
 
     return NPK_SUCCESS;
