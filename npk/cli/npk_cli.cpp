@@ -1,7 +1,7 @@
 /*
 
     npk - General-Purpose File Packing Library
-    Copyright (c) 2009-2011 Park Hyun woo(ez.amiryo@gmail.com)
+    Copyright (c) 2009-2012 Park Hyun woo(ez.amiryo@gmail.com)
 
     npk command-line tool
     
@@ -55,7 +55,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.81"
+#define toolversion "1.82"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
 char                baseversion[16];
@@ -491,14 +491,18 @@ bool find_option( const char* option, int* pos )
 {
     char buf[512];
     sprintf( buf, "--%s", option );
+    size_t l = strlen(buf);
 
     for( int i = 0; i < c; ++i )
     {
-        if( strncmp( v[i], buf, strlen(buf) ) == 0 )
+        if( strncmp( v[i], buf, l ) == 0 )
         {
-            if( ( pos != NULL ) && ( i < c-1 ) )
-                *pos = i + 1;;
-            return true;
+            if( v[i][l] == '\0' || v[i][l] == ' ' )
+            {
+                if( ( pos != NULL ) && ( i < c-1 ) )
+                    *pos = i + 1;;
+                return true;
+            }
         }
     }
     return false;
@@ -603,7 +607,7 @@ void get_withlist()
     withlist.clear();
 
     int pos = -1;
-    if( find_option( "ow", &pos ) || find_option( "onlywith", &pos ) )
+    if( find_option( "wo", &pos ) || find_option( "withonly", &pos ) )
     {
         if( pos == -1 )
             bad_syntax();
