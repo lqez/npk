@@ -605,6 +605,8 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
 
     if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA )
         tea_decode_buffer(buf, size, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
+    if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_XXTEA )
+        xxtea_decode_buffer(buf, size, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
 
 #ifdef NPK_PLATFORM_WINDOWS
     if( g_useCriticalSection )
