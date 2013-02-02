@@ -1,4 +1,4 @@
-script: build.sh
+script: ./build.sh
 
 before_install:
   - sudo apt-get install cmake
