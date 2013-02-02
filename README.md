@@ -1,7 +1,7 @@
 npk - neat package system [en:pack]
 ===================================
 
-- Copyright (c) 2009-2012 Park Hyun-woo(ez.amiryo@gmail.com)
+- Copyright (c) 2009-2013 Park Hyun-woo(ez.amiryo@gmail.com)
 - Distributed under MIT license. (see LICENSE for detail)
 
 

@@ -33,22 +33,9 @@ set( BUILD_SHARED_LIBS OFF
     CACHE BOOL "Build libnpk as shared(like dylib, so or dll) library."
     )
 
-#set( BUILD_PYTHON_BINDING OFF
-#    CACHE STRING "Build Python binding (needed on npk gui tool, need swig)."
-#    )
-
-#set( BUILD_OBJECTIVEC_BINDING OFF
-#    CACHE STRING "Build Objective-C binding."
-#    )
-
-#set( BUILD_JNI_BINDING OFF
-#    CACHE STRING "Build JNI binding."
-#    )
-
 enable_testing()
 
 add_subdirectory( libnpk )
-add_subdirectory( binding )
 if( DEV_MODE )
     add_subdirectory( npk )
 endif( DEV_MODE )

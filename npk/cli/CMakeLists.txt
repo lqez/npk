@@ -32,6 +32,7 @@ endif( MSVC_IDE )
 
 add_executable( npk ${SRCS} )
 target_link_libraries( npk libnpk )
+install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/npk DESTINATION bin)
 
 enable_testing()
 add_subdirectory( tests )

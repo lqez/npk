@@ -1,7 +1,7 @@
 /*
 
-    npk - General-Purpose File Packing Library
-    Copyright (c) 2009-2012 Park Hyun woo(ez.amiryo@gmail.com)
+    npk - neat package system
+    Copyright (c) 2009-2013 Park Hyun woo(ez.amiryo@gmail.com)
 
     npk command-line tool
     
@@ -55,7 +55,7 @@ typedef list<NPK_ENTITY>::iterator ELI;
 typedef list<string> STRLIST;
 typedef list<string>::iterator SLI;
 
-#define toolversion "1.82"
+#define toolversion "1.83"
 #define V(x,y) (strcmp(v[x],y) == 0)
 
 char                baseversion[16];
@@ -267,7 +267,7 @@ void version()
 {
     cout << "npk command-line client, version " << toolversion << ".\n"
         << "Based on libnpk, npk format " << baseversion << ".\n\n"
-        << "Copyright (C) 2009-2011 Park Hyun woo(ez.amiryo@gmail.com)\n";
+        << "Copyright (C) 2009-2013 Park Hyun woo(ez.amiryo@gmail.com)\n";
 }
 
 void info()
