@@ -1,6 +1,6 @@
 npk - neat package system [en:pack]
 ===================================
-![Build status](https://travis-ci.org/lqez/npk.png?branch=master)
+[![Build Status](https://travis-ci.org/lqez/npk.png)](https://travis-ci.org/lqez/npk)
 
 - Copyright (c) 2009-2013 Park Hyun-woo(ez.amiryo@gmail.com)
 - Distributed under MIT license. (see LICENSE for detail)
