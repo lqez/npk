@@ -1,6 +1,6 @@
 /*
 
-    npk - General-Purpose File Packing Library
+    npk - neat package system
     See README for copyright and license information.
 
 */
@@ -40,6 +40,25 @@ NPK_API NPK_STR     npk_error_to_str            ( NPK_RESULT res );
 NPK_API void        npk_enable_criticalsection  ();
 NPK_API void        npk_disable_criticalsection ();
 #endif
+
+// custom file I/O
+typedef void*  (*npk_open_func)  (const char*, const char*); // filename, mode as per fopen (ie "r" "wb+" etc)
+typedef int    (*npk_close_func) (void*);
+typedef size_t (*npk_read_func)  (void*, size_t, size_t, void*);
+typedef size_t (*npk_write_func) (const void*, size_t, size_t, void*);
+typedef int    (*npk_seek_func)  (void*, long, int);
+typedef long   (*npk_tell_func)  (void*);
+typedef void   (*npk_rewind_func)(void*);
+typedef void   (*npk_commit_func)(void*);
+
+NPK_API void npk_io_open_func  (npk_open_func func);
+NPK_API void npk_io_close_func (npk_close_func func);
+NPK_API void npk_io_read_func  (npk_read_func func);
+NPK_API void npk_io_write_func (npk_write_func func);
+NPK_API void npk_io_seek_func  (npk_seek_func func);
+NPK_API void npk_io_tell_func  (npk_tell_func func);
+NPK_API void npk_io_rewind_func(npk_rewind_func func);
+NPK_API void npk_io_commit_func(npk_commit_func func);
 
 #ifdef __cplusplus
 }

@@ -1,13 +1,12 @@
 /*
 
-    npk - General-Purpose File Packing Library
+    npk - neat package system
     See README for copyright and license information.
 
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <memory.h>
 #include <time.h>
 #include <sys/stat.h>
 #include "npk.h"

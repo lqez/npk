@@ -1,6 +1,6 @@
 /*
 
-    npk - General-Purpose File Packing Library
+    npk - neat package system
     See README for copyright and license information.
 
     configuration of npk
@@ -31,6 +31,7 @@
 #if defined(_WIN32) || defined(_WIN64)
     #define NPK_PLATFORM_WINDOWS
     #define NPK_PLATFORM_NAME "Windows"
+ 	typedef int mode_t;
 #elif defined(linux) || defined(__linux) || defined(__linux__)
     #define NPK_PLATFORM_LINUX
     #define NPK_PLATFORM_NAME "Linux"

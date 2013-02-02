@@ -1,6 +1,6 @@
 /*
 
-    npk - General-Purpose File Packing Library
+    npk - neat package system
     See README for copyright and license information.
 
 */
@@ -11,7 +11,6 @@
 #include <time.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <memory.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -112,22 +111,28 @@ NPK_RESULT npk_flush( NPK_HANDLE handle )
 {
     if( handle != 0 )
     {
+        if(__commit == NULL)
 #ifdef NPK_PLATFORM_WINDOWS
-    _commit( handle );
+            _commit( handle );
 #else
-    fsync( handle );
+            fsync( handle );
 #endif
+        else
+            __commit( (void*)handle );
     }
     return NPK_SUCCESS;
 }
 
 long npk_tell( NPK_HANDLE handle )
 {
+    if(__seek == NULL)
 #ifdef NPK_PLATFORM_WINDOWS
-    return _lseek( handle, 0, SEEK_CUR );
+        return _lseek( handle, 0, SEEK_CUR );
 #else
-    return lseek( handle, 0, SEEK_CUR );
+        return lseek( handle, 0, SEEK_CUR );
 #endif
+    else
+        return __seek( (void*)handle, 0, SEEK_CUR );
 }
 
 NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
@@ -150,7 +155,10 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
             if( (int)( size - totalwritten ) < unit )
                 unit = size - totalwritten;
 
-            currentwritten = write( handle, (NPK_STR)buf + totalwritten, (unsigned int)unit );
+            if( __write == NULL)
+                currentwritten = write( handle, (NPK_STR)buf + totalwritten, (unsigned int)unit );
+            else
+                currentwritten = __write( (NPK_STR)buf + totalwritten, sizeof(char*), (unsigned int)unit, (void*)handle );
 
             if( currentwritten < unit )
             {
@@ -257,7 +265,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle, bool forcePro
     void*               buf = NULL;
     void*               buf_for_zlib = NULL;
     NPK_SIZE            size, endpos, startpos;
-    int                 filehandle;
+    NPK_HANDLE          filehandle;
     int                 z_res;
 
     if( !eb )
@@ -453,7 +461,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
     NPK_SIZE            len;
     int                 savecount = 0;
     NPK_STR             savefilename = NULL;
-    int                 savefilehandle;
+    NPK_HANDLE          savefilehandle;
     NPK_CHAR*           buf;
     NPK_CHAR*           buf_pos;
     NPK_PACKAGEINFO_V23 header_v23;

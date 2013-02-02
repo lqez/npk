@@ -1,6 +1,6 @@
 /*
 
-    npk - General-Purpose File Packing Library
+    npk - neat package system
     See README for copyright and license information.
 
     header for npk development mode
@@ -116,7 +116,7 @@ NPK_DEV_API NPK_HASHKEY npk_get_bucket( NPK_CSTR name );
 NPK_DEV_API NPK_RESULT  npk_prepare_entityname( NPK_CSTR src, NPK_STR dst, size_t dstLen );
 
 /* File I/O Functions */
-NPK_DEV_API NPK_RESULT  npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist );
+NPK_DEV_API NPK_RESULT  npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist );
 NPK_DEV_API NPK_RESULT  npk_flush( NPK_HANDLE handle );
 NPK_DEV_API NPK_RESULT  npk_close( NPK_HANDLE handle );
 
@@ -155,6 +155,16 @@ NPK_DEV_API NPK_RESULT  npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTI
 NPK_DEV_API NPK_RESULT  npk_package_detach_entity( NPK_PACKAGE package, NPK_ENTITY entity );
 NPK_DEV_API NPK_RESULT  npk_package_remove_all_entity( NPK_PACKAGE package );
 NPK_DEV_API NPK_RESULT  npk_package_detach_all_entity( NPK_PACKAGE package );
+
+
+extern npk_open_func   __open;
+extern npk_close_func  __close;
+extern npk_read_func   __read;
+extern npk_write_func  __write;
+extern npk_seek_func   __seek;
+extern npk_tell_func   __tell;
+extern npk_rewind_func __rewind;
+extern npk_commit_func __commit;
 
 #ifdef __cplusplus
 }

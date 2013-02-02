@@ -1,11 +1,12 @@
 /*
 
-    npk - General-Purpose File Packing Library
+    npk - neat package system
     See README for copyright and license information.
 
     base type and definitions of npk
 
 */
+#include <stddef.h>
 #include "npk_conf.h"
 
 #ifndef _NPK_BASE_H_
@@ -15,7 +16,7 @@
 typedef int                             NPK_RESULT;
 typedef void*                           NPK_PACKAGE;
 typedef void*                           NPK_ENTITY;
-typedef int                             NPK_HANDLE;
+typedef ptrdiff_t                       NPK_HANDLE;
 typedef unsigned int                    NPK_FLAG;
 typedef unsigned int                    NPK_HASHKEY;
 typedef int                             NPK_TEAKEY;

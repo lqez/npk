@@ -1,6 +1,6 @@
 /*
 
-    npk - General-Purpose File Packing Library
+    npk - neat package system
     See README for copyright and license information.
 
     npk error code
@@ -11,7 +11,7 @@
 #define _NPK_ERROR_H_
 
 // Success
-#define NPK_SUCCESS                                         1
+#define NPK_SUCCESS                                              1
 
 
 // Error

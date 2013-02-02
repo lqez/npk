@@ -1,6 +1,6 @@
 /*
 
-    npk - General-Purpose File Packing Library
+    npk - neat package system
     See README for copyright and license information.
 
 */
@@ -11,7 +11,6 @@
 #include <time.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <memory.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -30,6 +29,25 @@
 #include "../external/tea/tea.h"
 #include "../external/xxtea/xxtea.h"
 #include "../external/zlib/zlib.h"
+
+
+npk_open_func   __open   = NULL;
+npk_close_func  __close  = NULL;
+npk_read_func   __read   = NULL;
+npk_write_func  __write  = NULL;
+npk_seek_func   __seek   = NULL;
+npk_tell_func   __tell   = NULL;
+npk_rewind_func __rewind = NULL;
+npk_commit_func __commit = NULL;
+
+NPK_API void npk_io_open_func  (npk_open_func func)  { __open   = func; }
+NPK_API void npk_io_close_func (npk_close_func func) { __close  = func; }
+NPK_API void npk_io_read_func  (npk_read_func func)  { __read   = func; }
+NPK_API void npk_io_write_func (npk_write_func func) { __write  = func; }
+NPK_API void npk_io_seek_func  (npk_seek_func func)  { __seek   = func; }
+NPK_API void npk_io_tell_func  (npk_tell_func func)  { __tell   = func; }
+NPK_API void npk_io_rewind_func(npk_rewind_func func){ __rewind = func; }
+NPK_API void npk_io_commit_func(npk_commit_func func){ __commit = func; }
 
 
 NPK_RESULT npk_error( NPK_RESULT res )
@@ -161,35 +179,67 @@ void npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt )
     *pt = (NPK_TIME)((*pft - 116444736000000000LL)/10000000LL);
 }
 
-NPK_RESULT npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist )
+NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist )
 {
-    if( createfile )
+    if(__open == NULL)
     {
-        if( bcheckexist )
+        if( createfile )
         {
-            *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, S_IREAD | S_IWRITE );
+            mode_t mask = umask(0);
+            if( bcheckexist )
+            {
+#ifdef NPK_PLATFORM_WINDOWS
+                *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, S_IREAD & S_IWRITE );
+#else
+                *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, 0666 );
+                if( *handle != -1 ) fchmod( *handle, 0666&~mask );
+#endif
+            }
+            else
+            {
+                *handle = creat( fileName, S_IREAD | S_IWRITE );
+                if( errno == EACCES )
+                    return( npk_error( NPK_ERROR_ReadOnlyFile ) );
+                close( *handle );
+
+#ifdef NPK_PLATFORM_WINDOWS
+                *handle = open( fileName, O_CREAT | O_RDWR | O_BINARY, S_IREAD & S_IWRITE );
+#else
+                *handle = open( fileName, O_CREAT | O_RDWR | O_BINARY, 0666 );
+                if( *handle != -1 ) fchmod( *handle, 0666&~mask );
+#endif
+            }
+            umask( mask );
         }
         else
-        {
-            *handle = creat( fileName, S_IREAD | S_IWRITE );
-            if( errno == EACCES )
-                return( npk_error( NPK_ERROR_ReadOnlyFile ) );
-            close( *handle );
+            *handle = open( fileName, O_BINARY | O_RDONLY );
 
-            *handle = open( fileName, O_CREAT | O_RDWR | O_BINARY, S_IREAD | S_IWRITE );
+        if( *handle == -1 )
+        {
+            if( errno == ENOENT )
+                return( npk_error( NPK_ERROR_FileNotFound ) );
+            else if( errno == EEXIST )
+                return( npk_error( NPK_ERROR_FileAlreadyExists ) );
+            else
+                return( npk_error( NPK_ERROR_FileOpenError ) );
         }
     }
     else
-        *handle = open( fileName, O_BINARY | O_RDONLY );
-
-    if( *handle == -1 )
     {
-        if( errno == ENOENT )
-            return( npk_error( NPK_ERROR_FileNotFound ) );
-        else if( errno == EEXIST )
-            return( npk_error( NPK_ERROR_FileAlreadyExists ) );
+        if( createfile )
+            *handle = (NPK_HANDLE)__open( fileName, "wb+" );
         else
-            return( npk_error( NPK_ERROR_FileOpenError ) );
+            *handle = (NPK_HANDLE)__open( fileName, "rb+" );
+
+        if( *handle == -1 )
+        {
+            if( errno == ENOENT )
+                return( npk_error( NPK_ERROR_FileNotFound ) );
+            else if( errno == EEXIST )
+                return( npk_error( NPK_ERROR_FileAlreadyExists ) );
+            else
+                return( npk_error( NPK_ERROR_FileOpenError ) );
+        }
     }
 
     return NPK_SUCCESS;
@@ -198,18 +248,24 @@ NPK_RESULT npk_open( int* handle, NPK_CSTR fileName, bool createfile, bool bchec
 NPK_RESULT npk_close( NPK_HANDLE handle )
 {
     if( handle > 0 )
-        close( handle );
+        if(__close == NULL)
+            close( handle );
+        else
+            __close((void*)handle);
 
     return NPK_SUCCESS;
 }
 
 long npk_seek( NPK_HANDLE handle, long offset, int origin )
 {
+    if(__seek == NULL)
 #ifdef NPK_PLATFORM_WINDOWS
-    return _lseek( handle, offset, origin );
+        return _lseek( handle, offset, origin );
 #else
-    return lseek( handle, offset, origin );
+        return lseek( handle, offset, origin );
 #endif
+    else
+        return __seek((void*)handle, offset, origin);
 }
 
 NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
@@ -232,7 +288,10 @@ NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
             if( ( size - totalread ) < unit )
                 unit = size - totalread;
 
-            currentread = read( handle, (NPK_STR)buf + totalread, (unsigned int)unit );
+            if(__read == NULL)
+                currentread = read( handle, (NPK_STR)buf + totalread, (unsigned int)unit );
+            else
+                currentread = __read( (NPK_STR)buf + totalread, sizeof(char), unit, (void*)handle );
 
             if( currentread < unit )
             {
@@ -251,7 +310,11 @@ NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
     }
     else
     {
-        currentread = read( handle, (NPK_STR)buf, size );
+        
+        if(__read == NULL)
+            currentread = read( handle, (NPK_STR)buf, size );
+        else
+            currentread = __read( (NPK_STR)buf, sizeof(char), size, (void*)handle );
 
         if( currentread < size )
         {
