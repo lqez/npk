@@ -63,5 +63,9 @@ else( DEV_MODE )
     add_library( libnpk ${SRCS} ${TEA_SRCS} ${ZLIB_UNCOMP_SRCS} )
 endif( DEV_MODE )
 
+FILE(GLOB headerfiles "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+install(FILES ${headerfiles} DESTINATION include)
+install(TARGETS libnpk DESTINATION lib)
+
 enable_testing()
 add_subdirectory( tests )
