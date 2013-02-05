@@ -8,7 +8,7 @@ set( TEA_SRCS
     ./external/xxtea/xxtea.c
 )
 
-set( ZLIB_UNCOMP_SRCS
+set( ZLIB_SRCS
     ./external/zlib/adler32.c
     ./external/zlib/crc32.c
     ./external/zlib/infback.c
@@ -19,18 +19,18 @@ set( ZLIB_UNCOMP_SRCS
     ./external/zlib/zutil.c
 )
 
-set( ZLIB_COMP_SRCS
+set( ZLIB_SRCS_DEV_MODE
     ./external/zlib/deflate.c
     ./external/zlib/compress.c
     ./external/zlib/trees.c
 )
 
-set( SRCS
+set( NPK_SRCS
     ./src/npk.c
     ./src/npk_common.c
 )
 
-set( SRCS_DEV
+set( NPK_SRCS_DEV_MODE
     ./src/npk_dev.c
 )
 
@@ -38,9 +38,6 @@ if( WIN32 )
     if( NOT CMAKE_CL_64 )
         add_definitions( -D_USE_32BIT_TIME_T )
     endif( NOT CMAKE_CL_64 )
-    if( BUILD_SHARED_LIBS )
-        add_definitions( -DNPK_DLL -DNPK_EXPORTS )
-    endif( BUILD_SHARED_LIBS )
 endif( WIN32 )
 
 if( USE_ZLIB_PREFIX )
@@ -58,14 +55,22 @@ endif( CASE_SESITIVE )
 
 if( DEV_MODE )
     add_definitions( -DNPK_DEV )
-    add_library( libnpk ${SRCS} ${SRCS_DEV} ${TEA_SRCS} ${ZLIB_COMP_SRCS} ${ZLIB_UNCOMP_SRCS} )
+    set( SRCS ${NPK_SRCS} ${NPK_SRCS_DEV_MODE} ${TEA_SRCS} ${ZLIB_SRCS} ${ZLIB_SRCS_DEV_MODE} )
 else( DEV_MODE )
-    add_library( libnpk ${SRCS} ${TEA_SRCS} ${ZLIB_UNCOMP_SRCS} )
+    set( SRCS ${NPK_SRCS} ${TEA_SRCS} ${ZLIB_SRCS} )
 endif( DEV_MODE )
+
+add_library( libnpkStatic STATIC ${SRCS} )
+add_library( libnpkShared SHARED ${SRCS} )
+set_target_properties( libnpkStatic PROPERTIES OUTPUT_NAME libnpk )
+set_target_properties( libnpkShared PROPERTIES OUTPUT_NAME libnpk )
+set_target_properties( libnpkShared PROPERTIES COMPILE_DEFINITIONS "NPK_DLL")
+set_target_properties( libnpkShared PROPERTIES COMPILE_DEFINITIONS "NPK_EXPORTS")
 
 FILE(GLOB headerfiles "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 install(FILES ${headerfiles} DESTINATION include)
-install(TARGETS libnpk DESTINATION lib)
+install(TARGETS libnpkStatic DESTINATION lib)
+install(TARGETS libnpkShared DESTINATION lib)
 
 enable_testing()
 add_subdirectory( tests )

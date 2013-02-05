@@ -29,10 +29,6 @@ set( CASE_SENSITIVE OFF
     CACHE BOOL "Turn on to make entity names case-sensitive."
     )
 
-set( BUILD_SHARED_LIBS OFF
-    CACHE BOOL "Build libnpk as shared(like dylib, so or dll) library."
-    )
-
 enable_testing()
 
 add_subdirectory( libnpk )

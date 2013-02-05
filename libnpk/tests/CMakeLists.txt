@@ -26,22 +26,22 @@ create_test_sourcelist( TESTS
     ${ITEMS}
 )
 
-add_executable( libnpktests ${TESTS} )
-target_link_libraries( libnpktests libnpk )
+add_executable( libnpkTests ${TESTS} )
+target_link_libraries( libnpkTests libnpkStatic )
 
 remove( TESTS tests.cpp )
 
 # push test cases into the target
 foreach( test ${TESTS} )
     get_filename_component( TName ${test} NAME_WE )
-    add_test( ${TName} libnpktests ${TName} )
+    add_test( ${TName} libnpkTests ${TName} )
 endforeach( test )
 
 # copy test resources into test directory
 file( GLOB files "testres/[^.]*" )
 foreach( file ${files} )
     add_custom_command( 
-        TARGET libnpktests
+        TARGET libnpkTests
         POST_BUILD
         COMMAND ${CMAKE_COMMAND} ARGS -E copy "${file}" "${CMAKE_CURRENT_BINARY_DIR}/"
     )
