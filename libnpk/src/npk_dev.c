@@ -111,7 +111,7 @@ NPK_RESULT npk_flush( NPK_HANDLE handle )
 {
     if( handle != 0 )
     {
-        if(__commit == NULL)
+        if(!__use_commit)
 #ifdef NPK_PLATFORM_WINDOWS
             _commit( handle );
 #else
@@ -125,7 +125,7 @@ NPK_RESULT npk_flush( NPK_HANDLE handle )
 
 long npk_tell( NPK_HANDLE handle )
 {
-    if(__seek == NULL)
+    if(!__use_seek)
 #ifdef NPK_PLATFORM_WINDOWS
         return _lseek( handle, 0, SEEK_CUR );
 #else
@@ -155,7 +155,7 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
             if( (int)( size - totalwritten ) < unit )
                 unit = size - totalwritten;
 
-            if( __write == NULL)
+            if(!__use_write)
                 currentwritten = write( handle, (NPK_STR)buf + totalwritten, (unsigned int)unit );
             else
                 currentwritten = __write( (NPK_STR)buf + totalwritten, sizeof(char*), (unsigned int)unit, (void*)handle );

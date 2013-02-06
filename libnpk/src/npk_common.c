@@ -40,14 +40,23 @@ npk_tell_func   __tell   = NULL;
 npk_rewind_func __rewind = NULL;
 npk_commit_func __commit = NULL;
 
-NPK_API void npk_io_open_func  (npk_open_func func)  { __open   = func; }
-NPK_API void npk_io_close_func (npk_close_func func) { __close  = func; }
-NPK_API void npk_io_read_func  (npk_read_func func)  { __read   = func; }
-NPK_API void npk_io_write_func (npk_write_func func) { __write  = func; }
-NPK_API void npk_io_seek_func  (npk_seek_func func)  { __seek   = func; }
-NPK_API void npk_io_tell_func  (npk_tell_func func)  { __tell   = func; }
-NPK_API void npk_io_rewind_func(npk_rewind_func func){ __rewind = func; }
-NPK_API void npk_io_commit_func(npk_commit_func func){ __commit = func; }
+bool __use_open   = false;
+bool __use_close  = false;
+bool __use_read   = false;
+bool __use_write  = false;
+bool __use_seek   = false;
+bool __use_tell   = false;
+bool __use_rewind = false;
+bool __use_commit = false;
+
+NPK_API void npk_io_open_func  (npk_open_func func)  { __use_open   = true; __open   = func; }
+NPK_API void npk_io_close_func (npk_close_func func) { __use_close  = true; __close  = func; }
+NPK_API void npk_io_read_func  (npk_read_func func)  { __use_read   = true; __read   = func; }
+NPK_API void npk_io_write_func (npk_write_func func) { __use_write  = true; __write  = func; }
+NPK_API void npk_io_seek_func  (npk_seek_func func)  { __use_seek   = true; __seek   = func; }
+NPK_API void npk_io_tell_func  (npk_tell_func func)  { __use_tell   = true; __tell   = func; }
+NPK_API void npk_io_rewind_func(npk_rewind_func func){ __use_rewind = true; __rewind = func; }
+NPK_API void npk_io_commit_func(npk_commit_func func){ __use_commit = true; __commit = func; }
 
 
 NPK_RESULT npk_error( NPK_RESULT res )
@@ -181,7 +190,7 @@ void npk_filetime_to_unixtime( NPK_64BIT* pft, NPK_TIME* pt )
 
 NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, bool bcheckexist )
 {
-    if(__open == NULL)
+    if(!__use_open)
     {
         if( createfile )
         {
@@ -248,7 +257,7 @@ NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, boo
 NPK_RESULT npk_close( NPK_HANDLE handle )
 {
     if( handle > 0 )
-        if(__close == NULL)
+        if(!__use_close)
             close( handle );
         else
             __close((void*)handle);
@@ -258,7 +267,7 @@ NPK_RESULT npk_close( NPK_HANDLE handle )
 
 long npk_seek( NPK_HANDLE handle, long offset, int origin )
 {
-    if(__seek == NULL)
+    if(!__use_seek)
 #ifdef NPK_PLATFORM_WINDOWS
         return _lseek( handle, offset, origin );
 #else
@@ -288,7 +297,7 @@ NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
             if( ( size - totalread ) < unit )
                 unit = size - totalread;
 
-            if(__read == NULL)
+            if(!__use_read)
                 currentread = read( handle, (NPK_STR)buf + totalread, (unsigned int)unit );
             else
                 currentread = __read( (NPK_STR)buf + totalread, sizeof(char), unit, (void*)handle );
@@ -311,7 +320,7 @@ NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
     else
     {
         
-        if(__read == NULL)
+        if(!__use_read)
             currentread = read( handle, (NPK_STR)buf, size );
         else
             currentread = __read( (NPK_STR)buf, sizeof(char), size, (void*)handle );
@@ -611,3 +620,18 @@ NPK_RESULT npk_entity_get_current_flag( NPK_ENTITY entity, NPK_FLAG* flag )
     return NPK_SUCCESS;
 }
 
+void npk_package_lock( NPK_PACKAGE package )
+{
+    if( !g_useCriticalSection ) return;
+#ifdef NPK_PLATFORM_WINDOWS
+    EnterCriticalSection( ((NPK_PACKAGEBODY*)package)->cs_ );
+#endif
+}
+
+void npk_package_free( NPK_PACKAGE package )
+{
+    if( !g_useCriticalSection ) return;
+#ifdef NPK_PLATFORM_WINDOWS
+    LeaveCriticalSection( ((NPK_PACKAGEBODY*)package)->cs_ );
+#endif
+}

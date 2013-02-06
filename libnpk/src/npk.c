@@ -22,9 +22,10 @@
 
 
 NPK_API int     g_npkError = 0; /* this variable has no multi-thread safety */
+NPK_API int     g_useCriticalSection = 0;
+
 #ifdef NPK_PLATFORM_WINDOWS
-int             g_useCriticalSection = 0;
-#pragma warning( disable : 4996 )
+    #pragma warning( disable : 4996 )
 #else
     #define strnicmp strncasecmp
     #define stricmp strcasecmp
@@ -492,10 +493,9 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
     }
 
     pb = eb->owner_;
-#ifdef NPK_PLATFORM_WINDOWS
-    if( g_useCriticalSection )
-        EnterCriticalSection( &pb->cs_ );
-#endif
+
+    npk_package_lock( pb );
+
     npk_seek( pb->handle_, (long)eb->info_.offset_+pb->offsetJump_, SEEK_SET );
 
     res = npk_read( pb->handle_,
@@ -505,10 +505,8 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
                     NPK_PROCESSTYPE_ENTITY,
                     g_callbackSize,
                     eb->name_ );
-#ifdef NPK_PLATFORM_WINDOWS
-    if( g_useCriticalSection )
-        LeaveCriticalSection( &pb->cs_ );
-#endif
+
+    npk_package_free( pb );
 
     if( res != NPK_SUCCESS )
         goto npk_entity_read_return_null_with_free;
@@ -588,10 +586,9 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
     }
 
     pb = eb->owner_;
-#ifdef NPK_PLATFORM_WINDOWS
-    if( g_useCriticalSection )
-        EnterCriticalSection( &pb->cs_ );
-#endif
+
+    npk_package_lock( pb );
+
     npk_seek( pb->handle_, (long)(eb->info_.offset_ + offset)+pb->offsetJump_, SEEK_SET );
 
     res = npk_read( pb->handle_,
@@ -607,10 +604,7 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
     if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_XXTEA )
         xxtea_decode_buffer(buf, size, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
 
-#ifdef NPK_PLATFORM_WINDOWS
-    if( g_useCriticalSection )
-        LeaveCriticalSection( &pb->cs_ );
-#endif
+    npk_package_free( pb );
 
     if( res != NPK_SUCCESS )
         return false;
@@ -629,7 +623,6 @@ void npk_disable_callback()
     g_callbackfp = NULL;
 }
 
-#ifdef NPK_PLATFORM_WINDOWS
 void npk_enable_criticalsection()
 {
     g_useCriticalSection = 1;
@@ -639,7 +632,6 @@ void npk_disable_criticalsection()
 {
     g_useCriticalSection = 0;
 }
-#endif
 
 NPK_ENTITY npk_package_get_first_entity( NPK_PACKAGE package )
 {

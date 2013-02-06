@@ -18,6 +18,7 @@ extern "C" {
 #endif
 
 extern NPK_API int g_npkError;
+extern NPK_API int g_useCriticalSection;
 
 NPK_API NPK_PACKAGE npk_package_open            ( NPK_CSTR filename, NPK_TEAKEY teakey[4] );
 NPK_API NPK_PACKAGE npk_package_open_with_fd    ( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] );
@@ -35,11 +36,8 @@ NPK_API bool        npk_entity_read_partial     ( NPK_ENTITY entity, void* buf, 
 NPK_API void        npk_enable_callback         ( NPK_CALLBACK cb, NPK_SIZE cb_size );
 NPK_API void        npk_disable_callback        ();
 NPK_API NPK_STR     npk_error_to_str            ( NPK_RESULT res );
-
-#ifdef NPK_PLATFORM_WINDOWS
 NPK_API void        npk_enable_criticalsection  ();
 NPK_API void        npk_disable_criticalsection ();
-#endif
 
 // custom file I/O
 typedef void*  (*npk_open_func)  (const char*, const char*); // filename, mode as per fopen (ie "r" "wb+" etc)
