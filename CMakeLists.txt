@@ -21,8 +21,12 @@ set( NPK_PREFIX NPK__
     CACHE STRING "Prefix for function names. (this will be used when you turn USE_NPK_PREFIX on)"
     )
 
-set( DEV_MODE OFF
-    CACHE BOOL "Build developer version library. Turn on if you want to build npk cli/gui tools."
+set( DEV_MODE ON
+    CACHE BOOL "Build developer version library. Should be turned on to build npk tool."
+    )
+
+set( BUILD_NPK ON
+    CACHE BOOL "Build command line executable tool 'npk'."
     )
 
 set( CASE_SENSITIVE OFF
@@ -32,6 +36,6 @@ set( CASE_SENSITIVE OFF
 enable_testing()
 
 add_subdirectory( libnpk )
-if( DEV_MODE )
+if( BUILD_NPK AND DEV_MODE )
     add_subdirectory( npk )
-endif( DEV_MODE )
+endif( BUILD_NPK AND DEV_MODE )
