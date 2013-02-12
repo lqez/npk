@@ -41,6 +41,11 @@ npk consists of below items.
 
 - See https://github.com/lqez/npk/wiki/HowToInstall
 
+Or, if you're on OS X and using homebrew then,
+
+    $ brew tap lqez/npk
+    $ brew install npk
+
 
 # Contact
 
