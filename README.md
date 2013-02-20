@@ -35,6 +35,8 @@ npk consists of below items.
         - https://github.com/lqez/pynpk
     - objnpk : Objective-c extension
         - https://github.com/lqez/objnpk
+    - jvnpk : JNI binding
+        - (will be available soon)
 
 
 # Installation
