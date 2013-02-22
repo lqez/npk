@@ -155,6 +155,8 @@ NPK_DEV_API NPK_RESULT  npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTI
 NPK_DEV_API NPK_RESULT  npk_package_detach_entity( NPK_PACKAGE package, NPK_ENTITY entity );
 NPK_DEV_API NPK_RESULT  npk_package_remove_all_entity( NPK_PACKAGE package );
 NPK_DEV_API NPK_RESULT  npk_package_detach_all_entity( NPK_PACKAGE package );
+NPK_DEV_API void        npk_package_lock( NPK_PACKAGE package );
+NPK_DEV_API void        npk_package_free( NPK_PACKAGE package );
 
 /* For FFI */
 NPK_DEV_API NPK_ENTITY  _npk_entity_alloc();
@@ -162,6 +164,7 @@ NPK_DEV_API NPK_ENTITY  _npk_package_add_file( NPK_PACKAGE package, NPK_CSTR fil
 NPK_DEV_API NPK_PACKAGE _npk_package_alloc( NPK_TEAKEY teakey[4] );
 
 
+/* Custom file handler */
 extern npk_open_func   __open;
 extern npk_close_func  __close;
 extern npk_read_func   __read;
@@ -170,6 +173,15 @@ extern npk_seek_func   __seek;
 extern npk_tell_func   __tell;
 extern npk_rewind_func __rewind;
 extern npk_commit_func __commit;
+
+extern bool __use_open;
+extern bool __use_close;
+extern bool __use_read;
+extern bool __use_write;
+extern bool __use_seek;
+extern bool __use_tell;
+extern bool __use_rewind;
+extern bool __use_commit;
 
 #ifdef __cplusplus
 }

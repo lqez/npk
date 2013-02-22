@@ -35,11 +35,18 @@ npk consists of below items.
         - https://github.com/lqez/pynpk
     - objnpk : Objective-c extension
         - https://github.com/lqez/objnpk
+    - jvnpk : JNI binding
+        - (will be available soon)
 
 
 # Installation
 
 - See https://github.com/lqez/npk/wiki/HowToInstall
+
+Or, if you're on OS X and using homebrew then,
+
+    $ brew tap lqez/npk
+    $ brew install npk
 
 
 # Contact
