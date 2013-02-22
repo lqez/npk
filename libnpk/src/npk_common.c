@@ -378,6 +378,15 @@ NPK_RESULT npk_package_alloc( NPK_PACKAGE* lpPackage, NPK_TEAKEY teakey[4] )
     return NPK_SUCCESS;
 }
 
+NPK_PACKAGE _npk_package_alloc( NPK_TEAKEY teakey[4] )
+{
+    NPK_PACKAGE p = NULL;
+    if( NPK_SUCCESS == npk_package_alloc( &p, teakey ) )
+        return p;
+
+    return NULL;
+}
+
 NPK_RESULT npk_entity_alloc( NPK_ENTITY* lpEntity )
 {
     NPK_ENTITYBODY* eb;
@@ -396,6 +405,15 @@ NPK_RESULT npk_entity_alloc( NPK_ENTITY* lpEntity )
 
     *lpEntity = eb;
     return NPK_SUCCESS;
+}
+
+NPK_ENTITY _npk_entity_alloc()
+{
+    NPK_ENTITY e = NULL;
+    if( NPK_SUCCESS == npk_entity_alloc( &e ) )
+        return e;
+
+    return NULL;
 }
 
 NPK_RESULT npk_entity_init( NPK_ENTITY entity )

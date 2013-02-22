@@ -657,6 +657,15 @@ npk_package_add_file_return_with_error:
     return res;
 }
 
+NPK_ENTITY _npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CSTR entityname )
+{
+    NPK_ENTITY e = NULL;
+    if( NPK_SUCCESS == npk_package_add_file( package, filename, entityname, &e ) )
+        return e;
+
+    return NULL;
+} 
+
 NPK_RESULT __npk_package_remove_entity( NPK_PACKAGE package, NPK_ENTITY entity, bool deepRemove )
 {
     NPK_ENTITYBODY* eb = entity;

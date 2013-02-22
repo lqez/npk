@@ -156,6 +156,11 @@ NPK_DEV_API NPK_RESULT  npk_package_detach_entity( NPK_PACKAGE package, NPK_ENTI
 NPK_DEV_API NPK_RESULT  npk_package_remove_all_entity( NPK_PACKAGE package );
 NPK_DEV_API NPK_RESULT  npk_package_detach_all_entity( NPK_PACKAGE package );
 
+/* For FFI */
+NPK_DEV_API NPK_ENTITY  _npk_entity_alloc();
+NPK_DEV_API NPK_ENTITY  _npk_package_add_file( NPK_PACKAGE package, NPK_CSTR filename, NPK_CSTR entityname );
+NPK_DEV_API NPK_PACKAGE _npk_package_alloc( NPK_TEAKEY teakey[4] );
+
 
 extern npk_open_func   __open;
 extern npk_close_func  __close;
