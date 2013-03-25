@@ -13,7 +13,6 @@ npk - neat package system [en:pack]
       It needs lots of time - sometimes even longer than load files into memory.
       npk has its own list of files and also supports hash table for large packages.
       Yes, npk is a small logical file system itself.
-
 - Encryption and Compression
     - tar can archive files into a package. But it needs gzip or something to compress files.
       npk embeds xxtea encyption and zlib compression for convenience. You can just read / write files via npk API, no concern.
