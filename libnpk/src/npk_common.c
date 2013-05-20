@@ -257,10 +257,12 @@ NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, boo
 NPK_RESULT npk_close( NPK_HANDLE handle )
 {
     if( handle > 0 )
+    {
         if(!__use_close)
             close( handle );
         else
             __close((void*)handle);
+    }
 
     return NPK_SUCCESS;
 }
