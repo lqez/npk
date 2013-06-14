@@ -285,7 +285,6 @@ npk_package_open_return_null_with_free:
 NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )
 {
     NPK_PACKAGEBODY*    pb = NULL;
-    NPK_RESULT          res;
 
     if( NPK_SUCCESS != npk_package_alloc( (NPK_PACKAGE*)&pb, teakey ) )
         return NULL;
