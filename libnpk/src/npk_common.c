@@ -194,15 +194,10 @@ NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, boo
     {
         if( createfile )
         {
-            mode_t mask = umask(0);
+#ifdef NPK_PLATFORM_WINDOWS
             if( bcheckexist )
             {
-#ifdef NPK_PLATFORM_WINDOWS
                 *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, S_IREAD & S_IWRITE );
-#else
-                *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, 0666 );
-                if( *handle != -1 ) fchmod( *handle, 0666&~mask );
-#endif
             }
             else
             {
@@ -211,14 +206,27 @@ NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, boo
                     return( npk_error( NPK_ERROR_ReadOnlyFile ) );
                 close( *handle );
 
-#ifdef NPK_PLATFORM_WINDOWS
                 *handle = open( fileName, O_CREAT | O_RDWR | O_BINARY, S_IREAD & S_IWRITE );
+            }
 #else
+            mode_t mask = umask(0);
+            if( bcheckexist )
+            {
+                *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, 0666 );
+                if( *handle != -1 ) fchmod( *handle, 0666&~mask );
+            }
+            else
+            {
+                *handle = creat( fileName, S_IREAD | S_IWRITE );
+                if( errno == EACCES )
+                    return( npk_error( NPK_ERROR_ReadOnlyFile ) );
+                close( *handle );
+
                 *handle = open( fileName, O_CREAT | O_RDWR | O_BINARY, 0666 );
                 if( *handle != -1 ) fchmod( *handle, 0666&~mask );
-#endif
             }
             umask( mask );
+#endif
         }
         else
             *handle = open( fileName, O_BINARY | O_RDONLY );
