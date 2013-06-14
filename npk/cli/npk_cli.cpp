@@ -20,10 +20,6 @@
 #include <npk.h>
 #include <npk_dev.h>
 
-#include "helper_commify.hpp"
-#include "helper_timetostring.hpp"
-#include "helper_bstrcmp.h"
-#include "helper_mkdirr.hpp"
 
 #ifdef NPK_PLATFORM_WINDOWS
     #include <conio.h>
@@ -43,6 +39,11 @@
 #else
     #define CASE_SENSITIVE false 
 #endif
+
+#include "helper_commify.hpp"
+#include "helper_timetostring.hpp"
+#include "helper_bstrcmp.h"
+#include "helper_mkdirr.hpp"
 
 using namespace std;
 
