@@ -260,14 +260,9 @@ __npk_package_open_return_res_with_free:
 NPK_PACKAGE npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long size, NPK_TEAKEY teakey[4] )
 {
     NPK_PACKAGEBODY*    pb = NULL;
-    NPK_RESULT          res;
 
-    res = npk_package_alloc( (NPK_PACKAGE*)&pb, teakey );
-    if( res != NPK_SUCCESS )
+    if( NPK_SUCCESS != npk_package_alloc( (NPK_PACKAGE*)&pb, teakey ))
         return NULL;
-
-    if( npk_package_init( pb ) != NPK_SUCCESS )
-        goto npk_package_open_return_null_with_free;
 
     pb->handle_ = fd;
     pb->usingFdopen_ = true;
@@ -275,8 +270,7 @@ NPK_PACKAGE npk_package_open_with_fd( NPK_CSTR name, int fd, long offset, long s
 
     npk_seek( fd, offset, SEEK_CUR );
     
-    res = __npk_package_open( pb, name, size, teakey );
-    if( res != NPK_SUCCESS )
+    if( NPK_SUCCESS != __npk_package_open( pb, name, size, teakey ))
         goto npk_package_open_return_null_with_free;
 
     return (NPK_PACKAGE*)pb;
@@ -293,18 +287,13 @@ NPK_PACKAGE npk_package_open( NPK_CSTR filename, NPK_TEAKEY teakey[4] )
     NPK_PACKAGEBODY*    pb = NULL;
     NPK_RESULT          res;
 
-    res = npk_package_alloc( (NPK_PACKAGE*)&pb, teakey );
-    if( res != NPK_SUCCESS )
+    if( NPK_SUCCESS != npk_package_alloc( (NPK_PACKAGE*)&pb, teakey ) )
         return NULL;
 
-    if( npk_package_init( pb ) != NPK_SUCCESS )
-        goto npk_package_open_return_null_with_free;
-
-    if( npk_open( &pb->handle_, filename, false, false ) != NPK_SUCCESS )
+    if( NPK_SUCCESS != npk_open( &pb->handle_, filename, false, false ) )
         goto npk_package_open_return_null_with_free;
     
-    res = __npk_package_open( pb, filename, 0, teakey );
-    if( res != NPK_SUCCESS )
+    if( NPK_SUCCESS != __npk_package_open( pb, filename, 0, teakey ))
         goto npk_package_open_return_null_with_free;
 
     return (NPK_PACKAGE*)pb;
