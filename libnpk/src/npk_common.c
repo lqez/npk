@@ -652,7 +652,7 @@ void npk_package_lock( NPK_PACKAGE package )
 {
     if( !g_useCriticalSection ) return;
 #ifdef NPK_PLATFORM_WINDOWS
-    EnterCriticalSection( ((NPK_PACKAGEBODY*)package)->cs_ );
+    EnterCriticalSection( &((NPK_PACKAGEBODY*)package)->cs_ );
 #endif
 }
 
@@ -660,6 +660,6 @@ void npk_package_free( NPK_PACKAGE package )
 {
     if( !g_useCriticalSection ) return;
 #ifdef NPK_PLATFORM_WINDOWS
-    LeaveCriticalSection( ((NPK_PACKAGEBODY*)package)->cs_ );
+    LeaveCriticalSection( &((NPK_PACKAGEBODY*)package)->cs_ );
 #endif
 }
