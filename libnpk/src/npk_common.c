@@ -197,7 +197,7 @@ NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, boo
 #ifdef NPK_PLATFORM_WINDOWS
             if( bcheckexist )
             {
-                *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, S_IREAD & S_IWRITE );
+                *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, S_IREAD | S_IWRITE );
             }
             else
             {
@@ -206,7 +206,7 @@ NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, boo
                     return( npk_error( NPK_ERROR_ReadOnlyFile ) );
                 close( *handle );
 
-                *handle = open( fileName, O_CREAT | O_RDWR | O_BINARY, S_IREAD & S_IWRITE );
+                *handle = open( fileName, O_CREAT | O_RDWR | O_BINARY, S_IREAD | S_IWRITE );
             }
 #else
             mode_t mask = umask(0);
