@@ -39,7 +39,6 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
 {
     NPK_CHAR            buf[512];
     NPK_ENTITYBODY*     eb = NULL;
-    NPK_ENTITYINFO_V21  oldinfo;
     NPK_SIZE            entityCount = 0;
     NPK_CHAR*           entityheaderbuf;
     NPK_CHAR*           pos;
@@ -69,32 +68,13 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
         if( strncmp( pb->info_.signature_, NPK_OLD_SIGNATURE, 4 ) != 0 )
             return( npk_error( NPK_ERROR_NotValidPackage ) );
 
-    // version 18 / read own tea key
-    if( pb->info_.version_ < NPK_VERSION_REFACTORING )
-    {
+    if( pb->info_.version_ < NPK_VERSION_MINIMUM )
         return ( npk_error( NPK_ERROR_NotSupportedVersion ) );
-    }
-    else
-    {
-        if( teakey == NULL )
-        {
-            return ( npk_error( NPK_ERROR_NeedSpecifiedTeaKey ) );
-        }
-        memcpy( pb->teakey_, teakey, sizeof(NPK_TEAKEY) * 4 );
-    }
 
-    // version 23 / package timestamp
-    if( pb->info_.version_ >= NPK_VERSION_PACKAGETIMESTAMP )
-    {
-        res = npk_read( pb->handle_,
-                        (void*)&pb->modified_,
-                        sizeof(NPK_TIME),
-                        g_callbackfp,
-                        NPK_PROCESSTYPE_PACKAGEHEADER,
-                        g_callbackSize,
-                        filename );
-        if( res != NPK_SUCCESS ) return res;
-    }
+    // Read own tea key
+    if( teakey == NULL )
+        return ( npk_error( NPK_ERROR_NeedSpecifiedTeaKey ) );
+    memcpy( pb->teakey_, teakey, sizeof(NPK_TEAKEY) * 4 );
 
     entityCount = pb->info_.entityCount_;
     pb->info_.entityCount_ = 0;
@@ -179,44 +159,18 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
 
             eb->owner_ = pb;
 
-            // read entity info
-            if( pb->info_.version_ < NPK_VERSION_UNIXTIMESUPPORT )
-            {
-                res = npk_read_encrypt( teakey,
-                                        pb->handle_,
-                                        (void*)&oldinfo,
-                                        sizeof(NPK_ENTITYINFO),
-                                        g_callbackfp,
-                                        NPK_PROCESSTYPE_ENTITYHEADER,
-                                        g_callbackSize,
-                                        filename,
-                                        false,
-                                        false );
-                if( res != NPK_SUCCESS )
-                    goto __npk_package_open_return_res_with_free;
-
-                eb->info_.offset_ = oldinfo.offset_;
-                eb->info_.size_ = oldinfo.size_;
-                eb->info_.originalSize_ = oldinfo.originalSize_;
-                eb->info_.flag_ = oldinfo.flag_;
-                npk_filetime_to_unixtime( &oldinfo.modified_, &eb->info_.modified_ );
-                eb->info_.nameLength_ = oldinfo.nameLength_;
-            }
-            else
-            {
-                res = npk_read_encrypt( teakey,
-                                        pb->handle_,
-                                        (void*)&eb->info_,
-                                        sizeof(NPK_ENTITYINFO),
-                                        g_callbackfp,
-                                        NPK_PROCESSTYPE_ENTITYHEADER,
-                                        g_callbackSize,
-                                        filename,
-                                        false,
-                                        false );
-                if( res != NPK_SUCCESS )
-                    goto __npk_package_open_return_res_with_free;
-            }
+            res = npk_read_encrypt( teakey,
+                                    pb->handle_,
+                                    (void*)&eb->info_,
+                                    sizeof(NPK_ENTITYINFO),
+                                    g_callbackfp,
+                                    NPK_PROCESSTYPE_ENTITYHEADER,
+                                    g_callbackSize,
+                                    filename,
+                                    false,
+                                    false );
+            if( res != NPK_SUCCESS )
+                goto __npk_package_open_return_res_with_free;
 
             if( eb->info_.offset_ >= pb->info_.entityInfoOffset_ )
             {
@@ -474,7 +428,7 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
         return false;
     }
 
-    if( eb->info_.flag_ & ( NPK_ENTITY_COMPRESS_ZLIB | NPK_ENTITY_COMPRESS_BZIP2 ) )
+    if( eb->info_.flag_ & NPK_ENTITY_COMPRESS_ZLIB )
     {
         lpDecompressBuffer = malloc( sizeof(char) * eb->info_.size_ );
         lplpTarget = &lpDecompressBuffer;
@@ -558,7 +512,7 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
         return false;
     }
 
-    if( eb->info_.flag_ & ( NPK_ENTITY_COMPRESS_ZLIB | NPK_ENTITY_COMPRESS_BZIP2 ) )
+    if( eb->info_.flag_ & NPK_ENTITY_COMPRESS_ZLIB )
     {
         npk_error( NPK_ERROR_CantReadCompressedEntityByPartial );
         return false;

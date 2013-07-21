@@ -32,16 +32,6 @@ typedef struct NPK_DEV_API NPK_tagENTITYINFO
     NPK_NAMESIZE        nameLength_;        /* Length of Foldername + FileName. */
 } NPK_ENTITYINFO, *NPK_LPENTITYINFO;
 
-typedef struct NPK_DEV_API NPK_tagENTITYINFO_V21
-{
-    NPK_SIZE            offset_;            /* Data position. */
-    NPK_SIZE            size_;              /* Data size. */
-    NPK_SIZE            originalSize_;      /* Original size. */
-    NPK_FLAG            flag_;              /* Composite of EntityFlag. ( see npk_base.h ) */
-    NPK_64BIT           modified_;          /* For old-npk-style 64bit FILETIME */
-    NPK_NAMESIZE        nameLength_;        /* Length of Foldername + FileName. */
-} NPK_ENTITYINFO_V21, *NPK_LPENTITYINFO_V21;
-
 typedef struct NPK_DEV_API NPK_tagENTITYBODY
 {
     NPK_ENTITYINFO      info_;
@@ -63,12 +53,8 @@ typedef struct NPK_DEV_API NPK_tagPACKAGEINFO
     NPK_SIZE            entityCount_;       /* Quantity of entities. */
     NPK_SIZE            entityInfoOffset_;  /* Entities' information offset. */
     NPK_SIZE            entityDataOffset_;  /* Entities' data offset. */
-} NPK_PACKAGEINFO, *NPK_LPPACKAGEINFO;
-
-typedef struct NPK_DEV_API NPK_tagPACKAGEINFO_V23
-{
     NPK_TIME            modified_;          /* Last modified date of package - 32bit time_t */
-} NPK_PACKAGEINFO_V23, *NPK_LPPACKAGEINFO_V23;
+} NPK_PACKAGEINFO, *NPK_LPPACKAGEINFO;
 
 typedef struct NPK_DEV_API NPK_tagBUCKET
 {

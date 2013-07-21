@@ -11,7 +11,7 @@ int libnpk_using_fd( int argc, char * argv [] )
     printf( "fd:%d\n", fd );
 
     /* file descriptor, offset, size, key */
-    NPK_PACKAGE pack = npk_package_open_with_fd( "sample.npk", fd, 1000, 6771, teakey ); 
+    NPK_PACKAGE pack = npk_package_open_with_fd( "sample.npk", fd, 2201, 6771, teakey ); 
     CHECK( pack != NULL );
 
     std::string entityNames[4] = { "sample.txt", "zip.txt", "tea.txt", "zipntea.txt" };

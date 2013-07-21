@@ -464,7 +464,6 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
     NPK_HANDLE          savefilehandle;
     NPK_CHAR*           buf;
     NPK_CHAR*           buf_pos;
-    NPK_PACKAGEINFO_V23 header_v23;
 
     if( !package )
         return npk_error( NPK_ERROR_PackageIsNull );
@@ -502,8 +501,7 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
     if( pb->info_.version_ != NPK_VERSION_CURRENT )
         bVersionUp = true;
 
-    pb->info_.entityInfoOffset_ = sizeof(NPK_PACKAGEINFO)
-                                + sizeof(NPK_PACKAGEINFO_V23);
+    pb->info_.entityInfoOffset_ = sizeof(NPK_PACKAGEINFO);
 
     // version 27, precalculate entity information header length 
     eb = pb->pEntityHead_;
@@ -564,22 +562,11 @@ NPK_RESULT npk_package_save( NPK_PACKAGE package, NPK_CSTR filename, bool forceO
     NPK_SAFE_FREE( buf );
 
     pb->info_.version_ = NPK_VERSION_CURRENT;
+    pb->info_.modified_ = (NPK_TIME)time(NULL);
     npk_seek( savefilehandle, 0, SEEK_SET );
     if( ( res = npk_write( savefilehandle,
                     &pb->info_,
                     sizeof(NPK_PACKAGEINFO),
-                    g_callbackfp,
-                    NPK_PROCESSTYPE_PACKAGEHEADER,
-                    g_callbackSize,
-                    savefilename ) ) != NPK_SUCCESS )
-        return res;
-
-    // version 23, Write the package timestamp for other applications
-    header_v23.modified_ = (NPK_TIME)time(NULL);
-
-    if( ( res = npk_write( savefilehandle,
-                    &header_v23,
-                    sizeof(NPK_PACKAGEINFO_V23),
                     g_callbackfp,
                     NPK_PROCESSTYPE_PACKAGEHEADER,
                     g_callbackSize,

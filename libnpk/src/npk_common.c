@@ -451,11 +451,8 @@ NPK_RESULT npk_entity_init( NPK_ENTITY entity )
     eb->prev_                   = NULL;
     eb->next_                   = NULL;
 
-    if( NPK_VERSION_CURRENT >= NPK_VERSION_REFACTORING )
-    {
-        eb->info_.flag_ = NPK_ENTITY_REVERSE;
-        eb->newflag_ = NPK_ENTITY_REVERSE;
-    }
+    eb->info_.flag_ = NPK_ENTITY_REVERSE;
+    eb->newflag_ = NPK_ENTITY_REVERSE;
 
     return NPK_SUCCESS;
 }
