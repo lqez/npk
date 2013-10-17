@@ -32,17 +32,17 @@ NPK_API int     g_useCriticalSection = 0;
 #endif
 
 NPK_CALLBACK    g_callbackfp;
-NPK_SIZE        g_callbackSize;
+NPK_OFFSET      g_callbackSize;
 
 NPK_RESULT __npk_package_add_entity( NPK_PACKAGE package, NPK_ENTITY entity, bool check );
-NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, long filesize, NPK_TEAKEY teakey[4] )
+NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, NPK_OFFSET filesize, NPK_TEAKEY teakey[4] )
 {
     NPK_CHAR            buf[512];
     NPK_ENTITYBODY*     eb = NULL;
     NPK_SIZE            entityCount = 0;
     NPK_CHAR*           entityheaderbuf;
     NPK_CHAR*           pos;
-    long                entityheadersize = 0;
+    NPK_OFFSET          entityheadersize = 0;
     NPK_RESULT          res;
 
     if( filesize == 0 )
@@ -93,7 +93,7 @@ NPK_RESULT __npk_package_open( NPK_PACKAGEBODY* pb, const NPK_CHAR* filename, lo
             npk_seek( pb->handle_, (long)pb->info_.entityInfoOffset_+pb->offsetJump_, SEEK_SET );
         }
 
-        entityheaderbuf = malloc( entityheadersize );
+        entityheaderbuf = malloc( (size_t)entityheadersize );
         if( !entityheaderbuf )
             return( npk_error( NPK_ERROR_NotEnoughMemory ) );
 

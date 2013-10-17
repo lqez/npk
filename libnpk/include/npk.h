@@ -44,7 +44,7 @@ typedef void*  (*npk_open_func)  (const char*, const char*); // filename, mode a
 typedef int    (*npk_close_func) (void*);
 typedef size_t (*npk_read_func)  (void*, size_t, size_t, void*);
 typedef size_t (*npk_write_func) (const void*, size_t, size_t, void*);
-typedef int    (*npk_seek_func)  (void*, long, int);
+typedef off_t  (*npk_seek_func)  (void*, off_t, int);
 typedef long   (*npk_tell_func)  (void*);
 typedef void   (*npk_rewind_func)(void*);
 typedef void   (*npk_commit_func)(void*);

@@ -1,3 +1,4 @@
+#include <sys/types.h>
 #include <stddef.h>
 
 #ifdef NPK_DEV
@@ -13,17 +14,17 @@ void tea_encode(int* v, int* k)
 	v[0]=y ; v[1]=z ;
 }
 
-void tea_encode_byte(char* v, int* k, int p)
+void tea_encode_byte(char* v, int* k, off_t p)
 {
 	char y[] = "NpK!TeA";
     *v = *v^y[p]^(char)(k[p%4]%0xFF);
 }
 
-void tea_encode_buffer(char* in_buffer, unsigned int in_size, int* key, int cipherRemains)
+void tea_encode_buffer(char* in_buffer, off_t in_size, int* key, int cipherRemains)
 {
 	char *p;
-	unsigned int remain = in_size % 8;
-	unsigned int align_size = in_size - remain;
+	off_t remain = in_size % 8;
+	off_t align_size = in_size - remain;
 	for (p = in_buffer; p < in_buffer + align_size; p += 8)
 		tea_encode( (int*)p, key);
     if( remain > 0 && cipherRemains )
@@ -46,17 +47,17 @@ void tea_decode(int* v,int* k)
 	v[0]=y ; v[1]=z ;
 }
 
-void tea_decode_byte(char* v, int* k, int p)
+void tea_decode_byte(char* v, int* k, off_t p)
 {
 	char y[] = "NpK!TeA";
     *v = *v^(char)(k[p%4]%0xFF)^y[p];
 }
 
-void tea_decode_buffer(char* in_buffer, unsigned int in_size, int* key, int cipherRemains)
+void tea_decode_buffer(char* in_buffer, off_t in_size, int* key, int cipherRemains)
 {
 	char *p;
-	unsigned int remain = in_size % 8;
-	unsigned int align_size = in_size - remain;
+	off_t remain = in_size % 8;
+	off_t align_size = in_size - remain;
 	for (p = in_buffer; p < in_buffer + align_size; p += 8)
 		tea_decode( (int*)p, key);
     if( remain > 0 && cipherRemains )

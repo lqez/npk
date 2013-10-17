@@ -1258,7 +1258,7 @@ bool listinfo_tfp( NPK_ENTITY entity )
 
     if( eb->info_.size_ == 0 )
     {
-        printf( "    <not stored yet>    %c%c%c%c ---------- -------- %s\n",
+        printf( "    <not stored yet>    %c%c%c  ---------- -------- %s\n",
             (eb->newflag_ & NPK_ENTITY_COMPRESS_ZLIB)?'C':' ',
             (eb->newflag_ & NPK_ENTITY_ENCRYPT_TEA)?'E':' ',
             (eb->newflag_ & NPK_ENTITY_ENCRYPT_XXTEA)?'X':' ',
@@ -1291,7 +1291,7 @@ bool listinfo_tfp( NPK_ENTITY entity )
             commify( eb->info_.originalSize_, size2, 0 );
         }
 
-        printf( "%11s %11s %c%c%c%c %17s %s\n",
+        printf( "%11s %11s %c%c%c  %17s %s\n",
             size1,
             size2,
             (eb->info_.flag_ & NPK_ENTITY_COMPRESS_ZLIB)?'C':' ',

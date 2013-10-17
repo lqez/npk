@@ -87,7 +87,7 @@ extern "C" {
 #endif
 
 extern NPK_DEV_API NPK_CALLBACK     g_callbackfp;
-extern NPK_DEV_API NPK_SIZE         g_callbackSize;
+extern NPK_DEV_API NPK_OFFSET       g_callbackSize;
 
 /* Helper Functions */
 NPK_DEV_API void        npk_log( NPK_CSTR format, ... );
@@ -106,17 +106,17 @@ NPK_DEV_API NPK_RESULT  npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool cr
 NPK_DEV_API NPK_RESULT  npk_flush( NPK_HANDLE handle );
 NPK_DEV_API NPK_RESULT  npk_close( NPK_HANDLE handle );
 
-NPK_DEV_API long        npk_seek( NPK_HANDLE handle, long offset, int origin );
-NPK_DEV_API long        npk_tell( NPK_HANDLE handle );
-NPK_DEV_API NPK_RESULT  npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
-                                NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier );
-NPK_DEV_API NPK_RESULT  npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
-                                NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier );
-NPK_DEV_API NPK_RESULT  npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_SIZE size,
-                                NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
+NPK_DEV_API NPK_OFFSET  npk_seek( NPK_HANDLE handle, off_t offset, int origin );
+NPK_DEV_API NPK_OFFSET  npk_tell( NPK_HANDLE handle );
+NPK_DEV_API NPK_RESULT  npk_read( NPK_HANDLE handle, void* buf, NPK_OFFSET size,
+                                NPK_CALLBACK cb, int cbprocesstype, NPK_OFFSET cbsize, NPK_CSTR cbidentifier );
+NPK_DEV_API NPK_RESULT  npk_write( NPK_HANDLE handle, const void* buf, NPK_OFFSET size,
+                                NPK_CALLBACK cb, int cbprocesstype, NPK_OFFSET cbsize, NPK_CSTR cbidentifier );
+NPK_DEV_API NPK_RESULT  npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_OFFSET size,
+                                NPK_CALLBACK cb, int cbprocesstype, NPK_OFFSET cbsize, NPK_CSTR cbidentifier,
                                 bool cipherRemains, bool useXXTEA );
-NPK_DEV_API NPK_RESULT  npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_SIZE size,
-                                NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
+NPK_DEV_API NPK_RESULT  npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_OFFSET size,
+                                NPK_CALLBACK cb, int cbprocesstype, NPK_OFFSET cbsize, NPK_CSTR cbidentifier,
                                 bool cipherRemains, bool useXXTEA );
 
 /* Entity Functions */

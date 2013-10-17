@@ -16,7 +16,7 @@
 typedef int                             NPK_RESULT;
 typedef void*                           NPK_PACKAGE;
 typedef void*                           NPK_ENTITY;
-typedef ptrdiff_t                       NPK_HANDLE;
+typedef int                             NPK_HANDLE;
 typedef unsigned int                    NPK_FLAG;
 typedef unsigned int                    NPK_HASHKEY;
 typedef int                             NPK_TEAKEY;
@@ -24,6 +24,7 @@ typedef char                            NPK_CHAR;
 typedef const NPK_CHAR*                 NPK_CSTR;
 typedef NPK_CHAR*                       NPK_STR;
 typedef unsigned int                    NPK_SIZE;
+typedef off_t                           NPK_OFFSET;
 typedef unsigned short                  NPK_NAMESIZE;
 typedef char                            NPK_BYTE;
 typedef unsigned long long              NPK_64BIT;
@@ -67,8 +68,8 @@ typedef int                             NPK_TIME;
 typedef int( *NPK_CALLBACK )(   int accessType,
                                 int processType,
                                 NPK_CSTR identifier,
-                                NPK_SIZE current,
-                                NPK_SIZE total
+                                NPK_OFFSET current,
+                                NPK_OFFSET total
                                 );
 
 #endif /* _NPK_BASE_H_ */
