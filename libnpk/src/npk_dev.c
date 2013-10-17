@@ -118,12 +118,12 @@ NPK_RESULT npk_flush( NPK_HANDLE handle )
             fsync( handle );
 #endif
         else
-            __commit( (void*)handle );
+            __commit( (void*)(intptr_t)handle );
     }
     return NPK_SUCCESS;
 }
 
-long npk_tell( NPK_HANDLE handle )
+NPK_OFFSET npk_tell( NPK_HANDLE handle )
 {
     if(!__use_seek)
 #ifdef NPK_PLATFORM_WINDOWS
@@ -132,11 +132,11 @@ long npk_tell( NPK_HANDLE handle )
         return lseek( handle, 0, SEEK_CUR );
 #endif
     else
-        return __seek( (void*)handle, 0, SEEK_CUR );
+        return __seek( (void*)(intptr_t)handle, 0, SEEK_CUR );
 }
 
-NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
-                        NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier )
+NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_OFFSET size,
+                        NPK_CALLBACK cb, int cbprocesstype, NPK_OFFSET cbsize, NPK_CSTR cbidentifier )
 {
     NPK_SIZE currentwritten;
     NPK_SIZE totalwritten = 0;
@@ -156,9 +156,9 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
                 unit = size - totalwritten;
 
             if(!__use_write)
-                currentwritten = write( handle, (NPK_STR)buf + totalwritten, (unsigned int)unit );
+                currentwritten = write( handle, (NPK_STR)buf + totalwritten, (size_t)unit );
             else
-                currentwritten = __write( (NPK_STR)buf + totalwritten, sizeof(char*), (unsigned int)unit, (void*)handle );
+                currentwritten = __write( (NPK_STR)buf + totalwritten, sizeof(char*), (size_t)unit, (void*)(intptr_t)handle );
 
             if( currentwritten < unit )
             {
@@ -194,8 +194,8 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_SIZE size,
     return NPK_SUCCESS;
 }
 
-NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_SIZE size,
-                        NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
+NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* buf, NPK_OFFSET size,
+                        NPK_CALLBACK cb, int cbprocesstype, NPK_OFFSET cbsize, NPK_CSTR cbidentifier,
                         bool cipherRemains, bool useXXTEA )
 {
     NPK_RESULT res;

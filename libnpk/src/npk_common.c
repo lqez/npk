@@ -269,13 +269,13 @@ NPK_RESULT npk_close( NPK_HANDLE handle )
         if(!__use_close)
             close( handle );
         else
-            __close((void*)handle);
+            __close((void*)(intptr_t)handle);
     }
 
     return NPK_SUCCESS;
 }
 
-long npk_seek( NPK_HANDLE handle, long offset, int origin )
+NPK_OFFSET npk_seek( NPK_HANDLE handle, NPK_OFFSET offset, int origin )
 {
     if(!__use_seek)
 #ifdef NPK_PLATFORM_WINDOWS
@@ -284,15 +284,15 @@ long npk_seek( NPK_HANDLE handle, long offset, int origin )
         return lseek( handle, offset, origin );
 #endif
     else
-        return __seek((void*)handle, offset, origin);
+        return __seek((void*)(intptr_t)handle, offset, origin);
 }
 
-NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
-                        NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier )
+NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_OFFSET size,
+                        NPK_CALLBACK cb, int cbprocesstype, NPK_OFFSET cbsize, NPK_CSTR cbidentifier )
 {
-    NPK_SIZE currentread;
-    NPK_SIZE totalread = 0;
-    NPK_SIZE unit = cbsize;
+    NPK_OFFSET currentread;
+    NPK_OFFSET totalread = 0;
+    NPK_OFFSET unit = cbsize;
 
     if( cb )
     {
@@ -310,7 +310,7 @@ NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
             if(!__use_read)
                 currentread = read( handle, (NPK_STR)buf + totalread, (unsigned int)unit );
             else
-                currentread = __read( (NPK_STR)buf + totalread, sizeof(char), unit, (void*)handle );
+                currentread = __read( (NPK_STR)buf + totalread, sizeof(char), (size_t)unit, (void*)(intptr_t)handle );
 
             if( currentread < unit )
             {
@@ -331,9 +331,9 @@ NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
     {
         
         if(!__use_read)
-            currentread = read( handle, (NPK_STR)buf, size );
+            currentread = read( handle, (NPK_STR)buf, (size_t)size );
         else
-            currentread = __read( (NPK_STR)buf, sizeof(char), size, (void*)handle );
+            currentread = __read( (NPK_STR)buf, sizeof(char), (size_t)size, (void*)(intptr_t)handle );
 
         if( currentread < size )
         {
@@ -347,8 +347,8 @@ NPK_RESULT npk_read( NPK_HANDLE handle, void* buf, NPK_SIZE size,
     return NPK_SUCCESS;
 }
 
-NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_SIZE size,
-                        NPK_CALLBACK cb, int cbprocesstype, NPK_SIZE cbsize, NPK_CSTR cbidentifier,
+NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_OFFSET size,
+                        NPK_CALLBACK cb, int cbprocesstype, NPK_OFFSET cbsize, NPK_CSTR cbidentifier,
                         bool cipherRemains, bool useXXTEA )
 {
     NPK_RESULT res = npk_read( handle, buf, size, cb, cbprocesstype, cbsize, cbidentifier );
