@@ -34,12 +34,12 @@ int libnpk_streamable( int argc, char * argv [] )
     std::string entityNames[4] = { "sample.txt", "tea.txt", "xxtea.txt", "zip.txt" };
     pack = 0;
     int i = 0;
-    size_t offset = 0;
+    off_t offset = 0;
     char buf[255];
 
     while( offset < filesize )
     {
-        size_t r = rand()%16;
+        off_t r = rand()%16;
         if( r + offset > filesize )
             r = filesize - offset;
 
