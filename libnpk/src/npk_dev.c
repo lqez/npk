@@ -181,7 +181,7 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_OFFSET size,
     {
         currentwritten = write( handle, (NPK_STR)buf, size );
 
-        if( ( currentwritten < 0 ) || ( (NPK_OFFSET)currentwritten < size ) )
+        if( (NPK_OFFSET)currentwritten < size )
         {
             if( errno == EACCES )
                 return( npk_error( NPK_ERROR_PermissionDenied ) );
