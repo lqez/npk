@@ -25,7 +25,7 @@ int libnpk_streamable( int argc, char * argv [] )
 
     // simulate download
     int rh = open( "foo.npk", O_RDONLY | O_BINARY );
-    size_t filesize = npk_seek( rh, 0, SEEK_END );
+    off_t filesize = npk_seek( rh, 0, SEEK_END );
     npk_seek( rh, 0, SEEK_SET );
 
     int wh = open( "foo_2.npk", O_CREAT | O_RDWR | O_TRUNC | O_BINARY, S_IREAD | S_IWRITE );

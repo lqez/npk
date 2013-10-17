@@ -139,8 +139,8 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_OFFSET size,
                         NPK_CALLBACK cb, int cbprocesstype, NPK_OFFSET cbsize, NPK_CSTR cbidentifier )
 {
     NPK_SIZE currentwritten;
-    NPK_SIZE totalwritten = 0;
     NPK_SIZE unit = cbsize;
+    NPK_OFFSET totalwritten = 0;
 
     if( cb )
     {
@@ -152,7 +152,7 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_OFFSET size,
             if( (cb)( NPK_ACCESSTYPE_WRITE, cbprocesstype, cbidentifier, totalwritten, size ) == false )
                 return( npk_error( NPK_ERROR_CancelByCallback ) );
 
-            if( (int)( size - totalwritten ) < unit )
+            if( (NPK_SIZE)( size - totalwritten ) < unit )
                 unit = size - totalwritten;
 
             if(!__use_write)
@@ -181,7 +181,7 @@ NPK_RESULT npk_write( NPK_HANDLE handle, const void* buf, NPK_OFFSET size,
     {
         currentwritten = write( handle, (NPK_STR)buf, size );
 
-        if( currentwritten < size )
+        if( ( currentwritten < 0 ) || ( (NPK_OFFSET)currentwritten < size ) )
         {
             if( errno == EACCES )
                 return( npk_error( NPK_ERROR_PermissionDenied ) );
