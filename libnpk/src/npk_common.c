@@ -244,9 +244,9 @@ NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, boo
     else
     {
         if( createfile )
-            *handle = (NPK_HANDLE)__open( fileName, "wb+" );
+            *handle = (NPK_HANDLE)(intptr_t)__open( fileName, "wb+" );
         else
-            *handle = (NPK_HANDLE)__open( fileName, "rb+" );
+            *handle = (NPK_HANDLE)(intptr_t)__open( fileName, "rb+" );
 
         if( *handle == -1 )
         {
