@@ -1,3 +1,4 @@
+#include <sys/types.h>
 #include <stddef.h>
 
 #define DELTA 0x9e3779b9
@@ -24,17 +25,17 @@ void xxtea_encode(int* v, int* k)
     } while (--rounds);
 }
 
-void xxtea_encode_byte(char* v, int* k, int p)
+void xxtea_encode_byte(char* v, int* k, off_t p)
 {
     char y[] = "XtEaNpK";
     *v = *v^y[p]^(char)(k[p%4]%0xFF);
 }
 
-void xxtea_encode_buffer(char* in_buffer, unsigned int in_size, int* key, int cipherRemains)
+void xxtea_encode_buffer(char* in_buffer, off_t in_size, int* key, int cipherRemains)
 {
     char *p;
-    unsigned int remain = in_size % 8;
-    unsigned int align_size = in_size - remain;
+    off_t remain = in_size % 8;
+    off_t align_size = in_size - remain;
     for (p = in_buffer; p < in_buffer + align_size; p += 8)
         xxtea_encode( (int*)p, key);
     if( remain > 0 && cipherRemains )
@@ -63,17 +64,17 @@ void xxtea_decode(int* v,int* k)
     }
 }
 
-void xxtea_decode_byte(char* v, int* k, int p)
+void xxtea_decode_byte(char* v, int* k, off_t p)
 {
     char y[] = "XtEaNpK";
     *v = *v^(char)(k[p%4]%0xFF)^y[p];
 }
 
-void xxtea_decode_buffer(char* in_buffer, unsigned int in_size, int* key, int cipherRemains)
+void xxtea_decode_buffer(char* in_buffer, off_t in_size, int* key, int cipherRemains)
 {
     char *p;
-    unsigned int remain = in_size % 8;
-    unsigned int align_size = in_size - remain;
+    off_t remain = in_size % 8;
+    off_t align_size = in_size - remain;
     for (p = in_buffer; p < in_buffer + align_size; p += 8)
         xxtea_decode( (int*)p, key);
     if( remain > 0 && cipherRemains )
