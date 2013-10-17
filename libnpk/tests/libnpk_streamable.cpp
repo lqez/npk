@@ -45,7 +45,7 @@ int libnpk_streamable( int argc, char * argv [] )
 
         read( rh, &buf, sizeof(char)*r );
         write( wh, buf, sizeof(char)*r );
-        printf( "offset %ld, reading %ld byte(s).\n", offset, r );
+        printf( "offset %ld, reading %ld byte(s).\n", (long)offset, (long)r );
         offset += r;
 
         if( pack == 0 )
