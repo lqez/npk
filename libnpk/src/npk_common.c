@@ -30,6 +30,13 @@
 #include "../external/xxtea/xxtea.h"
 #include "../external/zlib/zlib.h"
 
+#if !defined(S_IRUSR) && defined(S_IREAD)
+#define S_IRUSR S_IREAD
+#endif
+
+#if !defined(S_IWUSR) && defined(S_IWRITE)
+#define S_IWUSR S_IWRITE
+#endif
 
 npk_open_func   __open   = NULL;
 npk_close_func  __close  = NULL;
@@ -197,16 +204,16 @@ NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, boo
 #ifdef NPK_PLATFORM_WINDOWS
             if( bcheckexist )
             {
-                *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, S_IREAD | S_IWRITE );
+                *handle = open( fileName, O_CREAT | O_EXCL | O_RDWR | O_BINARY, S_IRUSR | S_IWUSR );
             }
             else
             {
-                *handle = creat( fileName, S_IREAD | S_IWRITE );
+                *handle = creat( fileName, S_IRUSR | S_IWUSR );
                 if( errno == EACCES )
                     return( npk_error( NPK_ERROR_ReadOnlyFile ) );
                 close( *handle );
 
-                *handle = open( fileName, O_CREAT | O_RDWR | O_BINARY, S_IREAD | S_IWRITE );
+                *handle = open( fileName, O_CREAT | O_RDWR | O_BINARY, S_IRUSR | S_IWUSR );
             }
 #else
             mode_t mask = umask(0);
@@ -217,7 +224,7 @@ NPK_RESULT npk_open( NPK_HANDLE* handle, NPK_CSTR fileName, bool createfile, boo
             }
             else
             {
-                *handle = creat( fileName, S_IREAD | S_IWRITE );
+                *handle = creat( fileName, S_IRUSR | S_IWUSR );
                 if( errno == EACCES )
                     return( npk_error( NPK_ERROR_ReadOnlyFile ) );
                 close( *handle );
