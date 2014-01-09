@@ -12,35 +12,39 @@
 
 #ifndef __cplusplus
     #ifndef bool
-    #define bool int
+        #define bool int
     #endif
 
     #ifndef true
-    #define true 1
+        #define true 1
     #endif
 
     #ifndef false
-    #define false 0
+        #define false 0
     #endif
 #endif
 
+#if !defined(S_IRUSR) && defined(_S_IREAD)
+    #define S_IRUSR _S_IREAD
+#endif
+
+# if !defined(S_IWUSR) && defined(_S_IWRITE)
+    #define S_IWUSR _S_IWRITE
+#endif
+
 #ifndef O_BINARY
-#define O_BINARY 0
+    #define O_BINARY 0
 #endif
 
 #if defined(_WIN32) || defined(_WIN64)
     #define NPK_PLATFORM_WINDOWS
-    #define NPK_PLATFORM_NAME "Windows"
  	typedef int mode_t;
 #elif defined(linux) || defined(__linux) || defined(__linux__)
     #define NPK_PLATFORM_LINUX
-    #define NPK_PLATFORM_NAME "Linux"
 #elif defined(__FreeBSD__)
     #define NPK_PLATFORM_BSD
-    #define NPK_PLATFORM_NAME "BSD"
 #elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
     #define NPK_PLATFORM_MACOS
-    #define NPK_PLATFORM_NAME "Mac OS"
 #else
     // TODO: So, what is your platform?
 #endif
@@ -149,8 +153,6 @@
     #define __npk_package_add_entity        CONCAT(NPK_PREFIX_NAME,__npk_package_add_entity)
     #define __npk_package_open              CONCAT(NPK_PREFIX_NAME,__npk_package_open)
     #define __npk_package_remove_all_entity CONCAT(NPK_PREFIX_NAME,__npk_package_remove_all_entity)
-
-
 #endif /* NPK_PREFIX */
 
 #endif /* _NPK_DEF_H_ */

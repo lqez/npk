@@ -18,25 +18,17 @@
 #include "npk_dev.h"
 
 #ifdef NPK_PLATFORM_WINDOWS
-#include <io.h>
-#include <sys/utime.h>
-#pragma warning( disable : 4996 )
+    #include <io.h>
+    #include <sys/utime.h>
+    #pragma warning( disable : 4996 )
 #else
-#include <utime.h>
-#include <unistd.h>
+    #include <utime.h>
+    #include <unistd.h>
 #endif
 
 #include "../external/tea/tea.h"
 #include "../external/xxtea/xxtea.h"
 #include "../external/zlib/zlib.h"
-
-#if !defined(S_IRUSR) && defined(S_IREAD)
-#define S_IRUSR S_IREAD
-#endif
-
-#if !defined(S_IWUSR) && defined(S_IWRITE)
-#define S_IWUSR S_IWRITE
-#endif
 
 npk_open_func   __open   = NULL;
 npk_close_func  __close  = NULL;

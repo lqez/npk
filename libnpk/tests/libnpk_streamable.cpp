@@ -28,7 +28,7 @@ int libnpk_streamable( int argc, char * argv [] )
     off_t filesize = npk_seek( rh, 0, SEEK_END );
     npk_seek( rh, 0, SEEK_SET );
 
-    int wh = open( "foo_2.npk", O_CREAT | O_RDWR | O_TRUNC | O_BINARY, S_IREAD | S_IWRITE );
+    int wh = open( "foo_2.npk", O_CREAT | O_RDWR | O_TRUNC | O_BINARY, S_IRUSR | S_IWUSR );
 
     // validation
     std::string entityNames[4] = { "sample.txt", "tea.txt", "xxtea.txt", "zip.txt" };
