@@ -206,9 +206,9 @@ NPK_RESULT npk_write_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, const void* bu
 
     memcpy( bufferforencode, buf, sizeof(char) * size );
     if( useXXTEA )
-        xxtea_encode_buffer( (NPK_STR)bufferforencode, size, key, cipherRemains );
+        xxtea_encode_buffer( (unsigned char*)bufferforencode, size, key, cipherRemains );
     else
-        tea_encode_buffer( (NPK_STR)bufferforencode, size, key, cipherRemains );
+        tea_encode_buffer( (unsigned char*)bufferforencode, size, key, cipherRemains );
 
     res = npk_write( handle, bufferforencode, size, cb, cbprocesstype, cbsize, cbidentifier );
     free( bufferforencode );
@@ -332,7 +332,7 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle, bool forcePro
     {
         // Encode before compress, before v21
         if( ( eb->newflag_ & NPK_ENTITY_ENCRYPT_TEA ) && !( eb->newflag_ & NPK_ENTITY_REVERSE ) )
-            tea_encode_buffer((char*)buf, (int)size, pb->teakey_, false );
+            tea_encode_buffer((unsigned char*)buf, (int)size, pb->teakey_, false );
 
         if( eb->newflag_ & NPK_ENTITY_COMPRESS_ZLIB )
         {
@@ -362,10 +362,10 @@ NPK_RESULT npk_entity_write( NPK_ENTITY entity, NPK_HANDLE handle, bool forcePro
 
         // Encode after compress, after v21
         if( ( eb->newflag_ & NPK_ENTITY_ENCRYPT_TEA ) && ( eb->newflag_ & NPK_ENTITY_REVERSE ) )
-            tea_encode_buffer((char*)buf, (int)size, pb->teakey_, (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS) );
+            tea_encode_buffer((unsigned char*)buf, (int)size, pb->teakey_, (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS) );
 
         if( eb->newflag_ & NPK_ENTITY_ENCRYPT_XXTEA )
-            xxtea_encode_buffer((char*)buf, (int)size, pb->teakey_, (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS) );
+            xxtea_encode_buffer((unsigned char*)buf, (int)size, pb->teakey_, (NPK_VERSION_CURRENT >= NPK_VERSION_ENCRYPTREMAINS) );
     }
 
     eb->info_.size_ = size;

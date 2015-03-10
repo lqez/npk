@@ -355,9 +355,9 @@ NPK_RESULT npk_read_encrypt( NPK_TEAKEY* key, NPK_HANDLE handle, void* buf, NPK_
     if( res == NPK_SUCCESS )
     {
         if( useXXTEA )
-            xxtea_decode_buffer( (NPK_STR)buf, size, key, cipherRemains );
+            xxtea_decode_buffer( (unsigned char*)buf, size, key, cipherRemains );
         else
-            tea_decode_buffer( (NPK_STR)buf, size, key, cipherRemains );
+            tea_decode_buffer( (unsigned char*)buf, size, key, cipherRemains );
     }
 
     return res;

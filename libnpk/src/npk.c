@@ -455,10 +455,10 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
 
     // Decode before uncompress, after v21
     if( ( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA ) && ( eb->info_.flag_ & NPK_ENTITY_REVERSE ) )
-        tea_decode_buffer((char*)(*lplpTarget), eb->info_.size_, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
+        tea_decode_buffer((unsigned char*)(*lplpTarget), eb->info_.size_, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
 
     if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_XXTEA )
-        xxtea_decode_buffer((char*)(*lplpTarget), eb->info_.size_, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
+        xxtea_decode_buffer((unsigned char*)(*lplpTarget), eb->info_.size_, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
 
     if( eb->info_.flag_ & NPK_ENTITY_COMPRESS_ZLIB )
     {
@@ -491,7 +491,7 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
 
     // Decode after uncompress, before v21
     if( ( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA ) && !( eb->info_.flag_ & NPK_ENTITY_REVERSE ) )
-        tea_decode_buffer((char*)(*lplpTarget), eb->info_.originalSize_, pb->teakey_, false);
+        tea_decode_buffer((unsigned char*)(*lplpTarget), eb->info_.originalSize_, pb->teakey_, false);
 
     return true;
 
