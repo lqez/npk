@@ -11,7 +11,7 @@ int npk_06_sync_03( int argc, char * argv [] )
     CP( "sample2.txt", "sync_test_03/update.txt" );
     CP( "sample2.txt", "sync_test_03/notupdate.tmp" );
 
-    CMD( "../npk test.npk -sync sync_test_03 --sa --sd --ig *.tmp --k 1:2:3:4" );
+    CMD( "../npk test.npk -sync sync_test_03 --sa --sd --fs --ig *.tmp --k 1:2:3:4" );
 
     int teakey[4] = {1,2,3,4};
     NPK_PACKAGE pack = npk_package_open( "test.npk", teakey );

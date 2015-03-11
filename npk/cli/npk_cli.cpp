@@ -81,7 +81,7 @@ bool syncadd = false;
 bool syncdelete = false;
 bool forceupdate = false;
 bool justcreate = false;
-bool checksum = false;
+bool filesize = false;
 
 ENTITYLIST* currentList;
 NPK_FLAG currentflag;
@@ -115,7 +115,7 @@ void sort();
 void listinfo();
 void sync_package();
 void sync_and_add( bool sd, bool force, const char* basepath, const char* path );
-void sync_only_in_package( bool sd, bool force, bool usechecksum, const char* path );
+void sync_only_in_package( bool sd, bool force, bool usefilesize, const char* path );
 
 // option function
 bool has_wildcard_pattern( const char* str );
@@ -455,7 +455,7 @@ void help()
                 << "    --jc [--justcreate]    : Create new package automatically if not exist.\n"
                 << "    --nr [--norecursive]   : Do not sync child directories.\n"
                 << "    --fu [--forceupdate]   : Force update with older local files.\n"
-                << "    --cs [--checksum]      : Use file checksum for comparison.\n"
+                << "    --fs [--filesize]      : Use filesize for comparison.\n"
                 << "    --sa [--syncadd]       : Add new local files into the package.\n"
                 << "    --sd [--syncdelete]    : Delete entities that not exist in local disk.\n"
                 << "    --wo [--withonly] ARGS : Sync ARGS only(wildcard pattern).\n"
@@ -599,7 +599,7 @@ void get_sync_options()
     syncadd = find_option( "sa" ) | find_option( "syncadd" );
     syncdelete = find_option( "sd" ) | find_option( "syncdelete" );
     forceupdate = find_option( "fu" ) | find_option( "forceupdate" );
-    checksum = find_option( "cs" ) | find_option( "checksum" );
+    filesize = find_option( "fs" ) | find_option( "filesize" );
 }
 
 void get_withlist()
@@ -1367,7 +1367,7 @@ void sync_package()
     for( int i = 0; i < 4; ++i )
         sync_result[i] = 0;
 
-    sync_only_in_package( syncdelete, forceupdate, checksum, path );
+    sync_only_in_package( syncdelete, forceupdate, filesize, path );
 
     if( syncadd )
         sync_and_add( syncdelete, forceupdate, path, path );
@@ -1547,7 +1547,7 @@ void sync_and_add( bool sd, bool force, const char* basepath, const char* path )
     closedir( pDIR );
 }
 
-void sync_only_in_package( bool sd, bool force, bool usechecksum, const char* path )
+void sync_only_in_package( bool sd, bool force, bool usefilesize, const char* path )
 {
     NPK_PACKAGEBODY* pb = (NPK_PACKAGEBODY*)package;
     NPK_ENTITYBODY* eb = pb->pEntityHead_;
@@ -1616,10 +1616,12 @@ void sync_only_in_package( bool sd, bool force, bool usechecksum, const char* pa
                     status = 2;
                 else
                 {
-                    if( usechecksum )
+                    if( usefilesize && __sbuf.st_size != eb->info_.originalSize_ )
                     {
+                        status = 2;
                     }
-                    else if( __sbuf.st_mtime > eb->info_.modified_ )
+
+                    if( __sbuf.st_mtime > eb->info_.modified_ )
                     {
                         status = 2;
                     }

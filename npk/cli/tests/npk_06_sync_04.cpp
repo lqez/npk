@@ -10,7 +10,7 @@ int npk_06_sync_04( int argc, char * argv [] )
     CP( "sample2.txt", "sync_test_04/add2.test" );
     CP( "sample2.txt", "sync_test_04/nested/add3.tmp" );
 
-    CMD( "../npk test.npk -create -sync sync_test_04 --sa -flag \"*.txt@C\" \"add2*@E\" \"*add3.tmp@C@E\" --v --f --k 1:2:3:4" );
+    CMD( "../npk test.npk -create -sync sync_test_04 --sa --fs -flag \"*.txt@C\" \"add2*@E\" \"*add3.tmp@C@E\" --v --f --k 1:2:3:4" );
 
     int teakey[4] = {1,2,3,4};
     NPK_PACKAGE pack = npk_package_open( "test.npk", teakey );

@@ -9,7 +9,7 @@ int npk_06_sync_02( int argc, char * argv [] )
     CP( "sample.txt", "sync_test_02/remain.txt" );
     CP( "sample2.txt", "sync_test_02/update.txt" );
 
-    CMD( "../npk test.npk -sync sync_test_02 --sa --sd --k 1:2:3:4" );
+    CMD( "../npk test.npk -sync sync_test_02 --sa --sd --fs --k 1:2:3:4" );
 
     int teakey[4] = {1,2,3,4};
     NPK_PACKAGE pack = npk_package_open( "test.npk", teakey );
