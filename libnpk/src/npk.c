@@ -451,7 +451,7 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
     npk_package_free( pb );
 
     if( res != NPK_SUCCESS )
-        goto npk_entity_read_return_null_with_free;
+        goto npk_entity_read_return_with_free;
 
     // Decode before uncompress, after v21
     if( ( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA ) && ( eb->info_.flag_ & NPK_ENTITY_REVERSE ) )
@@ -473,13 +473,13 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
 #endif
             {
                 npk_error( NPK_ERROR_FailToDecompress );
-                goto npk_entity_read_return_null_with_free;
+                goto npk_entity_read_return_with_free;
             }
 
             if( eb->info_.originalSize_ != uncompLen )
             {
                 npk_error( NPK_ERROR_FailToDecompress );
-                goto npk_entity_read_return_null_with_free;
+                goto npk_entity_read_return_with_free;
             }
         }
         else
@@ -495,7 +495,7 @@ bool npk_entity_read( NPK_ENTITY entity, void* buf )
 
     return true;
 
-npk_entity_read_return_null_with_free:
+npk_entity_read_return_with_free:
     NPK_SAFE_FREE( lpDecompressBuffer );
     return false;
 }
@@ -504,6 +504,11 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
 {
     NPK_ENTITYBODY* eb = entity;
     NPK_PACKAGEBODY* pb = NULL;
+    NPK_SIZE head_size = 0;
+    NPK_SIZE tail_size = 0;
+    NPK_SIZE body_size = 0;
+    NPK_SIZE remains = 0;
+    unsigned char temp_buf[8];
     NPK_RESULT res;
 
     if( !entity )
@@ -512,46 +517,99 @@ bool npk_entity_read_partial( NPK_ENTITY entity, void* buf, NPK_SIZE offset, NPK
         return false;
     }
 
+    // Compressed entities cannot be read partially.
     if( eb->info_.flag_ & NPK_ENTITY_COMPRESS_ZLIB )
     {
         npk_error( NPK_ERROR_CantReadCompressedEntityByPartial );
         return false;
     }
 
-    if( eb->info_.flag_ & ( NPK_ENTITY_ENCRYPT_TEA | NPK_ENTITY_ENCRYPT_XXTEA ) )
-    {
-        if( ( offset % 8 != 0 ) || ( ( size % 8 != 0 ) && ( offset + size != eb->info_.size_ ) ) )
-        {
-            npk_error( NPK_ERROR_ReadingEncryptedEntityByPartialShouldBeAligned );
-            return false;
-        }
-    }
-
     pb = eb->owner_;
-
     npk_package_lock( pb );
 
-    npk_seek( pb->handle_, (long)(eb->info_.offset_ + offset)+pb->offsetJump_, SEEK_SET );
+    if( eb->info_.flag_ & ( NPK_ENTITY_ENCRYPT_TEA | NPK_ENTITY_ENCRYPT_XXTEA ) ) {
+        if( size < 8 ) {
+            tail_size = size;
+        } else {
+            head_size = 8 - (offset % 8);
+            if( head_size == 8 )    // Offset is aligned, do not need to read head separately.
+                head_size = 0;
+            tail_size = (size - head_size) % 8;
+            body_size =  size - head_size - tail_size;
+        }
 
-    res = npk_read( pb->handle_,
-                    buf,
-                    size,
-                    g_callbackfp,
-                    NPK_PROCESSTYPE_ENTITY,
-                    g_callbackSize,
-                    eb->name_ );
+        // If offset is not aligned, then read it separately.
+        if( head_size != 0 ) {
+            npk_seek( pb->handle_, (long)(eb->info_.offset_ + offset - 8 + head_size) + pb->offsetJump_, SEEK_SET );
 
-    if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA )
-        tea_decode_buffer(buf, size, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
-    if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_XXTEA )
-        xxtea_decode_buffer(buf, size, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
+             // do not use callback
+            res = npk_read( pb->handle_, temp_buf, 8, NULL, NPK_PROCESSTYPE_ENTITY, 0, eb->name_ );
+            if( res != NPK_SUCCESS )
+                goto npk_entity_read_partial_return_with_free;
+
+            if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA )
+                tea_decode_buffer(temp_buf, 8, pb->teakey_, false);
+            else
+                xxtea_decode_buffer(temp_buf, 8, pb->teakey_, false);
+
+            memcpy( buf, &temp_buf[8 - head_size], head_size );
+        } else {
+            npk_seek( pb->handle_, (long)(eb->info_.offset_ + offset) + pb->offsetJump_, SEEK_SET );
+        }
+
+        // The, read 'aligned' middle part.
+        if( body_size != 0 ) {
+            res = npk_read( pb->handle_,
+                            buf + head_size,
+                            body_size,
+                            g_callbackfp,
+                            NPK_PROCESSTYPE_ENTITY,
+                            g_callbackSize,
+                            eb->name_ );
+            if( res != NPK_SUCCESS )
+                goto npk_entity_read_partial_return_with_free;
+
+            if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA )
+                tea_decode_buffer(buf + head_size, body_size, pb->teakey_, false);
+            else
+                xxtea_decode_buffer(buf + head_size, body_size, pb->teakey_, false);
+        }
+
+        // If the size of middle part is not aligned, then read remainer.
+        if( tail_size != 0 ) {
+            if( offset + head_size + body_size + 8 > eb->info_.size_ ) {
+                // tail exceeds entity size. do not over-read.
+                remains = tail_size;
+            } else {
+                remains = 8;
+            }
+             // do not use callback
+            res = npk_read( pb->handle_, temp_buf, remains, NULL, NPK_PROCESSTYPE_ENTITY, 0, eb->name_ );
+            if( res != NPK_SUCCESS )
+                goto npk_entity_read_partial_return_with_free;
+
+            if( eb->info_.flag_ & NPK_ENTITY_ENCRYPT_TEA )
+                tea_decode_buffer(temp_buf, remains, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
+            else
+                xxtea_decode_buffer(temp_buf, remains, pb->teakey_, (pb->info_.version_ >= NPK_VERSION_ENCRYPTREMAINS));
+
+            memcpy( buf + head_size + body_size, temp_buf, tail_size );
+        }
+    } else {
+        // If this entity is not encrypted, then just read it at once.
+        npk_seek( pb->handle_, (long)(eb->info_.offset_ + offset) + pb->offsetJump_, SEEK_SET );
+
+        res = npk_read( pb->handle_, buf, size, g_callbackfp, NPK_PROCESSTYPE_ENTITY, g_callbackSize, eb->name_ );
+        if( res != NPK_SUCCESS )
+            goto npk_entity_read_partial_return_with_free;
+    }
 
     npk_package_free( pb );
-
-    if( res != NPK_SUCCESS )
-        return false;
-
     return true;
+
+npk_entity_read_partial_return_with_free:
+    npk_package_free( pb );
+    return false;
 }
 
 void npk_enable_callback( NPK_CALLBACK cb, NPK_SIZE cb_size )
