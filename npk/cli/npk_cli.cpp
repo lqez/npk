@@ -1320,7 +1320,7 @@ void listinfo()
     cout << "Package      : " << output << "\n";
     cout << "Version      : " << pb->info_.version_ << "\n";
     cout << "Total entity : " << pb->info_.entityCount_ << "\n";
-    cout << "Timestamp    : " << timeToString( pb->modified_) << "\n";
+    cout << "Timestamp    : " << timeToString( pb->info_.modified_ ) << "\n";
     if( filter )
         cout << "Using filter : " << filter << "\n";
 
