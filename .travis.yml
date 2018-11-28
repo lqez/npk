@@ -1,4 +1,8 @@
-script: ./build.sh
+os:
+  - linux
+  - osx
+  - windows
 
-before_install:
-  - sudo apt-get install cmake
+language: cpp
+
+script: ./build.sh
