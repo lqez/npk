@@ -38,7 +38,9 @@
 
 #if defined(_WIN32) || defined(_WIN64)
     #define NPK_PLATFORM_WINDOWS
- 	typedef int mode_t;
+    #ifndef _MODE_T_
+        typedef int mode_t;
+    #endif
 #elif defined(linux) || defined(__linux) || defined(__linux__)
     #define NPK_PLATFORM_LINUX
 #elif defined(__FreeBSD__)

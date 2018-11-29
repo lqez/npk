@@ -34,11 +34,9 @@ set( NPK_SRCS_DEV_MODE
     ./src/npk_dev.c
 )
 
-if( WIN32 )
-    if( NOT CMAKE_CL_64 )
-        add_definitions( -D_USE_32BIT_TIME_T )
-    endif( NOT CMAKE_CL_64 )
-endif( WIN32 )
+if( NOT CMAKE_SIZEOF_VOID_P EQUAL 8 )
+    add_definitions( -D_USE_32BIT_TIME_T )
+endif( NOT CMAKE_SIZEOF_VOID_P EQUAL 8 )
 
 if( USE_ZLIB_PREFIX )
     add_definitions( -DZ_PREFIX )
