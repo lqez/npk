@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <fcntl.h>
-#include <malloc.h>
 #if defined( WIN32 )
 #include <io.h>
 #pragma warning ( disable : 4819 )
